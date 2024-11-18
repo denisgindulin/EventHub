@@ -11,6 +11,12 @@
 		2228386B2CE937A400DCF847 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228386A2CE937A400DCF847 /* ContentView.swift */; };
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
+		4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */; };
+		4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */; };
+		4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */; };
+		4831BA4B2CEB2F1400141C9A /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
+		4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */; };
+		4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,7 +25,13 @@
 		2228386A2CE937A400DCF847 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4831BA3C2CEB1D1500141C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4831BA3C2CEB1D1500141C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bd.otf; sourceTree = "<group>"; };
+		4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bk.otf; sourceTree = "<group>"; };
+		4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Md.otf; sourceTree = "<group>"; };
+		4831BA4A2CEB2F1400141C9A /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ex.swift"; sourceTree = "<group>"; };
+		4831BA502CEB2F9500141C9A /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +64,11 @@
 		222838672CE937A400DCF847 /* EventHub */ = {
 			isa = PBXGroup;
 			children = (
-				4831BA3C2CEB1D1500141C9A /* Info.plist */,
-				222838682CE937A400DCF847 /* EventHubApp.swift */,
-				2228386A2CE937A400DCF847 /* ContentView.swift */,
+				4831BA522CEB2FCD00141C9A /* App */,
+				4831BA532CEB2FEE00141C9A /* Screens */,
+				4831BA3D2CEB28C400141C9A /* Font */,
+				4831BA4F2CEB2F6700141C9A /* Modifiers */,
+				4831BA4C2CEB2F4000141C9A /* Extensions */,
 				2228386C2CE937A700DCF847 /* Assets.xcassets */,
 				2228386E2CE937A700DCF847 /* Preview Content */,
 			);
@@ -67,6 +81,50 @@
 				2228386F2CE937A700DCF847 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4831BA3D2CEB28C400141C9A /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */,
+				4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */,
+				4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */,
+				4831BA4A2CEB2F1400141C9A /* FontManager.swift */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		4831BA4C2CEB2F4000141C9A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4831BA4F2CEB2F6700141C9A /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				4831BA502CEB2F9500141C9A /* FontModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		4831BA522CEB2FCD00141C9A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4831BA3C2CEB1D1500141C9A /* Info.plist */,
+				222838682CE937A400DCF847 /* EventHubApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4831BA532CEB2FEE00141C9A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				2228386A2CE937A400DCF847 /* ContentView.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +185,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */,
+				4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */,
+				4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */,
 				222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */,
 				2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */,
 			);
@@ -140,7 +201,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2228386B2CE937A400DCF847 /* ContentView.swift in Sources */,
+				4831BA4B2CEB2F1400141C9A /* FontManager.swift in Sources */,
+				4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
+				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +341,7 @@
 				DEVELOPMENT_TEAM = 689Q9C7S84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = EventHub/Info.plist;
+				INFOPLIST_FILE = EventHub/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -311,7 +375,7 @@
 				DEVELOPMENT_TEAM = 689Q9C7S84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = EventHub/Info.plist;
+				INFOPLIST_FILE = EventHub/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
