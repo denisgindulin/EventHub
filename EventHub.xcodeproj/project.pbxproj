@@ -66,6 +66,7 @@
 			children = (
 				4831BA522CEB2FCD00141C9A /* App */,
 				4831BA532CEB2FEE00141C9A /* Screens */,
+				4831BA582CEB421C00141C9A /* Components */,
 				4831BA3D2CEB28C400141C9A /* Font */,
 				4831BA4F2CEB2F6700141C9A /* Modifiers */,
 				4831BA4C2CEB2F4000141C9A /* Extensions */,
@@ -125,6 +126,13 @@
 				2228386A2CE937A400DCF847 /* ContentView.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		4831BA582CEB421C00141C9A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
