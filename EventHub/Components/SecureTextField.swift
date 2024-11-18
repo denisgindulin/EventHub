@@ -24,11 +24,17 @@ struct SecureTextField: View {
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled(true)
             }
-            
-            Button("", systemImage: isShowPassword ? "eye.fill" : "eye.slash.fill") {
+            Button {
                 isShowPassword.toggle()
+            } label: {
+                if isShowPassword {
+                    Image(systemName: "eye.fill")
+                        .font(.system(size: 14))
+                } else {
+                    Image(.eyeSlash)
+                }
             }
-            .foregroundStyle(.gray)
+            .foregroundStyle(.appDarkGray)
         }
     }
 }

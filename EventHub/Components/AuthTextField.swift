@@ -19,8 +19,8 @@ struct AuthTextField: View {
     
     var body: some View {
         HStack {
-            Image(systemName: imageName)
-                .foregroundColor(isFocused ? .blue : .gray)
+            Image(imageName)
+                .foregroundStyle(isFocused ? .appBlue : .appDarkGray)
             if isSecure {
                 SecureTextField(textFieldText: $textFieldText, placeholder: placeholder)
                     .focused($isFocused)
@@ -38,10 +38,10 @@ struct AuthTextField: View {
         .overlay {
             if isFocused {
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color(.blue), lineWidth: 1)
+                    .stroke(Color(.appBlue), lineWidth: 1)
             } else {
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color(.gray), lineWidth: 1)
+                    .stroke(Color(.fieldGray), lineWidth: 1)
             }
         }
         .onTapGesture {
