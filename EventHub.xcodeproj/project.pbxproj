@@ -11,6 +11,8 @@
 		2228386B2CE937A400DCF847 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228386A2CE937A400DCF847 /* ContentView.swift */; };
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
+		4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA542CEB34D000141C9A /* AuthTextField.swift */; };
+		4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA562CEB34EA00141C9A /* SecureTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		2228386A2CE937A400DCF847 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4831BA542CEB34D000141C9A /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
+		4831BA562CEB34EA00141C9A /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 				222838682CE937A400DCF847 /* EventHubApp.swift */,
 				2228386A2CE937A400DCF847 /* ContentView.swift */,
 				2228386C2CE937A700DCF847 /* Assets.xcassets */,
+				4831BA542CEB34D000141C9A /* AuthTextField.swift */,
+				4831BA562CEB34EA00141C9A /* SecureTextField.swift */,
 				2228386E2CE937A700DCF847 /* Preview Content */,
 			);
 			path = EventHub;
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */,
+				4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */,
 				2228386B2CE937A400DCF847 /* ContentView.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
 			);

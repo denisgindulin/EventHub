@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var password = ""
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            AuthTextField(textFieldText: $password, placeholder: "Password", imageName: "person", isSecure: true)
         }
         .padding()
     }
