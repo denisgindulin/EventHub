@@ -28,6 +28,7 @@ struct OnboardingPageView: View {
             .frame(maxWidth: .infinity)
             .background(.appBlue)
             .cornerRadius(40, corners: [.topLeft, .topRight])
+            .shadow(color: Color.white.opacity(0.8), radius: 10, x: 0, y: -80)
             .multilineTextAlignment(.center)
             
         }
