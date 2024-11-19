@@ -19,6 +19,13 @@
 		4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
 		4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA542CEB34D000141C9A /* AuthTextField.swift */; };
 		4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA562CEB34EA00141C9A /* SecureTextField.swift */; };
+		4831BA5B2CEC981A00141C9A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA5A2CEC981A00141C9A /* OnboardingView.swift */; };
+		4831BA5D2CECBADC00141C9A /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA5C2CECBADC00141C9A /* RoundedCorner.swift */; };
+		4831BA5F2CECBB1800141C9A /* OnboardingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA5E2CECBB1800141C9A /* OnboardingItem.swift */; };
+		4831BA612CECBBF600141C9A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA602CECBBF600141C9A /* OnboardingViewModel.swift */; };
+		4831BA632CECBDF200141C9A /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA622CECBDF200141C9A /* OnboardingPageView.swift */; };
+		4831BA652CECBE0C00141C9A /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA642CECBE0C00141C9A /* OnboardingTabView.swift */; };
+		4831BA672CECBF3A00141C9A /* OnboardingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA662CECBF3A00141C9A /* OnboardingControlsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +43,13 @@
 		4831BA502CEB2F9500141C9A /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
 		4831BA542CEB34D000141C9A /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		4831BA562CEB34EA00141C9A /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		4831BA5A2CEC981A00141C9A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		4831BA5C2CECBADC00141C9A /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		4831BA5E2CECBB1800141C9A /* OnboardingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItem.swift; sourceTree = "<group>"; };
+		4831BA602CECBBF600141C9A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		4831BA622CECBDF200141C9A /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		4831BA642CECBE0C00141C9A /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
+		4831BA662CECBF3A00141C9A /* OnboardingControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingControlsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				4831BA522CEB2FCD00141C9A /* App */,
+				4831BA592CEC980000141C9A /* Onboarding */,
 				4831BA532CEB2FEE00141C9A /* Screens */,
 				4831BA582CEB421C00141C9A /* Components */,
 				4831BA3D2CEB28C400141C9A /* Font */,
@@ -111,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				4831BA502CEB2F9500141C9A /* FontModifier.swift */,
+				4831BA5C2CECBADC00141C9A /* RoundedCorner.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -139,6 +155,19 @@
 				4831BA562CEB34EA00141C9A /* SecureTextField.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		4831BA592CEC980000141C9A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				4831BA5E2CECBB1800141C9A /* OnboardingItem.swift */,
+				4831BA5A2CEC981A00141C9A /* OnboardingView.swift */,
+				4831BA662CECBF3A00141C9A /* OnboardingControlsView.swift */,
+				4831BA642CECBE0C00141C9A /* OnboardingTabView.swift */,
+				4831BA622CECBDF200141C9A /* OnboardingPageView.swift */,
+				4831BA602CECBBF600141C9A /* OnboardingViewModel.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,10 +244,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */,
+				4831BA672CECBF3A00141C9A /* OnboardingControlsView.swift in Sources */,
 				4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */,
 				2228386B2CE937A400DCF847 /* ContentView.swift in Sources */,
+				4831BA5D2CECBADC00141C9A /* RoundedCorner.swift in Sources */,
 				4831BA4B2CEB2F1400141C9A /* FontManager.swift in Sources */,
 				4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */,
+				4831BA652CECBE0C00141C9A /* OnboardingTabView.swift in Sources */,
+				4831BA632CECBDF200141C9A /* OnboardingPageView.swift in Sources */,
+				4831BA5F2CECBB1800141C9A /* OnboardingItem.swift in Sources */,
+				4831BA5B2CEC981A00141C9A /* OnboardingView.swift in Sources */,
+				4831BA612CECBBF600141C9A /* OnboardingViewModel.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
 			);
