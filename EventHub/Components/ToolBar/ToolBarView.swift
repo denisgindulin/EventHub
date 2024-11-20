@@ -16,7 +16,7 @@ struct ToolBarView: View {
     
     var isTitleLeading: Bool = false
     var showBackButton: Bool = false
-    var actions: [ToolBarAction]
+    var actions: [ToolBarAction] = []
     
     // MARK: - Drawing Constants
     private struct Drawing {
@@ -34,6 +34,8 @@ struct ToolBarView: View {
             if showBackButton {
                 BackBarButtonView()
                     .padding(.leading, Drawing.leadingSpacing)
+            } else {
+                Spacer().frame(width: Drawing.leadingSpacing)
             }
             
             // Title
@@ -47,10 +49,7 @@ struct ToolBarView: View {
                     maxWidth: .infinity,
                     alignment: isTitleLeading ? .leading : .center
                 )
-                .padding(.leading, isTitleLeading && showBackButton ? Drawing.titleLeadingSpacing : 0)
-            
-            Spacer(minLength: 0)
-            
+
             // Right Buttons
             HStack(spacing: Drawing.spacingBetweenButtons) {
                 ForEach(actions) { action in
@@ -58,6 +57,10 @@ struct ToolBarView: View {
                 }
             }
             .padding(.trailing, Drawing.trailingSpacing)
+            
+            if actions.isEmpty {
+                Spacer().frame(width: Drawing.trailingSpacing)
+            }
         }
         .frame(height: Drawing.tabBarHeight)
     }
@@ -66,24 +69,8 @@ struct ToolBarView: View {
 struct ToolBarView_Previews: PreviewProvider {
     static var previews: some View {
         ToolBarView(
-            title: "Toolbar Title",
-            isTitleLeading: true,
-            showBackButton: true,
-            actions: [
-                ToolBarAction(
-                    icon: ToolBarButtonType.search.icon,
-                    action: { print("Search tapped") },
-                    hasBackground: false,
-                    foregroundStyle: .white
-                ),
+            title: "Toolbar Title"
 
-                ToolBarAction(
-                    icon: ToolBarButtonType.moreVertically.icon,
-                    action: { print("More tapped") },
-                    hasBackground: false,
-                    foregroundStyle: .black
-                )
-            ]
         )
     }
 }

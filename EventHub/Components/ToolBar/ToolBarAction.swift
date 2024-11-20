@@ -23,7 +23,7 @@ enum ToolBarButtonType {
     case back
     case search
     case bookmark
-    case moreVertically
+
     
     // MARK: - Icon
     var icon: String {
@@ -34,8 +34,6 @@ enum ToolBarButtonType {
             return "bookmarkFill"
         case .search:
             return "search"
-        case .moreVertically:
-            return "moreVertical"
         }
     }
 }

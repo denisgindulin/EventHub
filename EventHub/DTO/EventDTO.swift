@@ -50,10 +50,12 @@ struct EventCategory: Codable, Identifiable, Sendable, DecodableType {
 struct EventDate: Codable, Sendable, DecodableType {
     let startDate: String?
     let startTime: String?
-
+    let endTime: String?
+    
     enum CodingKeys: String, CodingKey {
         case startDate = "start_date"
         case startTime = "start_time"
+        case endTime = "end_time"
     }
 }
 

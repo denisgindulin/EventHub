@@ -16,20 +16,14 @@ struct TestView: View {
     
     var body: some View {
         ZStack {
-            Color.appBlue.ignoresSafeArea(.all)
+            Color.white.ignoresSafeArea(.all)
             
             VStack(spacing: 0) {
                 ToolBarView(
                     title: "Profile",
-                    foregroundStyle: .white,
                     showBackButton: true,
                     actions: [
-                        ToolBarAction(
-                            icon: ToolBarButtonType.moreVertically.icon,
-                            action: {},
-                            hasBackground: false,
-                            foregroundStyle: .black
-                        ),
+
                         ToolBarAction(
                         icon: ToolBarButtonType.search.icon,
                         action: {},
