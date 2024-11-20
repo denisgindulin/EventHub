@@ -36,7 +36,6 @@ struct SearchBarView: View {
             
             FiltersButtonView(color: .appPurple)
         }
-        .padding(24)
 //        .background(Color.appBlue) // for preview
         
     }
