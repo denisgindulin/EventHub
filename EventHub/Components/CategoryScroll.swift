@@ -20,6 +20,7 @@ struct CategoryScroll: View {
                     CategoryButtonView(categoryName: categoryNames[number], imageName: categoryImages[number], backgroundColor: colors[number])
                 }
             }
+            .padding(.leading, 24)
         }
     }
 }
