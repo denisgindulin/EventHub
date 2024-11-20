@@ -118,7 +118,7 @@ struct EventCardView: View {
                     // show map button ?
                 } label: {
                     HStack {
-                        Image(.mapPin)
+                        Image(.placePin)
                             .resizable()
                             .frame(width: 16, height: 16)
                         Text(event.adress)

@@ -14,7 +14,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.appMainBackground
+                Color.appMainBackground // zIndex // UIScreen.main.bounds.width
                 VStack {
                     CustomToolBar(title: viewModel.currentPosition, magnifierColor: .white, colors: viewModel.categoryColors, categories: viewModel.categories, pictures: viewModel.categoryPictures)
                     ScrollView(showsIndicators: false) {
