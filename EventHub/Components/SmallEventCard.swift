@@ -32,7 +32,7 @@ struct SmallEventCard: View {
                 .frame(width: 80, height: 92)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack( alignment: .leading, spacing: 4) {
-                Text(date.formattedDate())
+                Text(showPlace ? date.formattedDate() : date.formattedWithSuffix())
                     .airbnbCerealFont(showPlace ? .book : .medium, size: 13)
                     .foregroundStyle(.appBlue)
                 
