@@ -38,6 +38,7 @@
 		6C8736D32CEDD2D100D0C1AA /* MainCategorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736D22CEDD2D100D0C1AA /* MainCategorySectionView.swift */; };
 		6C8736D52CEDD2EA00D0C1AA /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736D42CEDD2EA00D0C1AA /* ShimmerView.swift */; };
 		6C8736D72CEDD32000D0C1AA /* CategoryScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736D62CEDD32000D0C1AA /* CategoryScroll.swift */; };
+		6C8736D92CEE0B2500D0C1AA /* CustomToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736D82CEE0B2500D0C1AA /* CustomToolbar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		6C8736D22CEDD2D100D0C1AA /* MainCategorySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategorySectionView.swift; sourceTree = "<group>"; };
 		6C8736D42CEDD2EA00D0C1AA /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		6C8736D62CEDD32000D0C1AA /* CategoryScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScroll.swift; sourceTree = "<group>"; };
+		6C8736D82CEE0B2500D0C1AA /* CustomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				6C8736CA2CEDD23C00D0C1AA /* EventCardView.swift */,
 				6C8736D22CEDD2D100D0C1AA /* MainCategorySectionView.swift */,
 				6C8736D02CEDD2A100D0C1AA /* CategoryButtonView.swift */,
+				6C8736D82CEE0B2500D0C1AA /* CustomToolbar.swift */,
 				6C8736D62CEDD32000D0C1AA /* CategoryScroll.swift */,
 				6C8736D42CEDD2EA00D0C1AA /* ShimmerView.swift */,
 				6C8736C42CEDD19D00D0C1AA /* EventModel.swift */,
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C8736D72CEDD32000D0C1AA /* CategoryScroll.swift in Sources */,
+				6C8736D92CEE0B2500D0C1AA /* CustomToolbar.swift in Sources */,
 				6C8736D12CEDD2A100D0C1AA /* CategoryButtonView.swift in Sources */,
 				4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */,
 				4831BA672CECBF3A00141C9A /* OnboardingControlsView.swift in Sources */,
