@@ -124,11 +124,11 @@ struct ShimmerView: View {
             
             VStack(alignment: .leading) {
                 Spacer()
-                Text("Loading events" + " ...")
+                Text("EVENT")
                     .airbnbCerealFont( AirbnbCerealFont.medium, size: 20)
                     .foregroundStyle(.appPurple)
                     .shimmering()
-                    .padding(.top, 30)
+                    .padding(.top, 50)
                     
                 Spacer()
                 
