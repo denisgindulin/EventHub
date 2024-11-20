@@ -19,6 +19,8 @@ struct CategoryScroll: View {
                 ForEach(0..<4) { number in
                     CategoryButtonView(categoryName: categoryNames[number], imageName: categoryImages[number], backgroundColor: colors[number])
                 }
+                .clipped()
+                
             }
             .padding(.leading, 24)
         }

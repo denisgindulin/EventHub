@@ -11,6 +11,6 @@ class MainViewModel: ObservableObject {
     let currentPosition: String = "New York, USA"
     
     let categories: [String] = ["Sports", "Music", "Food", "More"]
-    let categoryColors: [Color] = [.red, .orange, .green, .blue]
-    let categoryImages: [String] = ["ball", "music","eat", "profile"] // paint image = person ???
+    let categoryColors: [Color] = [.appRed, .appOrange, .appGreen, .appCyan]
+    let categoryPictures: [String] = ["ball", "music","eat", "profile"] // paint image = person ???
 }

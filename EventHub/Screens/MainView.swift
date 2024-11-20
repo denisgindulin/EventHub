@@ -14,12 +14,10 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.white //     App  Color Background
+                Color.appMainBackground
                 VStack {
-                    CustomToolBar(title: viewModel.currentPosition, magnifierColor: .white)
+                    CustomToolBar(title: viewModel.currentPosition, magnifierColor: .white, colors: viewModel.categoryColors, categories: viewModel.categories, pictures: viewModel.categoryPictures)
                     ScrollView(showsIndicators: false) {
-                            CategoryScroll(colors: viewModel.categoryColors, categoryNames: viewModel.categories, categoryImages: viewModel.categoryImages)
-                                .padding(.bottom, 22)
                             
                             MainCategorySectionView(title: "Upcomimg Events")
                                 .padding(.bottom, 10)
@@ -33,7 +31,6 @@ struct MainView: View {
                             ScrollEventCardsView(events: [Event.example, Event.example])
                                 .padding(.bottom, 150) // for TabBar
                     }
-                    .offset(y: -30)
                     .navigationBarHidden(true)
                 }
             }

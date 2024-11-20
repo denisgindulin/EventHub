@@ -28,37 +28,40 @@ struct EventCardView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding(.top, 9)
                             .padding(.bottom,14)
-                        
-                        Button {
-                            // add bookmark
-                            print("Bookmark hi") // don t working
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 7)
-                                    .frame(width: 30, height: 30)
-                                    .foregroundStyle(.gray) //color
-                                    .opacity(0.7)
-                                Image(event.isFavorite ? .bookmark : .bookmarkOverlay)
-                                    .resizable()
-                                    .frame(width: 14, height: 14)
+                        VStack {
+                            Button {
+                                // add bookmark
+                                print("bookmark trigg")
+                            } label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .frame(width: 30, height: 30)
+                                        .foregroundStyle(.appOrangeSecondary)
+                                        .opacity(0.7)
+                                    Image(event.isFavorite ? .bookmark : .bookmarkOverlay)
+                                        .resizable()
+                                        .frame(width: 14, height: 14)
+                                }
                             }
-                            .offset(x: 85,y: -45)
                         }
+                        .offset(x: 86,y: -46)
                         
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .frame(width: 45, height: 45)
-                                .foregroundStyle(.gray)//color
+                                .foregroundStyle(.appOrangeSecondary)
                                 .opacity(0.7)
                             //  .blur(radius: 3) ??
                             VStack {
                                 Text(dayAndMounthFromDate[0])
-                                    .airbnbCerealFont(AirbnbCerealFont.book, size: 18)
+                                    .foregroundStyle(.appDateText)
+                                    .airbnbCerealFont(AirbnbCerealFont.book, size: 18) // font?
                                 Text(dayAndMounthFromDate[1].uppercased())
                                     .font(.system(size: 10))
+                                    .foregroundStyle(.appDateText)
                             }
                         }
-                        .offset(x: -75, y: -35)
+                        .offset(x: -78, y: -38)
                     }
                 } else {
                     Image(systemName: "xmark.square.fill")
@@ -76,18 +79,22 @@ struct EventCardView: View {
                 
 #warning("image for avatars")
                 if let visitors = event.visitors {
-                    HStack {
-                        ForEach(getThreeVisitorsAvatars(visitors: visitors)) { avatar in
-                            
-                            Image(.visitor) // avatar image
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                                .clipShape(Circle())
-                                .overlay {
-                                    Circle().stroke(style: StrokeStyle(lineWidth: 1))
-                                        .foregroundStyle(Color.white)
-                                }
+                    HStack{
+                        ZStack {
+                            ForEach(getVisitorsAvatars(visitors: visitors).indices) { avatar in
+                                
+                                Image(.visitor) // avatar image
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                                    .clipShape(Circle())
+                                    .overlay {
+                                        Circle().stroke(style: StrokeStyle(lineWidth: 1))
+                                            .foregroundStyle(Color.white)
+                                    }
+                                    .offset(x: getOffset(index: avatar, visitors: getVisitorsAvatars(visitors: visitors).count))
+                            }
                         }
+                        
                         Button {
                             // show visitors
                         } label: {
@@ -102,8 +109,11 @@ struct EventCardView: View {
                                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                             }
                         }
+                        .padding(.leading, 25)
                     }
                 }
+                
+                
                 Button {
                     // show map button ?
                 } label: {
@@ -123,7 +133,27 @@ struct EventCardView: View {
         .frame(width: 237, height: 255)
         .clipShape(RoundedRectangle(cornerRadius: 18))
     }
- 
+    
+    private func getOffset(index: Int, visitors: Int) -> CGFloat {
+        var offset = 0
+        let ratio = 15
+
+        if visitors == 1 {
+            offset = 0
+        } else if visitors == 2 {
+            switch index {
+            case 0: offset = ratio
+            default: offset = 0
+                    }
+        } else if visitors == 3 {
+            switch index {
+            case 0: offset = 2 * ratio
+            case 1: offset = ratio
+            default: offset = 0
+                    }
+        }
+        return CGFloat(offset)
+    }
     
     private func checkRemainingNumberOfVisitors(visitors: [Visitor]) -> Int {
         switch visitors.count {
@@ -135,7 +165,7 @@ struct EventCardView: View {
         }
     }
     
-    private func getThreeVisitorsAvatars(visitors: [Visitor]) -> [Visitor] {
+    private func getVisitorsAvatars(visitors: [Visitor]) -> [Visitor] {
         var randomThreeVisitors: [Visitor] = []
         
         if visitors.count > 3 {
@@ -144,6 +174,24 @@ struct EventCardView: View {
                 randomThreeVisitors.append(visitor)
             }
         }
+        
+        if visitors.count == 3 {
+            for visitor in visitors {
+                randomThreeVisitors.append(visitor)
+            }
+        }
+        
+        if visitors.count == 2 {
+            for visitor in visitors {
+                randomThreeVisitors.append(visitor)
+            }
+        }
+        if visitors.count == 1 {
+            for visitor in visitors {
+                randomThreeVisitors.append(visitor)
+            }
+        }
+        
         return randomThreeVisitors
     }
     
