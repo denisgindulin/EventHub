@@ -6,23 +6,9 @@
 //
 
 import Foundation
-/*
-spb - Санкт-Петербург
-msk - Москва
-nsk - Новосибирск
-ekb - Екатеринбург
-nnv - Нижний Новгород
-kzn - Казань
-vbg - Выборг
-smr - Самара
-krd - Краснодар
-sochi - Сочи
-ufa - Уфа
-krasnoyarsk - Красноярск
-kev - Киев
-new-york - Нью-Йорк
-*/
-// MARK: - NewsAPISpec Enum
+
+// MARK: - EventAPISpec
+/// Defines the API endpoints and configurations for interacting with the KudaGo Event API.
 enum EventAPISpec: APISpec {
     case getLocation(language: Language?)
     case getCategories(language: Language?)
@@ -31,6 +17,7 @@ enum EventAPISpec: APISpec {
     case getSerchedEventsWith(searchText: String)
     
     // MARK: - Base URL Path
+    /// Returns the base path for each endpoint.
     private var path: String {
         switch self {
         case .getLocation:
@@ -47,21 +34,14 @@ enum EventAPISpec: APISpec {
     }
     
     // MARK: - Query Items
+    /// Returns query parameters for the specified API call.
     private var queryItems: [URLQueryItem] {
         switch self {
         case .getLocation(language: let language):
-            if let language = language {
-                return [URLQueryItem(name: "lang", value: language.rawValue)]
-            } else {
-                return []
-            }
+            return language.map { [URLQueryItem(name: "lang", value: $0.rawValue)] } ?? []
             
         case .getCategories(language: let language):
-            if let language = language {
-                return [URLQueryItem(name: "lang", value: language.rawValue)]
-            } else {
-                return []
-            }
+            return language.map { [URLQueryItem(name: "lang", value: $0.rawValue)] } ?? []
             
         case .getEventsWith(location: let location, language: let language, category: let category, let page):
             var items: [URLQueryItem] = [
@@ -69,7 +49,6 @@ enum EventAPISpec: APISpec {
                 URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants"),
                 URLQueryItem(name: "categories", value: category)
             ]
-            
             if let language = language {
                 items.append(URLQueryItem(name: "lang", value: language.rawValue))
             }
@@ -77,20 +56,15 @@ enum EventAPISpec: APISpec {
             return items
             
         case .getEventDetails(eventID: _, language: let language):
-            if let language = language {
-                return [URLQueryItem(name: "lang", value: language.rawValue)]
-            } else {
-                return []
-            }
+            return language.map { [URLQueryItem(name: "lang", value: $0.rawValue)] } ?? []
             
         case .getSerchedEventsWith(searchText: let searchText):
-            return [
-                URLQueryItem(name: "q", value: searchText)
-            ]
+            return [URLQueryItem(name: "q", value: searchText)]
         }
     }
   
     // MARK: - Endpoint
+    /// Constructs the full endpoint URL.
     var endpoint: String {
         var components = URLComponents()
         components.scheme = "https"
@@ -101,11 +75,13 @@ enum EventAPISpec: APISpec {
     }
     
     // MARK: - HTTP Method
+    /// Returns the HTTP method for the request.
     var method: HttpMethod {
         return .get
     }
     
     // MARK: - Return Type
+    /// Specifies the expected return type of the API response.
     var returnType: DecodableType.Type {
         switch self {
         case .getLocation:
@@ -118,11 +94,11 @@ enum EventAPISpec: APISpec {
             return APIResponseDTO.self
         case .getSerchedEventsWith:
             return APIResponseDTO.self
-        
         }
     }
     
     // MARK: - Request Body
+    /// Returns the HTTP body for the request (always `nil` in this case).
     var body: Data? {
         return nil
     }
