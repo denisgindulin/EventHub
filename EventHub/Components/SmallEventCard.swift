@@ -57,8 +57,12 @@ struct SmallEventCard: View {
             Spacer()
             if showBookmark {
                 VStack {
-                    Image(systemName: "bookmark.fill")
-                        .foregroundStyle(.appRed)
+                    Button {
+                        //
+                    } label: {
+                        Image(systemName: "bookmark.fill")
+                            .foregroundStyle(.appRed)
+                    }
                 }
             }
         }
@@ -74,5 +78,5 @@ struct SmallEventCard: View {
     SmallEventCard(image: "cardImg1",
                    date: .now,
                    title: "Jo Malone London’s Mother’s Day Presents",
-                   place: "Radius Gallery • Santa Cruz, CAsdf")
+                   place: "Radius Gallery • Santa Cruz, CAsdf", showBookmark: true)
 }
