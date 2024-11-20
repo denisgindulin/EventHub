@@ -33,15 +33,12 @@ enum TabItem: String, CaseIterable {
         switch self {
         case .explore:
             return "explore"
-            
         case .events:
             return "events"
-            
         case .map:
             return "map"
-            
         case .profile:
-            return "profile"
+            return "profileTab"
         case .bookmark:
             return "bookmark"
         }

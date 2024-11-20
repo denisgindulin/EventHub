@@ -1,5 +1,5 @@
 //
-//  ToolBar.swift
+//  ToolBarView.swift
 //  EventHub
 //
 //  Created by Келлер Дмитрий on 18.11.2024.
@@ -7,69 +7,86 @@
 
 import SwiftUI
 
+// MARK: - ToolBarView
 struct ToolBarView: View {
-    var showBackButton: Bool = false
-    var backButtonAction: (() -> Void)?
     
-    var showRightButton: Bool = false
-    var rightButtonAction: (() -> Void)?
-    var rightButtonImage: ImageResource? = .bookmark
+    // MARK: - Properties
     var title: String
+    var foregroundStyle: Color = .black
     
+    var isTitleLeading: Bool = false
+    var showBackButton: Bool = false
+    var actions: [ToolBarAction]
+    
+    // MARK: - Drawing Constants
+    private struct Drawing {
+        static let tabBarHeight: CGFloat = 80
+        static let titleFontSize: CGFloat = 24
+        static let spacingBetweenButtons: CGFloat = 16
+        static let leadingSpacing: CGFloat = 24
+        static let trailingSpacing: CGFloat = 24
+        static let titleLeadingSpacing: CGFloat = 13
+    }
+    
+    // MARK: - Body
     var body: some View {
         HStack {
-            if showBackButton, let backButtonAction = backButtonAction {
-                Button(action: {
-                    backButtonAction()
-                }) {
-                    Image(systemName: "arrowLeft")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 38, height: 38)
-                        .foregroundStyle(.appBackground)
-                }
-                .padding(.leading, 16)
-            } else {
-                Spacer().frame(width: 50)
+            if showBackButton {
+                BackBarButtonView()
+                    .padding(.leading, Drawing.leadingSpacing)
             }
             
-           
+            // Title
             Text(title)
-                .airbnbCerealFont(AirbnbCerealFont.medium, size: Drawing.fontSize)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.horizontal)
+                .airbnbCerealFont(
+                    AirbnbCerealFont.medium,
+                    size: Drawing.titleFontSize
+                )
                 .lineLimit(1)
-                .foregroundStyle(.basicBlue)
+                .frame(
+                    maxWidth: .infinity,
+                    alignment: isTitleLeading ? .leading : .center
+                )
+                .padding(.leading, isTitleLeading && showBackButton ? Drawing.titleLeadingSpacing : 0)
             
-            if showRightButton, let rightButtonAction = rightButtonAction {
-                Button(action: {
-                    rightButtonAction()
-                }) {
-                    Image(rightButtonImage ?? .rulesIcon)
-                        .frame(width: 38, height: 38)
-                        .foregroundStyle(.basicBlack)
+            Spacer(minLength: 0)
+            
+            // Right Buttons
+            HStack(spacing: Drawing.spacingBetweenButtons) {
+                ForEach(actions) { action in
+                    ToolBarButtonView(action: action)
                 }
-                .padding(.trailing, 16)
-            } else {
-                Spacer().frame(width: 50)
             }
+            .padding(.trailing, Drawing.trailingSpacing)
         }
-        .frame(height: 44)
-        .background(Color.basicBackground)
+        .frame(height: Drawing.tabBarHeight)
     }
 }
 
-#Preview {
-    VStack {
+struct ToolBarView_Previews: PreviewProvider {
+    static var previews: some View {
         ToolBarView(
+            title: "Toolbar Title",
+            isTitleLeading: true,
             showBackButton: true,
-            backButtonAction: { print("Back button pressed") },
-            showRightButton: true,
-            rightButtonAction: { print("Right button pressed") },
-            title: "Custom NavBar"
+            actions: [
+                ToolBarAction(
+                    icon: ToolBarButtonType.search.icon,
+                    action: { print("Search tapped") },
+                    hasBackground: false,
+                    foregroundStyle: .white
+                ),
+
+                ToolBarAction(
+                    icon: ToolBarButtonType.moreVertically.icon,
+                    action: { print("More tapped") },
+                    hasBackground: false,
+                    foregroundStyle: .black
+                )
+            ]
         )
-        
-        Spacer()
     }
 }
+
+
 

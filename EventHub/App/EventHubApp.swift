@@ -12,7 +12,7 @@ struct EventHubApp: App {
     var body: some Scene {
         
         WindowGroup {
-            TabBarView(viewModel: TabBarViewModel())
+            TestView()
         }
     }
 }

@@ -8,16 +8,12 @@
 import Foundation
 
 final class TabBarViewModel: ObservableObject {
-    @Published var tabSelection: Int = 0
+    @Published var tabSelection: TabItem = .explore
     
-    @Published var pages: [TabItem] = {
-        [
-            TabItem.events,
-            TabItem.explore,
-            TabItem.map,
-            TabItem.profile
-        ]
-    }()
+    let pages: [TabItem] = TabItem.allCases
     
+    init(tabSelection: TabItem) {
+        self.tabSelection = tabSelection
+    }
 }
 

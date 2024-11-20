@@ -19,6 +19,21 @@
 		4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
 		4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA542CEB34D000141C9A /* AuthTextField.swift */; };
 		4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA562CEB34EA00141C9A /* SecureTextField.swift */; };
+		E1B529DA2CEB5A9E001AA8E0 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529D42CEB5A9E001AA8E0 /* TabBarView.swift */; };
+		E1B529DB2CEB5A9E001AA8E0 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529D52CEB5A9E001AA8E0 /* TabBarViewModel.swift */; };
+		E1B529DC2CEB5A9E001AA8E0 /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529D82CEB5A9E001AA8E0 /* ToolBarView.swift */; };
+		E1B529DD2CEB5A9E001AA8E0 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529D62CEB5A9E001AA8E0 /* TabItem.swift */; };
+		E1B529DE2CEB5A9E001AA8E0 /* TabBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529D32CEB5A9E001AA8E0 /* TabBarContentView.swift */; };
+		E1B529E22CEBDBA6001AA8E0 /* ToolBarAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529E12CEBDBA6001AA8E0 /* ToolBarAction.swift */; };
+		E1B529E42CEBDC22001AA8E0 /* BackBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529E32CEBDC22001AA8E0 /* BackBarButtonView.swift */; };
+		E1B529E62CEBDC68001AA8E0 /* ToolBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529E52CEBDC68001AA8E0 /* ToolBarButtonView.swift */; };
+		E1B529E82CEDC489001AA8E0 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529E72CEDC489001AA8E0 /* TestView.swift */; };
+		E1B52AC62CEDCBAD001AA8E0 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B52AC52CEDCBAD001AA8E0 /* APIService.swift */; };
+		E1B52AC82CEDCBDB001AA8E0 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B52AC72CEDCBDB001AA8E0 /* APIClient.swift */; };
+		E1B52ACA2CEDCC1C001AA8E0 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B52AC92CEDCC1C001AA8E0 /* NetworkError.swift */; };
+		E1B52ACD2CEDD051001AA8E0 /* EventDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B52ACC2CEDD051001AA8E0 /* EventDTO.swift */; };
+		E1B52ACF2CEDD64B001AA8E0 /* EventAPISpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B52ACE2CEDD64B001AA8E0 /* EventAPISpec.swift */; };
+		E1B52AD12CEDE664001AA8E0 /* EventAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B52AD02CEDE664001AA8E0 /* EventAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +51,21 @@
 		4831BA502CEB2F9500141C9A /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
 		4831BA542CEB34D000141C9A /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		4831BA562CEB34EA00141C9A /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
+		E1B529D32CEB5A9E001AA8E0 /* TabBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContentView.swift; sourceTree = "<group>"; };
+		E1B529D42CEB5A9E001AA8E0 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		E1B529D52CEB5A9E001AA8E0 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		E1B529D62CEB5A9E001AA8E0 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		E1B529D82CEB5A9E001AA8E0 /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
+		E1B529E12CEBDBA6001AA8E0 /* ToolBarAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarAction.swift; sourceTree = "<group>"; };
+		E1B529E32CEBDC22001AA8E0 /* BackBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackBarButtonView.swift; sourceTree = "<group>"; };
+		E1B529E52CEBDC68001AA8E0 /* ToolBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarButtonView.swift; sourceTree = "<group>"; };
+		E1B529E72CEDC489001AA8E0 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		E1B52AC52CEDCBAD001AA8E0 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		E1B52AC72CEDCBDB001AA8E0 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		E1B52AC92CEDCC1C001AA8E0 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E1B52ACC2CEDD051001AA8E0 /* EventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDTO.swift; sourceTree = "<group>"; };
+		E1B52ACE2CEDD64B001AA8E0 /* EventAPISpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPISpec.swift; sourceTree = "<group>"; };
+		E1B52AD02CEDE664001AA8E0 /* EventAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +100,8 @@
 			children = (
 				4831BA522CEB2FCD00141C9A /* App */,
 				4831BA532CEB2FEE00141C9A /* Screens */,
+				E1B52ACB2CEDCCB5001AA8E0 /* DTO */,
+				E1B52AC32CEDCB6A001AA8E0 /* Services */,
 				4831BA582CEB421C00141C9A /* Components */,
 				4831BA3D2CEB28C400141C9A /* Font */,
 				4831BA4F2CEB2F6700141C9A /* Modifiers */,
@@ -128,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				2228386A2CE937A400DCF847 /* ContentView.swift */,
+				E1B529E72CEDC489001AA8E0 /* TestView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -135,10 +168,62 @@
 		4831BA582CEB421C00141C9A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E1B529D72CEB5A9E001AA8E0 /* TabBar */,
+				E1B529D92CEB5A9E001AA8E0 /* ToolBar */,
 				4831BA542CEB34D000141C9A /* AuthTextField.swift */,
 				4831BA562CEB34EA00141C9A /* SecureTextField.swift */,
+				E1B529E52CEBDC68001AA8E0 /* ToolBarButtonView.swift */,
+				E1B529E32CEBDC22001AA8E0 /* BackBarButtonView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		E1B529D72CEB5A9E001AA8E0 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E1B529D32CEB5A9E001AA8E0 /* TabBarContentView.swift */,
+				E1B529D42CEB5A9E001AA8E0 /* TabBarView.swift */,
+				E1B529D52CEB5A9E001AA8E0 /* TabBarViewModel.swift */,
+				E1B529D62CEB5A9E001AA8E0 /* TabItem.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		E1B529D92CEB5A9E001AA8E0 /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				E1B529E12CEBDBA6001AA8E0 /* ToolBarAction.swift */,
+				E1B529D82CEB5A9E001AA8E0 /* ToolBarView.swift */,
+			);
+			path = ToolBar;
+			sourceTree = "<group>";
+		};
+		E1B52AC32CEDCB6A001AA8E0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E1B52AC42CEDCB8A001AA8E0 /* NetworkService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E1B52AC42CEDCB8A001AA8E0 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				E1B52ACE2CEDD64B001AA8E0 /* EventAPISpec.swift */,
+				E1B52AC52CEDCBAD001AA8E0 /* APIService.swift */,
+				E1B52AC72CEDCBDB001AA8E0 /* APIClient.swift */,
+				E1B52AC92CEDCC1C001AA8E0 /* NetworkError.swift */,
+				E1B52AD02CEDE664001AA8E0 /* EventAPIService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		E1B52ACB2CEDCCB5001AA8E0 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				E1B52ACC2CEDD051001AA8E0 /* EventDTO.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,13 +299,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1B52AC62CEDCBAD001AA8E0 /* APIService.swift in Sources */,
+				E1B529E62CEBDC68001AA8E0 /* ToolBarButtonView.swift in Sources */,
 				4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */,
 				4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */,
 				2228386B2CE937A400DCF847 /* ContentView.swift in Sources */,
+				E1B52AD12CEDE664001AA8E0 /* EventAPIService.swift in Sources */,
+				E1B529E82CEDC489001AA8E0 /* TestView.swift in Sources */,
+				E1B52ACD2CEDD051001AA8E0 /* EventDTO.swift in Sources */,
 				4831BA4B2CEB2F1400141C9A /* FontManager.swift in Sources */,
 				4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
+				E1B529E22CEBDBA6001AA8E0 /* ToolBarAction.swift in Sources */,
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
+				E1B529DA2CEB5A9E001AA8E0 /* TabBarView.swift in Sources */,
+				E1B529DB2CEB5A9E001AA8E0 /* TabBarViewModel.swift in Sources */,
+				E1B529DC2CEB5A9E001AA8E0 /* ToolBarView.swift in Sources */,
+				E1B529E42CEBDC22001AA8E0 /* BackBarButtonView.swift in Sources */,
+				E1B52ACF2CEDD64B001AA8E0 /* EventAPISpec.swift in Sources */,
+				E1B529DD2CEB5A9E001AA8E0 /* TabItem.swift in Sources */,
+				E1B529DE2CEB5A9E001AA8E0 /* TabBarContentView.swift in Sources */,
+				E1B52AC82CEDCBDB001AA8E0 /* APIClient.swift in Sources */,
+				E1B52ACA2CEDCC1C001AA8E0 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
