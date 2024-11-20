@@ -26,7 +26,7 @@
 		4831BA632CECBDF200141C9A /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA622CECBDF200141C9A /* OnboardingPageView.swift */; };
 		4831BA652CECBE0C00141C9A /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA642CECBE0C00141C9A /* OnboardingTabView.swift */; };
 		4831BA672CECBF3A00141C9A /* OnboardingControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA662CECBF3A00141C9A /* OnboardingControlsView.swift */; };
-		4831BA692CEDBF1E00141C9A /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA682CEDBF1E00141C9A /* BlueButton.swift */; };
+		4831BA692CEDBF1E00141C9A /* BlueButtonWithArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA682CEDBF1E00141C9A /* BlueButtonWithArrow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +51,7 @@
 		4831BA622CECBDF200141C9A /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		4831BA642CECBE0C00141C9A /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
 		4831BA662CECBF3A00141C9A /* OnboardingControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingControlsView.swift; sourceTree = "<group>"; };
-		4831BA682CEDBF1E00141C9A /* BlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
+		4831BA682CEDBF1E00141C9A /* BlueButtonWithArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButtonWithArrow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +155,7 @@
 			children = (
 				4831BA542CEB34D000141C9A /* AuthTextField.swift */,
 				4831BA562CEB34EA00141C9A /* SecureTextField.swift */,
-				4831BA682CEDBF1E00141C9A /* BlueButton.swift */,
+				4831BA682CEDBF1E00141C9A /* BlueButtonWithArrow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 				4831BA632CECBDF200141C9A /* OnboardingPageView.swift in Sources */,
 				4831BA5F2CECBB1800141C9A /* OnboardingItem.swift in Sources */,
 				4831BA5B2CEC981A00141C9A /* OnboardingView.swift in Sources */,
-				4831BA692CEDBF1E00141C9A /* BlueButton.swift in Sources */,
+				4831BA692CEDBF1E00141C9A /* BlueButtonWithArrow.swift in Sources */,
 				4831BA612CECBBF600141C9A /* OnboardingViewModel.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,

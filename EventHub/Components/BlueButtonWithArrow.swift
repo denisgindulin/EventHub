@@ -1,5 +1,5 @@
 //
-//  BlueButton.swift
+//  BlueButtonWithArrow.swift
 //  EventHub
 //
 //  Created by Даниил Сивожелезов on 20.11.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BlueButton: View {
+struct BlueButtonWithArrow: View {
     let text: String
     let action: () -> Void
     
@@ -41,7 +41,7 @@ struct BlueButton: View {
 }
 
 #Preview {
-    BlueButton(text: "Sign Up") {
+    BlueButtonWithArrow(text: "Sign Up") {
         print("Action")
     }
 }
