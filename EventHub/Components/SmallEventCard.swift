@@ -12,33 +12,58 @@ struct SmallEventCard: View {
     let date: Date
     let title: String
     let place: String
+    let showPlace: Bool
+    let showBookmark: Bool
+    
+    init(image: String, date: Date, title: String, place: String, showPlace: Bool = true, showBookmark: Bool = false) {
+        self.image = image
+        self.date = date
+        self.title = title
+        self.place = place
+        self.showPlace = showPlace
+        self.showBookmark = showBookmark
+    }
     
     var body: some View {
-        HStack(spacing: 18) {
+        HStack(alignment: .top, spacing: 18) {
             Image(image)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 80, height: 92)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-            VStack(alignment: .leading) {
+            VStack( alignment: .leading, spacing: 4) {
                 Text(date.formattedDate())
-                    .airbnbCerealFont(.book, size: 13)
+                    .airbnbCerealFont(showPlace ? .book : .medium, size: 13)
                     .foregroundStyle(.appBlue)
+                
                 Text(title)
                     .airbnbCerealFont(.bold, size: 15)
                     .foregroundStyle(.titleFont)
-                HStack {
-                    Image(.mapPin)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 14, height: 14)
-                    Text(place)
-                        .airbnbCerealFont(.book, size: 13)
+                
+                if showPlace {
+                    HStack {
+                        Image(.mapPin)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 14, height: 14)
+                        Text(place)
+                            .airbnbCerealFont(.book, size: 13)
+                            .lineLimit(1)
+                    }
+                    .foregroundStyle(.appDarkGray)
                 }
-                .foregroundStyle(.appDarkGray)
+            }
+            
+            Spacer()
+            if showBookmark {
+                VStack {
+                    Image(systemName: "bookmark.fill")
+                        .foregroundStyle(.appRed)
+                }
             }
         }
         .padding(7)
+        .frame(maxWidth: .infinity)
         .background(.appBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(color: .titleFont.opacity(0.1), radius: 8, x: 0, y: 10)
@@ -49,5 +74,5 @@ struct SmallEventCard: View {
     SmallEventCard(image: "cardImg1",
                    date: .now,
                    title: "Jo Malone London’s Mother’s Day Presents",
-                   place: "Radius Gallery • Santa Cruz, CA")
+                   place: "Radius Gallery • Santa Cruz, CAsdf")
 }
