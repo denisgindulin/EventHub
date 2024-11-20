@@ -24,6 +24,7 @@ struct ScrollEventCardsView: View {
                     }
                 }
             }
+            .padding(.leading, 24)
         }
     }
 }
