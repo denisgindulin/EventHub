@@ -11,11 +11,14 @@
 		2228386B2CE937A400DCF847 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228386A2CE937A400DCF847 /* ContentView.swift */; };
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
-		E1B529C82CEB2385001AA8E0 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529C72CEB2385001AA8E0 /* TabBarView.swift */; };
-		E1B529CA2CEB2ADF001AA8E0 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529C92CEB2ADF001AA8E0 /* TabBarViewModel.swift */; };
-		E1B529CC2CEB2FBB001AA8E0 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529CB2CEB2FBB001AA8E0 /* TabItem.swift */; };
-		E1B529CF2CEB3EFF001AA8E0 /* ToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529CE2CEB3EFF001AA8E0 /* ToolBar.swift */; };
-		E1B529D22CEB41C2001AA8E0 /* TabBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B529D12CEB41C2001AA8E0 /* TabBarContentView.swift */; };
+		4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */; };
+		4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */; };
+		4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */; };
+		4831BA4B2CEB2F1400141C9A /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
+		4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */; };
+		4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
+		4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA542CEB34D000141C9A /* AuthTextField.swift */; };
+		4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA562CEB34EA00141C9A /* SecureTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,11 +27,15 @@
 		2228386A2CE937A400DCF847 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E1B529C72CEB2385001AA8E0 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		E1B529C92CEB2ADF001AA8E0 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
-		E1B529CB2CEB2FBB001AA8E0 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
-		E1B529CE2CEB3EFF001AA8E0 /* ToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBar.swift; sourceTree = "<group>"; };
-		E1B529D12CEB41C2001AA8E0 /* TabBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContentView.swift; sourceTree = "<group>"; };
+		4831BA3C2CEB1D1500141C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bd.otf; sourceTree = "<group>"; };
+		4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bk.otf; sourceTree = "<group>"; };
+		4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Md.otf; sourceTree = "<group>"; };
+		4831BA4A2CEB2F1400141C9A /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ex.swift"; sourceTree = "<group>"; };
+		4831BA502CEB2F9500141C9A /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
+		4831BA542CEB34D000141C9A /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
+		4831BA562CEB34EA00141C9A /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +68,12 @@
 		222838672CE937A400DCF847 /* EventHub */ = {
 			isa = PBXGroup;
 			children = (
-				222838682CE937A400DCF847 /* EventHubApp.swift */,
-				2228386A2CE937A400DCF847 /* ContentView.swift */,
-				E1B529D02CEB3F12001AA8E0 /* Components */,
+				4831BA522CEB2FCD00141C9A /* App */,
+				4831BA532CEB2FEE00141C9A /* Screens */,
+				4831BA582CEB421C00141C9A /* Components */,
+				4831BA3D2CEB28C400141C9A /* Font */,
+				4831BA4F2CEB2F6700141C9A /* Modifiers */,
+				4831BA4C2CEB2F4000141C9A /* Extensions */,
 				2228386C2CE937A700DCF847 /* Assets.xcassets */,
 				2228386E2CE937A700DCF847 /* Preview Content */,
 			);
@@ -78,30 +88,55 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		E1B529C62CEB2313001AA8E0 /* TabBar */ = {
+		4831BA3D2CEB28C400141C9A /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				E1B529C72CEB2385001AA8E0 /* TabBarView.swift */,
-				E1B529C92CEB2ADF001AA8E0 /* TabBarViewModel.swift */,
-				E1B529CB2CEB2FBB001AA8E0 /* TabItem.swift */,
-				E1B529D12CEB41C2001AA8E0 /* TabBarContentView.swift */,
+				4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */,
+				4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */,
+				4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */,
+				4831BA4A2CEB2F1400141C9A /* FontManager.swift */,
 			);
-			path = TabBar;
+			path = Font;
 			sourceTree = "<group>";
 		};
-		E1B529CD2CEB3EE6001AA8E0 /* ToolBar */ = {
+		4831BA4C2CEB2F4000141C9A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E1B529CE2CEB3EFF001AA8E0 /* ToolBar.swift */,
+				4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */,
 			);
-			path = ToolBar;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E1B529D02CEB3F12001AA8E0 /* Components */ = {
+		4831BA4F2CEB2F6700141C9A /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
-				E1B529CD2CEB3EE6001AA8E0 /* ToolBar */,
-				E1B529C62CEB2313001AA8E0 /* TabBar */,
+				4831BA502CEB2F9500141C9A /* FontModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		4831BA522CEB2FCD00141C9A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4831BA3C2CEB1D1500141C9A /* Info.plist */,
+				222838682CE937A400DCF847 /* EventHubApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4831BA532CEB2FEE00141C9A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				2228386A2CE937A400DCF847 /* ContentView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		4831BA582CEB421C00141C9A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4831BA542CEB34D000141C9A /* AuthTextField.swift */,
+				4831BA562CEB34EA00141C9A /* SecureTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -164,6 +199,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */,
+				4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */,
+				4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */,
 				222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */,
 				2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */,
 			);
@@ -176,13 +214,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1B529CA2CEB2ADF001AA8E0 /* TabBarViewModel.swift in Sources */,
+				4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */,
+				4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */,
 				2228386B2CE937A400DCF847 /* ContentView.swift in Sources */,
-				E1B529C82CEB2385001AA8E0 /* TabBarView.swift in Sources */,
-				E1B529CF2CEB3EFF001AA8E0 /* ToolBar.swift in Sources */,
+				4831BA4B2CEB2F1400141C9A /* FontManager.swift in Sources */,
+				4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
-				E1B529CC2CEB2FBB001AA8E0 /* TabItem.swift in Sources */,
-				E1B529D22CEB41C2001AA8E0 /* TabBarContentView.swift in Sources */,
+				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,9 +357,9 @@
 				DEVELOPMENT_TEAM = 689Q9C7S84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EventHub/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
@@ -353,9 +391,9 @@
 				DEVELOPMENT_TEAM = 689Q9C7S84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EventHub/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
