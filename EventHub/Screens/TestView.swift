@@ -36,7 +36,7 @@ struct TestView: View {
                 )
                 .zIndex(1)
                 Spacer()
-                Text(eventsTest.first?.location?.name ?? "" )
+                Text(eventsTest.first?.id.description ?? "" )
                 Text(category.first?.name ?? "")
         }
     }
@@ -45,8 +45,8 @@ struct TestView: View {
                 let apiSpec = EventAPISpec.getEventsWith(location: "msk", language: .ru, category: "theater", page: "2" )
                 print("Generated Endpoint: \(apiSpec.endpoint)")
                 
-//                let categories = try await apiManager.getCategories(with: Language.ru)
-//                category = categories ?? []
+                let categories = try await apiManager.getCategories(with: Language.ru)
+                category = categories ?? []
                 let events = try await apiManager.getEvents(with: "msk", Language.ru, "theater", page: "2")
                 eventsTest = events
             } catch {

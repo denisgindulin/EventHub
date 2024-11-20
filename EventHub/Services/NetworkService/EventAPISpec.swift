@@ -24,7 +24,7 @@ new-york - Нью-Йорк
 */
 // MARK: - NewsAPISpec Enum
 enum EventAPISpec: APISpec {
-    
+    case getLocation(language: Language?)
     case getCategories(language: Language?)
     case getEventsWith(location: String, language: Language?, category: String, page: String)
     case getEventDetails(eventID: Int, language: Language?)
@@ -33,8 +33,10 @@ enum EventAPISpec: APISpec {
     // MARK: - Base URL Path
     private var path: String {
         switch self {
+        case .getLocation:
+            return "public-api/v1.4/locations"
         case .getCategories:
-            return  "public-api/v1.4/place-categories"
+            return "public-api/v1.4/place-categories"
         case .getEventsWith:
             return "public-api/v1.4/events/"
         case .getEventDetails(eventID: let eventID):
@@ -47,13 +49,20 @@ enum EventAPISpec: APISpec {
     // MARK: - Query Items
     private var queryItems: [URLQueryItem] {
         switch self {
+        case .getLocation(language: let language):
+            if let language = language {
+                return [URLQueryItem(name: "lang", value: language.rawValue)]
+            } else {
+                return []
+            }
+            
         case .getCategories(language: let language):
             if let language = language {
                 return [URLQueryItem(name: "lang", value: language.rawValue)]
             } else {
                 return []
             }
-
+            
         case .getEventsWith(location: let location, language: let language, category: let category, let page):
             var items: [URLQueryItem] = [
                 URLQueryItem(name: "expand", value: "place,\(location),dates,participants"),
@@ -69,10 +78,10 @@ enum EventAPISpec: APISpec {
             
         case .getEventDetails(eventID: _, language: let language):
             if let language = language {
-                        return [URLQueryItem(name: "lang", value: language.rawValue)]
-                    } else {
-                        return []
-                    }
+                return [URLQueryItem(name: "lang", value: language.rawValue)]
+            } else {
+                return []
+            }
             
         case .getSerchedEventsWith(searchText: let searchText):
             return [
@@ -99,7 +108,8 @@ enum EventAPISpec: APISpec {
     // MARK: - Return Type
     var returnType: DecodableType.Type {
         switch self {
-            
+        case .getLocation:
+            return [Location].self
         case .getCategories:
             return [EventCategory].self
         case .getEventsWith:
@@ -108,6 +118,7 @@ enum EventAPISpec: APISpec {
             return APIResponseDTO.self
         case .getSerchedEventsWith:
             return APIResponseDTO.self
+        
         }
     }
     
