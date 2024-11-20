@@ -9,10 +9,15 @@ import SwiftUI
 
 @main
 struct EventHubApp: App {
+    @AppStorage("hasCompletedOnboarding") var hasCompletedOnboarding: Bool = false
+    
     var body: some Scene {
-        
         WindowGroup {
-            TestView()
+            if hasCompletedOnboarding {
+                ContentView()
+            } else {
+                OnboardingView()
+            }
         }
     }
 }
