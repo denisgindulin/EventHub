@@ -36,7 +36,7 @@ enum EventAPISpec: APISpec {
         case .getLocation:
             return "public-api/v1.4/locations"
         case .getCategories:
-            return "public-api/v1.4/place-categories"
+            return "public-api/v1.4/event-categories"
         case .getEventsWith:
             return "public-api/v1.4/events/"
         case .getEventDetails(eventID: let eventID):
@@ -66,7 +66,7 @@ enum EventAPISpec: APISpec {
         case .getEventsWith(location: let location, language: let language, category: let category, let page):
             var items: [URLQueryItem] = [
                 URLQueryItem(name: "expand", value: "place,\(location),dates,participants"),
-                URLQueryItem(name: "fields", value: "id,place,location,dates,participants"),
+                URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants"),
                 URLQueryItem(name: "categories", value: category)
             ]
             
@@ -109,7 +109,7 @@ enum EventAPISpec: APISpec {
     var returnType: DecodableType.Type {
         switch self {
         case .getLocation:
-            return [Location].self
+            return [EventLocation].self
         case .getCategories:
             return [EventCategory].self
         case .getEventsWith:

@@ -15,13 +15,29 @@ struct APIResponseDTO: Codable, Sendable, DecodableType {
 }
 
 // MARK: - Event
-struct EventDTO: Codable, Identifiable, Sendable, DecodableType {
-        let id: Int
-        let dates: [EventDate]
-        let place: Place?
-        let location: Location?
-        let participants: [Participant]?
+struct EventDTO: Codable, Identifiable, Sendable {
+    let id: Int
+    let title: String?
+    let description: String?
+    let bodyText: String?
+    let favoritesCount: Int?
+    let dates: [EventDate]
+    let place: Place?
+    let location: EventLocation?
+    let participants: [Participant]?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case description
+        case bodyText = "body_text"
+        case favoritesCount = "favorites_count"
+        case dates
+        case place
+        case location
+        case participants
     }
+}
 
 // MARK: - EventCategory
 struct EventCategory: Codable, Identifiable, Sendable, DecodableType {
@@ -64,10 +80,9 @@ struct Coordinates: Codable, Sendable, DecodableType {
 }
 
 // MARK: - Location
-struct Location: Codable, Sendable, DecodableType {
+struct EventLocation: Codable, Sendable, DecodableType {
     let slug: String
-    let title: String?
-    let language: Language?
+    let name: String?
 }
 
 // MARK: - Participant

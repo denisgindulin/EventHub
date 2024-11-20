@@ -8,19 +8,36 @@
 import Foundation
 
 protocol IEventAPIService {
+    func getLocations(with language: Language?) async throws -> [EventLocation]
     func getCategories(with language: Language?) async throws -> [EventCategory]?
     func getEvents(with location: String,_ language: Language,_ category: String, page: String) async throws -> [EventDTO]
+    func getEventDetails(eventID: Int, language: Language) async throws -> EventDTO? 
     func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO?
 }
 
 // https://kudago.com/public-api/v1.2/events/?expand=place,location,dates,participants&fields=id,place,location,dates,participants
 // https://kudago.com/public-api/v1.4/events?categories=theater&page=2&lang=ru&expand=msk,dates,images,participants
 final class EventAPIService: APIService, IEventAPIService {
+
+    
     
     // MARK: - Initializer
     init() {
         let apiClient = APIClient()
         super.init(apiClient: apiClient)
+    }
+    
+    
+    func getLocations(with language: Language?) async throws -> [EventLocation] {
+        let apiSpec: EventAPISpec = .getLocation(language: language)
+        
+        do {
+            let location = try await apiClient?.sendRequest(apiSpec)
+            return location as? [EventLocation] ?? []
+        } catch {
+            print(error)
+        }
+        return []
     }
     
     func getCategories(with language: Language?) async throws -> [EventCategory]? {
