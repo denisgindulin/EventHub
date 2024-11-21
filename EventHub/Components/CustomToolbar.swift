@@ -54,11 +54,8 @@ struct CustomToolBar: View {
                 SearchBarView(magnifierColor: magnifierColor)
                     .padding(.horizontal,24)
                 
-                CategoryScroll(colors: colors, categoryNames: categories, categoryImages: pictures)
-                
             }
             .frame(width: .infinity, height: 190)
-            .padding(0)
             .background(.appBlue)
             .clipShape(RoundedCorner(radius: 30, corners: [.bottomLeft,.bottomRight]))
             
