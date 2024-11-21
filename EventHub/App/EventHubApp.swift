@@ -14,7 +14,7 @@ struct EventHubApp: App {
     var body: some Scene {
         WindowGroup {
             if hasCompletedOnboarding {
-                EventDetailsView()
+                ContentView()
             } else {
                 OnboardingView()
             }
