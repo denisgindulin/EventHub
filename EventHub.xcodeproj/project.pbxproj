@@ -12,6 +12,8 @@
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
 		22FA9FC22CEE2759003A99EA /* BackgroundWithEllipses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA9FC12CEE2759003A99EA /* BackgroundWithEllipses.swift */; };
+		22FA9FC42CEF44A7003A99EA /* ThirdSmallEventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA9FC32CEF44A6003A99EA /* ThirdSmallEventCard.swift */; };
+		22FA9FC62CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA9FC52CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift */; };
 		4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */; };
 		4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */; };
 		4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */; };
@@ -39,6 +41,8 @@
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22FA9FC12CEE2759003A99EA /* BackgroundWithEllipses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundWithEllipses.swift; sourceTree = "<group>"; };
+		22FA9FC32CEF44A6003A99EA /* ThirdSmallEventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSmallEventCard.swift; sourceTree = "<group>"; };
+		22FA9FC52CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCapsuleButtonWithArrow.swift; sourceTree = "<group>"; };
 		4831BA3C2CEB1D1500141C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bd.otf; sourceTree = "<group>"; };
 		4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bk.otf; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				22FA9FC12CEE2759003A99EA /* BackgroundWithEllipses.swift */,
 				4831BA682CEDBF1E00141C9A /* BlueButtonWithArrow.swift */,
 				4831BA6C2CEDD4EA00141C9A /* SmallEventCard.swift */,
+				22FA9FC32CEF44A6003A99EA /* ThirdSmallEventCard.swift */,
+				22FA9FC52CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -257,6 +263,7 @@
 			files = (
 				4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */,
 				4831BA672CECBF3A00141C9A /* OnboardingControlsView.swift in Sources */,
+				22FA9FC62CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift in Sources */,
 				4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */,
 				22FA9FC22CEE2759003A99EA /* BackgroundWithEllipses.swift in Sources */,
 				2228386B2CE937A400DCF847 /* ContentView.swift in Sources */,
@@ -268,6 +275,7 @@
 				4831BA6D2CEDD4EA00141C9A /* SmallEventCard.swift in Sources */,
 				4831BA5F2CECBB1800141C9A /* OnboardingItem.swift in Sources */,
 				4831BA5B2CEC981A00141C9A /* OnboardingView.swift in Sources */,
+				22FA9FC42CEF44A7003A99EA /* ThirdSmallEventCard.swift in Sources */,
 				4831BA692CEDBF1E00141C9A /* BlueButtonWithArrow.swift in Sources */,
 				4831BA612CECBBF600141C9A /* OnboardingViewModel.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
