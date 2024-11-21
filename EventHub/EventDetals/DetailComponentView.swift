@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct DetailComponentView: View {
-    let image: String
+    let image: Image
     let title: String
     let description: String
     
     let showImgBg: Bool
     
-    init(image: String, title: String, description: String, showImgBg: Bool = true) {
+    init(image: Image, title: String, description: String, showImgBg: Bool = true) {
         self.image = image
         self.title = title
         self.description = description
@@ -24,15 +24,16 @@ struct DetailComponentView: View {
     var body: some View {
         HStack {
             if showImgBg {
-                Image(image)
+                image
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: 25, maxHeight: 25)
                     .padding(10)
                     .background(.appBlue.opacity(0.1))
+                    .foregroundStyle(.appBlue)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             } else {
-                Image(image)
+                image
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: 45, maxHeight: 45)

@@ -9,6 +9,7 @@ import Foundation
 
 final class EventDetailsViewModel: ObservableObject {
     let imageUrl = URL(string: "https://images.unsplash.com/photo-1731921954767-8473de81c99e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8")
+    let eventName = "International Band Music Concert"
     let date = Date.now
     let time = "Tuesday, 4:00PM - 9:00PM"
     let place = "Gala Convention Center"
