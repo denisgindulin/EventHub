@@ -12,6 +12,8 @@
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
 		22FA9FC22CEE2759003A99EA /* BackgroundWithEllipses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA9FC12CEE2759003A99EA /* BackgroundWithEllipses.swift */; };
+		22FA9FC42CEF44A7003A99EA /* ThirdSmallEventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA9FC32CEF44A6003A99EA /* ThirdSmallEventCard.swift */; };
+		22FA9FC62CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA9FC52CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift */; };
 		480681782CEF0EDF001A2D9A /* EventDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681772CEF0EDF001A2D9A /* EventDetailsView.swift */; };
 		4806817A2CEF1992001A2D9A /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681792CEF1992001A2D9A /* EventDetailsViewModel.swift */; };
 		4806817C2CEF1F74001A2D9A /* DetailComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806817B2CEF1F74001A2D9A /* DetailComponentView.swift */; };
@@ -43,6 +45,8 @@
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22FA9FC12CEE2759003A99EA /* BackgroundWithEllipses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundWithEllipses.swift; sourceTree = "<group>"; };
+		22FA9FC32CEF44A6003A99EA /* ThirdSmallEventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSmallEventCard.swift; sourceTree = "<group>"; };
+		22FA9FC52CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueCapsuleButtonWithArrow.swift; sourceTree = "<group>"; };
 		480681772CEF0EDF001A2D9A /* EventDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsView.swift; sourceTree = "<group>"; };
 		480681792CEF1992001A2D9A /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
 		4806817B2CEF1F74001A2D9A /* DetailComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailComponentView.swift; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				22FA9FC12CEE2759003A99EA /* BackgroundWithEllipses.swift */,
 				4831BA682CEDBF1E00141C9A /* BlueButtonWithArrow.swift */,
 				4831BA6C2CEDD4EA00141C9A /* SmallEventCard.swift */,
+				22FA9FC32CEF44A6003A99EA /* ThirdSmallEventCard.swift */,
+				22FA9FC52CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift */,
 				4806817D2CEF23CE001A2D9A /* ActivityView.swift */,
 			);
 			path = Components;
@@ -277,6 +283,7 @@
 			files = (
 				4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */,
 				4831BA672CECBF3A00141C9A /* OnboardingControlsView.swift in Sources */,
+				22FA9FC62CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift in Sources */,
 				4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */,
 				22FA9FC22CEE2759003A99EA /* BackgroundWithEllipses.swift in Sources */,
 				2228386B2CE937A400DCF847 /* ContentView.swift in Sources */,
@@ -290,6 +297,7 @@
 				4806817C2CEF1F74001A2D9A /* DetailComponentView.swift in Sources */,
 				4831BA5F2CECBB1800141C9A /* OnboardingItem.swift in Sources */,
 				4831BA5B2CEC981A00141C9A /* OnboardingView.swift in Sources */,
+				22FA9FC42CEF44A7003A99EA /* ThirdSmallEventCard.swift in Sources */,
 				4831BA692CEDBF1E00141C9A /* BlueButtonWithArrow.swift in Sources */,
 				4806817A2CEF1992001A2D9A /* EventDetailsViewModel.swift in Sources */,
 				480681782CEF0EDF001A2D9A /* EventDetailsView.swift in Sources */,
