@@ -36,7 +36,7 @@ struct GoogleButton: View {
             }
         }
         .padding()
-        .frame(minWidth: 225, maxWidth: 275)
+        .frame(minWidth: 225, maxWidth: .infinity)
         .background {
             RoundedRectangle(cornerRadius: buttonCornerRadius, style: .continuous)
                 .fill(buttonBackColor)

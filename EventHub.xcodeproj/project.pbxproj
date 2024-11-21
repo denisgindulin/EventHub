@@ -31,6 +31,7 @@
 		4831BA6D2CEDD4EA00141C9A /* SmallEventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA6C2CEDD4EA00141C9A /* SmallEventCard.swift */; };
 		4831BA6F2CEDD8A700141C9A /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA6E2CEDD8A700141C9A /* Date+Ex.swift */; };
 		8739BA952CEF181B00A70AD3 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8739BA942CEF181B00A70AD3 /* GoogleButton.swift */; };
+		8739BAE22CEF27AA00A70AD3 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8739BAE12CEF27AA00A70AD3 /* SignInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		4831BA6C2CEDD4EA00141C9A /* SmallEventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallEventCard.swift; sourceTree = "<group>"; };
 		4831BA6E2CEDD8A700141C9A /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
 		8739BA942CEF181B00A70AD3 /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
+		8739BAE12CEF27AA00A70AD3 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		4831BA532CEB2FEE00141C9A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8739BADE2CEF277300A70AD3 /* Authorization */,
 				2228386A2CE937A400DCF847 /* ContentView.swift */,
 			);
 			path = Screens;
@@ -183,6 +186,14 @@
 				4831BA602CECBBF600141C9A /* OnboardingViewModel.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		8739BADE2CEF277300A70AD3 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				8739BAE12CEF27AA00A70AD3 /* SignInView.swift */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +283,7 @@
 				4831BA6D2CEDD4EA00141C9A /* SmallEventCard.swift in Sources */,
 				4831BA5F2CECBB1800141C9A /* OnboardingItem.swift in Sources */,
 				4831BA5B2CEC981A00141C9A /* OnboardingView.swift in Sources */,
+				8739BAE22CEF27AA00A70AD3 /* SignInView.swift in Sources */,
 				4831BA692CEDBF1E00141C9A /* BlueButtonWithArrow.swift in Sources */,
 				4831BA612CECBBF600141C9A /* OnboardingViewModel.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
