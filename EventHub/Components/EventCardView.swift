@@ -38,7 +38,7 @@ struct EventCardView: View {
                                         .frame(width: 30, height: 30)
                                         .foregroundStyle(.appOrangeSecondary)
                                         .opacity(0.7)
-                                    Image(event.isFavorite ? .bookmark : .bookmarkOverlay)
+                                    Image(event.isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
                                         .resizable()
                                         .frame(width: 14, height: 14)
                                 }
@@ -81,7 +81,7 @@ struct EventCardView: View {
                 if let visitors = event.visitors {
                     HStack{
                         ZStack {
-                            ForEach(getVisitorsAvatars(visitors: visitors).indices) { avatar in
+                            ForEach(getVisitorsAvatars(visitors: visitors).indices, id:\.self) { avatar in
                                 
                                 Image(.visitor) // avatar image
                                     .resizable()

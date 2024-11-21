@@ -21,7 +21,7 @@ struct SearchBarView: View {
             Button {
                 // fetch search result
             } label: {
-                Image(.search)
+                Image(.searchWhite)
                     .resizable()
                     .frame(width: 24, height: 24)
                     .padding(.trailing,10)

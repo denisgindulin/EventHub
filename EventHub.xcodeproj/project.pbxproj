@@ -21,19 +21,19 @@
 		4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */; };
 		4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */; };
 		4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */; };
-		4831BA4B2CEB2F1400141C9A /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
 		4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */; };
-		4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
 		4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA542CEB34D000141C9A /* AuthTextField.swift */; };
 		4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA562CEB34EA00141C9A /* SecureTextField.swift */; };
 		4831BA5D2CECBADC00141C9A /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA5C2CECBADC00141C9A /* RoundedCorner.swift */; };
-		4831BA692CEDBF1E00141C9A /* BlueButtonWithArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA682CEDBF1E00141C9A /* BlueButtonWithArrow.swift */; };
 		4831BA6D2CEDD4EA00141C9A /* SmallEventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA6C2CEDD4EA00141C9A /* SmallEventCard.swift */; };
 		4831BA6F2CEDD8A700141C9A /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA6E2CEDD8A700141C9A /* Date+Ex.swift */; };
+		6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
+		6C75B38C2CEF8D2B0086A03D /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
+		6C75B38D2CEF8D330086A03D /* BlueButtonWithArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA682CEDBF1E00141C9A /* BlueButtonWithArrow.swift */; };
+		6C75B38E2CEF8D3F0086A03D /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736C62CEDD1D900D0C1AA /* SearchBarView.swift */; };
 		6C8736C12CEDD11D00D0C1AA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736C02CEDD11D00D0C1AA /* MainView.swift */; };
 		6C8736C32CEDD16800D0C1AA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736C22CEDD16800D0C1AA /* MainViewModel.swift */; };
 		6C8736C52CEDD19D00D0C1AA /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736C42CEDD19D00D0C1AA /* EventModel.swift */; };
-		6C8736C72CEDD1D900D0C1AA /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736C62CEDD1D900D0C1AA /* SearchBarView.swift */; };
 		6C8736CB2CEDD23C00D0C1AA /* EventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736CA2CEDD23C00D0C1AA /* EventCardView.swift */; };
 		6C8736CD2CEDD25E00D0C1AA /* ScrollEventCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736CC2CEDD25E00D0C1AA /* ScrollEventCardsView.swift */; };
 		6C8736CF2CEDD27A00D0C1AA /* FiltersButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8736CE2CEDD27A00D0C1AA /* FiltersButtonView.swift */; };
@@ -158,7 +158,6 @@
 			children = (
 				E1B52AD32CEE582F001AA8E0 /* DTO */,
 				4831BA522CEB2FCD00141C9A /* App */,
-				4831BA592CEC980000141C9A /* Onboarding */,
 				480681762CEF0EBF001A2D9A /* EventDetals */,
 				4831BA532CEB2FEE00141C9A /* Screens */,
 				E1B52ADB2CEE5853001AA8E0 /* Services */,
@@ -358,7 +357,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					222838642CE937A400DCF847 = {
 						CreatedOnToolsVersion = 15.4;
@@ -403,12 +402,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C75B38E2CEF8D3F0086A03D /* SearchBarView.swift in Sources */,
+				6C75B38D2CEF8D330086A03D /* BlueButtonWithArrow.swift in Sources */,
+				6C75B38C2CEF8D2B0086A03D /* FontModifier.swift in Sources */,
+				6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */,
 				6C8736D72CEDD32000D0C1AA /* CategoryScroll.swift in Sources */,
 				6C8736D92CEE0B2500D0C1AA /* CustomToolbar.swift in Sources */,
 				6C8736D12CEDD2A100D0C1AA /* CategoryButtonView.swift in Sources */,
 				4831BA572CEB34EA00141C9A /* SecureTextField.swift in Sources */,
 				E1B52AD42CEE582F001AA8E0 /* EventDTO.swift in Sources */,
-				4831BA672CECBF3A00141C9A /* OnboardingControlsView.swift in Sources */,
 				22FA9FC62CEF4BD2003A99EA /* BlueCapsuleButtonWithArrow.swift in Sources */,
 				4831BA552CEB34D000141C9A /* AuthTextField.swift in Sources */,
 				22FA9FC22CEE2759003A99EA /* BackgroundWithEllipses.swift in Sources */,
@@ -416,21 +418,15 @@
 				4831BA5D2CECBADC00141C9A /* RoundedCorner.swift in Sources */,
 				6C8736CF2CEDD27A00D0C1AA /* FiltersButtonView.swift in Sources */,
 				6C8736C52CEDD19D00D0C1AA /* EventModel.swift in Sources */,
-				4831BA4B2CEB2F1400141C9A /* FontManager.swift in Sources */,
-				4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */,
 				6C8736D32CEDD2D100D0C1AA /* MainCategorySectionView.swift in Sources */,
 				6C8736D52CEDD2EA00D0C1AA /* ShimmerView.swift in Sources */,
 				6C8736CB2CEDD23C00D0C1AA /* EventCardView.swift in Sources */,
 				6C8736CD2CEDD25E00D0C1AA /* ScrollEventCardsView.swift in Sources */,
-				4831BA652CECBE0C00141C9A /* OnboardingTabView.swift in Sources */,
-				4831BA632CECBDF200141C9A /* OnboardingPageView.swift in Sources */,
 				E1B52ADC2CEE5853001AA8E0 /* APIClient.swift in Sources */,
 				E1B52ADD2CEE5853001AA8E0 /* APIService.swift in Sources */,
 				E1B52ADE2CEE5853001AA8E0 /* EventAPISpec.swift in Sources */,
 				E1B52ADF2CEE5853001AA8E0 /* EventAPIService.swift in Sources */,
 				E1B52AE02CEE5853001AA8E0 /* NetworkError.swift in Sources */,
-				4831BA4B2CEB2F1400141C9A /* FontManager.swift in Sources */,
-				4831BA512CEB2F9500141C9A /* FontModifier.swift in Sources */,
 				4831BA6D2CEDD4EA00141C9A /* SmallEventCard.swift in Sources */,
 				E1B52AEB2CEE5871001AA8E0 /* ToolBarAction.swift in Sources */,
 				E1B52AEC2CEE5871001AA8E0 /* TabBarViewModel.swift in Sources */,
@@ -447,16 +443,11 @@
 				E1B52B002CEE5930001AA8E0 /* OnboardingPageView.swift in Sources */,
 				E1B52B012CEE5930001AA8E0 /* OnboardingView.swift in Sources */,
 				E1B52AF22CEE5871001AA8E0 /* TabBarContentView.swift in Sources */,
-				4831BA692CEDBF1E00141C9A /* BlueButtonWithArrow.swift in Sources */,
 				4806817E2CEF23CE001A2D9A /* ActivityView.swift in Sources */,
 				4806817C2CEF1F74001A2D9A /* DetailComponentView.swift in Sources */,
-				4831BA5F2CECBB1800141C9A /* OnboardingItem.swift in Sources */,
-				4831BA5B2CEC981A00141C9A /* OnboardingView.swift in Sources */,
 				22FA9FC42CEF44A7003A99EA /* ThirdSmallEventCard.swift in Sources */,
-				4831BA692CEDBF1E00141C9A /* BlueButtonWithArrow.swift in Sources */,
 				4806817A2CEF1992001A2D9A /* EventDetailsViewModel.swift in Sources */,
 				480681782CEF0EDF001A2D9A /* EventDetailsView.swift in Sources */,
-				4831BA612CECBBF600141C9A /* OnboardingViewModel.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
 				4831BA6F2CEDD8A700141C9A /* Date+Ex.swift in Sources */,
 				6C8736C12CEDD11D00D0C1AA /* MainView.swift in Sources */,
