@@ -20,7 +20,7 @@ struct SignInView: View {
             let screenWidth = geometry.size.width
             let horizontalPadding = screenWidth * 0.1
             let iconPadding = screenWidth * 0.3
-            var smallPadding = screenWidth * 0.05
+            let smallPadding = screenWidth * 0.05
             
             
             VStack(alignment: .leading) {
