@@ -15,6 +15,13 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func formattedDate2() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current // Используем текущую локаль устройства
+        formatter.dateFormat = "dd MMMM, yyyy"
+        return formatter.string(from: self)
+    }
+    
     private func daySuffix() -> String {
             let calendar = Calendar.current
             let day = calendar.component(.day, from: self)
