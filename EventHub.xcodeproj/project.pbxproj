@@ -12,6 +12,10 @@
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
 		22FA9FC22CEE2759003A99EA /* BackgroundWithEllipses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FA9FC12CEE2759003A99EA /* BackgroundWithEllipses.swift */; };
+		480681782CEF0EDF001A2D9A /* EventDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681772CEF0EDF001A2D9A /* EventDetailsView.swift */; };
+		4806817A2CEF1992001A2D9A /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681792CEF1992001A2D9A /* EventDetailsViewModel.swift */; };
+		4806817C2CEF1F74001A2D9A /* DetailComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806817B2CEF1F74001A2D9A /* DetailComponentView.swift */; };
+		4806817E2CEF23CE001A2D9A /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806817D2CEF23CE001A2D9A /* ActivityView.swift */; };
 		4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */; };
 		4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */; };
 		4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */; };
@@ -39,6 +43,10 @@
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22FA9FC12CEE2759003A99EA /* BackgroundWithEllipses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundWithEllipses.swift; sourceTree = "<group>"; };
+		480681772CEF0EDF001A2D9A /* EventDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsView.swift; sourceTree = "<group>"; };
+		480681792CEF1992001A2D9A /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
+		4806817B2CEF1F74001A2D9A /* DetailComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailComponentView.swift; sourceTree = "<group>"; };
+		4806817D2CEF23CE001A2D9A /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		4831BA3C2CEB1D1500141C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bd.otf; sourceTree = "<group>"; };
 		4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bk.otf; sourceTree = "<group>"; };
@@ -92,6 +100,7 @@
 			children = (
 				4831BA522CEB2FCD00141C9A /* App */,
 				4831BA592CEC980000141C9A /* Onboarding */,
+				480681762CEF0EBF001A2D9A /* EventDetals */,
 				4831BA532CEB2FEE00141C9A /* Screens */,
 				4831BA582CEB421C00141C9A /* Components */,
 				4831BA3D2CEB28C400141C9A /* Font */,
@@ -109,6 +118,16 @@
 				2228386F2CE937A700DCF847 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		480681762CEF0EBF001A2D9A /* EventDetals */ = {
+			isa = PBXGroup;
+			children = (
+				480681772CEF0EDF001A2D9A /* EventDetailsView.swift */,
+				4806817B2CEF1F74001A2D9A /* DetailComponentView.swift */,
+				480681792CEF1992001A2D9A /* EventDetailsViewModel.swift */,
+			);
+			path = EventDetals;
 			sourceTree = "<group>";
 		};
 		4831BA3D2CEB28C400141C9A /* Font */ = {
@@ -165,6 +184,7 @@
 				22FA9FC12CEE2759003A99EA /* BackgroundWithEllipses.swift */,
 				4831BA682CEDBF1E00141C9A /* BlueButtonWithArrow.swift */,
 				4831BA6C2CEDD4EA00141C9A /* SmallEventCard.swift */,
+				4806817D2CEF23CE001A2D9A /* ActivityView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -266,9 +286,13 @@
 				4831BA652CECBE0C00141C9A /* OnboardingTabView.swift in Sources */,
 				4831BA632CECBDF200141C9A /* OnboardingPageView.swift in Sources */,
 				4831BA6D2CEDD4EA00141C9A /* SmallEventCard.swift in Sources */,
+				4806817E2CEF23CE001A2D9A /* ActivityView.swift in Sources */,
+				4806817C2CEF1F74001A2D9A /* DetailComponentView.swift in Sources */,
 				4831BA5F2CECBB1800141C9A /* OnboardingItem.swift in Sources */,
 				4831BA5B2CEC981A00141C9A /* OnboardingView.swift in Sources */,
 				4831BA692CEDBF1E00141C9A /* BlueButtonWithArrow.swift in Sources */,
+				4806817A2CEF1992001A2D9A /* EventDetailsViewModel.swift in Sources */,
+				480681782CEF0EDF001A2D9A /* EventDetailsView.swift in Sources */,
 				4831BA612CECBBF600141C9A /* OnboardingViewModel.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
 				4831BA6F2CEDD8A700141C9A /* Date+Ex.swift in Sources */,
