@@ -9,15 +9,17 @@ import SwiftUI
 
 struct CategoryScroll: View {
     
-    let colors: [Color]
-    let categoryNames: [String]
-    let categoryImages: [String]
-    
+    let categories: [CategoryUIModel]
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(0..<4) { number in
-                    CategoryButtonView(categoryName: categoryNames[number], imageName: categoryImages[number], backgroundColor: colors[number])
+                ForEach(categories) { category in
+                    CategoryButtonView(
+                        categoryName: category.category.name,
+                        imageName: category.image,
+                        backgroundColor: category.color
+                    )
                 }
                 .clipped()
                 
@@ -28,5 +30,5 @@ struct CategoryScroll: View {
 }
 
 #Preview {
-    CategoryScroll(colors: [.red, .orange, .green, .blue], categoryNames: ["Sports", "Music", "Food", "More"], categoryImages: ["ball", "music"," eat", "profile"])
+    CategoryScroll(categories: [])
 }

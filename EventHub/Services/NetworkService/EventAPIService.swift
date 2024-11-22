@@ -17,7 +17,7 @@ import Foundation
 /// Protocol defining the methods for fetching event data.
 protocol IEventAPIService {
     func getLocations(with language: Language?) async throws -> [EventLocation]
-    func getCategories(with language: Language?) async throws -> [EventCategory]?
+    func getCategories(with language: Language?) async throws -> [CategoryDTO]?
     func getEvents(with location: String, _ language: Language, _ category: String, page: String) async throws -> [EventDTO]
     func getEventDetails(eventID: Int, language: Language) async throws -> EventDTO?
     func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO?
@@ -49,11 +49,11 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Categories
     /// Fetches event categories based on the provided language.
-    func getCategories(with language: Language?) async throws -> [EventCategory]? {
+    func getCategories(with language: Language?) async throws -> [CategoryDTO]? {
         let apiSpec: EventAPISpec = .getCategories(language: language)
         do {
             let categories = try await apiClient?.sendRequest(apiSpec)
-            return categories as? [EventCategory]
+            return categories as? [CategoryDTO]
         } catch {
             print(error)
             return nil

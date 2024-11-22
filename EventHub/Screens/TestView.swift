@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TestView: View {
     @State private var eventsTest: [EventDTO] = []
-    @State private var category: [EventCategory] = []
+    @State private var category: [CategoryDTO] = []
     @State private var locations: [EventLocation] = []
     
     let apiManager = EventAPIService()
@@ -34,8 +34,8 @@ struct TestView: View {
                 .zIndex(1)
                 Spacer()
                 ScrollView {
-//                    Text(eventsTest.map { $0.title ?? "" }.joined(separator: ", ") )
-//                    Text(category.map { $0.name }.joined(separator: ", "))
+                    Text(eventsTest.map { $0.title ?? "" }.joined(separator: ", ") )
+                    Text(category.map { $0.name }.joined(separator: ", "))
                     Text(locations.map { $0.name ?? "" }.joined(separator: ", "))
                 }
         }
@@ -55,7 +55,7 @@ struct TestView: View {
                 let events = try await apiManager.getEvents(with: "msk", Language.ru, "theater", page: "2")
                 eventsTest = events
                 
-                let locationsAPI = try await apiManager.getLocations(with: Language.eng)
+                let locationsAPI = try await apiManager.getLocations(with: Language.en)
                 locations = locationsAPI
             } catch {
                 let errorMessage = "Ошибка загрузки категорий: \(error.localizedDescription)"

@@ -11,9 +11,7 @@ struct CustomToolBar: View {
     
     let title: String
     let magnifierColor: Color
-    let colors: [Color]
-    let categories: [String]
-    let pictures: [String]
+
     
     
     var body: some View {
@@ -58,9 +56,6 @@ struct CustomToolBar: View {
             .frame(width: .infinity, height: 190)
             .background(.appBlue)
             .clipShape(RoundedCorner(radius: 30, corners: [.bottomLeft,.bottomRight]))
-            
-            
-               
-        
+
     }
 }

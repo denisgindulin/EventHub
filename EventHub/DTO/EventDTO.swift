@@ -22,7 +22,7 @@ struct EventDTO: Codable, Identifiable, Sendable, DecodableType {
     let bodyText: String?
     let favoritesCount: Int?
     let dates: [EventDate]
-    let place: Place?
+    let place: PlaceDTO?
     let location: EventLocation?
     let participants: [Participant]?
 
@@ -40,7 +40,7 @@ struct EventDTO: Codable, Identifiable, Sendable, DecodableType {
 }
 
 // MARK: - EventCategory
-struct EventCategory: Codable, Identifiable, Sendable, DecodableType {
+struct CategoryDTO: Codable, Identifiable, Sendable, DecodableType {
     let id: Int
     let slug: String
     let name: String
@@ -60,7 +60,7 @@ struct EventDate: Codable, Sendable, DecodableType {
 }
 
 // MARK: - Place
-struct Place: Codable, Sendable, DecodableType {
+struct PlaceDTO: Codable, Sendable, DecodableType {
     let id: Int
     let title: String
     let slug: String
@@ -121,5 +121,5 @@ struct Agent: Codable, Sendable, DecodableType {
 }
 
 enum Language: String, Codable, DecodableType {
-    case ru, eng
+    case ru, en
 }

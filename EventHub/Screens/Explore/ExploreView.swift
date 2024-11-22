@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  ExploreView.swift
 //  EventHub
 //
 //  Created by Marat Fakhrizhanov on 20.11.2024.
@@ -7,18 +7,28 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct ExploreView: View {
     
-    let viewModel = MainViewModel()
+    @StateObject private var viewModel: ExploreViewViewModel
     
+    // MARK: - Init
+    init(apiService: IEventAPIService) {
+        self._viewModel = StateObject(wrappedValue: ExploreViewViewModel(apiService: apiService))
+    }
+    
+    // MARK: - BODY
     var body: some View {
         NavigationView {
             ZStack {
                 Color.appMainBackground // zIndex // UIScreen.main.bounds.width
                 VStack {
                     ZStack {
-                        CustomToolBar(title: viewModel.currentPosition, magnifierColor: .white, colors: viewModel.categoryColors, categories: viewModel.categories, pictures: viewModel.categoryPictures)
-                        CategoryScroll(colors: viewModel.categoryColors, categoryNames: viewModel.categories, categoryImages: viewModel.categoryPictures)
+                        CustomToolBar(
+                            title: viewModel.currentPosition,
+                            magnifierColor: .white
+                        )
+                        
+                        CategoryScroll(categories: viewModel.categories)
                             .offset(y: 92)
                     }
                     .zIndex(1)
@@ -46,9 +56,14 @@ struct MainView: View {
             }
             .ignoresSafeArea()
         }
+        .task {
+            await viewModel.fetchCategories()
+            await viewModel.fetchLocations()
+//            await viewModel.fetchEvents()
+        }
     }
 }
 
 #Preview {
-    MainView()
+    ExploreView(apiService: EventAPIService())
 }

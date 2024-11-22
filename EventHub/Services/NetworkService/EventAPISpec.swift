@@ -87,7 +87,7 @@ enum EventAPISpec: APISpec {
         case .getLocation:
             return [EventLocation].self
         case .getCategories:
-            return [EventCategory].self
+            return [CategoryDTO].self
         case .getEventsWith:
             return APIResponseDTO.self
         case .getEventDetails:

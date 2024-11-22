@@ -11,8 +11,8 @@ struct TabBarView: View {
     @Namespace private var animationNamespace
     
     // MARK: - Drawing Constants
-    private struct Drawing {
-        static let tabBarHeight: CGFloat = 88
+    private enum Drawing {
+        static let tabBarHeight: CGFloat = 80
         static let tabBarCornerRadius: CGFloat = 20
         static let iconSize: CGFloat = 23
         static let floatingButtonSize: CGFloat = 64
