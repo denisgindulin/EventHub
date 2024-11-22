@@ -56,7 +56,7 @@ enum EventAPISpec: APISpec {
             return items
             
         case .getEventDetails:
-            var items: [URLQueryItem] = [
+            let items: [URLQueryItem] = [
                 URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants")
             ]
             return items

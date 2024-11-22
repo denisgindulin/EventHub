@@ -47,21 +47,21 @@ struct EventDetailsView: View {
                     VStack(alignment: .leading, spacing: 24) {
                         DetailComponentView(image: Image(systemName: "calendar"),
                                             title: viewModel.startDate,
-                                            description: viewModel.time)
+                                            description: viewModel.endDate)
                         
                         DetailComponentView(image: Image(.location),
-                                            title: viewModel.place,
+                                            title: "viewModel.place",
                                             description: viewModel.adress)
                         
                         DetailComponentView(image: Image(.cardImg2),
-                                            title: viewModel.person,
-                                            description: viewModel.personRole,
+                                            title: "viewModel.person",
+                                            description: viewModel.role,
                                             showImgBg: false)
                     }
                     
                     Text("About Event")
                         .airbnbCerealFont(.medium, size: 18)
-                    Text(viewModel.description)
+                    Text(viewModel.bodyText)
                         .airbnbCerealFont(.book)
                 }
                 .padding(.horizontal, 20)
@@ -71,7 +71,7 @@ struct EventDetailsView: View {
             }
         }
         .task {
-            await viewModel.fetchEventDetails()
+            await viewModel.fetchEventDetails(eventID: 125721)
         }
         .ignoresSafeArea()
     }

@@ -36,7 +36,7 @@ struct TestView: View {
                 ScrollView {
 //                    Text(eventsTest.map { $0.title ?? "" }.joined(separator: ", ") )
 //                    Text(category.map { $0.name }.joined(separator: ", "))
-                    Text(locations.map { $0.name ?? "" }.joined(separator: ", "))
+                    Text(locations.map { $0.slug ?? "" }.joined(separator: ", "))
                 }
         }
     }
