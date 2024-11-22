@@ -71,7 +71,7 @@ struct EventDetailsView: View {
             }
         }
         .task {
-            await viewModel.fetchEventDetails(eventID: 125721)
+            await viewModel.fetchEventDetails(eventID: 168359)
         }
         .ignoresSafeArea()
     }

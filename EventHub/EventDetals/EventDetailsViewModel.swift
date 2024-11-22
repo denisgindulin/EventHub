@@ -30,13 +30,13 @@ final class EventDetailsViewModel: ObservableObject {
     var startDate: String {
         guard let startTimestamp = event?.dates?.first?.start else { return "" }
         let date = Date(timeIntervalSince1970: TimeInterval(startTimestamp))
-        return date.formattedDate2()
+        return date.formattedDate(format: "dd MMMM, yyyy")
     }
     
     var endDate: String {
         guard let endTimestamp = event?.dates?.first?.end else { return "" }
         let date = Date(timeIntervalSince1970: TimeInterval(endTimestamp))
-        return date.formattedDate()
+        return date.formattedDate(format: "E, MMM d • h:mm a")
     }
     
     var role: String {
@@ -56,18 +56,4 @@ final class EventDetailsViewModel: ObservableObject {
 
     let imageUrl = URL(string: "https://images.unsplash.com/photo-1731921954767-8473de81c99e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8")
     let adress = "36 Guild Street London, UK"
-}
-
-extension String {
-    var htmlToString: String {
-        guard let data = data(using: .utf8) else { return self }
-        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-            .documentType: NSAttributedString.DocumentType.html,
-            .characterEncoding: String.Encoding.utf8.rawValue
-        ]
-        if let attributed = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
-            return attributed.string
-        }
-        return self
-    }
 }
