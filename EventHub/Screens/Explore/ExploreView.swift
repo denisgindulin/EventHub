@@ -9,12 +9,7 @@ import SwiftUI
 
 struct ExploreView: View {
     
-    @StateObject private var viewModel: ExploreViewViewModel
-    
-    // MARK: - Init
-    init(apiService: IEventAPIService) {
-        self._viewModel = StateObject(wrappedValue: ExploreViewViewModel(apiService: apiService))
-    }
+    @ObservedObject var model: ExploreViewModel
     
     // MARK: - BODY
     var body: some View {
@@ -24,11 +19,11 @@ struct ExploreView: View {
                 VStack {
                     ZStack {
                         CustomToolBar(
-                            title: viewModel.currentPosition,
+                            title: model.currentPosition,
                             magnifierColor: .white
                         )
                         
-                        CategoryScroll(categories: viewModel.categories)
+                        CategoryScroll(categories: model.categories)
                             .offset(y: 92)
                     }
                     .zIndex(1)
@@ -44,7 +39,7 @@ struct ExploreView: View {
                             MainCategorySectionView(title: "Nearby You")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: viewModel.events)
+                            ScrollEventCardsView(events: model.events)
                                 .padding(.bottom, 150) // for TabBar
                         }
                         .offset(y: 25)
@@ -57,13 +52,13 @@ struct ExploreView: View {
             .ignoresSafeArea()
         }
         .task {
-            await viewModel.fetchCategories()
-            await viewModel.fetchLocations()
-            await viewModel.fetchEvents()
+            await model.fetchCategories()
+            await model.fetchLocations()
+            await model.fetchEvents()
         }
     }
 }
 
 #Preview {
-    ExploreView(apiService: EventAPIService())
+    ExploreView(model: ExploreViewModel(actions: ExploreActions()))
 }

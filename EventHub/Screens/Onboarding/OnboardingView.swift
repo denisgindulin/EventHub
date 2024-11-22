@@ -9,8 +9,24 @@ import SwiftUI
 
 struct OnboardingView: View {
     @ObservedObject var model: OnboardingViewModel
-    var body: some View {
-        
+    
+    init(model: OnboardingViewModel) {
+        self.model = model
+           UIScrollView.appearance().bounces = false
+       }
+       
+       var body: some View {
+               VStack(spacing: 0) {
+                   OnboardingTabView(
+                    currentStep: $model.currentStep,
+                    onboardingItems: model.onboardingItems
+                   )
+                   OnboardingControlsView(
+                    currentStep: $model.currentStep,
+                    totalSteps: model.onboardingItems.count,
+                    skipAction: model.skip, nextAction: model.nextStep)
+               }
+
         
         Button(action: {
             model.showSignInView()
@@ -25,7 +41,7 @@ struct OnboardingView: View {
         })
         
         Button(action:
-                {model.close()},
+                { model.close() },
                label: {
             Text("Close")
         })
