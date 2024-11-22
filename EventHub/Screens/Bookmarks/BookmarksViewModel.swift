@@ -8,14 +8,14 @@
 import SwiftUI
 import Combine
 
-struct FavoritesViewActions {
+struct BookmarksViewActions {
 //    let closed: CompletionBlock
 }
 
-class FavoritesViewModel: ObservableObject {
-    let actions: FavoritesViewActions
+class BookmarksViewModel: ObservableObject {
+    let actions: BookmarksViewActions
     
-    init(actions: FavoritesViewActions) {
+    init(actions: BookmarksViewActions) {
         self.actions = actions
     }
 }

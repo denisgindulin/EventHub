@@ -8,12 +8,42 @@
 import Foundation
 import UIKit
 
-enum Tab {
+enum Tab: String, CaseIterable {
     case explore
-    case favorites
     case events
-    case profile
+    case bookmark
     case map
+    case profile
+    
+    var title: String {
+        switch self {
+        case .explore:
+            return "Explore"
+        case .events:
+            return "Events"
+        case .map:
+            return "Map"
+        case .profile:
+            return "Profile"
+        case .bookmark:
+            return ""
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .explore:
+            return "explore"
+        case .events:
+            return "events"
+        case .map:
+            return "map"
+        case .profile:
+            return "profileTab"
+        case .bookmark:
+            return "bookmark"
+        }
+    }
 }
 
 class NavigationRouter: ObservableObject {

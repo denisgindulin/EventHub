@@ -20,14 +20,20 @@ protocol MainScreenFactory {
     static func makeProfileScreen() -> UIViewController
     static func makeEventsScreen() -> UIViewController
     static func makeFavoritesScreen() -> UIViewController
+    static func makeDetailEventScreen(_eventID: Int) -> UIViewController
 }
 
 class ScreenFactory: MainScreenFactory {
+    
 
     static func makeMapScreen() -> UIViewController {
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(MapView.self)!
         let vc = UIHostingController(rootView: view)
         return vc
+    }
+    
+    static func makeDetailEventScreen(_eventID: Int) -> UIViewController {
+        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(<#T##serviceType: Service.Type##Service.Type#>)
     }
     
     static func makeProfileScreen() -> UIViewController {
@@ -43,7 +49,7 @@ class ScreenFactory: MainScreenFactory {
     }
     
     static func makeFavoritesScreen() -> UIViewController {
-        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(FavoritesView.self)!
+        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(BookmarksView.self)!
         let vc = UIHostingController(rootView: view)
         return vc
     }
@@ -95,7 +101,7 @@ extension ScreenFactory {
     }
 
     static func makeFavoritesView() -> some View {
-        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(FavoritesView.self)!
+        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(BookmarksView.self)!
         return view
     }
 

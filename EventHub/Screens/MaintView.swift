@@ -17,11 +17,11 @@ struct MaintView: View {
             Group {
                 switch router.selectedTab {
                 case .explore:
-                    container.resolve(ExploreView.self, argument: ExploreActions())!
+                    container.resolve(ExploreView.self, argument: ExploreActions(showDetail: <#CompletionBlock#>, closed: <#CompletionBlock#>))!
                 case .events:
                     container.resolve(EventsView.self, argument: EventsActions())!
-                case .favorites:
-                    container.resolve(FavoritesView.self, argument: FavoritesViewActions())!
+                case .bookmark:
+                    container.resolve(BookmarksView.self, argument: BookmarksViewActions())!
                 case .map:
                     container.resolve(MapView.self, argument: MapViewActions())!
                 case .profile:

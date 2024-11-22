@@ -22,7 +22,7 @@ class TabCoordinator {
             return AnyView(ViewControllerWrapper(viewController: ScreenFactory.makeExploverScreen()))
         case .events:
             return AnyView(ViewControllerWrapper(viewController: ScreenFactory.makeEventsScreen()))
-        case .favorites:
+        case .bookmark:
             return AnyView(ViewControllerWrapper(viewController: ScreenFactory.makeFavoritesScreen()))
         case .map:
             return AnyView(ViewControllerWrapper(viewController: ScreenFactory.makeMapScreen()))

@@ -64,7 +64,7 @@ struct EventDate: Codable, Sendable, DecodableType {
 // MARK: - Place
 struct PlaceDTO: Codable, Sendable, DecodableType {
     let id: Int
-    let title: String
+    let title: String?
     let slug: String
     let address: String
     let coords: Coordinates

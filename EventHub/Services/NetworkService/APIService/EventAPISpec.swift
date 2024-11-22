@@ -50,13 +50,15 @@ enum EventAPISpec: APISpec {
             
         case .getEventsWith(let category, let location, let language, let page):
             var items: [URLQueryItem] = [
-//                URLQueryItem(name: "expand", value: "place,\(location),dates,participants"),
+                URLQueryItem(name: "expand", value: "location,place,dates,participants"),
                 URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants,images"),
-                URLQueryItem(name: "categories", value: category)
+                URLQueryItem(name: "categories", value: category),
+                URLQueryItem(name: "location", value: location)
             ]
             if let language = language {
                 items.append(URLQueryItem(name: "lang", value: language.rawValue))
             }
+            
             items.append(URLQueryItem(name: "page", value: String(page)))
             return items
             

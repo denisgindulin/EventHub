@@ -22,8 +22,8 @@
 		1B7EAD2F2CEBC38C00D2AB3D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD2E2CEBC38C00D2AB3D /* ProfileViewModel.swift */; };
 		1B7EAD322CEBC3A400D2AB3D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD312CEBC3A400D2AB3D /* MapView.swift */; };
 		1B7EAD342CEBC3AF00D2AB3D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD332CEBC3AF00D2AB3D /* MapViewModel.swift */; };
-		1B7EAD372CEBC3CF00D2AB3D /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD362CEBC3CF00D2AB3D /* FavoritesView.swift */; };
-		1B7EAD392CEBC3D900D2AB3D /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD382CEBC3D900D2AB3D /* FavoritesViewModel.swift */; };
+		1B7EAD372CEBC3CF00D2AB3D /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD362CEBC3CF00D2AB3D /* BookmarksView.swift */; };
+		1B7EAD392CEBC3D900D2AB3D /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD382CEBC3D900D2AB3D /* BookmarksViewModel.swift */; };
 		1B7EAD3B2CEBD14D00D2AB3D /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD3A2CEBD14D00D2AB3D /* OnboardingViewModel.swift */; };
 		1BB6A3D52CEFA36F0069A17D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6A3D42CEFA36F0069A17D /* Router.swift */; };
 		1BB6A3D72CEFA51C0069A17D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6A3D62CEFA51C0069A17D /* TabBarView.swift */; };
@@ -96,8 +96,8 @@
 		1B7EAD2E2CEBC38C00D2AB3D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		1B7EAD312CEBC3A400D2AB3D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1B7EAD332CEBC3AF00D2AB3D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
-		1B7EAD362CEBC3CF00D2AB3D /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
-		1B7EAD382CEBC3D900D2AB3D /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		1B7EAD362CEBC3CF00D2AB3D /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
+		1B7EAD382CEBC3D900D2AB3D /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 		1B7EAD3A2CEBD14D00D2AB3D /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		1BB6A3D42CEFA36F0069A17D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		1BB6A3D62CEFA51C0069A17D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -224,7 +224,6 @@
 				E10ED01E2CF0E2F400AFDBC2 /* Models */,
 				1B7EAD212CEBC2D800D2AB3D /* ExploreView.swift */,
 				E10ED0212CF0E32500AFDBC2 /* ExploreViewModel.swift */,
-				1B7EAD242CEBC2E900D2AB3D /* DetailExplore */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -264,13 +263,13 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
-		1B7EAD352CEBC3BC00D2AB3D /* Favorites */ = {
+		1B7EAD352CEBC3BC00D2AB3D /* Bookmarks */ = {
 			isa = PBXGroup;
 			children = (
-				1B7EAD362CEBC3CF00D2AB3D /* FavoritesView.swift */,
-				1B7EAD382CEBC3D900D2AB3D /* FavoritesViewModel.swift */,
+				1B7EAD362CEBC3CF00D2AB3D /* BookmarksView.swift */,
+				1B7EAD382CEBC3D900D2AB3D /* BookmarksViewModel.swift */,
 			);
-			path = Favorites;
+			path = Bookmarks;
 			sourceTree = "<group>";
 		};
 		1BB6A3DA2CEFAD5C0069A17D /* TabBar */ = {
@@ -314,10 +313,10 @@
 		222838672CE937A400DCF847 /* EventHub */ = {
 			isa = PBXGroup;
 			children = (
-				E10ED0092CF0E00200AFDBC2 /* DTO */,
 				1BB6A3E12CEFD2660069A17D /* Coordinator */,
 				4831BA522CEB2FCD00141C9A /* App */,
 				1B7EAD0D2CEBC17D00D2AB3D /* DI */,
+				E10ED0092CF0E00200AFDBC2 /* DTO */,
 				4831BA532CEB2FEE00141C9A /* Screens */,
 				E1B52ADB2CEE5853001AA8E0 /* Services */,
 				4831BA582CEB421C00141C9A /* Components */,
@@ -379,15 +378,16 @@
 		4831BA532CEB2FEE00141C9A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				1BB6A3DA2CEFAD5C0069A17D /* TabBar */,
-				1B7EAD352CEBC3BC00D2AB3D /* Favorites */,
-				1B7EAD302CEBC39500D2AB3D /* Map */,
-				1B7EAD2B2CEBC37700D2AB3D /* Profile */,
-				1B7EAD232CEBC2DF00D2AB3D /* Events */,
-				1B7EAD1E2CEBC2B600D2AB3D /* Explore */,
-				1B7EAD132CEBC22000D2AB3D /* AuthView */,
-				1B7EAD102CEBC1E800D2AB3D /* Onboarding */,
 				2228386A2CE937A400DCF847 /* MaintView.swift */,
+				1B7EAD102CEBC1E800D2AB3D /* Onboarding */,
+				1B7EAD132CEBC22000D2AB3D /* AuthView */,
+				1BB6A3DA2CEFAD5C0069A17D /* TabBar */,
+				1B7EAD1E2CEBC2B600D2AB3D /* Explore */,
+				1B7EAD242CEBC2E900D2AB3D /* DetailExplore */,
+				1B7EAD232CEBC2DF00D2AB3D /* Events */,
+				1B7EAD302CEBC39500D2AB3D /* Map */,
+				1B7EAD352CEBC3BC00D2AB3D /* Bookmarks */,
+				1B7EAD2B2CEBC37700D2AB3D /* Profile */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -595,7 +595,7 @@
 				1B7EAD1B2CEBC28B00D2AB3D /* SignUpViewModel.swift in Sources */,
 				1B7EAD322CEBC3A400D2AB3D /* MapView.swift in Sources */,
 				1B7EAD152CEBC24E00D2AB3D /* SignInView.swift in Sources */,
-				1B7EAD392CEBC3D900D2AB3D /* FavoritesViewModel.swift in Sources */,
+				1B7EAD392CEBC3D900D2AB3D /* BookmarksViewModel.swift in Sources */,
 				1BB6A3DE2CEFB0AD0069A17D /* Coordinator.swift in Sources */,
 				1B7EAD172CEBC25C00D2AB3D /* SignUpView.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
@@ -629,7 +629,7 @@
 				1B7EAD222CEBC2D800D2AB3D /* ExploreView.swift in Sources */,
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
 				1B7EAD2F2CEBC38C00D2AB3D /* ProfileViewModel.swift in Sources */,
-				1B7EAD372CEBC3CF00D2AB3D /* FavoritesView.swift in Sources */,
+				1B7EAD372CEBC3CF00D2AB3D /* BookmarksView.swift in Sources */,
 				1B7EAD122CEBC1FF00D2AB3D /* OnboardingView.swift in Sources */,
 				1BB6A3D52CEFA36F0069A17D /* Router.swift in Sources */,
 				1B7EAD2D2CEBC38200D2AB3D /* ProfileView.swift in Sources */,
