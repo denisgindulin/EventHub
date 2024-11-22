@@ -10,14 +10,20 @@ import Swinject
 
 struct MaintView: View {
     @EnvironmentObject var router: NavigationRouter
-    let container: Container
     
+    let container: Container
+#warning("добавить переход на детальный экран")
     var body: some View {
         VStack(spacing: 0) {
             Group {
                 switch router.selectedTab {
                 case .explore:
-                    container.resolve(ExploreView.self, argument: ExploreActions(showDetail: <#CompletionBlock#>, closed: <#CompletionBlock#>))!
+                    container.resolve(
+                        ExploreView.self,
+                        argument: ExploreActions(
+                            showDetail: {},
+                            closed: {})
+                    )!
                 case .events:
                     container.resolve(EventsView.self, argument: EventsActions())!
                 case .bookmark:

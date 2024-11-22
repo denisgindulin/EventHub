@@ -33,7 +33,9 @@ class ScreenFactory: MainScreenFactory {
     }
     
     static func makeDetailEventScreen(_eventID: Int) -> UIViewController {
-        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(<#T##serviceType: Service.Type##Service.Type#>)
+        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(EventDetailsView.self)!
+        let vc = UIHostingController(rootView: view)
+        return vc
     }
     
     static func makeProfileScreen() -> UIViewController {
