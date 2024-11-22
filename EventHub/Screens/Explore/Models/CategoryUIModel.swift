@@ -29,7 +29,7 @@ enum CategoryImageMapping {
         case "cinema":
             return "film"
         case "concert":
-            return "music_note"
+            return "music"
         case "education":
             return "book"
         case "entertainment":
@@ -39,9 +39,9 @@ enum CategoryImageMapping {
         case "fashion":
             return "wardrobe"
         case "festival":
-            return "festival_mask"
+            return "eat"
         case "holiday":
-            return "holiday_tree"
+            return "ball"
         case "kids":
             return "toy"
         case "other":

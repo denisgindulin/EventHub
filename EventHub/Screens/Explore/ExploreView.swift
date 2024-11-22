@@ -44,7 +44,7 @@ struct ExploreView: View {
                             MainCategorySectionView(title: "Nearby You")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: [Event.example, Event.example])
+                            ScrollEventCardsView(events: viewModel.events)
                                 .padding(.bottom, 150) // for TabBar
                         }
                         .offset(y: 25)
@@ -59,7 +59,7 @@ struct ExploreView: View {
         .task {
             await viewModel.fetchCategories()
             await viewModel.fetchLocations()
-//            await viewModel.fetchEvents()
+            await viewModel.fetchEvents()
         }
     }
 }

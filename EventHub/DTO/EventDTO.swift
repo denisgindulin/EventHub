@@ -18,6 +18,7 @@ struct APIResponseDTO: Codable, Sendable, DecodableType {
 struct EventDTO: Codable, Identifiable, Sendable, DecodableType {
     let id: Int
     let title: String?
+    let images: [ImageDTO]
     let description: String?
     let bodyText: String?
     let favoritesCount: Int?
@@ -29,6 +30,7 @@ struct EventDTO: Codable, Identifiable, Sendable, DecodableType {
     enum CodingKeys: String, CodingKey {
         case id
         case title
+        case images
         case description
         case bodyText = "body_text"
         case favoritesCount = "favorites_count"
@@ -118,6 +120,10 @@ struct Agent: Codable, Sendable, DecodableType {
         case agentType = "agent_type"
         case images
     }
+}
+
+struct ImageDTO: Codable, Sendable, DecodableType {
+    let image: String?
 }
 
 enum Language: String, Codable, DecodableType {

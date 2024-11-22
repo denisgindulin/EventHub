@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct ContentView: View {
     @StateObject private var tabBarViewModel = TabBarViewModel(tabSelection: .explore)
     private let apiService = EventAPIService()

@@ -14,20 +14,22 @@ final class ExploreViewViewModel: ObservableObject {
     let categoryPictures: [String] = ["ball", "music","eat", "profile"] // paint image = person ???
     
     
-    @Published var events: [EventDTO] = []
+    @Published var events: [Event] = []
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
     @Published var error: Error? = nil
+    @Published var currentCategory: String = "cinema"
+    @Published var currentLocation: String = "msk"
     
-    private let apiService: IEventAPIService
+    var isFavoriteEvent = false
     
-    private var currentCategory: String = ""
-    private var currentLocation: String = ""
+    private let apiService: IEventAPIServiceForExplore
+    
     private let language = Language.en
-    private var page: Int = .zero
+    private var page: Int = 1
     
     // MARK: - INIT
-    init(apiService: IEventAPIService) {
+    init(apiService: IEventAPIServiceForExplore) {
         self.apiService = apiService
     }
     
@@ -51,7 +53,36 @@ final class ExploreViewViewModel: ObservableObject {
     
     func fetchEvents() async {
         do {
-            events = try await apiService.getEvents(with: currentLocation, language, currentCategory, page: String(page))
+            let eventsDTO = try await apiService.getEvents(
+                with: currentCategory,
+                currentLocation,
+                language,
+               page
+            )
+            let apiSpec = EventAPISpec.getEventsWith(
+                category: currentCategory,
+                location: currentLocation,
+                language: language,
+                page: page
+            )
+            print("Endpoint Events: \(apiSpec.endpoint)")
+                                                     
+            events = eventsDTO.map { dto in
+                Event(
+                    id: dto.id,
+                    title: dto.title ?? "No Title",
+                    visitors: dto.participants?.map { participant in
+                        Visitor(
+                            image: participant.agent.images.first ?? "default_visitor_image",
+                            name: participant.agent.title
+                        )
+                    },
+                    date: dto.dates.first?.startDate ?? "Unknown Date",
+                    adress: dto.place?.address ?? "Unknown Address",
+                    image: dto.images.first?.image,
+                    isFavorite: isFavoriteEvent
+                )
+            }
         } catch {
             self.error = error
         }

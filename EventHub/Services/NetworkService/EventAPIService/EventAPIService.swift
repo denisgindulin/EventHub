@@ -14,15 +14,6 @@
 
 import Foundation
 
-/// Protocol defining the methods for fetching event data.
-protocol IEventAPIService {
-    func getLocations(with language: Language?) async throws -> [EventLocation]
-    func getCategories(with language: Language?) async throws -> [CategoryDTO]?
-    func getEvents(with location: String, _ language: Language, _ category: String, page: String) async throws -> [EventDTO]
-    func getEventDetails(eventID: Int, language: Language) async throws -> EventDTO?
-    func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO?
-}
-
 /// `EventAPIService` interacts with the KudaGo API to retrieve event data.
 /// Includes fetching locations, categories, events, event details, and search results.
 final class EventAPIService: APIService, IEventAPIService {
@@ -62,8 +53,13 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Events
     /// Fetches a paginated list of events filtered by location, language, and category.
-    func getEvents(with location: String, _ language: Language, _ category: String, page: String) async throws -> [EventDTO] {
-        let apiSpec: EventAPISpec = .getEventsWith(location: location, language: language, category: category, page: page)
+    func getEvents(with category: String, _ location: String, _ language: Language, _ page: Int) async throws -> [EventDTO] {
+        let apiSpec: EventAPISpec = .getEventsWith(
+            category: category,
+            location: location,
+            language: language,
+            page: page
+        )
         do {
             if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
                 return response.results
@@ -77,7 +73,7 @@ final class EventAPIService: APIService, IEventAPIService {
     // MARK: - Event Details
     /// Fetches detailed information about a specific event.
     func getEventDetails(eventID: Int, language: Language) async throws -> EventDTO? {
-        let apiSpec = EventAPISpec.getEventDetails(eventID: eventID, language: language)
+        let apiSpec = EventAPISpec.getEventDetails(eventID: eventID)
         do {
             let eventDetails = try await apiClient?.sendRequest(apiSpec)
             return eventDetails as? EventDTO
