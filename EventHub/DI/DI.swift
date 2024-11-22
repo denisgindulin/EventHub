@@ -17,6 +17,10 @@ class ViewModelAssembly: Assembly {
             NavigationRouter()
         }.inObjectScope(.container)
         
+        container.register(EventAPIService.self) { _ in
+            EventAPIService() 
+        }.inObjectScope(.container)
+        
         container.register(OnboardingViewModel.self) { (resolver, actions: OnboardingActions) in
             OnboardingViewModel(actions: actions)
         }.inObjectScope(.transient)
@@ -34,7 +38,8 @@ class ViewModelAssembly: Assembly {
         }.inObjectScope(.transient)
         
         container.register(ExploreViewModel.self) { (resolver, actions: ExploreActions) in
-            ExploreViewModel(actions: actions)
+            let apiService = resolver.resolve(EventAPIService.self)!
+            return ExploreViewModel(actions: actions, apiService: apiService)
         }.inObjectScope(.transient)
         
         container.register(EventsViewModel.self) { (resolver, actions: EventsActions) in
@@ -59,6 +64,9 @@ class ViewModelAssembly: Assembly {
 class ViewAssembly: Assembly {
     func assemble(container: Container) {
         
+        container.register(MaintView.self) { (resolver, actions: TabBarActions) in
+            MaintView(container: resolver as! Container)
+        }
         container.register(OnboardingView.self) { (resolver, actions: OnboardingActions) in
             OnboardingView(model: resolver.resolve(OnboardingViewModel.self, argument: actions)!)
         }.inObjectScope(.transient)

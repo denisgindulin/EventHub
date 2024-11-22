@@ -29,16 +29,16 @@ final class ExploreViewModel: ObservableObject {
     @Published var currentLocation: String = "msk"
     
     var isFavoriteEvent = false
-#warning("костыль")
-    private let apiService = EventAPIService()
+
+    private let apiService: IEventAPIServiceForExplore
     
     private let language = Language.en
     private var page: Int = 1
     
     // MARK: - INIT
-    init(actions: ExploreActions) {
+    init(actions: ExploreActions, apiService: IEventAPIServiceForExplore) {
         self.actions = actions
-//        self.apiService = apiService
+        self.apiService = apiService
     }
     
     // MARK: - Network API Methods

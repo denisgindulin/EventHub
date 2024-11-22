@@ -11,6 +11,7 @@ import Combine
 struct OnboardingActions {
     let showSignIn: CompletionBlock
     let showSignUp: CompletionBlock
+    let showTabbar: CompletionBlock
     let closed: CompletionBlock
 }
 
@@ -55,8 +56,12 @@ final class OnboardingViewModel: ObservableObject {
     
     private func completeOnboarding() {
         UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+        showTabBar()
     }
 
+    func showTabBar() {
+        actions.showTabbar()
+    }
     
     func showSignInView() {
         actions.showSignIn()

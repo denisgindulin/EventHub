@@ -60,5 +60,5 @@ struct ExploreView: View {
 }
 
 #Preview {
-    ExploreView(model: ExploreViewModel(actions: ExploreActions()))
+    ExploreView(model: ExploreViewModel(actions: ExploreActions(), apiService: EventAPIService()))
 }

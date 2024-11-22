@@ -12,7 +12,12 @@ import Foundation
 enum EventAPISpec: APISpec {
     case getLocation(language: Language?)
     case getCategories(language: Language?)
-    case getEventsWith(category: String, location: String, language: Language?,  page: Int)
+    case getEventsWith(
+        category: String,
+        location: String,
+        language: Language?,
+        page: Int
+    )
     case getEventDetails(eventID: Int)
     case getSerchedEventsWith(searchText: String)
     
