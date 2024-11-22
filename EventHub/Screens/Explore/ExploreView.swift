@@ -2,21 +2,63 @@
 //  ExploreView.swift
 //  EventHub
 //
-//  Created by Руслан on 18.11.2024.
+//  Created by Marat Fakhrizhanov on 20.11.2024.
 //
 
 import SwiftUI
 
 struct ExploreView: View {
+    
     @ObservedObject var model: ExploreViewModel
+    
+    // MARK: - BODY
     var body: some View {
-        Text("M")
+        NavigationView {
+            ZStack {
+                Color.appMainBackground // zIndex // UIScreen.main.bounds.width
+                VStack {
+                    ZStack {
+                        CustomToolBar(
+                            title: model.currentPosition,
+                            magnifierColor: .white
+                        )
+                        
+                        CategoryScroll(categories: model.categories)
+                            .offset(y: 92)
+                    }
+                    .zIndex(1)
+                    
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            MainCategorySectionView(title: "Upcomimg Events")
+                                .padding(.bottom, 10)
+                            
+                            ScrollEventCardsView(events: nil)
+                                .padding(.bottom, 10)
+                            
+                            MainCategorySectionView(title: "Nearby You")
+                                .padding(.bottom, 10)
+                            
+                            ScrollEventCardsView(events: model.events)
+                                .padding(.bottom, 150) // for TabBar
+                        }
+                        .offset(y: 25)
+                    }
+                    .offset(y: -10)
+                    .zIndex(0)
+                    .navigationBarHidden(true)
+                }
+            }
+            .ignoresSafeArea()
+        }
+        .task {
+            await model.fetchCategories()
+            await model.fetchLocations()
+            await model.fetchEvents()
+        }
     }
 }
 
-
-struct ExploreView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventHubApp.dependencyProvider.assembler.resolver.resolve(ExploreView.self)!
-    }
+#Preview {
+    ExploreView(model: ExploreViewModel(actions: ExploreActions(), apiService: EventAPIService()))
 }

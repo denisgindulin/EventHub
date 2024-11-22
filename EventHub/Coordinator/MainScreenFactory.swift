@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import Swinject
 
 protocol MainScreenFactory {
     static func makeOnboardingScreen(_ actions: OnboardingActions) -> UIViewController
@@ -59,8 +60,11 @@ class ScreenFactory: MainScreenFactory {
         return vc
     }
     
+    
     static func makeMainView(_ actions: TabBarActions) -> UIViewController {
-        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(MaintView.self, argument: actions)
+        let router = NavigationRouter() 
+        let view = MaintView(container: EventHubApp.dependencyProvider.assembler.resolver as! Container)
+            .environmentObject(router)
         let vc = UIHostingController(rootView: view)
         vc.modalPresentationStyle = .overFullScreen
         return vc

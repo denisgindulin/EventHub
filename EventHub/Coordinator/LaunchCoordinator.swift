@@ -28,6 +28,7 @@ class LaunchCoordinator: Coordinator {
         let screen = ScreenFactory.makeOnboardingScreen(OnboardingActions(
             showSignIn: { [weak self] in self?.showSignInScreen() },
             showSignUp: { [weak self] in self?.showSignUpScreen() },
+            showTabbar: {[weak self] in self?.showMainScreen()},
             closed: { [weak self] in self?.router.dismiss(animated: true) }))
         router.push(screen, animated: true)
     }
