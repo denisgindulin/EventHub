@@ -21,7 +21,7 @@ struct EventDTO: Codable, Identifiable, Sendable, DecodableType {
     let description: String?
     let bodyText: String?
     let favoritesCount: Int?
-    let dates: [EventDate]
+    let dates: [EventDate]?
     let place: Place?
     let location: EventLocation?
     let participants: [Participant]?
@@ -96,8 +96,8 @@ struct Participant: Codable {
 // MARK: - Role
 struct Role: Codable, Sendable, DecodableType {
     let id: Int
-    let name: String
-    let namePlural: String
+    let name: String?
+    let namePlural: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name

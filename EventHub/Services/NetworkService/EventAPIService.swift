@@ -19,7 +19,7 @@ protocol IEventAPIService {
     func getLocations(with language: Language?) async throws -> [EventLocation]
     func getCategories(with language: Language?) async throws -> [EventCategory]?
     func getEvents(with location: String, _ language: Language, _ category: String, page: String) async throws -> [EventDTO]
-    func getEventDetails(eventID: Int, language: Language) async throws -> EventDTO?
+    func getEventDetails(eventID: Int) async throws -> EventDTO?
     func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO?
 }
 
@@ -76,8 +76,8 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Event Details
     /// Fetches detailed information about a specific event.
-    func getEventDetails(eventID: Int, language: Language) async throws -> EventDTO? {
-        let apiSpec = EventAPISpec.getEventDetails(eventID: eventID, language: language)
+    func getEventDetails(eventID: Int) async throws -> EventDTO? {
+        let apiSpec = EventAPISpec.getEventDetails(eventID: eventID)
         do {
             let eventDetails = try await apiClient?.sendRequest(apiSpec)
             return eventDetails as? EventDTO

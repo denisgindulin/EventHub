@@ -13,7 +13,7 @@ enum EventAPISpec: APISpec {
     case getLocation(language: Language?)
     case getCategories(language: Language?)
     case getEventsWith(location: String, language: Language?, category: String, page: String)
-    case getEventDetails(eventID: Int, language: Language?)
+    case getEventDetails(eventID: Int)
     case getSerchedEventsWith(searchText: String)
     
     // MARK: - Base URL Path
@@ -55,9 +55,11 @@ enum EventAPISpec: APISpec {
             items.append(URLQueryItem(name: "page", value: page))
             return items
             
-        case .getEventDetails(eventID: _, language: let language):
-            return language.map { [URLQueryItem(name: "lang", value: $0.rawValue)] } ?? []
-            
+        case .getEventDetails:
+            var items: [URLQueryItem] = [
+                URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants")
+            ]
+            return items
         case .getSerchedEventsWith(searchText: let searchText):
             return [URLQueryItem(name: "q", value: searchText)]
         }
@@ -91,7 +93,7 @@ enum EventAPISpec: APISpec {
         case .getEventsWith:
             return APIResponseDTO.self
         case .getEventDetails:
-            return APIResponseDTO.self
+            return EventDTO.self
         case .getSerchedEventsWith:
             return APIResponseDTO.self
         }

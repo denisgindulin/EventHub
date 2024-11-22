@@ -41,27 +41,37 @@ struct EventDetailsView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 24) {
-                    Text(viewModel.eventName)
+                    Text(viewModel.title)
                         .airbnbCerealFont(.book, size: 35)
                     
                     VStack(alignment: .leading, spacing: 24) {
-                        DetailComponentView(image: Image(systemName: "calendar"), title: viewModel.date.formattedDate2(), description: viewModel.time)
+                        DetailComponentView(image: Image(systemName: "calendar"),
+                                            title: viewModel.startDate,
+                                            description: viewModel.time)
                         
-                        DetailComponentView(image: Image(.location), title: viewModel.place, description: viewModel.adress)
+                        DetailComponentView(image: Image(.location),
+                                            title: viewModel.place,
+                                            description: viewModel.adress)
                         
-                        DetailComponentView(image: Image(.cardImg2), title: viewModel.person, description: viewModel.personRole, showImgBg: false)
+                        DetailComponentView(image: Image(.cardImg2),
+                                            title: viewModel.person,
+                                            description: viewModel.personRole,
+                                            showImgBg: false)
                     }
                     
                     Text("About Event")
                         .airbnbCerealFont(.medium, size: 18)
-                    Text(viewModel.aboutEvent)
+                    Text(viewModel.description)
                         .airbnbCerealFont(.book)
                 }
                 .padding(.horizontal, 20)
             }
             .sheet(isPresented: $isPresented) {
-                ActivityViewController(text: viewModel.eventName)
+                ActivityViewController(text: viewModel.title)
             }
+        }
+        .task {
+            await viewModel.fetchEventDetails()
         }
         .ignoresSafeArea()
     }
