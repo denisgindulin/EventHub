@@ -20,21 +20,23 @@ protocol MainScreenFactory {
     static func makeProfileScreen() -> UIViewController
     static func makeEventsScreen() -> UIViewController
     static func makeFavoritesScreen() -> UIViewController
-    static func makeDetailEventScreen(_eventID: Int) -> UIViewController
+    static func makeDetailEventScreen(_eventID: Int, action: EventDetailsActions) -> UIViewController
 }
 
 class ScreenFactory: MainScreenFactory {
     
-
     static func makeMapScreen() -> UIViewController {
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(MapView.self)!
         let vc = UIHostingController(rootView: view)
         return vc
     }
     
-    static func makeDetailEventScreen(_eventID: Int) -> UIViewController {
-        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(EventDetailsView.self)!
+    static func makeDetailEventScreen(_eventID: Int, action: EventDetailsActions) -> UIViewController {
+        let eventService = EventAPIService()
+        let viewModel = EventDetailsViewModel(eventID: _eventID, actions: action, eventService: eventService)
+        let view = EventDetailsView(model: viewModel)
         let vc = UIHostingController(rootView: view)
+        vc.modalPresentationStyle = .overFullScreen
         return vc
     }
     
@@ -119,6 +121,11 @@ extension ScreenFactory {
 
     static func makeMapView() -> some View {
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(MapView.self)!
+        return view
+    }
+    
+    static func makeDetailView() -> some View {
+        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(EventDetailsView.self)!
         return view
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct ExploreActions {
-    let showDetail: CompletionBlock
+    let showDetail: CompletionBlockWithID
     let closed: CompletionBlock
 }
 
@@ -99,8 +99,8 @@ final class ExploreViewModel: ObservableObject {
     
     
 //    MARK: -  Navigation
-    func showDetail() {
-        actions.showDetail()
+    func showDetail(_ eventID: Int) {
+        actions.showDetail(eventID)
     }
     
     func close() {

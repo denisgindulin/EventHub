@@ -55,6 +55,7 @@ class NavigationRouter: ObservableObject {
 }
 
 typealias CompletionBlock = () -> Void
+typealias CompletionBlockWithID = (Int) -> Void
 
 protocol Routed {
     func push(_ viewController: UIViewController, animated: Bool)

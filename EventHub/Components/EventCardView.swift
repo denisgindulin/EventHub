@@ -10,6 +10,7 @@ import SwiftUI
 struct EventCardView: View {
     
     let event: Event
+    var showDetail: (Int) -> Void
     
     var dayAndMonth: [String] {
         let formatter = DateFormatter()
@@ -145,6 +146,9 @@ struct EventCardView: View {
                 }
             }
         }
+        .onTapGesture {
+            showDetail(event.id)
+                }
         .frame(width: 237, height: 255)
         .clipShape(RoundedRectangle(cornerRadius: 18))
     }
@@ -213,5 +217,5 @@ struct EventCardView: View {
 }
 
 #Preview {
-    EventCardView(event: Event.example)
+    EventCardView(event: Event.example, showDetail: {_ in })
 }

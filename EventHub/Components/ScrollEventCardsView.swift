@@ -10,13 +10,14 @@ import SwiftUI
 struct ScrollEventCardsView: View {
 
     let events: [Event]?
+    var showDetail: (Int) -> Void
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 if let events = events {
                     ForEach(events) { event in
-                        EventCardView(event: event)
+                        EventCardView(event: event, showDetail: showDetail)
                     }
                 } else {
                     ForEach(1..<6) { plug in
@@ -30,5 +31,5 @@ struct ScrollEventCardsView: View {
 }
 
 #Preview {
-    ScrollEventCardsView(events: [Event.example, Event.example] ) // or nil
+    ScrollEventCardsView(events: [Event.example, Event.example], showDetail: {_ in } ) // or nil
 }

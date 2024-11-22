@@ -72,12 +72,12 @@ struct EventDetailsView: View {
             }
         }
         .task {
-            await model.fetchEventDetails(eventID: 168359)
+            await model.fetchEventDetails()
         }
         .ignoresSafeArea()
     }
 }
 
 #Preview {
-    EventDetailsView(model: EventDetailsViewModel(actions: EventDetailsActions(closed: {}), eventService: EventAPIService()))
+    EventDetailsView(model: EventDetailsViewModel(eventID: 12, actions: EventDetailsActions(closed: {}), eventService: EventAPIService()))
 }

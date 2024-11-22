@@ -21,7 +21,7 @@ struct MaintView: View {
                     container.resolve(
                         ExploreView.self,
                         argument: ExploreActions(
-                            showDetail: {},
+                            showDetail: {_ in },
                             closed: {})
                     )!
                 case .events:

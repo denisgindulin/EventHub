@@ -68,4 +68,13 @@ class LaunchCoordinator: Coordinator {
             }))
         router.setRootModule(screen, hideBar: true)
     }
+    
+    func showEventDetailScreen(eventID: Int) {
+        let screen = ScreenFactory.makeDetailEventScreen(
+            _eventID: eventID,
+            action: EventDetailsActions(
+            closed: { [weak self] in self?.router.dismiss(animated: true) })
+        )
+        router.present(screen, animated: true)
+    }
 }

@@ -17,6 +17,8 @@ final class EventDetailsViewModel: ObservableObject {
     private let eventService: IEventAPIServiceForDetail
     let actions: EventDetailsActions
     
+    private let eventID: Int
+    
     @Published var event: EventDTO?
     @Published var errorMessage: String?
     
@@ -54,14 +56,14 @@ final class EventDetailsViewModel: ObservableObject {
     }
     
 //    MARK: - Init
-    init(actions: EventDetailsActions, eventService: IEventAPIServiceForDetail) {
+    init(eventID: Int, actions: EventDetailsActions, eventService: IEventAPIServiceForDetail) {
+        self.eventID = eventID
         self.actions = actions
         self.eventService = eventService
-        
     }
     
     // Функция для получения деталей события
-    func fetchEventDetails(eventID: Int) async {
+    func fetchEventDetails() async {
         do {
             let fetchedEvent = try await eventService.getEventDetails(
                 eventID: eventID,

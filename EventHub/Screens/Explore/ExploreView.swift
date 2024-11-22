@@ -33,13 +33,13 @@ struct ExploreView: View {
                             MainCategorySectionView(title: "Upcomimg Events")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: nil)
+                            ScrollEventCardsView(events: nil, showDetail: model.showDetail)
                                 .padding(.bottom, 10)
                             
                             MainCategorySectionView(title: "Nearby You")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: model.events)
+                            ScrollEventCardsView(events: model.events, showDetail: model.showDetail)
                                 .padding(.bottom, 150) // for TabBar
                         }
                         .offset(y: 25)
@@ -61,7 +61,7 @@ struct ExploreView: View {
 
 #Preview {
     ExploreView(model: ExploreViewModel(
-        actions: ExploreActions(showDetail: {},
+        actions: ExploreActions(showDetail: {_ in },
                                 closed: {}),
         apiService: EventAPIService()))
 }
