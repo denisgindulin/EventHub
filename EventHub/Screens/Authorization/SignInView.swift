@@ -10,6 +10,11 @@ import SwiftUI
 struct SignInView: View {
     var iconImageName: String = "shortLogo"
     var title: LocalizedStringKey = "EventHub"
+    var signInText: LocalizedStringKey = "Sign In"
+    var rememberMeText: LocalizedStringKey = "Remember me"
+    var forgotPasswordText: LocalizedStringKey = "Forgot Password?"
+    var dontHaveAnAccText: LocalizedStringKey = "Don’t have an account?"
+    var signUpText: LocalizedStringKey = "Sign up"
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -34,7 +39,7 @@ struct SignInView: View {
                     .airbnbCerealFont(.medium, size: 35)
                     .padding(.leading, iconPadding - 40)
                 
-                Text("Sign In")
+                Text(signInText)
                     .airbnbCerealFont(.medium, size: 24)
                     .padding(.leading, horizontalPadding)
                     .padding(.top, smallPadding)
@@ -47,10 +52,10 @@ struct SignInView: View {
                         .toggleStyle(SwitchToggleStyle(tint: Color.blue))
                         .labelsHidden()
                     
-                    Text("Remember me")
+                    Text(rememberMeText)
                         .airbnbCerealFont(.book, size: 14)
                     
-                    Text("Forgot Password?")
+                    Text(forgotPasswordText)
                         .airbnbCerealFont(.book, size: 14)
                         .padding(.leading, smallPadding)
                 }
@@ -76,10 +81,10 @@ struct SignInView: View {
                 Spacer()
                 
                 HStack {
-                    Text("Don’t have an account?")
+                    Text(dontHaveAnAccText)
                         .airbnbCerealFont(.book, size: 15)
                     
-                    Text("Sign up")
+                    Text(signUpText)
                         .airbnbCerealFont(.book, size: 15)
                         .foregroundColor(.appBlue)
                 }
