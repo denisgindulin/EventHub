@@ -39,6 +39,10 @@ final class EventDetailsViewModel: ObservableObject {
         return date.formattedDate(format: "E, MMM d • h:mm a")
     }
     
+    var agentTitle: String {
+        event?.participants?.first?.agent?.title ?? "No Name"
+    }
+    
     var role: String {
         event?.participants?.first?.role?.slug ?? "No Role"
     }

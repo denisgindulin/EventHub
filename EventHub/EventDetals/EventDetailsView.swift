@@ -54,7 +54,7 @@ struct EventDetailsView: View {
                                             description: viewModel.adress)
                         
                         DetailComponentView(image: Image(.cardImg2),
-                                            title: "viewModel.person",
+                                            title: viewModel.agentTitle,
                                             description: viewModel.role,
                                             showImgBg: false)
                     }
