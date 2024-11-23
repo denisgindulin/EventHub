@@ -15,7 +15,7 @@ protocol MainScreenFactory {
     static func makeSignInScreen(_ actions: SignInActions) -> UIViewController
     static func makeSignUpScreen(_ actions: SignUpActions) -> UIViewController
     static func makeTabBarView(_ actions: TabBarActions) -> UIViewController
-    static func makeExploreScreen(_ actions: ExploreActions) -> UIViewController
+    static func makeExploreScreen() -> UIViewController
     static func makeDetailScreen(eventID: Int, actions: DetailActions) -> UIViewController
     static func makeMapScreen() -> UIViewController
     static func makeProfileScreen() -> UIViewController
@@ -35,7 +35,6 @@ class ScreenFactory: MainScreenFactory {
     static func makeDetailScreen(eventID: Int, actions: DetailActions) -> UIViewController {
         let detailView = EventHubApp.dependencyProvider.assembler.resolver.resolve(DetailView.self, arguments: eventID, actions)!
         let vc = UIHostingController(rootView: detailView)
-        vc.modalPresentationStyle = .overFullScreen
         return vc
     }
     
@@ -57,7 +56,8 @@ class ScreenFactory: MainScreenFactory {
         return vc
     }
     
-    static func makeExploreScreen(_ actions: ExploreActions) -> UIViewController {
+    static func makeExploreScreen() -> UIViewController {
+        let actions = EventHubApp.dependencyProvider.assembler.resolver.resolve(ExploreActions.self)!
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(ExploreView.self, argument: actions)!
         let vc = UIHostingController(rootView: view)
         return vc

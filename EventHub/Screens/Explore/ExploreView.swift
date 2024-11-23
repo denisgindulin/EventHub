@@ -13,44 +13,42 @@ struct ExploreView: View {
     
     // MARK: - BODY
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.appMainBackground // zIndex // UIScreen.main.bounds.width
-                VStack {
-                    ZStack {
-                        CustomToolBar(
-                            title: model.currentPosition,
-                            magnifierColor: .white
-                        )
-                        
-                        CategoryScroll(categories: model.categories)
-                            .offset(y: 92)
-                    }
-                    .zIndex(1)
+        ZStack {
+            Color.appMainBackground // zIndex // UIScreen.main.bounds.width
+            VStack {
+                ZStack {
+                    CustomToolBar(
+                        title: model.currentPosition,
+                        magnifierColor: .white
+                    )
                     
-                    ScrollView(showsIndicators: false) {
-                        VStack {
-                            MainCategorySectionView(title: "Upcomimg Events")
-                                .padding(.bottom, 10)
-                            
-                            ScrollEventCardsView(events: nil, showDetail: model.showDetail)
-                                .padding(.bottom, 10)
-                            
-                            MainCategorySectionView(title: "Nearby You")
-                                .padding(.bottom, 10)
-                            
-                            ScrollEventCardsView(events: model.events, showDetail: model.showDetail)
-                                .padding(.bottom, 150) // for TabBar
-                        }
-                        .offset(y: 25)
-                    }
-                    .offset(y: -10)
-                    .zIndex(0)
-                    .navigationBarHidden(true)
+                    CategoryScroll(categories: model.categories)
+                        .offset(y: 92)
                 }
+                .zIndex(1)
+                
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        MainCategorySectionView(title: "Upcomimg Events")
+                            .padding(.bottom, 10)
+                        
+                        ScrollEventCardsView(events: nil, showDetail: model.showDetail)
+                            .padding(.bottom, 10)
+                        
+                        MainCategorySectionView(title: "Nearby You")
+                            .padding(.bottom, 10)
+                        
+                        ScrollEventCardsView(events: model.events, showDetail: model.showDetail)
+                            .padding(.bottom, 150) // for TabBar
+                    }
+                    .offset(y: 25)
+                }
+                .offset(y: -10)
+                .zIndex(0)
+                .navigationBarHidden(true)
             }
-            .ignoresSafeArea()
         }
+        .ignoresSafeArea()
         .task {
             await model.fetchCategories()
             await model.fetchLocations()

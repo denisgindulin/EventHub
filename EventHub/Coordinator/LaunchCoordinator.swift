@@ -70,17 +70,17 @@ class LaunchCoordinator: Coordinator {
         router.setRootModule(screen, hideBar: true)
     }
     
-    func showExploreScreen() {
-        let screen = ScreenFactory.makeExploreScreen(ExploreActions(
-            showDetail: { [weak self] eventID in
-                self?.showEventDetail(eventID: eventID)
-            },
-            closed: { [weak self] in
-                self?.router.dismiss(animated: true)
-            }
-        ))
-        router.present(screen, animated: true)
-    }
+//    func showExploreScreen() {
+//        let screen = ScreenFactory.makeExploreScreen(ExploreActions(
+//            showDetail: { [weak self] eventID in
+//                self?.showEventDetail(eventID: eventID)
+//            },
+//            closed: { [weak self] in
+//                self?.router.dismiss(animated: true)
+//            }
+//        ))
+//        router.push(screen, animated: true)
+//    }
     
     func showEventDetail(eventID: Int) {
         let actions = DetailActions(closed: { [weak self] in
