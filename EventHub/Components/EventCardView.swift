@@ -10,10 +10,26 @@ import SwiftUI
 struct EventCardView: View {
     
     let event: Event
+    var showDetail: (Int) -> Void
     
-    var dayAndMounthFromDate: [String] {
-        event.date.components(separatedBy: " ")
-    }
+//    var dayAndMonth: [String] {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd"
+//        if let date = formatter.date(from: event.date) {
+//            let dayFormatter = DateFormatter()
+//            dayFormatter.dateFormat = "d" // Для дня
+//            
+//            let monthFormatter = DateFormatter()
+//            monthFormatter.dateFormat = "MMMM"
+//            
+//            let day = dayFormatter.string(from: date)
+//            let month = monthFormatter.string(from: date)
+//            
+//            return [day, month]
+//        }
+//        return ["Invalid", "Date"]
+//    }
+    
     var body: some View {
         
         ZStack {
@@ -53,12 +69,14 @@ struct EventCardView: View {
                                 .opacity(0.7)
                             //  .blur(radius: 3) ??
                             VStack {
-                                Text(dayAndMounthFromDate[0])
+                                Text(event.date)
                                     .foregroundStyle(.appDateText)
-                                    .airbnbCerealFont(AirbnbCerealFont.book, size: 18) // font?
-                                Text(dayAndMounthFromDate[1].uppercased())
-                                    .font(.system(size: 10))
-                                    .foregroundStyle(.appDateText)
+                                    .airbnbCerealFont(AirbnbCerealFont.book, size: 18)
+                                    .multilineTextAlignment(.center)
+                                
+//                                Text(dayAndMonth[1].uppercased())
+//                                    .font(.system(size: 10))
+//                                    .foregroundStyle(.appDateText)
                             }
                         }
                         .offset(x: -78, y: -38)
@@ -130,6 +148,9 @@ struct EventCardView: View {
                 }
             }
         }
+        .onTapGesture {
+            showDetail(event.id)
+                }
         .frame(width: 237, height: 255)
         .clipShape(RoundedRectangle(cornerRadius: 18))
     }
@@ -198,5 +219,5 @@ struct EventCardView: View {
 }
 
 #Preview {
-    EventCardView(event: Event.example)
+    EventCardView(event: Event.example, showDetail: {_ in })
 }

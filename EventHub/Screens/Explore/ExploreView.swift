@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  ExploreView.swift
 //  EventHub
 //
 //  Created by Marat Fakhrizhanov on 20.11.2024.
@@ -7,18 +7,23 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct ExploreView: View {
     
-    let viewModel = MainViewModel()
+    @ObservedObject var model: ExploreViewModel
     
+    // MARK: - BODY
     var body: some View {
         NavigationView {
             ZStack {
                 Color.appMainBackground // zIndex // UIScreen.main.bounds.width
                 VStack {
                     ZStack {
-                        CustomToolBar(title: viewModel.currentPosition, magnifierColor: .white, colors: viewModel.categoryColors, categories: viewModel.categories, pictures: viewModel.categoryPictures)
-                        CategoryScroll(colors: viewModel.categoryColors, categoryNames: viewModel.categories, categoryImages: viewModel.categoryPictures)
+                        CustomToolBar(
+                            title: model.currentPosition,
+                            magnifierColor: .white
+                        )
+                        
+                        CategoryScroll(categories: model.categories)
                             .offset(y: 92)
                     }
                     .zIndex(1)
@@ -28,13 +33,13 @@ struct MainView: View {
                             MainCategorySectionView(title: "Upcomimg Events")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: nil)
+                            ScrollEventCardsView(events: nil, showDetail: model.showDetail)
                                 .padding(.bottom, 10)
                             
                             MainCategorySectionView(title: "Nearby You")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: [Event.example, Event.example])
+                            ScrollEventCardsView(events: model.events, showDetail: model.showDetail)
                                 .padding(.bottom, 150) // for TabBar
                         }
                         .offset(y: 25)
@@ -46,9 +51,17 @@ struct MainView: View {
             }
             .ignoresSafeArea()
         }
+        .task {
+            await model.fetchCategories()
+            await model.fetchLocations()
+            await model.fetchEvents()
+        }
     }
 }
 
 #Preview {
-    MainView()
+    ExploreView(model: ExploreViewModel(
+        actions: ExploreActions(showDetail: {_ in },
+                                closed: {}),
+        apiService: EventAPIService()))
 }

@@ -2,27 +2,54 @@
 //  OnboardingView.swift
 //  EventHub
 //
-//  Created by Даниил Сивожелезов on 19.11.2024.
+//  Created by Руслан on 18.11.2024.
 //
 
 import SwiftUI
 
 struct OnboardingView: View {
-    @StateObject private var viewModel = OnboardingViewModel()
+    @ObservedObject var model: OnboardingViewModel
     
-    init() {
-        UIScrollView.appearance().bounces = false
-    }
-    
-    var body: some View {
-            VStack(spacing: 0) {
-                OnboardingTabView(currentStep: $viewModel.currentStep, onboardingItems: viewModel.onboardingItems)
-                OnboardingControlsView(currentStep: $viewModel.currentStep, totalSteps: viewModel.onboardingItems.count, skipAction: viewModel.skip, nextAction: viewModel.nextStep)
-            }
+    init(model: OnboardingViewModel) {
+        self.model = model
+           UIScrollView.appearance().bounces = false
+       }
+       
+       var body: some View {
+               VStack(spacing: 0) {
+                   OnboardingTabView(
+                    currentStep: $model.currentStep,
+                    onboardingItems: model.onboardingItems
+                   )
+                   OnboardingControlsView(
+                    currentStep: $model.currentStep,
+                    totalSteps: model.onboardingItems.count,
+                    skipAction: model.skip, nextAction: model.nextStep)
+               }
+
         
+        Button(action: {
+            model.showSignInView()
+        }, label: {
+            Text("Sign IN")
+        })
+        
+        Button(action: {
+            model.showSignUpView()
+        }, label: {
+            Text("Sign Up")
+        })
+        
+        Button(action:
+                { model.close() },
+               label: {
+            Text("Close")
+        })
     }
 }
 
-#Preview {
-    OnboardingView()
+struct OnboardingView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventHubApp.dependencyProvider.assembler.resolver.resolve(OnboardingView.self)!
+    }
 }
