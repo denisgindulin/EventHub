@@ -12,6 +12,7 @@ struct SignUpView: View {
     @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var password2: String = ""
     
     var body: some View {
         GeometryReader { geometry in
@@ -30,10 +31,10 @@ struct SignUpView: View {
                     emailTextField(horizontalPadding: horizontalPadding)
                         .padding(.top, smallPadding)
                     
-                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Your password")
+                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Your password", textFieldText: $password)
                         .padding(.top, smallPadding)
                     
-                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Confirm password")
+                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Confirm password", textFieldText: $password2)
                         .padding(.top, smallPadding)
                     
                     BlueButtonWithArrow(text: "Sign Up") {
@@ -90,9 +91,9 @@ struct SignUpView: View {
         .padding(.trailing, horizontalPadding)
     }
     
-    private func passwordTextField(horizontalPadding: CGFloat, placehholder: String) -> some View {
+    private func passwordTextField(horizontalPadding: CGFloat, placehholder: String, textFieldText: Binding<String>) -> some View {
         AuthTextField(
-            textFieldText: $password,
+            textFieldText: textFieldText,
             placeholder: placehholder,
             imageName: "Lock",
             isSecure: true

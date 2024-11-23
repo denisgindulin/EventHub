@@ -46,6 +46,7 @@
 		8766D87F2CEFA07000EF3BCB /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8766D87D2CEFA07000EF3BCB /* SignInView.swift */; };
 		8766D8812CEFA09800EF3BCB /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8766D8802CEFA09800EF3BCB /* GoogleButton.swift */; };
 		8766D8832CF1025700EF3BCB /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8766D8822CF1025700EF3BCB /* SignUpView.swift */; };
+		8766D8872CF2092900EF3BCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8766D8862CF2092900EF3BCB /* GoogleService-Info.plist */; };
 		E1B52AD42CEE582F001AA8E0 /* EventDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B52AD22CEE582F001AA8E0 /* EventDTO.swift */; };
 		E1B52ADC2CEE5853001AA8E0 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B52AD52CEE5853001AA8E0 /* APIClient.swift */; };
 		E1B52ADD2CEE5853001AA8E0 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B52AD62CEE5853001AA8E0 /* APIService.swift */; };
@@ -110,6 +111,7 @@
 		8766D87D2CEFA07000EF3BCB /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		8766D8802CEFA09800EF3BCB /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
 		8766D8822CF1025700EF3BCB /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		8766D8862CF2092900EF3BCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E1B52AD22CEE582F001AA8E0 /* EventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDTO.swift; sourceTree = "<group>"; };
 		E1B52AD52CEE5853001AA8E0 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		E1B52AD62CEE5853001AA8E0 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		222838672CE937A400DCF847 /* EventHub */ = {
 			isa = PBXGroup;
 			children = (
+				8766D8862CF2092900EF3BCB /* GoogleService-Info.plist */,
 				E1B52AD32CEE582F001AA8E0 /* DTO */,
 				4831BA522CEB2FCD00141C9A /* App */,
 				480681762CEF0EBF001A2D9A /* EventDetals */,
@@ -413,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */,
+				8766D8872CF2092900EF3BCB /* GoogleService-Info.plist in Resources */,
 				4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */,
 				4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */,
 				222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */,
