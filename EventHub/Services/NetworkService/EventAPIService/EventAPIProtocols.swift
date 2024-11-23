@@ -39,7 +39,7 @@ protocol IEventAPIServiceForDetail {
     ///   - eventID: The ID of the event.
     ///   - language: The language for event details.
     /// - Returns: An optional `EventDTO` with event details.
-    func getEventDetails(eventID: Int, language: Language) async throws -> EventDTO?
+    func getEventDetails(eventID: Int) async throws -> EventDTO?
 }
 
 /// Protocol for searching events.

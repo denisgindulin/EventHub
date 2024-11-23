@@ -72,7 +72,7 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Event Details
     /// Fetches detailed information about a specific event.
-    func getEventDetails(eventID: Int, language: Language) async throws -> EventDTO? {
+    func getEventDetails(eventID: Int) async throws -> EventDTO? {
         let apiSpec = EventAPISpec.getEventDetails(eventID: eventID)
         do {
             let eventDetails = try await apiClient?.sendRequest(apiSpec)

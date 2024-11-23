@@ -13,11 +13,7 @@ struct DetailActions {
 }
 
 final class DetailViewModel: ObservableObject {
-
-    private let eventService: IEventAPIServiceForDetail
-    let actions: DetailActions
-    
-    private let eventID: Int
+    private let eventService = EventAPIService()
     
     @Published var event: EventDTO?
     @Published var errorMessage: String?
@@ -36,39 +32,29 @@ final class DetailViewModel: ObservableObject {
     }
     
     var startDate: String {
-        guard let startTimestamp = event?.dates.first?.startTime else { return "" }
-        let date = Date(timeIntervalSince1970: TimeInterval(startTimestamp) ?? 0.0)
+        guard let startTimestamp = event?.dates?.first?.start else { return "" }
+        let date = Date(timeIntervalSince1970: TimeInterval(startTimestamp))
         return date.formattedDate(format: "dd MMMM, yyyy")
     }
     
     var endDate: String {
-        guard let endTimestamp = event?.dates.first?.endTime else { return "" }
-        let date = Date(timeIntervalSince1970: TimeInterval(endTimestamp) ?? 0.0)
+        guard let endTimestamp = event?.dates?.first?.end else { return "" }
+        let date = Date(timeIntervalSince1970: TimeInterval(endTimestamp))
         return date.formattedDate(format: "E, MMM d • h:mm a")
     }
     
     var agentTitle: String {
-        event?.participants?.first?.agent.title ?? "No Name"
+        event?.participants?.first?.agent?.title ?? "No Name"
     }
     
     var role: String {
-        event?.participants?.first?.role.name ?? "No Role"
-    }
-    
-//    MARK: - Init
-    init(eventID: Int, actions: DetailActions, eventService: IEventAPIServiceForDetail) {
-        self.eventID = eventID
-        self.actions = actions
-        self.eventService = eventService
+        event?.participants?.first?.role?.slug ?? "No Role"
     }
     
     // Функция для получения деталей события
-    func fetchEventDetails() async {
+    func fetchEventDetails(eventID: Int) async {
         do {
-            let fetchedEvent = try await eventService.getEventDetails(
-                eventID: eventID,
-                language: Language.ru
-            )
+            let fetchedEvent = try await eventService.getEventDetails(eventID: eventID)
             self.event = fetchedEvent
         } catch {
             self.errorMessage = "Не удалось загрузить событие: \(error.localizedDescription)"
