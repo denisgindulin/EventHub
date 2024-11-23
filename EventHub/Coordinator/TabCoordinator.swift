@@ -15,11 +15,16 @@ class TabCoordinator {
     init(container: Container) {
         self.container = container
     }
-    
+#warning("не понимаю как прокинуть комплишены")
     func view(for tab: Tab) -> AnyView {
         switch tab {
         case .explore:
-            return AnyView(ViewControllerWrapper(viewController: ScreenFactory.makeExploverScreen()))
+            return AnyView(ViewControllerWrapper(viewController: ScreenFactory.makeExploreScreen(
+                ExploreActions(
+                    showDetail: {_ in },
+                    closed: {}
+                )))
+            )
         case .events:
             return AnyView(ViewControllerWrapper(viewController: ScreenFactory.makeEventsScreen()))
         case .bookmark:

@@ -1,5 +1,5 @@
 //
-//  EventDetailsViewModel.swift
+//  DetailViewModel.swift
 //  EventHub
 //
 //  Created by Даниил Сивожелезов on 21.11.2024.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct EventDetailsActions {
+struct DetailActions {
 #warning("добавить все переходы с этого экрана")
     let closed: CompletionBlock
 }
 
-final class EventDetailsViewModel: ObservableObject {
+final class DetailViewModel: ObservableObject {
 
     private let eventService: IEventAPIServiceForDetail
-    let actions: EventDetailsActions
+    let actions: DetailActions
     
     private let eventID: Int
     
@@ -56,7 +56,7 @@ final class EventDetailsViewModel: ObservableObject {
     }
     
 //    MARK: - Init
-    init(eventID: Int, actions: EventDetailsActions, eventService: IEventAPIServiceForDetail) {
+    init(eventID: Int, actions: DetailActions, eventService: IEventAPIServiceForDetail) {
         self.eventID = eventID
         self.actions = actions
         self.eventService = eventService

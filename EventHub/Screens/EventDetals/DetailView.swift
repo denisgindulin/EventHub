@@ -1,5 +1,5 @@
 //
-//  EventDetailsView.swift
+//  DetailView.swift
 //  EventHub
 //
 //  Created by Даниил Сивожелезов on 21.11.2024.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct EventDetailsView: View {
-    @ObservedObject var model: EventDetailsViewModel
+struct DetailView: View {
+    @ObservedObject var model: DetailViewModel
     
     @State private var isPresented: Bool = false
     
@@ -79,5 +79,5 @@ struct EventDetailsView: View {
 }
 
 #Preview {
-    EventDetailsView(model: EventDetailsViewModel(eventID: 12, actions: EventDetailsActions(closed: {}), eventService: EventAPIService()))
+    DetailView(model: DetailViewModel(eventID: 12, actions: DetailActions(closed: {}), eventService: EventAPIService()))
 }

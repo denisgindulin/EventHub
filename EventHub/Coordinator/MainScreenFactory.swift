@@ -15,12 +15,12 @@ protocol MainScreenFactory {
     static func makeSignInScreen(_ actions: SignInActions) -> UIViewController
     static func makeSignUpScreen(_ actions: SignUpActions) -> UIViewController
     static func makeMainView(_ actions: TabBarActions) -> UIViewController
-    static func makeExploverScreen() -> UIViewController
+    static func makeExploreScreen(_ actions: ExploreActions) -> UIViewController
+    static func makeDetailScreen(_ action: DetailActions) -> UIViewController
     static func makeMapScreen() -> UIViewController
     static func makeProfileScreen() -> UIViewController
     static func makeEventsScreen() -> UIViewController
     static func makeFavoritesScreen() -> UIViewController
-    static func makeDetailEventScreen(_eventID: Int, action: EventDetailsActions) -> UIViewController
 }
 
 class ScreenFactory: MainScreenFactory {
@@ -31,10 +31,8 @@ class ScreenFactory: MainScreenFactory {
         return vc
     }
     
-    static func makeDetailEventScreen(_eventID: Int, action: EventDetailsActions) -> UIViewController {
-        let eventService = EventAPIService()
-        let viewModel = EventDetailsViewModel(eventID: _eventID, actions: action, eventService: eventService)
-        let view = EventDetailsView(model: viewModel)
+    static func makeDetailScreen(_ action: DetailActions) -> UIViewController {
+        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(DetailView.self)!
         let vc = UIHostingController(rootView: view)
         vc.modalPresentationStyle = .overFullScreen
         return vc
@@ -58,8 +56,8 @@ class ScreenFactory: MainScreenFactory {
         return vc
     }
     
-    static func makeExploverScreen() -> UIViewController {
-        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(ExploreView.self)!
+    static func makeExploreScreen(_ actions: ExploreActions) -> UIViewController {
+        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(ExploreView.self, argument: actions)!
         let vc = UIHostingController(rootView: view)
         return vc
     }
@@ -125,7 +123,7 @@ extension ScreenFactory {
     }
     
     static func makeDetailView() -> some View {
-        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(EventDetailsView.self)!
+        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(DetailView.self)!
         return view
     }
 }

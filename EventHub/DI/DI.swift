@@ -41,6 +41,17 @@ class ViewModelAssembly: Assembly {
             let apiService = resolver.resolve(EventAPIService.self)!
             return ExploreViewModel(actions: actions, apiService: apiService)
         }.inObjectScope(.transient)
+#warning("не понимаю как прокинуть айдишник")
+        container.register(DetailViewModel.self) { (resolver, actions: DetailActions) in
+            let apiService = resolver.resolve(EventAPIService.self)!
+            return DetailViewModel(
+               
+                eventID: 2121,
+                actions: actions,
+                eventService: apiService
+            )
+            
+        }
         
         container.register(EventsViewModel.self) { (resolver, actions: EventsActions) in
             EventsViewModel(actions: actions)
@@ -101,6 +112,10 @@ class ViewAssembly: Assembly {
         
         container.register(BookmarksView.self) { (resolver, actions: BookmarksViewActions) in
             BookmarksView(model: resolver.resolve(BookmarksViewModel.self, argument: actions)!)
+        }.inObjectScope(.transient)
+        
+        container.register(DetailView.self) { (resolver, actions: DetailActions) in
+            DetailView(model: resolver.resolve(DetailViewModel.self, argument: actions)!)
         }.inObjectScope(.transient)
     }
     
