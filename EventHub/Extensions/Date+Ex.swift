@@ -8,17 +8,10 @@
 import Foundation
 
 extension Date {
-    func formattedDate() -> String {
+    func formattedDate(format: String) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale.current // Используем текущую локаль устройства
-        formatter.dateFormat = "E, MMM d • h:mm a"
-        return formatter.string(from: self)
-    }
-    
-    func formattedDate2() -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current // Используем текущую локаль устройства
-        formatter.dateFormat = "dd MMMM, yyyy"
+        formatter.dateFormat = format
         return formatter.string(from: self)
     }
     

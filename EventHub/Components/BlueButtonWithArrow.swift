@@ -35,7 +35,7 @@ struct BlueButtonWithArrow: View {
         .background(.appBlue)
         .foregroundStyle(.white)
         .clipShape(RoundedRectangle(cornerRadius: 15))
-        .padding(.horizontal, 28)
+        //.padding(.horizontal, 28)
 
     }
 }

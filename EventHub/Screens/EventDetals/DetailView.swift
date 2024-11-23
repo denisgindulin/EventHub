@@ -1,5 +1,5 @@
 //
-//  EventDetailsView.swift
+//  DetailView.swift
 //  EventHub
 //
 //  Created by Даниил Сивожелезов on 21.11.2024.
@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-struct EventDetailsView: View {
-    @StateObject var viewModel = EventDetailsViewModel()
+struct DetailView: View {
+    @ObservedObject var model: DetailViewModel
+    
     @State private var isPresented: Bool = false
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 50) {
                 ZStack(alignment: .bottomTrailing) {
-                    AsyncImage(url: viewModel.imageUrl) { image in
+                    AsyncImage(url: model.imageUrl) { image in
                         image
                             .resizable()
                             .scaledToFill()
@@ -41,32 +42,42 @@ struct EventDetailsView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 24) {
-                    Text(viewModel.eventName)
+                    Text(model.title)
                         .airbnbCerealFont(.book, size: 35)
                     
                     VStack(alignment: .leading, spacing: 24) {
-                        DetailComponentView(image: Image(systemName: "calendar"), title: viewModel.date.formattedDate2(), description: viewModel.time)
+                        DetailComponentView(image: Image(systemName: "calendar"),
+                                            title: model.startDate,
+                                            description: model.endDate)
                         
-                        DetailComponentView(image: Image(.location), title: viewModel.place, description: viewModel.adress)
+                        DetailComponentView(image: Image(.location),
+                                            title: "viewModel.place",
+                                            description: model.adress)
                         
-                        DetailComponentView(image: Image(.cardImg2), title: viewModel.person, description: viewModel.personRole, showImgBg: false)
+                        DetailComponentView(image: Image(.cardImg2),
+                                            title: model.agentTitle,
+                                            description: model.role,
+                                            showImgBg: false)
                     }
                     
                     Text("About Event")
                         .airbnbCerealFont(.medium, size: 18)
-                    Text(viewModel.aboutEvent)
+                    Text(model.bodyText)
                         .airbnbCerealFont(.book)
                 }
                 .padding(.horizontal, 20)
             }
             .sheet(isPresented: $isPresented) {
-                ActivityViewController(text: viewModel.eventName)
+                ActivityViewController(text: model.title)
             }
+        }
+        .task {
+            await model.fetchEventDetails()
         }
         .ignoresSafeArea()
     }
 }
 
 #Preview {
-    EventDetailsView()
+    DetailView(model: DetailViewModel(eventID: 12, actions: DetailActions(closed: {}), eventService: EventAPIService()))
 }

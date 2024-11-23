@@ -9,7 +9,8 @@ import SwiftUI
 import Combine
 
 struct ExploreActions {
-    //    let closed: CompletionBlock
+    let showDetail: CompletionBlockWithID
+    let closed: CompletionBlock
 }
 
 final class ExploreViewModel: ObservableObject {
@@ -95,6 +96,17 @@ final class ExploreViewModel: ObservableObject {
             self.error = error
         }
     }
+    
+    
+//    MARK: -  Navigation
+    func showDetail(_ eventID: Int) {
+        actions.showDetail(eventID)
+    }
+    
+    func close() {
+        actions.closed()
+    }
+    
     
     //    MARK: - Helper Methods
     private func loadCategories(from eventCategories: [CategoryDTO]) {

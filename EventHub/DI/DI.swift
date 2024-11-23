@@ -41,6 +41,17 @@ class ViewModelAssembly: Assembly {
             let apiService = resolver.resolve(EventAPIService.self)!
             return ExploreViewModel(actions: actions, apiService: apiService)
         }.inObjectScope(.transient)
+#warning("не понимаю как прокинуть айдишник")
+        container.register(DetailViewModel.self) { (resolver, actions: DetailActions) in
+            let apiService = resolver.resolve(EventAPIService.self)!
+            return DetailViewModel(
+               
+                eventID: 2121,
+                actions: actions,
+                eventService: apiService
+            )
+            
+        }
         
         container.register(EventsViewModel.self) { (resolver, actions: EventsActions) in
             EventsViewModel(actions: actions)
@@ -54,8 +65,8 @@ class ViewModelAssembly: Assembly {
             MapViewModel(actions: actions)
         }.inObjectScope(.transient)
         
-        container.register(FavoritesViewModel.self) { (resolver, actions: FavoritesViewActions) in
-            FavoritesViewModel(actions: actions)
+        container.register(BookmarksViewModel.self) { (resolver, actions: BookmarksViewActions) in
+            BookmarksViewModel(actions: actions)
         }.inObjectScope(.transient)
     }
 }
@@ -99,8 +110,12 @@ class ViewAssembly: Assembly {
             MapView(model: resolver.resolve(MapViewModel.self, argument: actions)!)
         }.inObjectScope(.transient)
         
-        container.register(FavoritesView.self) { (resolver, actions: FavoritesViewActions) in
-            FavoritesView(model: resolver.resolve(FavoritesViewModel.self, argument: actions)!)
+        container.register(BookmarksView.self) { (resolver, actions: BookmarksViewActions) in
+            BookmarksView(model: resolver.resolve(BookmarksViewModel.self, argument: actions)!)
+        }.inObjectScope(.transient)
+        
+        container.register(DetailView.self) { (resolver, actions: DetailActions) in
+            DetailView(model: resolver.resolve(DetailViewModel.self, argument: actions)!)
         }.inObjectScope(.transient)
     }
     
