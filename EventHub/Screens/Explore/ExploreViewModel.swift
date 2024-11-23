@@ -81,13 +81,14 @@ final class ExploreViewModel: ObservableObject {
                     title: dto.title ?? "No Title",
                     visitors: dto.participants?.map { participant in
                         Visitor(
-                            image: participant.agent.images.first ?? "default_visitor_image",
-                            name: participant.agent.title
+                            image: participant.agent?.images?.first ?? "default_visitor_image",
+                            name: participant.agent?.title ?? "No participant"
                         )
                     },
-                    date: dto.dates.first?.startDate ?? "Unknown Date",
-                    adress: dto.place?.address ?? "Unknown Address",
-                    image: dto.images.first?.image,
+                    date: Date(timeIntervalSince1970: TimeInterval((dto.dates?.first?.start ?? 1489312800))).formattedDate(format: "dd\nMMM"),
+                    adress: "Unknown Address",
+//                    adress: dto.place?.address ?? "Unknown Address",
+                    image: dto.images?.first?.image,
                     isFavorite: isFavoriteEvent
                 )
             }
