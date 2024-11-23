@@ -25,17 +25,9 @@ struct EventDTO: Codable, Identifiable, Sendable, DecodableType {
     let bodyText: String?
     let location: EventLocation?
     let categories: [String]?
-    let tagline: String?
-    let ageRestriction: String?
-    let price: String?
-    let isFree: Bool?
     let images: [ImageDTO]?
-    let favoritesCount: Int?
-    let commentsCount: Int?
     let siteURL: String?
-    let shortTitle: String?
     let tags: [String]?
-    let disableComments: Bool?
     let participants: [Participant]?
     
     enum CodingKeys: String, CodingKey {
@@ -48,17 +40,9 @@ struct EventDTO: Codable, Identifiable, Sendable, DecodableType {
         case bodyText = "body_text"
         case location
         case categories
-        case tagline
-        case ageRestriction = "age_restriction"
-        case price
-        case isFree = "is_free"
         case images
-        case favoritesCount = "favorites_count"
-        case commentsCount = "comments_count"
         case siteURL = "site_url"
-        case shortTitle = "short_title"
         case tags
-        case disableComments = "disable_comments"
         case participants
     }
 }

@@ -86,7 +86,7 @@ final class ExploreViewModel: ObservableObject {
                             name: participant.agent?.title ?? "No participant"
                         )
                     },
-                    date: Date(timeIntervalSince1970: TimeInterval((dto.dates?.first?.start)!)).formattedDate(format: "dd MMMM, yyyy"),
+                    date: Date(timeIntervalSince1970: TimeInterval((dto.dates?.first?.start ?? 1489312800))).formattedDate(format: "dd\nMMM"),
                     adress: "Unknown Address",
 //                    adress: dto.place?.address ?? "Unknown Address",
                     image: dto.images?.first?.image,
