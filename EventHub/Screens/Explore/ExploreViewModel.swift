@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct ExploreActions {
-    let showDetail: CompletionBlockWithID
+    let showDetail: (Int) -> Void
     let closed: CompletionBlock
 }
 

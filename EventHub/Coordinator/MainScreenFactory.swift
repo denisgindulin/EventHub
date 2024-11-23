@@ -16,7 +16,7 @@ protocol MainScreenFactory {
     static func makeSignUpScreen(_ actions: SignUpActions) -> UIViewController
     static func makeMainView(_ actions: TabBarActions) -> UIViewController
     static func makeExploreScreen(_ actions: ExploreActions) -> UIViewController
-    static func makeDetailScreen(_ action: DetailActions) -> UIViewController
+    static func makeDetailScreen(eventID: Int, actions: DetailActions) -> UIViewController
     static func makeMapScreen() -> UIViewController
     static func makeProfileScreen() -> UIViewController
     static func makeEventsScreen() -> UIViewController
@@ -31,9 +31,10 @@ class ScreenFactory: MainScreenFactory {
         return vc
     }
     
-    static func makeDetailScreen(_ action: DetailActions) -> UIViewController {
-        let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(DetailView.self)!
-        let vc = UIHostingController(rootView: view)
+    
+    static func makeDetailScreen(eventID: Int, actions: DetailActions) -> UIViewController {
+        let detailView = EventHubApp.dependencyProvider.assembler.resolver.resolve(DetailView.self, arguments: eventID, actions)!
+        let vc = UIHostingController(rootView: detailView)
         vc.modalPresentationStyle = .overFullScreen
         return vc
     }
@@ -70,11 +71,11 @@ class ScreenFactory: MainScreenFactory {
     
     
     static func makeMainView(_ actions: TabBarActions) -> UIViewController {
-        let router = NavigationRouter() 
+        let router = NavigationRouter()
         let view = MaintView(container: EventHubApp.dependencyProvider.assembler.resolver as! Container)
             .environmentObject(router)
         let vc = UIHostingController(rootView: view)
-        vc.modalPresentationStyle = .overFullScreen
+        vc.modalPresentationStyle = .fullScreen
         return vc
     }
     
@@ -85,7 +86,7 @@ class ScreenFactory: MainScreenFactory {
         vc.modalTransitionStyle = .crossDissolve
         return vc
     }
-
+    
     static func makeSignUpScreen(_ actions: SignUpActions) -> UIViewController {
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(SignUpView.self, argument: actions)!
         let vc = UIHostingController(rootView: view)
@@ -101,22 +102,22 @@ extension ScreenFactory {
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(ExploreView.self)!
         return view
     }
-
+    
     static func makeFavoritesView() -> some View {
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(BookmarksView.self)!
         return view
     }
-
+    
     static func makeEventsView() -> some View {
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(EventsView.self)!
         return view
     }
-
+    
     static func makeProfileView() -> some View {
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(ProfileView.self)!
         return view
     }
-
+    
     static func makeMapView() -> some View {
         let view = EventHubApp.dependencyProvider.assembler.resolver.resolve(MapView.self)!
         return view

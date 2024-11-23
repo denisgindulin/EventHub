@@ -12,18 +12,14 @@ struct MaintView: View {
     @EnvironmentObject var router: NavigationRouter
     
     let container: Container
-#warning("добавить переход на детальный экран")
+    
     var body: some View {
         VStack(spacing: 0) {
             Group {
                 switch router.selectedTab {
                 case .explore:
-                    container.resolve(
-                        ExploreView.self,
-                        argument: ExploreActions(
-                            showDetail: {_ in },
-                            closed: {})
-                    )!
+                    let actions = container.resolve(ExploreActions.self)!
+                    container.resolve(ExploreView.self, argument: actions)
                 case .events:
                     container.resolve(EventsView.self, argument: EventsActions())!
                 case .bookmark:

@@ -71,14 +71,25 @@ class LaunchCoordinator: Coordinator {
     
     func showExploreScreen() {
         let screen = ScreenFactory.makeExploreScreen(ExploreActions(
-            showDetail: {  [weak self] _ in self?.showEventDetailScreen() },
-            closed: { [weak self] in self?.router.dismiss(animated: true) }))
+            showDetail: { [weak self] eventID in
+                self?.showEventDetail(eventID: eventID)
+            },
+            closed: { [weak self] in
+                self?.router.dismiss(animated: true)
+            }
+        ))
         router.present(screen, animated: true)
     }
     
-    func showEventDetailScreen() {
-        let screen = ScreenFactory.makeDetailScreen(DetailActions(
-            closed:{ [weak self] in self?.router.dismiss(animated: true) }))
-        router.present(screen, animated: true)
+    func showEventDetail(eventID: Int) {
+        let actions = DetailActions(closed: { [weak self] in
+            self?.router.pop(animated: true)
+        })
+        
+        let detailScreen = ScreenFactory.makeDetailScreen(
+            eventID: eventID,
+            actions: actions
+        )
+        router.push(detailScreen, animated: true)
     }
 }

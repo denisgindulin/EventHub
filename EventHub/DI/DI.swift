@@ -8,19 +8,54 @@
 import Swinject
 import SwiftUI
 
+class ServicesAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(EventAPIService.self) { _ in
+            EventAPIService()
+        }.inObjectScope(.container)
+    }
+}
+
+class ActionsAssembly: Assembly {
+    func assemble(container: Container) {
+        
+        container.register(ExploreActions.self) { _ in
+            return ExploreActions(
+                showDetail: { eventID in
+                    let coordinator = container.resolve(LaunchCoordinator.self)!
+                    coordinator.showEventDetail(eventID: eventID)
+                },
+                closed: {
+                    let router = container.resolve(Router.self)!
+                    router.dismiss(animated: true)
+                }
+            )
+        }.inObjectScope(.transient)
+    }
+}
 
 //Регистрация контейнера
 class ViewModelAssembly: Assembly {
     func assemble(container: Container) {
         
+        container.register(UINavigationController.self) { _ in
+            UINavigationController()
+        }.inObjectScope(.container)
+        
         container.register(NavigationRouter.self) { _ in
             NavigationRouter()
         }.inObjectScope(.container)
         
-        container.register(EventAPIService.self) { _ in
-            EventAPIService() 
+        container.register(Router.self) { resolver in
+            let navigationController = resolver.resolve(UINavigationController.self)!
+               return Router(rootController: navigationController)
         }.inObjectScope(.container)
         
+        container.register(LaunchCoordinator.self) { resolver in
+            let router = resolver.resolve(Router.self)!
+            return LaunchCoordinator(router: router)
+        }.inObjectScope(.container)
+
         container.register(OnboardingViewModel.self) { (resolver, actions: OnboardingActions) in
             OnboardingViewModel(actions: actions)
         }.inObjectScope(.transient)
@@ -41,17 +76,11 @@ class ViewModelAssembly: Assembly {
             let apiService = resolver.resolve(EventAPIService.self)!
             return ExploreViewModel(actions: actions, apiService: apiService)
         }.inObjectScope(.transient)
-#warning("не понимаю как прокинуть айдишник")
-        container.register(DetailViewModel.self) { (resolver, actions: DetailActions) in
+
+        container.register(DetailViewModel.self) { (resolver, eventID: Int, actions: DetailActions) in
             let apiService = resolver.resolve(EventAPIService.self)!
-            return DetailViewModel(
-               
-//                eventID: 2121,
-//                actions: actions,
-//                eventService: apiService
-            )
-            
-        }
+            return DetailViewModel(eventID: eventID, eventService: apiService)
+        }.inObjectScope(.transient)
         
         container.register(EventsViewModel.self) { (resolver, actions: EventsActions) in
             EventsViewModel(actions: actions)
@@ -114,8 +143,10 @@ class ViewAssembly: Assembly {
             BookmarksView(model: resolver.resolve(BookmarksViewModel.self, argument: actions)!)
         }.inObjectScope(.transient)
         
-        container.register(DetailView.self) { (resolver, actions: DetailActions) in
-            DetailView()
+
+        container.register(DetailView.self) { (resolver, eventID: Int, actions: DetailActions) in
+            let viewModel = resolver.resolve(DetailViewModel.self, arguments: eventID, actions)!
+            return DetailView(model: viewModel)
         }.inObjectScope(.transient)
     }
     
@@ -130,7 +161,9 @@ class DependencyProvider {
         assembler = Assembler(
             [
                 ViewModelAssembly(),
-                ViewAssembly()
+                ViewAssembly(),
+                ServicesAssembly(),
+                ActionsAssembly()
             ],
             container: container
         )

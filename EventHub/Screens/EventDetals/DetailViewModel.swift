@@ -8,12 +8,14 @@
 import Foundation
 
 struct DetailActions {
-#warning("добавить все переходы с этого экрана")
+
     let closed: CompletionBlock
 }
 
 final class DetailViewModel: ObservableObject {
-    private let eventService = EventAPIService()
+    
+    private let eventID: Int
+    private let eventService: IEventAPIServiceForDetail
     
     @Published var event: EventDTO?
     @Published var errorMessage: String?
@@ -51,8 +53,14 @@ final class DetailViewModel: ObservableObject {
         event?.participants?.first?.role?.slug ?? "No Role"
     }
     
+//    MARK: - Init
+    init(eventID: Int, eventService: IEventAPIServiceForDetail) {
+        self.eventID = eventID
+        self.eventService = eventService
+    }
+    
     // Функция для получения деталей события
-    func fetchEventDetails(eventID: Int) async {
+    func fetchEventDetails() async {
         do {
             let fetchedEvent = try await eventService.getEventDetails(eventID: eventID)
             self.event = fetchedEvent
