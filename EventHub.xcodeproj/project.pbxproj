@@ -35,6 +35,8 @@
 		2228386B2CE937A400DCF847 /* MaintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228386A2CE937A400DCF847 /* MaintView.swift */; };
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
+		4806818B2CF20BFC001A2D9A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4806818A2CF20BFC001A2D9A /* Swinject */; };
+		4806818E2CF20C28001A2D9A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4806818D2CF20C28001A2D9A /* Kingfisher */; };
 		4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */; };
 		4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */; };
 		4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */; };
@@ -169,7 +171,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4806818E2CF20C28001A2D9A /* Kingfisher in Frameworks */,
 				1B7EAD0C2CEBC16C00D2AB3D /* Swinject in Frameworks */,
+				4806818B2CF20BFC001A2D9A /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +520,8 @@
 			);
 			name = EventHub;
 			packageProductDependencies = (
+				4806818A2CF20BFC001A2D9A /* Swinject */,
+				4806818D2CF20C28001A2D9A /* Kingfisher */,
 			);
 			productName = EventHub;
 			productReference = 222838652CE937A400DCF847 /* EventHub.app */;
@@ -546,7 +552,8 @@
 			);
 			mainGroup = 2228385C2CE937A400DCF847;
 			packageReferences = (
-				1B7EAD0A2CEBC16C00D2AB3D /* XCRemoteSwiftPackageReference "Swinject" */,
+				480681892CF20BFC001A2D9A /* XCRemoteSwiftPackageReference "Swinject" */,
+				4806818C2CF20C28001A2D9A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 222838662CE937A400DCF847 /* Products */;
 			projectDirPath = "";
@@ -875,6 +882,22 @@
 				minimumVersion = 2.9.1;
 			};
 		};
+		480681892CF20BFC001A2D9A /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		4806818C2CF20C28001A2D9A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -882,6 +905,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B7EAD0A2CEBC16C00D2AB3D /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		4806818A2CF20BFC001A2D9A /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 480681892CF20BFC001A2D9A /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		4806818D2CF20C28001A2D9A /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4806818C2CF20C28001A2D9A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

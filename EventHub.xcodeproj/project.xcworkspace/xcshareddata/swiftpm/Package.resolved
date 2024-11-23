@@ -1,5 +1,5 @@
 {
-  "originHash" : "917a2b512148612347b307b5f8d624e74df48af36fa322c80901a86fc0e1317f",
+  "originHash" : "ac7a65cd2697358aa6be503272510ca582da3ba0c4aff67c522769831e3ad52d",
   "pins" : [
     {
       "identity" : "kingfisher",
@@ -8,8 +8,8 @@
       "state" : {
         "revision" : "b6256f191b4c1d8d09f4df94bae69e5ac6e42c81",
         "version" : "8.1.1"
-  "originHash" : "43ca8cdf31efddefed0c1a55ebf00893877282d5a9bda294cd149edd4e559706",
-  "pins" : [
+      }
+    },
     {
       "identity" : "swinject",
       "kind" : "remoteSourceControl",
