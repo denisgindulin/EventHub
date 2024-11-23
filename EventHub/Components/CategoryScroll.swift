@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct CategoryScroll: View {
-    
-    let categories: [CategoryUIModel]
 
+struct CategoryScroll: View {
+    let categories: [CategoryUIModel]
+    let onCategorySelected: (CategoryUIModel) -> Void
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
@@ -18,17 +19,21 @@ struct CategoryScroll: View {
                     CategoryButtonView(
                         categoryName: category.category.name,
                         imageName: category.image,
-                        backgroundColor: category.color
+                        backgroundColor: category.color,
+                        onTap: {
+                            onCategorySelected(category)
+                            print(category.category.slug)
+                            print(category.category.name)
+                        }
                     )
                 }
                 .clipped()
-                
             }
             .padding(.leading, 24)
         }
     }
 }
 
-#Preview {
-    CategoryScroll(categories: [])
-}
+//#Preview {
+//    CategoryScroll(categories: [], onCategorySelected: <#(CategoryUIModel) -> Void#>)
+//}

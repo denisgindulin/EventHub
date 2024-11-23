@@ -84,7 +84,7 @@ struct Coordinates: Codable, Sendable, DecodableType {
 }
 
 // MARK: - Location
-struct EventLocation: Codable, Sendable, DecodableType {
+struct EventLocation: Codable, Sendable, DecodableType, Hashable {
     let slug: String
     let name: String?
 }

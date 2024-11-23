@@ -18,13 +18,24 @@ struct ExploreView: View {
                 Color.appMainBackground // zIndex // UIScreen.main.bounds.width
                 VStack {
                     ZStack {
+                        
                         CustomToolBar(
                             title: model.currentPosition,
-                            magnifierColor: .white
+                            magnifierColor: .white,
+                            notifications: true, getSearchString: {} // передать поисковую строку
+                            
                         )
                         
-                        CategoryScroll(categories: model.categories)
-                            .offset(y: 92)
+                        CategoryScroll(categories:
+                                        model.categories,
+                                       onCategorySelected: { selectedCategory in
+                            model.currentCategory = selectedCategory.category.slug // отдаем на сервер name или slug ?
+                            
+                            Task {
+                                await model.fetchEvents()
+                            }
+                        })
+                        .offset(y: 92)
                     }
                     .zIndex(1)
                     
@@ -33,7 +44,7 @@ struct ExploreView: View {
                             MainCategorySectionView(title: "Upcomimg Events")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: nil, showDetail: model.showDetail)
+                            ScrollEventCardsView(events: model.events, showDetail: model.showDetail)
                                 .padding(.bottom, 10)
                             
                             MainCategorySectionView(title: "Nearby You")
