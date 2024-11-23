@@ -46,8 +46,9 @@ class LaunchCoordinator: Coordinator {
         router.present(screen, animated: true)
     }
     
+    
     func showMainScreen() {
-        let screen = ScreenFactory.makeMainView(TabBarActions(
+        let screen = ScreenFactory.makeTabBarView(TabBarActions(
             showEventsView: {
                 
             },
@@ -60,7 +61,7 @@ class LaunchCoordinator: Coordinator {
             showProfileView: {
                 
             },
-            showExploverView: {
+            showExploreView: {
                 
             },
             close: {

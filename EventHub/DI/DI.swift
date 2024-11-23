@@ -104,8 +104,8 @@ class ViewModelAssembly: Assembly {
 class ViewAssembly: Assembly {
     func assemble(container: Container) {
         
-        container.register(MaintView.self) { (resolver, actions: TabBarActions) in
-            MaintView(container: resolver as! Container)
+        container.register(EventHubContentView.self) { (resolver, actions: TabBarActions) in
+            EventHubContentView(container: resolver as! Container)
         }
         container.register(OnboardingView.self) { (resolver, actions: OnboardingActions) in
             OnboardingView(model: resolver.resolve(OnboardingViewModel.self, argument: actions)!)

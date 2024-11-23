@@ -14,7 +14,7 @@ protocol MainScreenFactory {
     static func makeOnboardingScreen(_ actions: OnboardingActions) -> UIViewController
     static func makeSignInScreen(_ actions: SignInActions) -> UIViewController
     static func makeSignUpScreen(_ actions: SignUpActions) -> UIViewController
-    static func makeMainView(_ actions: TabBarActions) -> UIViewController
+    static func makeTabBarView(_ actions: TabBarActions) -> UIViewController
     static func makeExploreScreen(_ actions: ExploreActions) -> UIViewController
     static func makeDetailScreen(eventID: Int, actions: DetailActions) -> UIViewController
     static func makeMapScreen() -> UIViewController
@@ -69,10 +69,9 @@ class ScreenFactory: MainScreenFactory {
         return vc
     }
     
-    
-    static func makeMainView(_ actions: TabBarActions) -> UIViewController {
+    static func makeTabBarView(_ actions: TabBarActions) -> UIViewController {
         let router = NavigationRouter()
-        let view = MaintView(container: EventHubApp.dependencyProvider.assembler.resolver as! Container)
+        let view = EventHubContentView(container: EventHubApp.dependencyProvider.assembler.resolver as! Container)
             .environmentObject(router)
         let vc = UIHostingController(rootView: view)
         vc.modalPresentationStyle = .fullScreen

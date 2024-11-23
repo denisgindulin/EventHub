@@ -8,7 +8,7 @@
 import SwiftUI
 import Swinject
 
-struct MaintView: View {
+struct EventHubContentView: View {
     @EnvironmentObject var router: NavigationRouter
     
     let container: Container
