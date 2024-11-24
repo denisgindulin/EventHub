@@ -38,7 +38,7 @@ struct SignUpMainView: View {
                             let sucess =  await viewModel.signUp()
                             if sucess{
                                 viewModel.saveUsernameToUserDefaults(username: viewModel.name )
-                                //navigation 
+                                // navigation
                             }
                         }
                         
