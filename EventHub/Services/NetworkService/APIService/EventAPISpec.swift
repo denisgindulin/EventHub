@@ -12,12 +12,12 @@ import Foundation
 enum EventAPISpec: APISpec {
     case getLocation(language: Language?)
     case getCategories(language: Language?)
-    case getEventsWith(
-        category: String,
-        location: String,
+    case getUpcomingEventsWith(
+        category: String?,
         language: Language?,
-        page: Int
+        page: Int?
     )
+    case getNearbyYouEvents(language: Language?, location: String, page: Int?)
     case getEventDetails(eventID: Int)
     case getSerchedEventsWith(searchText: String)
     
@@ -29,7 +29,9 @@ enum EventAPISpec: APISpec {
             return "public-api/v1.4/locations"
         case .getCategories:
             return "public-api/v1.4/event-categories"
-        case .getEventsWith:
+        case .getUpcomingEventsWith:
+            return "public-api/v1.4/events/"
+        case .getNearbyYouEvents:
             return "public-api/v1.4/events/"
         case .getEventDetails(eventID: let eventID):
             return "public-api/v1.4/events/\(eventID)"
@@ -48,22 +50,55 @@ enum EventAPISpec: APISpec {
         case .getCategories(let language):
             return language.map { [URLQueryItem(name: "lang", value: $0.rawValue)] } ?? []
             
-        case .getEventsWith(let category, let location, let language, let page):
+        case .getUpcomingEventsWith(let category, let language, let page):
+            let currentDate = Date()
+            let unixTimestamp = Int(currentDate.timeIntervalSince1970)
+            
             var items: [URLQueryItem] = [
+                URLQueryItem(name: "actual_since", value: String(unixTimestamp)),
+                URLQueryItem(name: "order_by", value: "publication_date"),
                 URLQueryItem(name: "expand", value: "location,place,dates,participants"),
-                URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants,images"),
-                URLQueryItem(name: "categories", value: category),
-                URLQueryItem(name: "location", value: location)
+                URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants,images,site_url")
             ]
+            
+            if let category = category {
+                items.append(URLQueryItem(name: "categories", value: category))
+            }
+            
+            if let language = language {
+                items.append(URLQueryItem(name: "lang", value: language.rawValue))
+            }
+            if let page = page {
+                items.append(URLQueryItem(name: "page", value: String(page)))
+            }
+            return items
+            
+        case .getNearbyYouEvents(language: let language, location: let location, page: let page):
+            let currentDate = Date()
+            let unixTimestamp = Int(currentDate.timeIntervalSince1970)
+            
+            var items: [URLQueryItem] = [
+                URLQueryItem(name: "actual_since", value: String(unixTimestamp)),
+                URLQueryItem(name: "location", value: location),
+                URLQueryItem(name: "order_by", value: "publication_date"),
+                URLQueryItem(name: "expand", value: "location,place,dates,participants"),
+                URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants,images,site_url")
+            ]
+            
+            
             if let language = language {
                 items.append(URLQueryItem(name: "lang", value: language.rawValue))
             }
             
-            items.append(URLQueryItem(name: "page", value: String(page)))
-            return items
+            if let page = page {
+                items.append(URLQueryItem(name: "page", value: String(page)))
+            }
             
+            return items
+        
         case .getEventDetails:
             let items: [URLQueryItem] = [
+                URLQueryItem(name: "expand", value: "location,place,dates,participants"),
                 URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants,categories,images")
             ]
             return items
@@ -98,7 +133,9 @@ enum EventAPISpec: APISpec {
             return [EventLocation].self
         case .getCategories:
             return [CategoryDTO].self
-        case .getEventsWith:
+        case .getUpcomingEventsWith:
+            return APIResponseDTO.self
+        case .getNearbyYouEvents:
             return APIResponseDTO.self
         case .getEventDetails:
             return EventDTO.self

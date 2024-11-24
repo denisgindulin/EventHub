@@ -17,35 +17,30 @@ struct APIResponseDTO: Codable, Sendable, DecodableType {
 // MARK: - Event
 struct EventDTO: Codable, Identifiable, Sendable, DecodableType {
     let id: Int
-    let dates: [EventDate]?
     let title: String?
-    let slug: String?
-    let place: Place?
+    let images: [ImageDTO]
     let description: String?
     let bodyText: String?
+    let favoritesCount: Int?
+    let dates: [EventDate]
+    let place: PlaceDTO?
     let location: EventLocation?
-    let categories: [String]?
-    let images: [ImageDTO]?
-    let siteURL: String?
-    let tags: [String]?
     let participants: [Participant]?
-    
+
     enum CodingKeys: String, CodingKey {
         case id
-        case dates
         case title
-        case slug
-        case place
+        case images
         case description
         case bodyText = "body_text"
+        case favoritesCount = "favorites_count"
+        case dates
+        case place
         case location
-        case categories
-        case images
-        case siteURL = "site_url"
-        case tags
         case participants
     }
 }
+
 
 // MARK: - EventCategory
 struct CategoryDTO: Codable, Identifiable, Sendable, DecodableType {
@@ -65,12 +60,33 @@ struct EventCategory: Codable, Identifiable, Sendable, DecodableType {
 struct EventDate: Codable, Sendable, DecodableType {
     let start: Int?
     let end: Int?
+    let startDate: String?
+    let startTime: String?
+    let endTime: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case start, end
+        case startDate = "start_date"
+        case startTime = "start_time"
+        case endTime = "end_time"
+    }
+}
+// MARK: - Place
+struct PlaceDTO: Codable, Sendable, DecodableType {
+    let id: Int
+    let title: String?
+    let slug: String
+    let address: String
+    let coords: Coordinates
+    let location: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, title, slug, address
+        case coords
+        case location
+    }
 }
 
-// MARK: - Place
-struct Place: Codable, Sendable, DecodableType {
-    let id: Int
-}
 
 // MARK: - Coordinates
 struct Coordinates: Codable, Sendable, DecodableType {
@@ -80,8 +96,10 @@ struct Coordinates: Codable, Sendable, DecodableType {
 
 // MARK: - Location
 struct EventLocation: Codable, Sendable, DecodableType {
-    let slug: String?
+    let slug: String
+    let name: String?
 }
+
 
 // MARK: - Participant
 struct Participant: Codable {
