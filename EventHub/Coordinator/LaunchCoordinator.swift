@@ -91,6 +91,6 @@ class LaunchCoordinator: Coordinator {
             eventID: eventID,
             actions: actions
         )
-        router.present(screen, animated: true)
+        router.push(screen, animated: true)
     }
 }

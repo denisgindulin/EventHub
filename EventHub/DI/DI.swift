@@ -24,7 +24,7 @@ class ActionsAssembly: Assembly {
                 showDetail: { eventID in
                     let coordinator = container.resolve(LaunchCoordinator.self)!
                     coordinator.showEventDetail(eventID: eventID)
-                    print("ActionsAssembly: \(eventID)")
+                    print("makeDetail: \(eventID)")
                 },
                 closed: {
                     let router = container.resolve(Router.self)!
