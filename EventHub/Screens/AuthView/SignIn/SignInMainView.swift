@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import FirebaseAuth
 struct SignInMainView: View {
     var iconImageName: String = "shortLogo"
     var title: LocalizedStringKey = "EventHub"
@@ -15,9 +15,7 @@ struct SignInMainView: View {
     var forgotPasswordText: LocalizedStringKey = "Forgot Password?"
     var dontHaveAnAccText: LocalizedStringKey = "Don’t have an account?"
     var signUpText: LocalizedStringKey = "Sign up"
-    
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @ObservedObject var viewModel: AuthViewModel
     @State private var isRememberMeOn: Bool = false
     
     var body: some View {
@@ -64,7 +62,12 @@ struct SignInMainView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 BlueButtonWithArrow(text: "Sign In") {
-                    print("Action")
+                    Task{
+                        let sucess =  await viewModel.signIn()
+                        if sucess{
+                            //
+                        }
+                    }
                 }
                 .padding(.top, smallPadding)
                 .padding(.horizontal, horizontalPadding)
@@ -74,7 +77,15 @@ struct SignInMainView: View {
                     .padding(.vertical, smallPadding)
                 
                 GoogleButton() {
-                    //
+                    Task{
+                        let sucess = await viewModel.signInWithGoogle()
+                        if sucess{
+                            
+                        } else{
+                           
+                        }
+                    }
+                   
                 }
                 .padding(.horizontal, horizontalPadding)
                 
@@ -97,7 +108,7 @@ struct SignInMainView: View {
     
     private func emailTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
-            textFieldText: $email,
+            textFieldText: $viewModel.email,
             placeholder: "Enter your email",
             imageName: "mail",
             isSecure: false
@@ -108,7 +119,7 @@ struct SignInMainView: View {
     
     private func passwordTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
-            textFieldText: $password,
+            textFieldText: $viewModel.password,
             placeholder: "Your password",
             imageName: "Lock",
             isSecure: true
@@ -119,5 +130,5 @@ struct SignInMainView: View {
 }
 
 #Preview {
-    SignInMainView()
+    SignInMainView(viewModel: AuthViewModel())
 }

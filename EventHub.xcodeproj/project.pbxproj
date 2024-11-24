@@ -46,7 +46,7 @@
 		8763C1652CF269AF002E4535 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763C1642CF269AF002E4535 /* GoogleButton.swift */; };
 		8763C1672CF26A2D002E4535 /* SignInMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763C1662CF26A0C002E4535 /* SignInMainView.swift */; };
 		87D851202CF26AB4002DC428 /* SignUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D8511F2CF26AAC002DC428 /* SignUpMainView.swift */; };
-		87D851222CF26ADD002DC428 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87D851212CF26ADD002DC428 /* GoogleService-Info.plist */; };
+		87D851242CF30481002DC428 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D851232CF3046E002DC428 /* AuthViewModel.swift */; };
 		E10ED0042CF0DE6B00AFDBC2 /* OnboardingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10ED0012CF0DE6B00AFDBC2 /* OnboardingItem.swift */; };
 		E10ED0052CF0DE6B00AFDBC2 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10ED0022CF0DE6B00AFDBC2 /* OnboardingPageView.swift */; };
 		E10ED0062CF0DE6B00AFDBC2 /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10ED0032CF0DE6B00AFDBC2 /* OnboardingTabView.swift */; };
@@ -129,7 +129,8 @@
 		8763C1642CF269AF002E4535 /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
 		8763C1662CF26A0C002E4535 /* SignInMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMainView.swift; sourceTree = "<group>"; };
 		87D8511F2CF26AAC002DC428 /* SignUpMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMainView.swift; sourceTree = "<group>"; };
-		87D851212CF26ADD002DC428 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		87D851232CF3046E002DC428 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		87D851272CF30792002DC428 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E10ED0002CF0DE6B00AFDBC2 /* OnboardingControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingControlsView.swift; sourceTree = "<group>"; };
 		E10ED0012CF0DE6B00AFDBC2 /* OnboardingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItem.swift; sourceTree = "<group>"; };
 		E10ED0022CF0DE6B00AFDBC2 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
@@ -212,6 +213,7 @@
 		1B7EAD132CEBC22000D2AB3D /* AuthView */ = {
 			isa = PBXGroup;
 			children = (
+				87D851232CF3046E002DC428 /* AuthViewModel.swift */,
 				1B7EAD192CEBC27200D2AB3D /* SignUp */,
 				1B7EAD182CEBC26B00D2AB3D /* SignIn */,
 			);
@@ -308,6 +310,7 @@
 		2228385C2CE937A400DCF847 = {
 			isa = PBXGroup;
 			children = (
+				87D851272CF30792002DC428 /* GoogleService-Info.plist */,
 				222838672CE937A400DCF847 /* EventHub */,
 				222838662CE937A400DCF847 /* Products */,
 				E10ECFFF2CF0DD6500AFDBC2 /* Recovered References */,
@@ -325,7 +328,6 @@
 		222838672CE937A400DCF847 /* EventHub */ = {
 			isa = PBXGroup;
 			children = (
-				87D851212CF26ADD002DC428 /* GoogleService-Info.plist */,
 				1BB6A3E12CEFD2660069A17D /* Coordinator */,
 				4831BA522CEB2FCD00141C9A /* App */,
 				1B7EAD0D2CEBC17D00D2AB3D /* DI */,
@@ -583,7 +585,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */,
-				87D851222CF26ADD002DC428 /* GoogleService-Info.plist in Resources */,
 				4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */,
 				4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */,
 				222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */,
@@ -662,6 +663,7 @@
 				E10ED0542CF0E47F00AFDBC2 /* MainCategorySectionView.swift in Sources */,
 				1BB6A3DC2CEFAD7D0069A17D /* MainScreenFactory.swift in Sources */,
 				1B7EAD222CEBC2D800D2AB3D /* ExploreView.swift in Sources */,
+				87D851242CF30481002DC428 /* AuthViewModel.swift in Sources */,
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
 				1B7EAD2F2CEBC38C00D2AB3D /* ProfileViewModel.swift in Sources */,
 				1B7EAD372CEBC3CF00D2AB3D /* BookmarksView.swift in Sources */,

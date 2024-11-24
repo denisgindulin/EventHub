@@ -6,6 +6,16 @@
 //
 
 import SwiftUI
+import Firebase
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+
+    return true
+  }
+}
 
 @main
 struct EventHubApp: App {
@@ -19,6 +29,7 @@ struct EventHubApp: App {
 }
 
 struct RootViewControllerWrapper: UIViewControllerRepresentable {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var coordinatorHolder = CoordinatorHolder()
 
     func makeUIViewController(context: Context) -> UIViewController {

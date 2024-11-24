@@ -6,13 +6,9 @@
 //
 
 import SwiftUI
-
+import FirebaseAuth
 struct SignUpMainView: View {
-    
-    @State private var name: String = ""
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var password2: String = ""
+    @ObservedObject var viewModel: AuthViewModel
     
     var body: some View {
         GeometryReader { geometry in
@@ -31,14 +27,21 @@ struct SignUpMainView: View {
                     emailTextField(horizontalPadding: horizontalPadding)
                         .padding(.top, smallPadding)
                     
-                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Your password", textFieldText: $password)
+                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Your password", textFieldText: $viewModel.password)
                         .padding(.top, smallPadding)
                     
-                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Confirm password", textFieldText: $password2)
+                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Confirm password", textFieldText: $viewModel.password2)
                         .padding(.top, smallPadding)
                     
                     BlueButtonWithArrow(text: "Sign Up") {
-                        print("Action")
+                        Task{
+                            let sucess =  await viewModel.signUp()
+                            if sucess{
+                                viewModel.saveUsernameToUserDefaults(username: viewModel.name )
+                                // navigation
+                            }
+                        }
+                        
                     }
                     .padding(.top, smallPadding * 1.5)
                     .padding(.horizontal, horizontalPadding)
@@ -48,7 +51,14 @@ struct SignUpMainView: View {
                         .padding(.vertical, smallPadding / 2)
                     
                     GoogleButton() {
-                        //
+                        Task{
+                            let sucess = await viewModel.signInWithGoogle()
+                            if sucess{
+                                
+                            } else{
+                               
+                            }
+                        }
                     }
                     .padding(.horizontal, horizontalPadding)
                     
@@ -71,7 +81,7 @@ struct SignUpMainView: View {
     
     private func nameTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
-            textFieldText: $name,
+            textFieldText: $viewModel.name,
             placeholder: "Full name",
             imageName: "profile",
             isSecure: false
@@ -82,7 +92,7 @@ struct SignUpMainView: View {
     
     private func emailTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
-            textFieldText: $email,
+            textFieldText:  $viewModel.email,
             placeholder: "Enter your email",
             imageName: "mail",
             isSecure: false
@@ -104,5 +114,5 @@ struct SignUpMainView: View {
 }
 
 #Preview {
-    SignUpMainView()
+    SignUpMainView(viewModel: AuthViewModel())
 }
