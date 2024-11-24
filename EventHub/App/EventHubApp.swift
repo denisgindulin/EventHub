@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
 struct EventHubApp: App {
     static let dependencyProvider = DependencyProvider()
+    
+    init(){
+        FirebaseApp.configure()
+    }
+    
 
     var body: some Scene {
         WindowGroup {

@@ -35,7 +35,7 @@ class LaunchCoordinator: Coordinator {
     
     func showSignInScreen() {
         let screen = ScreenFactory.makeSignInScreen(SignInActions(
-            showMainScreen: { self.showMainScreen()},
+            showMainScreen: { [weak self] in self?.showMainScreen()},
             closed: { [weak self] in self?.router.dismiss(animated: true) }))
         router.present(screen, animated: true)
     }

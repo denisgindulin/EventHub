@@ -11,11 +11,11 @@ struct SignInView: View {
     @ObservedObject var model: SignInViewModel
     var body: some View {
         
-//        Button(action: {
-//            model.showMainView()},
-//               label: {
-//            Text("Next")
-//        })
+        Button(action: {
+            model.showMainView()},
+               label: {
+            Text("Next")
+        })
         Button(action: {
             model.close()},
                label: {
