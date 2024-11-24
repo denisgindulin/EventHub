@@ -43,7 +43,7 @@ class ViewModelAssembly: Assembly {
         }.inObjectScope(.transient)
 #warning("не понимаю как прокинуть айдишник")
         container.register(DetailViewModel.self) { (resolver, actions: DetailActions) in
-            let apiService = resolver.resolve(EventAPIService.self)!
+//            let apiService = resolver.resolve(EventAPIService.self)!
             return DetailViewModel(
                 eventId: 2121
 //                actions: actions,

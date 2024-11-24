@@ -66,17 +66,20 @@ struct DetailView: View {
                 }
                 .padding(.horizontal, 20)
             }
-            .sheet(isPresented: $isPresented) {
-                ActivityViewController(text: model.title)
+            BottomSheetView(isOpen: $isPresented, maxHeight: 400) {
+                // Содержимое нижнего листа
             }
+//            .sheet(isPresented: $isPresented) {
+//                ActivityViewController(text: model.title)
+//            }
         }
         .task {
-            await model.fetchEventDetails(eventID: 168359)
+            await model.fetchEventDetails()
         }
         .ignoresSafeArea()
     }
 }
 
 #Preview {
-    DetailView()
+    DetailView(model: DetailViewModel(eventId: 168359))
 }

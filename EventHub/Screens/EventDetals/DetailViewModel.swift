@@ -57,9 +57,9 @@ final class DetailViewModel: ObservableObject {
     }
     
     // Функция для получения деталей события
-    func fetchEventDetails(eventID: Int) async {
+    func fetchEventDetails() async {
         do {
-            let fetchedEvent = try await eventService.getEventDetails(eventID: eventID)
+            let fetchedEvent = try await eventService.getEventDetails(eventID: eventId)
             self.event = fetchedEvent
         } catch {
             self.errorMessage = "Не удалось загрузить событие: \(error.localizedDescription)"
