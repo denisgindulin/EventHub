@@ -35,6 +35,7 @@
 		2228386B2CE937A400DCF847 /* MaintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228386A2CE937A400DCF847 /* MaintView.swift */; };
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
+		226016022CF34EF200C100A1 /* BookmarkWithBgButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226016012CF34EF200C100A1 /* BookmarkWithBgButton.swift */; };
 		22FE3C2A2CF28E4B00FAEACF /* TextOnlyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C292CF28E4B00FAEACF /* TextOnlyButton.swift */; };
 		22FE3C2C2CF2F64900FAEACF /* EventReminderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C2B2CF2F64900FAEACF /* EventReminderCard.swift */; };
 		22FE3C2E2CF334C000FAEACF /* SignOutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C2D2CF334C000FAEACF /* SignOutButton.swift */; };
@@ -118,6 +119,7 @@
 		2228386A2CE937A400DCF847 /* MaintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintView.swift; sourceTree = "<group>"; };
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		226016012CF34EF200C100A1 /* BookmarkWithBgButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkWithBgButton.swift; sourceTree = "<group>"; };
 		22FE3C292CF28E4B00FAEACF /* TextOnlyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnlyButton.swift; sourceTree = "<group>"; };
 		22FE3C2B2CF2F64900FAEACF /* EventReminderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventReminderCard.swift; sourceTree = "<group>"; };
 		22FE3C2D2CF334C000FAEACF /* SignOutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutButton.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				22FE3C292CF28E4B00FAEACF /* TextOnlyButton.swift */,
 				22FE3C2B2CF2F64900FAEACF /* EventReminderCard.swift */,
 				22FE3C2D2CF334C000FAEACF /* SignOutButton.swift */,
+				226016012CF34EF200C100A1 /* BookmarkWithBgButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				E10ED0202CF0E2F400AFDBC2 /* EventModel.swift in Sources */,
 				1B7EAD0F2CEBC19900D2AB3D /* DI.swift in Sources */,
 				1BB6A3E32CEFD79E0069A17D /* TabBarViewModel.swift in Sources */,
+				226016022CF34EF200C100A1 /* BookmarkWithBgButton.swift in Sources */,
 				E10ED03D2CF0E47F00AFDBC2 /* CategoryScroll.swift in Sources */,
 				E10ED03E2CF0E47F00AFDBC2 /* ThirdSmallEventCard.swift in Sources */,
 				E10ED03F2CF0E47F00AFDBC2 /* ShimmerView.swift in Sources */,
