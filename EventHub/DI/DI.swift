@@ -45,8 +45,7 @@ class ViewModelAssembly: Assembly {
         container.register(DetailViewModel.self) { (resolver, actions: DetailActions) in
             let apiService = resolver.resolve(EventAPIService.self)!
             return DetailViewModel(
-               
-//                eventID: 2121,
+                eventId: 2121
 //                actions: actions,
 //                eventService: apiService
             )
@@ -115,7 +114,7 @@ class ViewAssembly: Assembly {
         }.inObjectScope(.transient)
         
         container.register(DetailView.self) { (resolver, actions: DetailActions) in
-            DetailView()
+            DetailView(model: resolver.resolve(DetailViewModel.self , argument: actions)!)
         }.inObjectScope(.transient)
     }
     

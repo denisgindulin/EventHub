@@ -15,8 +15,13 @@ struct DetailActions {
 final class DetailViewModel: ObservableObject {
     private let eventService = EventAPIService()
     
+    @Published var eventId: Int
     @Published var event: EventDTO?
     @Published var errorMessage: String?
+    
+    init(eventId: Int) {
+        self.eventId = eventId
+    }
     
     // Вычисляемые свойства для удобства использования во View
     var title: String {

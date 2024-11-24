@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct DetailView: View {
-    @StateObject var viewModel = DetailViewModel()
+    @ObservedObject var model: DetailViewModel
     @State private var isPresented: Bool = false
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 50) {
                 ZStack(alignment: .bottomTrailing) {
-                    AsyncImage(url: viewModel.imageUrl) { image in
+                    AsyncImage(url: model.imageUrl) { image in
                         image
                             .resizable()
                             .scaledToFill()
@@ -41,37 +41,37 @@ struct DetailView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 24) {
-                    Text(viewModel.title)
+                    Text(model.title)
                         .airbnbCerealFont(.book, size: 35)
                     
                     VStack(alignment: .leading, spacing: 24) {
                         DetailComponentView(image: Image(systemName: "calendar"),
-                                            title: viewModel.startDate,
-                                            description: viewModel.endDate)
+                                            title: model.startDate,
+                                            description: model.endDate)
                         
                         DetailComponentView(image: Image(.location),
                                             title: "viewModel.place",
-                                            description: viewModel.adress)
+                                            description: model.adress)
                         
                         DetailComponentView(image: Image(.cardImg2),
-                                            title: viewModel.agentTitle,
-                                            description: viewModel.role,
+                                            title: model.agentTitle,
+                                            description: model.role,
                                             showImgBg: false)
                     }
                     
                     Text("About Event")
                         .airbnbCerealFont(.medium, size: 18)
-                    Text(viewModel.bodyText)
+                    Text(model.bodyText)
                         .airbnbCerealFont(.book)
                 }
                 .padding(.horizontal, 20)
             }
             .sheet(isPresented: $isPresented) {
-                ActivityViewController(text: viewModel.title)
+                ActivityViewController(text: model.title)
             }
         }
         .task {
-            await viewModel.fetchEventDetails(eventID: 168359)
+            await model.fetchEventDetails(eventID: 168359)
         }
         .ignoresSafeArea()
     }
