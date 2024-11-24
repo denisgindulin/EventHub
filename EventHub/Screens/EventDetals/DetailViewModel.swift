@@ -15,6 +15,7 @@ final class DetailViewModel: ObservableObject {
     
     private let eventID: Int
     private let eventService: IEventAPIServiceForDetail
+    private let actions: DetailActions
     
     @Published var event: EventDTO?
     @Published var errorMessage: String?
@@ -33,13 +34,13 @@ final class DetailViewModel: ObservableObject {
     }
     
     var startDate: String {
-        guard let startTimestamp = event?.dates?.first?.start else { return "" }
+        guard let startTimestamp = event?.dates.first?.start else { return "" }
         let date = Date(timeIntervalSince1970: TimeInterval(startTimestamp))
         return date.formattedDate(format: "dd MMMM, yyyy")
     }
     
     var endDate: String {
-        guard let endTimestamp = event?.dates?.first?.end else { return "" }
+        guard let endTimestamp = event?.dates.first?.end else { return "" }
         let date = Date(timeIntervalSince1970: TimeInterval(endTimestamp))
         return date.formattedDate(format: "E, MMM d • h:mm a")
     }
@@ -53,8 +54,9 @@ final class DetailViewModel: ObservableObject {
     }
     
 //    MARK: - Init
-    init(eventID: Int, eventService: IEventAPIServiceForDetail) {
+    init(eventID: Int, actions: DetailActions, eventService: IEventAPIServiceForDetail) {
         self.eventID = eventID
+        self.actions = actions
         self.eventService = eventService
     }
     
@@ -71,4 +73,16 @@ final class DetailViewModel: ObservableObject {
 
     let imageUrl = URL(string: "https://images.unsplash.com/photo-1731921954767-8473de81c99e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8")
     let adress = "36 Guild Street London, UK"
+    
+    
+//
+    func changeBookmark() {
+        
+    }
+    
+//    MARK: - Navigation
+    func close() {
+        actions.closed()
+    }
+    
 }

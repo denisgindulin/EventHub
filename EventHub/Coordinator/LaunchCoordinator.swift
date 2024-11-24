@@ -84,13 +84,13 @@ class LaunchCoordinator: Coordinator {
     
     func showEventDetail(eventID: Int) {
         let actions = DetailActions(closed: { [weak self] in
-            self?.router.pop(animated: true)
+            self?.router.dismiss(animated: true)
         })
         
-        let detailScreen = ScreenFactory.makeDetailScreen(
+        let screen = ScreenFactory.makeDetailScreen(
             eventID: eventID,
             actions: actions
         )
-        router.push(detailScreen, animated: true)
+        router.present(screen, animated: true)
     }
 }

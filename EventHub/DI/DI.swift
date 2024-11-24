@@ -24,6 +24,7 @@ class ActionsAssembly: Assembly {
                 showDetail: { eventID in
                     let coordinator = container.resolve(LaunchCoordinator.self)!
                     coordinator.showEventDetail(eventID: eventID)
+                    print("ActionsAssembly: \(eventID)")
                 },
                 closed: {
                     let router = container.resolve(Router.self)!
@@ -79,7 +80,7 @@ class ViewModelAssembly: Assembly {
 
         container.register(DetailViewModel.self) { (resolver, eventID: Int, actions: DetailActions) in
             let apiService = resolver.resolve(EventAPIService.self)!
-            return DetailViewModel(eventID: eventID, eventService: apiService)
+            return DetailViewModel(eventID: eventID, actions: actions, eventService: apiService)
         }.inObjectScope(.transient)
         
         container.register(EventsViewModel.self) { (resolver, actions: EventsActions) in

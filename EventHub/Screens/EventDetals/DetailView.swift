@@ -16,6 +16,18 @@ struct DetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 50) {
                 ZStack(alignment: .bottomTrailing) {
+                    ToolBarView(
+                        title: "Event Details",
+                        isTitleLeading: true,
+                        showBackButton: true,
+                        backButtonAction: model.close,
+                        actions: [ToolBarAction(
+                            icon: ToolBarButtonType.bookmark.icon,
+                            action: model.changeBookmark,
+                            hasBackground: true,
+                            foregroundStyle: Color.white)
+                        ]
+                    )
                     AsyncImage(url: model.imageUrl) { image in
                         image
                             .resizable()
@@ -79,5 +91,5 @@ struct DetailView: View {
 }
 
 #Preview {
-    DetailView(model: DetailViewModel(eventID: 23, eventService: EventAPIService()))
+    DetailView(model: DetailViewModel(eventID: 188742, actions: DetailActions(closed: {}), eventService: EventAPIService()))
 }

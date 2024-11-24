@@ -466,8 +466,8 @@
 		4831BA582CEB421C00141C9A /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				8763C1642CF269AF002E4535 /* GoogleButton.swift */,
 				E10ED0362CF0E47F00AFDBC2 /* ToolBar */,
+				8763C1642CF269AF002E4535 /* GoogleButton.swift */,
 				E10ED0232CF0E47F00AFDBC2 /* ActivityView.swift */,
 				E10ED0242CF0E47F00AFDBC2 /* AuthTextField.swift */,
 				E10ED0252CF0E47F00AFDBC2 /* BackBarButtonView.swift */,
@@ -891,7 +891,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EventHub/Preview Content\"";
-				DEVELOPMENT_TEAM = D3BJGB736B;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EventHub/App/Info.plist;
@@ -927,7 +927,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EventHub/Preview Content\"";
-				DEVELOPMENT_TEAM = D3BJGB736B;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EventHub/App/Info.plist;

@@ -31,9 +31,9 @@ class ScreenFactory: MainScreenFactory {
         return vc
     }
     
-    
     static func makeDetailScreen(eventID: Int, actions: DetailActions) -> UIViewController {
         let detailView = EventHubApp.dependencyProvider.assembler.resolver.resolve(DetailView.self, arguments: eventID, actions)!
+        print("makeDetail: \(eventID)")
         let vc = UIHostingController(rootView: detailView)
         return vc
     }
@@ -74,7 +74,7 @@ class ScreenFactory: MainScreenFactory {
         let view = EventHubContentView(container: EventHubApp.dependencyProvider.assembler.resolver as! Container)
             .environmentObject(router)
         let vc = UIHostingController(rootView: view)
-        vc.modalPresentationStyle = .fullScreen
+//        vc.modalPresentationStyle = .fullScreen
         return vc
     }
     
