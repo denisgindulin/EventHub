@@ -34,6 +34,6 @@ struct EventHubContentView: View {
             
             TabBarView()
         }
-        .ignoresSafeArea(edges: .bottom)
+        .ignoresSafeArea()
     }
 }

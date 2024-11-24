@@ -19,13 +19,15 @@ final class ExploreViewModel: ObservableObject {
     
     let currentPosition: String = "New York, USA"
     
+    @Published var searchString: String = ""
     
-    @Published var searcString: String = ""
-    @Published var events: [Event] = []
+    @Published var upcomingEvents: [Event] = []
+    @Published var nearbyYouEvents: [Event] = []
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
+    
     @Published var error: Error? = nil
-    @Published var currentCategory: String = "cinema"
+    @Published var currentCategory: String? = nil
     @Published var currentLocation: String = "msk"
     
     var isFavoriteEvent = false
@@ -33,6 +35,7 @@ final class ExploreViewModel: ObservableObject {
     private let apiService: IEventAPIServiceForExplore
     
     private let language = Language.en
+    
     private var page: Int = 1
     
     // MARK: - INIT
@@ -44,38 +47,42 @@ final class ExploreViewModel: ObservableObject {
     // MARK: - Network API Methods
     func fetchLocations() async {
         do {
-            locations = try await apiService.getLocations(with: language)
+            let fetchedLocations = try await apiService.getLocations(with: language)
+            await MainActor.run { [weak self] in
+                self?.locations = fetchedLocations
+            }
         } catch {
-            self.error = error
+            await MainActor.run {
+                self.error = error
+            }
         }
     }
     
     func fetchCategories() async {
         do {
             let categoriesFromAPI = try await apiService.getCategories(with: language) ?? []
-            loadCategories(from: categoriesFromAPI)
+            await loadCategories(from: categoriesFromAPI)
         } catch {
             self.error = error
         }
     }
     
-    func fetchEvents() async {
+    func fetchUpcomingEvents() async {
         do {
-            let eventsDTO = try await apiService.getEvents(
+            let eventsDTO = try await apiService.getUpcomingEvents(
                 with: currentCategory,
-                currentLocation,
                 language,
                 page
             )
-            let apiSpec = EventAPISpec.getEventsWith(
-                category: currentCategory,
-                location: currentLocation,
-                language: language,
-                page: page
-            )
-            print("Endpoint Events: \(apiSpec.endpoint)")
             
-            events = eventsDTO.map { dto in
+//            let apiSpec = EventAPISpec.getUpcomingEventsWith(
+//                category: currentCategory,
+//                language: language,
+//                page: page
+//            )
+//            print("Endpoint Events: \(apiSpec.endpoint)")
+            
+            upcomingEvents = eventsDTO.map { dto in
                 Event(
                     id: dto.id,
                     title: dto.title ?? "No Title",
@@ -85,9 +92,8 @@ final class ExploreViewModel: ObservableObject {
                             name: participant.agent?.title ?? "No participant"
                         )
                     },
-                    date: Date(timeIntervalSince1970: TimeInterval((dto.dates.first?.start ?? 1489312800))).formattedDate(format: "dd\nMMM"),
-                    adress: "Unknown Address",
-//                    adress: dto.place?.address ?? "Unknown Address",
+                    date: dto.dates.first?.startDate ?? (Date(timeIntervalSince1970: TimeInterval((dto.dates.first?.start ?? 1489312800))).formattedDate(format: "dd\nMMM")),
+                    adress: dto.place?.address ?? "Unknown Address",
                     image: dto.images.first?.image,
                     isFavorite: isFavoriteEvent
                 )
@@ -97,6 +103,37 @@ final class ExploreViewModel: ObservableObject {
         }
     }
     
+    func featchNearbyYouEvents() async {
+        do {
+            let eventsDTO = try await apiService.getNearbyYouEvents(with: language, currentLocation, page)
+            
+//            let apiSpec = EventAPISpec.getUpcomingEventsWith(
+//                category: currentCategory,
+//                language: language,
+//                page: page
+//            )
+//            print("Endpoint Events: \(apiSpec.endpoint)")
+            
+            nearbyYouEvents = eventsDTO.map { dto in
+                Event(
+                    id: dto.id,
+                    title: dto.title ?? "No Title",
+                    visitors: dto.participants?.map { participant in
+                        Visitor(
+                            image: participant.agent?.images?.first ?? "default_visitor_image",
+                            name: participant.agent?.title ?? "No participant"
+                        )
+                    },
+                    date: dto.dates.first?.startDate ?? (Date(timeIntervalSince1970: TimeInterval((dto.dates.first?.start ?? 1489312800))).formattedDate(format: "dd\nMMM")),
+                    adress: dto.place?.address ?? "Unknown Address",
+                    image: dto.images.first?.image,
+                    isFavorite: isFavoriteEvent
+                )
+            }
+        } catch {
+            self.error = error
+        }
+    }
     
 //    MARK: -  Navigation
     func showDetail(_ eventID: Int) {
@@ -110,11 +147,15 @@ final class ExploreViewModel: ObservableObject {
     
     
     //    MARK: - Helper Methods
-    private func loadCategories(from eventCategories: [CategoryDTO]) {
-        categories = eventCategories.map { category in
+    private func loadCategories(from eventCategories: [CategoryDTO]) async {
+        let mappedCategories = eventCategories.map { category in
             let color = CategoryImageMapping.color(for: category)
             let image = CategoryImageMapping.image(for: category)
             return CategoryUIModel(id: category.id, category: category, color: color, image: image)
+        }
+        
+        await MainActor.run { [weak self] in
+            self?.categories = mappedCategories
         }
     }
     

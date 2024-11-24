@@ -116,6 +116,7 @@
 		E14D572C2CF12272009949BC /* DetailComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D57272CF12272009949BC /* DetailComponentView.swift */; };
 		E14D572D2CF12272009949BC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D57282CF12272009949BC /* DetailView.swift */; };
 		E14D572F2CF1229A009949BC /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D572E2CF1229A009949BC /* String+Ex.swift */; };
+		E165D1BC2CF385A00030BA88 /* UIHostingController + Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E165D1BB2CF385A00030BA88 /* UIHostingController + Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +202,7 @@
 		E14D57282CF12272009949BC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		E14D57292CF12272009949BC /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		E14D572E2CF1229A009949BC /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
+		E165D1BB2CF385A00030BA88 /* UIHostingController + Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHostingController + Ex.swift"; sourceTree = "<group>"; };
 		E1B52AD22CEE582F001AA8E0 /* EventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,10 +257,8 @@
 		1B7EAD102CEBC1E800D2AB3D /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				E10ED0002CF0DE6B00AFDBC2 /* OnboardingControlsView.swift */,
-				E10ED0012CF0DE6B00AFDBC2 /* OnboardingItem.swift */,
-				E10ED0022CF0DE6B00AFDBC2 /* OnboardingPageView.swift */,
-				E10ED0032CF0DE6B00AFDBC2 /* OnboardingTabView.swift */,
+				E165D1B82CF381930030BA88 /* SubViews */,
+				E165D1B72CF381790030BA88 /* Model */,
 				1B7EAD112CEBC1FF00D2AB3D /* OnboardingView.swift */,
 				1B7EAD3A2CEBD14D00D2AB3D /* OnboardingViewModel.swift */,
 			);
@@ -424,6 +424,7 @@
 				E14D572E2CF1229A009949BC /* String+Ex.swift */,
 				E10ED0612CF0E55300AFDBC2 /* Date+Ex.swift */,
 				4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */,
+				E165D1BB2CF385A00030BA88 /* UIHostingController + Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -563,6 +564,24 @@
 				E14D57292CF12272009949BC /* DetailViewModel.swift */,
 			);
 			path = EventDetals;
+			sourceTree = "<group>";
+		};
+		E165D1B72CF381790030BA88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E10ED0012CF0DE6B00AFDBC2 /* OnboardingItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E165D1B82CF381930030BA88 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				E10ED0002CF0DE6B00AFDBC2 /* OnboardingControlsView.swift */,
+				E10ED0022CF0DE6B00AFDBC2 /* OnboardingPageView.swift */,
+				E10ED0032CF0DE6B00AFDBC2 /* OnboardingTabView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		E1B52ADB2CEE5853001AA8E0 /* Services */ = {
@@ -756,6 +775,7 @@
 				1BB6A3D52CEFA36F0069A17D /* Router.swift in Sources */,
 				1B7EAD2D2CEBC38200D2AB3D /* ProfileView.swift in Sources */,
 				1B7EAD1D2CEBC29800D2AB3D /* SignInViewModel.swift in Sources */,
+				E165D1BC2CF385A00030BA88 /* UIHostingController + Ex.swift in Sources */,
 				1B7EAD342CEBC3AF00D2AB3D /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

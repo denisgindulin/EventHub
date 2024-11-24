@@ -38,7 +38,7 @@ struct RootViewControllerWrapper: UIViewControllerRepresentable {
         let coordinator = dependencyProvider.container.resolve(LaunchCoordinator.self)!
         coordinatorHolder.coordinator = coordinator
         coordinator.start()
-        
+        navigationController.navigationBar.isHidden = true
         return navigationController
     }
 

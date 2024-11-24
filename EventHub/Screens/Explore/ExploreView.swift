@@ -22,7 +22,8 @@ struct ExploreView: View {
                         CustomToolBar(
                             title: model.currentPosition,
                             magnifierColor: .white,
-                            notifications: true, getSearchString: {} // передать поисковую строку
+                            notifications: true,
+                            getSearchString: {} // передать поисковую строку
                             
                         )
                         
@@ -32,7 +33,7 @@ struct ExploreView: View {
                             model.currentCategory = selectedCategory.category.slug // отдаем на сервер name или slug ?
                             
                             Task {
-                                await model.fetchEvents()
+                                await model.fetchUpcomingEvents()
                             }
                         })
                         .offset(y: 92)
@@ -44,13 +45,15 @@ struct ExploreView: View {
                             MainCategorySectionView(title: "Upcomimg Events")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: model.events, showDetail: model.showDetail)
+                            ScrollEventCardsView(events: model.upcomingEvents, showDetail: model.showDetail)
                                 .padding(.bottom, 10)
                             
                             MainCategorySectionView(title: "Nearby You")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: model.events, showDetail: model.showDetail)
+                            ScrollEventCardsView(
+                                events: model.nearbyYouEvents,
+                                showDetail: model.showDetail)
                                 .padding(.bottom, 150) // for TabBar
                         }
                         .offset(y: 25)
@@ -59,34 +62,14 @@ struct ExploreView: View {
                     .zIndex(0)
                     .navigationBarHidden(true)
                 }
-                .zIndex(1)
-                
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        MainCategorySectionView(title: "Upcomimg Events")
-                            .padding(.bottom, 10)
-                        
-                        ScrollEventCardsView(events: nil, showDetail: model.showDetail)
-                            .padding(.bottom, 10)
-                        
-                        MainCategorySectionView(title: "Nearby You")
-                            .padding(.bottom, 10)
-                        
-                        ScrollEventCardsView(events: model.events, showDetail: model.showDetail)
-                            .padding(.bottom, 150) // for TabBar
-                    }
-                    .offset(y: 25)
-                }
-                .offset(y: -10)
-                .zIndex(0)
-                .navigationBarHidden(true)
             }
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
         .task {
             await model.fetchCategories()
             await model.fetchLocations()
-            await model.fetchEvents()
+            await model.fetchUpcomingEvents()
+            await model.featchNearbyYouEvents()
         }
     }
 }

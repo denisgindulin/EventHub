@@ -108,6 +108,7 @@ class Router: Routed {
 
     // MARK: - Push ViewController
     func push(_ viewController: UIViewController, animated: Bool) {
+        rootController.navigationController?.setNavigationBarHidden(true, animated: false)
         rootController.pushViewController(viewController, animated: animated)
     }
 

@@ -74,7 +74,8 @@ class ScreenFactory: MainScreenFactory {
         let view = EventHubContentView(container: EventHubApp.dependencyProvider.assembler.resolver as! Container)
             .environmentObject(router)
         let vc = UIHostingController(rootView: view)
-//        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
         return vc
     }
     
