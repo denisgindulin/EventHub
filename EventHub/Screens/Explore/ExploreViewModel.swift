@@ -18,10 +18,9 @@ final class ExploreViewModel: ObservableObject {
     let actions: ExploreActions
     
     let currentPosition: String = "New York, USA"
-    let categoryColors: [Color] = [.appRed, .appOrange, .appGreen, .appCyan]
-    let categoryPictures: [String] = ["ball", "music","eat", "profile"] // paint image = person ???
     
     
+    @Published var searcString: String = ""
     @Published var events: [Event] = []
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
@@ -118,4 +117,7 @@ final class ExploreViewModel: ObservableObject {
             return CategoryUIModel(id: category.id, category: category, color: color, image: image)
         }
     }
+    
+
+    
 }
