@@ -30,7 +30,8 @@ struct ExploreView: View {
                         CategoryScroll(categories:
                                         model.categories,
                                        onCategorySelected: { selectedCategory in
-                            model.currentCategory = selectedCategory.category.slug
+                            model.currentCategory = selectedCategory.category.slug ;
+                            model.upcomingEvents = []
                             
                             Task {
                                 await model.fetchUpcomingEvents()
