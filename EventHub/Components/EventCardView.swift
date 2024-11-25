@@ -73,17 +73,34 @@ struct EventCardView: View {
                     }
                     .offset(x: -78, y: -38)
                 }
+                
                 Text(event.title)
                     .airbnbCerealFont(AirbnbCerealFont.medium, size: 18)
                     .frame(width: 207, height: 21, alignment: .leading)
                     .padding(.bottom, 12)
                 
-                if let visitors = event.visitors { // Visitor Images
-                    HStack{
+                
+                if event.visitors?.count == 0 {
+                    HStack() {
+                                ShimmerView(ratio: 1)
+                                    .frame(width: 24, height: 24)
+                                    .clipShape(Circle())
+                                    .overlay {
+                                        Circle().stroke(style: StrokeStyle(lineWidth: 1))
+                                            .foregroundStyle(Color.white)
+                                    }
+                                   
+                            
+                        Text("No visitors")
+                            .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
+                    }
+                } else if let visitors = event.visitors { // Visitor Images
+                    HStack {
                         ZStack {
                             ForEach(getVisitorsAvatars(visitors: visitors).indices, id:\.self) { index in
                                 
                                 let visitors = getVisitorsAvatars(visitors: visitors)
+                                
                                 
                                 let imageURL = visitors[index].image
                                 let url = URL(string: imageURL)
