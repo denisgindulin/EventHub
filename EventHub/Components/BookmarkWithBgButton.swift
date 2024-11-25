@@ -8,28 +8,38 @@
 import SwiftUI
 
 struct BookmarkWithBgButton: View {
-//    let event: Event
+    //    let event: Event
     let isFavorite: Bool
-    var width: CGFloat
-    var height: CGFloat
+    //    var width: CGFloat
+    //    var height: CGFloat
+    //
+    //    init(isFavorite: Bool, width: CGFloat, height: CGFloat) {
+    //        self.isFavorite = isFavorite
+    //        self.width = UIScreen.main.bounds.width * width / 375
+    //        self.height = UIScreen.main.bounds.height * height / 812
+    //    }
     
-    init(isFavorite: Bool, width: CGFloat, height: CGFloat) {
+    init(isFavorite: Bool) {
         self.isFavorite = isFavorite
-        self.width = UIScreen.main.bounds.width * width / 375
-        self.height = UIScreen.main.bounds.width * width / 375
     }
     
-
+    
     
     var body: some View {
-//        Image(event.isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
-        Image(isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
-            .resizable()
-            .frame(width: width, height: height)
-            .padding()
+        //        Image(event.isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
+        BookmarkButton(isFavorite: isFavorite, width: 14, height: 14)
             .background(.ultraThinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: width / 5))
+            .clipShape(RoundedRectangle(cornerRadius: 7))
+    }
+}
 
+
+//        Image(isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
+//            .resizable()
+//            .frame(width: width, height: height)
+//            .padding()
+//            .background(.ultraThinMaterial)
+//            .clipShape(RoundedRectangle(cornerRadius: width / 5))
         
 //        ZStack {
 //            RoundedRectangle(cornerRadius: 7)
@@ -42,8 +52,9 @@ struct BookmarkWithBgButton: View {
 ////                .background(.secondary)
 //                .background(.ultraThinMaterial)
 //        }
-    }
-}
+
+
+
 
 #Preview {
     ZStack {
@@ -52,7 +63,8 @@ struct BookmarkWithBgButton: View {
         
         VStack {
             //            BookmarkWithBgButton(event: Event.example)
-            BookmarkWithBgButton(isFavorite: false, width: 30, height: 30)
+            BookmarkWithBgButton(isFavorite: true)
+            BookmarkWithBgButton(isFavorite: false)
         }
     }
 }
