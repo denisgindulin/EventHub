@@ -46,6 +46,7 @@
 		4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */; };
 		6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
 		6C75B38C2CEF8D2B0086A03D /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
+		6CF41E2A2CF4D85B00E58618 /* ShimmerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */; };
 		8763C1652CF269AF002E4535 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763C1642CF269AF002E4535 /* GoogleButton.swift */; };
 		8763C1672CF26A2D002E4535 /* SignInMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763C1662CF26A0C002E4535 /* SignInMainView.swift */; };
 		87D851202CF26AB4002DC428 /* SignUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D8511F2CF26AAC002DC428 /* SignUpMainView.swift */; };
@@ -161,6 +162,7 @@
 		4831BA4A2CEB2F1400141C9A /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ex.swift"; sourceTree = "<group>"; };
 		4831BA502CEB2F9500141C9A /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
+		6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerImageView.swift; sourceTree = "<group>"; };
 		8763C1642CF269AF002E4535 /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
 		8763C1662CF26A0C002E4535 /* SignInMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMainView.swift; sourceTree = "<group>"; };
 		87D8511F2CF26AAC002DC428 /* SignUpMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMainView.swift; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				E10ED02E2CF0E47F00AFDBC2 /* MainCategorySectionView.swift */,
 				E10ED02F2CF0E47F00AFDBC2 /* ScrollEventCardsView.swift */,
 				E10ED0302CF0E47F00AFDBC2 /* SearchBarView.swift */,
+				6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */,
 				E10ED0312CF0E47F00AFDBC2 /* SecureTextField.swift */,
 				E10ED0322CF0E47F00AFDBC2 /* ShimmerView.swift */,
 				E10ED0332CF0E47F00AFDBC2 /* SmallEventCard.swift */,
@@ -772,6 +775,7 @@
 				E10ED04C2CF0E47F00AFDBC2 /* AuthTextField.swift in Sources */,
 				E10ED04D2CF0E47F00AFDBC2 /* ActivityView.swift in Sources */,
 				E10ED04E2CF0E47F00AFDBC2 /* ToolBarView.swift in Sources */,
+				6CF41E2A2CF4D85B00E58618 /* ShimmerImageView.swift in Sources */,
 				E10ED04F2CF0E47F00AFDBC2 /* BackgroundWithEllipses.swift in Sources */,
 				E10ED0502CF0E47F00AFDBC2 /* CustomToolbar.swift in Sources */,
 				E10ED0522CF0E47F00AFDBC2 /* SmallEventCard.swift in Sources */,

@@ -45,16 +45,30 @@ struct ExploreView: View {
                             MainCategorySectionView(title: "Upcomimg Events")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: model.upcomingEvents, showDetail: model.showDetail)
-                                .padding(.bottom, 10)
+                            if model.upcomingEvents.isEmpty {
+                                ScrollEventCardsView(events: nil, showDetail: model.showDetail)
+                                    .padding(.bottom, 10)
+                            } else {
+                                ScrollEventCardsView(events: model.upcomingEvents, showDetail: model.showDetail)
+                                    .padding(.bottom, 10)
+                            }
                             
                             MainCategorySectionView(title: "Nearby You")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(
-                                events: model.nearbyYouEvents,
-                                showDetail: model.showDetail)
-                                .padding(.bottom, 150) // for TabBar
+                            if model.upcomingEvents.isEmpty {
+                                ScrollEventCardsView(
+                                    events: nil,
+                                    showDetail: model.showDetail)
+                                .padding(.bottom, 150) // tabBer
+                            } else {
+                                ScrollEventCardsView(
+                                    events: model.nearbyYouEvents,
+                                    showDetail: model.showDetail)
+                                .padding(.bottom, 150) // tabBer
+                            }
+                            
+                            
                         }
                         .offset(y: 25)
                     }

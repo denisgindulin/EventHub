@@ -23,9 +23,7 @@ struct EventCardView: View {
                                         if let imageUrl = event.image, let url = URL(string: imageUrl) {
                                             KFImage(url)
                                                 .placeholder {
-                                                    ShimmerView(ratio: 1)
-                                                        .frame(width: 218, height: 131)
-                                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                    ShimmeringImageView() // sizes ??
                                                 }
                                                 .resizable()
                                                 .frame(width: 218, height: 131)
