@@ -56,7 +56,7 @@ struct ExploreView: View {
                             MainCategorySectionView(title: "Nearby You")
                                 .padding(.bottom, 10)
                             
-                            if model.upcomingEvents.isEmpty {
+                            if model.nearbyYouEvents.isEmpty {
                                 ScrollEventCardsView(
                                     events: nil,
                                     showDetail: model.showDetail)

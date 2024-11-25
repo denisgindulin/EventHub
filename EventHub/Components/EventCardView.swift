@@ -79,13 +79,6 @@ struct EventCardView: View {
               
                 if event.visitors?.count == 0 {
                     HStack {
-//                        ShimmerView(ratio: 1)
-//                            .frame(width: 24, height: 24, alignment: .leading)
-//                            .clipShape(Circle())
-//                            .overlay {
-//                                Circle().stroke(style: StrokeStyle(lineWidth: 1))
-//                                    .foregroundStyle(Color.white)
-//                            }
                         ShimmerAvatarView()
                         
                         Text("No visitors")
@@ -103,9 +96,6 @@ struct EventCardView: View {
                                 
                                 KFImage(url)
                                     .placeholder {
-//                                        ShimmerView(ratio: 1)
-//                                            .frame(width: 24, height: 24)
-//                                            .clipShape(Circle())
                                         ShimmerAvatarView()
                                     }
                                     .resizable()

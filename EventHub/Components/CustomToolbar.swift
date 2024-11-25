@@ -47,7 +47,7 @@ struct CustomToolBar: View {
                         } label: {
                             ZStack {
                                 Rectangle()
-                                    .foregroundStyle(.appPurpleSecondary)
+                                    .foregroundStyle(.filterButton)
                                
                                 ZStack(alignment: .topTrailing) {
                                     Image(.notificationsBell)

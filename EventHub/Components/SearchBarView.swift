@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+
+        ZStack(alignment: alignment) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
+        }
+    }
+}
+
 struct SearchBarView: View {
     
     
@@ -34,16 +47,21 @@ struct SearchBarView: View {
             
             Rectangle()
                 .frame(width: 1, height: 20)
-                .foregroundStyle(.appPurple)
+                .foregroundStyle(.searchBarPlaceholder)
             
-            TextField("Search...", text: $searchString)
+            TextField("", text: $searchString)
+                .airbnbCerealFont( AirbnbCerealFont.book, size: 18)
+                .tint(.white)
+                .foregroundStyle(.white)
+                .placeholder(when: searchString.isEmpty) {
+                    Text("Search...").foregroundColor(.searchBarPlaceholder)
+               }
                 .onChange(of: searchString) { newValue in
                     searchText = newValue
                 } // Если обновлять поиск после каждой введенной буквы
             
             FiltersButtonView(filterAction: fiterAction)
         }
-//        .background(Color.appBlue) // for preview
         
     }
 }
