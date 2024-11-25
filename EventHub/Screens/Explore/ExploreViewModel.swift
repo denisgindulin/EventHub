@@ -44,6 +44,16 @@ final class ExploreViewModel: ObservableObject {
         self.apiService = apiService
     }
     
+    // MARK: - Filter Events
+    func filterEvents(orderType: DisplayOrderType) {
+        switch orderType {
+        case .alphabetical:
+            upcomingEvents = upcomingEvents.sorted(by: { $0.title < $1.title })
+        case .date:
+            upcomingEvents = upcomingEvents.sorted(by: { $0.date < $1.date })
+        }
+    }
+    
     // MARK: - Network API Methods
     func fetchLocations() async {
         do {
@@ -75,29 +85,7 @@ final class ExploreViewModel: ObservableObject {
                 page
             )
             
-//            let apiSpec = EventAPISpec.getUpcomingEventsWith(
-//                category: currentCategory,
-//                language: language,
-//                page: page
-//            )
-//            print("Endpoint Events: \(apiSpec.endpoint)")
-            
-            upcomingEvents = eventsDTO.map { dto in
-                Event(
-                    id: dto.id,
-                    title: dto.title ?? "No Title",
-                    visitors: dto.participants?.map { participant in
-                        Visitor(
-                            image: participant.agent?.images?.first ?? "default_visitor_image",
-                            name: participant.agent?.title ?? "No participant"
-                        )
-                    },
-                    date: dto.dates.first?.startDate ?? (Date(timeIntervalSince1970: TimeInterval((dto.dates.first?.start ?? 1489312800))).formattedDate(format: "dd\nMMM")),
-                    adress: dto.place?.address ?? "Unknown Address",
-                    image: dto.images.first?.image,
-                    isFavorite: isFavoriteEvent
-                )
-            }
+            upcomingEvents = eventsDTO.map { Event(dto: $0, isFavorite: isFavoriteEvent) }
         } catch {
             self.error = error
         }
@@ -105,31 +93,12 @@ final class ExploreViewModel: ObservableObject {
     
     func featchNearbyYouEvents() async {
         do {
-            let eventsDTO = try await apiService.getNearbyYouEvents(with: language, currentLocation, page)
-            
-//            let apiSpec = EventAPISpec.getUpcomingEventsWith(
-//                category: currentCategory,
-//                language: language,
-//                page: page
-//            )
-//            print("Endpoint Events: \(apiSpec.endpoint)")
-            
-            nearbyYouEvents = eventsDTO.map { dto in
-                Event(
-                    id: dto.id,
-                    title: dto.title ?? "No Title",
-                    visitors: dto.participants?.map { participant in
-                        Visitor(
-                            image: participant.agent?.images?.first ?? "default_visitor_image",
-                            name: participant.agent?.title ?? "No participant"
-                        )
-                    },
-                    date: dto.dates.first?.startDate ?? (Date(timeIntervalSince1970: TimeInterval((dto.dates.first?.start ?? 1489312800))).formattedDate(format: "dd\nMMM")),
-                    adress: dto.place?.address ?? "Unknown Address",
-                    image: dto.images.first?.image,
-                    isFavorite: isFavoriteEvent
-                )
-            }
+            let eventsDTO = try await apiService.getNearbyYouEvents(
+                with: language,
+                currentLocation,
+                page
+            )
+            nearbyYouEvents = eventsDTO.map { Event(dto: $0, isFavorite: isFavoriteEvent) }
         } catch {
             self.error = error
         }

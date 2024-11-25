@@ -12,7 +12,7 @@ struct CustomToolBar: View {
     let title: String
     let magnifierColor: Color
     let notifications: Bool
-    
+    let filterAction: (DisplayOrderType) -> Void
    
     let getSearchString: () -> Void
     
@@ -69,7 +69,10 @@ struct CustomToolBar: View {
                 .padding(.horizontal,24)
                 .padding(.bottom, 10)
                 
-                SearchBarView(action: { }, magnifierColor: magnifierColor)
+                SearchBarView(
+                    action: { },
+                    fiterAction: filterAction,
+                    magnifierColor: magnifierColor)
                     .padding(.horizontal,24)
                 
             }
@@ -81,5 +84,5 @@ struct CustomToolBar: View {
 }
 
 #Preview {
-    CustomToolBar(title: "City ", magnifierColor: .white, notifications: true, getSearchString: {})
+    CustomToolBar(title: "City ", magnifierColor: .white, notifications: true, filterAction: {_ in }, getSearchString: {})
 }

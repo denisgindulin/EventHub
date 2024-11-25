@@ -119,6 +119,7 @@
 		E14D572D2CF12272009949BC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D57282CF12272009949BC /* DetailView.swift */; };
 		E14D572F2CF1229A009949BC /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D572E2CF1229A009949BC /* String+Ex.swift */; };
 		E165D1BC2CF385A00030BA88 /* UIHostingController + Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E165D1BB2CF385A00030BA88 /* UIHostingController + Ex.swift */; };
+		E165D1BE2CF44F250030BA88 /* DisplayOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E165D1BD2CF44F250030BA88 /* DisplayOrderType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,6 +208,7 @@
 		E14D57292CF12272009949BC /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		E14D572E2CF1229A009949BC /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
 		E165D1BB2CF385A00030BA88 /* UIHostingController + Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHostingController + Ex.swift"; sourceTree = "<group>"; };
+		E165D1BD2CF44F250030BA88 /* DisplayOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayOrderType.swift; sourceTree = "<group>"; };
 		E1B52AD22CEE582F001AA8E0 /* EventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -547,6 +549,7 @@
 		E10ED01E2CF0E2F400AFDBC2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E165D1BD2CF44F250030BA88 /* DisplayOrderType.swift */,
 				E10ED01C2CF0E2F400AFDBC2 /* CategoryUIModel.swift */,
 				E10ED01D2CF0E2F400AFDBC2 /* EventModel.swift */,
 			);
@@ -747,6 +750,7 @@
 				1B7EAD172CEBC25C00D2AB3D /* SignUpView.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
 				E10ED01F2CF0E2F400AFDBC2 /* CategoryUIModel.swift in Sources */,
+				E165D1BE2CF44F250030BA88 /* DisplayOrderType.swift in Sources */,
 				E10ED0202CF0E2F400AFDBC2 /* EventModel.swift in Sources */,
 				1B7EAD0F2CEBC19900D2AB3D /* DI.swift in Sources */,
 				1BB6A3E32CEFD79E0069A17D /* TabBarViewModel.swift in Sources */,

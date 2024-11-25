@@ -23,10 +23,11 @@ struct ExploreView: View {
                             title: model.currentPosition,
                             magnifierColor: .white,
                             notifications: true,
+                            filterAction: model.filterEvents(orderType:),
                             getSearchString: {} // передать поисковую строку
                             
                         )
-                        
+                    
                         CategoryScroll(categories:
                                         model.categories,
                                        onCategorySelected: { selectedCategory in

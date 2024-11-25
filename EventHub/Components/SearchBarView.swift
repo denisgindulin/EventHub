@@ -12,7 +12,7 @@ struct SearchBarView: View {
     @State private var searchString = ""
     
     let action: () -> Void
-    
+    let fiterAction: (DisplayOrderType) -> Void
     let magnifierColor: Color // explore and search bar button color
     
     // func search result
@@ -36,7 +36,7 @@ struct SearchBarView: View {
             
             TextField("Search...", text: $searchString)
             
-            FiltersButtonView(color: .appPurple)
+            FiltersButtonView(filterAction: fiterAction)
         }
 //        .background(Color.appBlue) // for preview
         
