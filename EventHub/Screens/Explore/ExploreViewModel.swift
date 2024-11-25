@@ -19,7 +19,7 @@ final class ExploreViewModel: ObservableObject {
     
     let currentPosition: String = "New York, USA"
     
-    @Published var searchString: String = ""
+    @Published var searchText: String = ""
     
     @Published var upcomingEvents: [Event] = []
     @Published var nearbyYouEvents: [Event] = []

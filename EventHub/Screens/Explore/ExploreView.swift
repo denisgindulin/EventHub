@@ -21,18 +21,16 @@ struct ExploreView: View {
                         
                         
                         CustomToolBar(
+                            searchText: $model.searchText,
                             title: model.currentPosition,
                             magnifierColor: .white,
                             notifications: true,
-                            filterAction: model.filterEvents(orderType:),
-                            getSearchString: {} // передать поисковую строку
-                            
-                        )
+                            filterAction: model.filterEvents(orderType:))
                     
                         CategoryScroll(categories:
                                         model.categories,
                                        onCategorySelected: { selectedCategory in
-                            model.currentCategory = selectedCategory.category.slug // отдаем на сервер name или slug ?
+                            model.currentCategory = selectedCategory.category.slug
                             
                             Task {
                                 await model.fetchUpcomingEvents()

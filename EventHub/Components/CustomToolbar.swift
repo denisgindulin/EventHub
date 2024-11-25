@@ -9,12 +9,12 @@ import SwiftUI
 
 struct CustomToolBar: View {
     
+    @Binding var searchText: String
+    
     let title: String
     let magnifierColor: Color
     let notifications: Bool
     let filterAction: (DisplayOrderType) -> Void
-   
-    let getSearchString: () -> Void
     
     var body: some View {
             VStack {
@@ -70,7 +70,7 @@ struct CustomToolBar: View {
                 .padding(.bottom, 10)
                 
                 SearchBarView(
-                    action: { },
+                    searchText: $searchText,
                     fiterAction: filterAction,
                     magnifierColor: magnifierColor)
                     .padding(.horizontal,24)
@@ -84,5 +84,5 @@ struct CustomToolBar: View {
 }
 
 #Preview {
-    CustomToolBar(title: "City ", magnifierColor: .white, notifications: true, filterAction: {_ in }, getSearchString: {})
+    CustomToolBar(searchText: .constant("Sear EXAMPL"), title: "City ", magnifierColor: .white, notifications: true, filterAction: {_ in })
 }

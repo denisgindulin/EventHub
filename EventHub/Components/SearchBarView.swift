@@ -10,22 +10,20 @@ import SwiftUI
 struct SearchBarView: View {
     
     
-    @Binding var text: String
+    @Binding var searchText: String
     @State private var searchString = ""
     
-    let action: () -> Void
+   
     let fiterAction: (DisplayOrderType) -> Void
-    let magnifierColor: Color // explore and search bar button color
+    let magnifierColor: Color
     
-    // func search result
+    
     
     var body: some View {
         
         HStack {
             Button {
-                text = String(searchString)
-                print(text)
-               // searchString
+                searchText = String(searchString)
             } label: {
                 Image(.searchWhite)
                     .resizable()
@@ -40,10 +38,8 @@ struct SearchBarView: View {
             
             TextField("Search...", text: $searchString)
                 .onChange(of: searchString) { newValue in
-                    text = newValue
-                    
-                    print("Test text - \(text)")
-                }
+                    searchText = newValue
+                } // Если обновлять поиск после каждой введенной буквы
             
             FiltersButtonView(filterAction: fiterAction)
         }
