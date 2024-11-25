@@ -18,28 +18,24 @@ struct EventCardView: View {
         ZStack {
             Color.white
             VStack(alignment: .leading) {
-                ZStack {
-                    if let imageUrl = event.image, let url = URL(string: imageUrl) {
-                        KFImage(url)
-                            .placeholder {
-                                ShimmerView(ratio: 1)
-                                    .scaledToFit()
-                                    .frame(width: 219, height: 133)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                            .resizable()
-                            .frame(width: 219, height: 133)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .padding(.top, 9)
-                            .padding(.bottom, 14)
-                    } else {
-                        Image(.cardImg1)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 227, height: 145)
-                            .padding(.top, 9)
-                            .padding(.bottom, 14)
-                    }
+                
+                ZStack(alignment: .top) {
+                                        if let imageUrl = event.image, let url = URL(string: imageUrl) {
+                                            KFImage(url)
+                                                .placeholder {
+                                                    ShimmerView(ratio: 1)
+                                                        .frame(width: 218, height: 131)
+                                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                }
+                                                .resizable()
+                                                .frame(width: 218, height: 131)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        } else {
+                    Image(.cardImg1)
+                        .resizable()
+                        .frame(width: 218, height: 131)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        }
                     
                     VStack {
                         Button {
@@ -57,7 +53,8 @@ struct EventCardView: View {
                             }
                         }
                     }
-                    .offset(x: 86,y: -46)
+                    .padding(.top,9)
+                    .offset(x: 85)
                     
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
@@ -71,26 +68,28 @@ struct EventCardView: View {
                                 .multilineTextAlignment(.center)
                         }
                     }
-                    .offset(x: -78, y: -38)
+                    .padding(.top, 9)
+                    .offset(x: -77)
                 }
+                .padding(.top, 10)
                 
                 Text(event.title)
                     .airbnbCerealFont(AirbnbCerealFont.medium, size: 18)
                     .frame(width: 207, height: 21, alignment: .leading)
-                    .padding(.bottom, 12)
+                    .padding(.bottom,10)
                 
-                
+              
                 if event.visitors?.count == 0 {
-                    HStack() {
-                                ShimmerView(ratio: 1)
-                                    .frame(width: 24, height: 24)
-                                    .clipShape(Circle())
-                                    .overlay {
-                                        Circle().stroke(style: StrokeStyle(lineWidth: 1))
-                                            .foregroundStyle(Color.white)
-                                    }
-                                   
-                            
+                    HStack {
+                        ShimmerView(ratio: 1)
+                            .frame(width: 24, height: 24, alignment: .leading)
+                            .clipShape(Circle())
+                            .overlay {
+                                Circle().stroke(style: StrokeStyle(lineWidth: 1))
+                                    .foregroundStyle(Color.white)
+                            }
+                        
+                        
                         Text("No visitors")
                             .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                     }
@@ -101,14 +100,12 @@ struct EventCardView: View {
                                 
                                 let visitors = getVisitorsAvatars(visitors: visitors)
                                 
-                                
                                 let imageURL = visitors[index].image
                                 let url = URL(string: imageURL)
                                 
                                 KFImage(url)
                                     .placeholder {
                                         ShimmerView(ratio: 1)
-                                            .scaledToFit()
                                             .frame(width: 24, height: 24)
                                             .clipShape(Circle())
                                     }
@@ -134,7 +131,7 @@ struct EventCardView: View {
                                     visitors: visitors) == 0
                                      ? ""
                                      : String(checkRemainingNumberOfVisitors(visitors: visitors)))
-                                    .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
+                                .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                                 
                                 Text(visitors.count > 0 ? " Going" : "")
                                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
@@ -142,7 +139,8 @@ struct EventCardView: View {
                         }
                         .padding(.leading, 25)
                     }
-                }
+            }
+                
                 
                 Button {
                     // show map
@@ -151,14 +149,16 @@ struct EventCardView: View {
                         Image(.placePin)
                             .resizable()
                             .frame(width: 16, height: 16)
-                        Text(event.adress) // event.visitors?.count ?? 321
+                        Text(event.adress)
                             .airbnbCerealFont(AirbnbCerealFont.book, size: 13)
-                            .foregroundStyle(.gray) //Color
+                            .foregroundStyle(.geolocationText)
                     }
-                    .frame(width: 190, height: 17)
-                    .padding(.bottom, 9)
+                    .frame(width: 185, height: 17, alignment: .leading)
                 }
             }
+            .padding(.top,9)
+            .padding(.horizontal, 9)
+            .padding(.bottom, 15)
         }
         .onTapGesture {
             showDetail(event.id)
