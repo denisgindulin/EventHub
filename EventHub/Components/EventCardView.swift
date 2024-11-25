@@ -13,11 +13,10 @@ struct EventCardView: View {
     let event: Event
     var showDetail: (Int) -> Void
     
-    
     var body: some View {
         
         ZStack {
-            Color.white // white
+            Color.white
             VStack(alignment: .leading) {
                 ZStack {
                     if let imageUrl = event.image, let url = URL(string: imageUrl) {
@@ -45,7 +44,7 @@ struct EventCardView: View {
                     VStack {
                         Button {
                             // add bookmark
-                            print("bookmark trigg")
+                            print("add/remove bookmark")
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 7)
@@ -65,16 +64,11 @@ struct EventCardView: View {
                             .frame(width: 45, height: 45)
                             .foregroundStyle(.appOrangeSecondary)
                             .opacity(0.7)
-                        //  .blur(radius: 3) ??
                         VStack {
                             Text(event.date)
                                 .foregroundStyle(.appDateText)
                                 .airbnbCerealFont(AirbnbCerealFont.book, size: 18)
                                 .multilineTextAlignment(.center)
-                            
-                            //                                Text(dayAndMonth[1].uppercased())
-                            //                                    .font(.system(size: 10))
-                            //                                    .foregroundStyle(.appDateText)
                         }
                     }
                     .offset(x: -78, y: -38)
@@ -84,8 +78,7 @@ struct EventCardView: View {
                     .frame(width: 207, height: 21, alignment: .leading)
                     .padding(.bottom, 12)
                 
-
-                if let visitors = event.visitors {
+                if let visitors = event.visitors { // Visitor Images
                     HStack{
                         ZStack {
                             ForEach(getVisitorsAvatars(visitors: visitors).indices, id:\.self) { index in
@@ -110,25 +103,6 @@ struct EventCardView: View {
                                             .foregroundStyle(Color.white)
                                     }
                                     .offset(x: getOffset(index: index, visitors: getVisitorsAvatars(visitors: visitors).count))
-                                
-                                
-                                //                                } else {
-                                //                                    Image(.visitor) // example image
-                                //                                        .resizable()
-                                //                                        .frame(width: 24, height: 24)
-                                //                                        .clipShape(Circle())
-                                //                                        .overlay {
-                                //                                            Circle().stroke(style: StrokeStyle(lineWidth: 1))
-                                //                                                .foregroundStyle(Color.white)
-                                //                                        }
-                                //                                        .offset(x: getOffset(index: index, visitors: getVisitorsAvatars(visitors: visitors).count))
-                                //                                }
-                                
-                                
-                                
-                                
-                                
-                                
                             }
                         }
                         
@@ -139,7 +113,10 @@ struct EventCardView: View {
                                 Text(visitors.count > 3 ? "+" : "")
                                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                                 
-                                Text(checkRemainingNumberOfVisitors(visitors: visitors) == 0 ? "" : String(checkRemainingNumberOfVisitors(visitors: visitors)))
+                                Text(checkRemainingNumberOfVisitors(
+                                    visitors: visitors) == 0
+                                     ? ""
+                                     : String(checkRemainingNumberOfVisitors(visitors: visitors)))
                                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                                 
                                 Text(visitors.count > 0 ? " Going" : "")
@@ -150,9 +127,8 @@ struct EventCardView: View {
                     }
                 }
                 
-                
                 Button {
-                    // show map button ?
+                    // show map
                 } label: {
                     HStack {
                         Image(.placePin)
