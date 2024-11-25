@@ -13,8 +13,7 @@ struct CustomToolBar: View {
     let magnifierColor: Color
     let notifications: Bool
     
-   
-    let getSearchString: () -> Void
+    @Binding var text: String
     
     var body: some View {
             VStack {
@@ -69,7 +68,7 @@ struct CustomToolBar: View {
                 .padding(.horizontal,24)
                 .padding(.bottom, 10)
                 
-                SearchBarView(action: { }, magnifierColor: magnifierColor)
+                SearchBarView( text: $text, magnifierColor: magnifierColor)
                     .padding(.horizontal,24)
                 
             }
@@ -80,6 +79,6 @@ struct CustomToolBar: View {
     }
 }
 
-#Preview {
-    CustomToolBar(title: "City ", magnifierColor: .white, notifications: true, getSearchString: {})
-}
+//#Preview {
+//    CustomToolBar(title: "City ", magnifierColor: .white, notifications: true, text: "text")
+//}

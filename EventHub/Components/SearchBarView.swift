@@ -9,9 +9,11 @@ import SwiftUI
 
 struct SearchBarView: View {
     
+    
+    @Binding var text: String
     @State private var searchString = ""
     
-    let action: () -> Void
+   
     
     let magnifierColor: Color // explore and search bar button color
     
@@ -21,6 +23,8 @@ struct SearchBarView: View {
         
         HStack {
             Button {
+                text = String(searchString)
+                print(text)
                // searchString
             } label: {
                 Image(.searchWhite)
@@ -35,6 +39,11 @@ struct SearchBarView: View {
                 .foregroundStyle(.appPurple)
             
             TextField("Search...", text: $searchString)
+                .onChange(of: searchString) { newValue in
+                    text = newValue
+                    
+                    print("Test text - \(text)")
+                }
             
             FiltersButtonView(color: .appPurple)
         }

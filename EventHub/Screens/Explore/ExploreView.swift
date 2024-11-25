@@ -19,13 +19,18 @@ struct ExploreView: View {
                 VStack {
                     ZStack {
                         
+                        
                         CustomToolBar(
                             title: model.currentPosition,
                             magnifierColor: .white,
-                            notifications: true, getSearchString: {} // передать поисковую строку
+                            notifications: true, text: $model.searcString // передать поисковую строку
                             
                         )
-                        
+                        // //
+                        Button("button     dfwfw fwefwef wefweffw") {
+                            print(model.searcString)
+                             }
+                        // //
                         CategoryScroll(categories:
                                         model.categories,
                                        onCategorySelected: { selectedCategory in
