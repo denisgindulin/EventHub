@@ -146,8 +146,9 @@ struct EventCardView: View {
                     // show map
                 } label: {
                     HStack {
-                        Image(.placePin)
+                        Image(.mapPin)
                             .resizable()
+                            .foregroundStyle(.geolocationText)
                             .frame(width: 16, height: 16)
                         Text(event.adress)
                             .airbnbCerealFont(AirbnbCerealFont.book, size: 13)
