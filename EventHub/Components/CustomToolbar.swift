@@ -87,7 +87,7 @@ struct CustomToolBar: View {
                     .padding(.horizontal,24)
                 
             }
-            .frame(width: .infinity, height: 190)
+            .frame(width: .infinity, height: 179)
             .background(.appBlue)
             .clipShape(RoundedCorner(radius: 30, corners: [.bottomLeft,.bottomRight]))
 

@@ -48,6 +48,7 @@
 		6C75B38C2CEF8D2B0086A03D /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
 		6CF41E2A2CF4D85B00E58618 /* ShimmerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */; };
 		6CF41E2C2CF4DBC400E58618 /* ShimmerAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF41E2B2CF4DBC400E58618 /* ShimmerAvatarView.swift */; };
+		6CF41E302CF4F37500E58618 /* FunctionalButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF41E2F2CF4F37500E58618 /* FunctionalButtonsView.swift */; };
 		8763C1652CF269AF002E4535 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763C1642CF269AF002E4535 /* GoogleButton.swift */; };
 		8763C1672CF26A2D002E4535 /* SignInMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763C1662CF26A0C002E4535 /* SignInMainView.swift */; };
 		87D851202CF26AB4002DC428 /* SignUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D8511F2CF26AAC002DC428 /* SignUpMainView.swift */; };
@@ -165,6 +166,7 @@
 		4831BA502CEB2F9500141C9A /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
 		6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerImageView.swift; sourceTree = "<group>"; };
 		6CF41E2B2CF4DBC400E58618 /* ShimmerAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerAvatarView.swift; sourceTree = "<group>"; };
+		6CF41E2F2CF4F37500E58618 /* FunctionalButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalButtonsView.swift; sourceTree = "<group>"; };
 		8763C1642CF269AF002E4535 /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
 		8763C1662CF26A0C002E4535 /* SignInMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMainView.swift; sourceTree = "<group>"; };
 		87D8511F2CF26AAC002DC428 /* SignUpMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMainView.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				E10ED0242CF0E47F00AFDBC2 /* AuthTextField.swift */,
 				E10ED0252CF0E47F00AFDBC2 /* BackBarButtonView.swift */,
 				E10ED0262CF0E47F00AFDBC2 /* BackgroundWithEllipses.swift */,
+				6CF41E2F2CF4F37500E58618 /* FunctionalButtonsView.swift */,
 				E10ED0272CF0E47F00AFDBC2 /* BlueButtonWithArrow.swift */,
 				E10ED0282CF0E47F00AFDBC2 /* BlueCapsuleButtonWithArrow.swift */,
 				E10ED0292CF0E47F00AFDBC2 /* CategoryButtonView.swift */,
@@ -794,6 +797,7 @@
 				1B7EAD122CEBC1FF00D2AB3D /* OnboardingView.swift in Sources */,
 				1BB6A3D52CEFA36F0069A17D /* Router.swift in Sources */,
 				1B7EAD2D2CEBC38200D2AB3D /* ProfileView.swift in Sources */,
+				6CF41E302CF4F37500E58618 /* FunctionalButtonsView.swift in Sources */,
 				1B7EAD1D2CEBC29800D2AB3D /* SignInViewModel.swift in Sources */,
 				E165D1BC2CF385A00030BA88 /* UIHostingController + Ex.swift in Sources */,
 				1B7EAD342CEBC3AF00D2AB3D /* MapViewModel.swift in Sources */,

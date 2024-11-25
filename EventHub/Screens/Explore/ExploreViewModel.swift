@@ -17,7 +17,9 @@ final class ExploreViewModel: ObservableObject {
     
     let actions: ExploreActions
     
-    
+    let functionalButtonsNames = ["Today","Films", "Lists"]
+    @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
+    @Published var currentPosition: String = "Moscow"
     @Published var searchText: String = ""
     
     @Published var upcomingEvents: [Event] = []
@@ -28,7 +30,6 @@ final class ExploreViewModel: ObservableObject {
     @Published var error: Error? = nil
     @Published var currentCategory: String? = nil
     @Published var currentLocation: String = "msk"
-    @Published var currentPosition: String = "Moscow"
     
     var isFavoriteEvent = false
 

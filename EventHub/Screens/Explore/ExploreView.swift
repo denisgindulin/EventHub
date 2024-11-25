@@ -27,7 +27,7 @@ struct ExploreView: View {
                             notifications: true,
                             filterAction: model.filterEvents(orderType:),
                             locations: model.locations)
-                    
+ 
                         CategoryScroll(categories:
                                         model.categories,
                                        onCategorySelected: { selectedCategory in
@@ -38,7 +38,12 @@ struct ExploreView: View {
                                 await model.fetchUpcomingEvents()
                             }
                         })
-                        .offset(y: 92)
+                        .offset(y: 87)
+                        
+                        // LVL2
+                        FunctionalButtonsView(names: model.functionalButtonsNames, chooseButton: $model.choosedButton)
+                            .offset(y: 155)
+                        
                     }
                     .zIndex(1)
                     
@@ -62,17 +67,16 @@ struct ExploreView: View {
                                 ScrollEventCardsView(
                                     events: nil,
                                     showDetail: model.showDetail)
-                                .padding(.bottom, 150) // tabBer
+                                .padding(.bottom, 250) // tabBer
                             } else {
                                 ScrollEventCardsView(
                                     events: model.nearbyYouEvents,
                                     showDetail: model.showDetail)
-                                .padding(.bottom, 150) // tabBer
+                                .padding(.bottom, 250) // tabBer
                             }
                             
-                            
                         }
-                        .offset(y: 25)
+                        .offset(y: 100)
                     }
                     .offset(y: -10)
                     .zIndex(0)
