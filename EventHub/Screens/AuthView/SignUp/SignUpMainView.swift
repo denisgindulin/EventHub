@@ -38,7 +38,7 @@ struct SignUpMainView: View {
                             let sucess =  await viewModel.signUp()
                             if sucess{
                                 viewModel.saveUsernameToUserDefaults(username: viewModel.name )
-                                //navigation 
+                                viewModel.showMainView()
                             }
                         }
                         
@@ -54,7 +54,7 @@ struct SignUpMainView: View {
                         Task{
                             let sucess = await viewModel.signInWithGoogle()
                             if sucess{
-                                
+                                viewModel.showMainView()
                             } else{
                                
                             }
@@ -113,6 +113,6 @@ struct SignUpMainView: View {
     }
 }
 
-#Preview {
-    SignUpMainView(viewModel: AuthViewModel())
-}
+//#Preview {
+//    SignUpMainView(viewModel: AuthViewModel())
+//}

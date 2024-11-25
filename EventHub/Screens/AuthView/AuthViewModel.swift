@@ -49,9 +49,21 @@ class AuthViewModel: ObservableObject{
     @Published var authenticationState: authStatus = .unauthenticated
     @Published var displayName: String = ""
     
-    init() {
-      registerAuthStateHandler()
+    let actions: SignInActions
+    
+    init(actions: SignInActions) {
+        self.actions = actions
+        registerAuthStateHandler()
     }
+    
+    func showMainView() {
+        actions.showMainScreen()
+    }
+    
+    func close() {
+        actions.closed()
+    }
+    
     // MARK: - Handle Whether User Logged or not
     private var authStateHandler: AuthStateDidChangeListenerHandle?
     func registerAuthStateHandler() {

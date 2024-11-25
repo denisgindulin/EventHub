@@ -8,15 +8,6 @@
 import SwiftUI
 import Firebase
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
-    return true
-  }
-}
-
 @main
 struct EventHubApp: App {
     static let dependencyProvider = DependencyProvider()
@@ -25,13 +16,12 @@ struct EventHubApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            SignUpMainView(viewModel: AuthViewModel())
+            RootViewControllerWrapper()
         }
     }
 }
 
 struct RootViewControllerWrapper: UIViewControllerRepresentable {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var coordinatorHolder = CoordinatorHolder()
 
     func makeUIViewController(context: Context) -> UIViewController {

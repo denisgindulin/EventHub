@@ -65,7 +65,7 @@ struct SignInMainView: View {
                     Task{
                         let sucess =  await viewModel.signIn()
                         if sucess{
-                           //navigation
+                            viewModel.showMainView()
                         }
                     }
                 }
@@ -80,7 +80,7 @@ struct SignInMainView: View {
                     Task{
                         let sucess = await viewModel.signInWithGoogle()
                         if sucess{
-                            
+                            viewModel.showMainView()
                         } else{
                            
                         }
@@ -129,6 +129,6 @@ struct SignInMainView: View {
     }
 }
 
-#Preview {
-    SignInMainView(viewModel: AuthViewModel())
-}
+//#Preview {
+//    SignInMainView(viewModel: AuthViewModel())
+//}
