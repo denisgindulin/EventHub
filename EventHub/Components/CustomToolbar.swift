@@ -10,18 +10,29 @@ import SwiftUI
 struct CustomToolBar: View {
     
     @Binding var searchText: String
+    @Binding var currentLocation: String
     
-    let title: String
+    @Binding var title: String
     let magnifierColor: Color
     let notifications: Bool
     let filterAction: (DisplayOrderType) -> Void
+    
+    let locations: [EventLocation]
     
     var body: some View {
             VStack {
                 HStack{
                     VStack(alignment: .leading) {
-                        Button {
-                            // redefinition geo
+                        
+                        Menu {
+                            ForEach(locations, id: \.name) { location in
+                                Button {
+                                    currentLocation = location.slug
+                                    title = location.name ?? "no location name"
+                                } label: {
+                                    Text(location.name ?? "no location name")
+                                }
+                            }
                         } label: {
                             Text("Current Location")
                                 .airbnbCerealFont( AirbnbCerealFont.book, size: 12)
@@ -83,6 +94,6 @@ struct CustomToolBar: View {
     }
 }
 
-#Preview {
-    CustomToolBar(searchText: .constant("Sear EXAMPL"), title: "City ", magnifierColor: .white, notifications: true, filterAction: {_ in })
-}
+//#Preview {
+//    CustomToolBar(searchText: .constant("Sear EXAMPL"), title: "City ", magnifierColor: .white, notifications: true, filterAction: {_ in })
+//}

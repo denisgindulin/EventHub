@@ -19,13 +19,14 @@ struct ExploreView: View {
                 VStack {
                     ZStack {
                         
-                        
                         CustomToolBar(
                             searchText: $model.searchText,
-                            title: model.currentPosition,
+                            currentLocation: $model.currentLocation,
+                            title: $model.currentPosition,
                             magnifierColor: .white,
                             notifications: true,
-                            filterAction: model.filterEvents(orderType:))
+                            filterAction: model.filterEvents(orderType:),
+                            locations: model.locations)
                     
                         CategoryScroll(categories:
                                         model.categories,

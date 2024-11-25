@@ -17,7 +17,6 @@ final class ExploreViewModel: ObservableObject {
     
     let actions: ExploreActions
     
-    let currentPosition: String = "New York, USA"
     
     @Published var searchText: String = ""
     
@@ -29,6 +28,7 @@ final class ExploreViewModel: ObservableObject {
     @Published var error: Error? = nil
     @Published var currentCategory: String? = nil
     @Published var currentLocation: String = "msk"
+    @Published var currentPosition: String = "Moscow"
     
     var isFavoriteEvent = false
 
