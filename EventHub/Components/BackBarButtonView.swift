@@ -9,7 +9,7 @@ import SwiftUI
 struct BackBarButtonView: View {
     
     // MARK: - Properties
-    @Environment(\.dismiss) var dismiss
+    var backActions: () -> Void
     let foregroundStyle: Color = .black
     
     // MARK: - Drawing Constants
@@ -19,7 +19,7 @@ struct BackBarButtonView: View {
     
     // MARK: - Body
     var body: some View {
-        Button(action: { dismiss() }) {
+        Button(action: { backActions() }) {
             Image(systemName: ToolBarButtonType.back.icon)
                 .resizable()
                 .scaledToFit()

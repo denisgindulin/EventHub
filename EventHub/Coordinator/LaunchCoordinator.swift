@@ -27,7 +27,6 @@ class LaunchCoordinator: Coordinator {
     func onboardingScreen() {
         let screen = ScreenFactory.makeOnboardingScreen(OnboardingActions(
             showSignIn: { [weak self] in self?.showSignInScreen() },
-            showSignUp: { [weak self] in self?.showSignUpScreen() },
             showTabbar: {[weak self] in self?.showMainScreen()},
             closed: { [weak self] in self?.router.dismiss(animated: true) }))
         router.push(screen, animated: true)
@@ -35,7 +34,7 @@ class LaunchCoordinator: Coordinator {
     
     func showSignInScreen() {
         let screen = ScreenFactory.makeSignInScreen(SignInActions(
-            showMainScreen: { self.showMainScreen()},
+            showMainScreen: { [weak self] in self?.showMainScreen()},
             closed: { [weak self] in self?.router.dismiss(animated: true) }))
         router.present(screen, animated: true)
     }
@@ -46,8 +45,9 @@ class LaunchCoordinator: Coordinator {
         router.present(screen, animated: true)
     }
     
+    
     func showMainScreen() {
-        let screen = ScreenFactory.makeMainView(TabBarActions(
+        let screen = ScreenFactory.makeTabBarView(TabBarActions(
             showEventsView: {
                 
             },
@@ -60,7 +60,7 @@ class LaunchCoordinator: Coordinator {
             showProfileView: {
                 
             },
-            showExploverView: {
+            showExploreView: {
                 
             },
             close: {
@@ -69,16 +69,27 @@ class LaunchCoordinator: Coordinator {
         router.setRootModule(screen, hideBar: true)
     }
     
-    func showExploreScreen() {
-        let screen = ScreenFactory.makeExploreScreen(ExploreActions(
-            showDetail: {  [weak self] _ in self?.showEventDetailScreen() },
-            closed: { [weak self] in self?.router.dismiss(animated: true) }))
-        router.present(screen, animated: true)
-    }
+//    func showExploreScreen() {
+//        let screen = ScreenFactory.makeExploreScreen(ExploreActions(
+//            showDetail: { [weak self] eventID in
+//                self?.showEventDetail(eventID: eventID)
+//            },
+//            closed: { [weak self] in
+//                self?.router.dismiss(animated: true)
+//            }
+//        ))
+//        router.push(screen, animated: true)
+//    }
     
-    func showEventDetailScreen() {
-        let screen = ScreenFactory.makeDetailScreen(DetailActions(
-            closed:{ [weak self] in self?.router.dismiss(animated: true) }))
-        router.present(screen, animated: true)
+    func showEventDetail(eventID: Int) {
+        let actions = DetailActions(closed: { [weak self] in
+            self?.router.dismiss(animated: true)
+        })
+        
+        let screen = ScreenFactory.makeDetailScreen(
+            eventID: eventID,
+            actions: actions
+        )
+        router.push(screen, animated: true)
     }
 }

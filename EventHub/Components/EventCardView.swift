@@ -6,44 +6,41 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct EventCardView: View {
     
     let event: Event
     var showDetail: (Int) -> Void
     
-//    var dayAndMonth: [String] {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd"
-//        if let date = formatter.date(from: event.date) {
-//            let dayFormatter = DateFormatter()
-//            dayFormatter.dateFormat = "d" // Для дня
-//            
-//            let monthFormatter = DateFormatter()
-//            monthFormatter.dateFormat = "MMMM"
-//            
-//            let day = dayFormatter.string(from: date)
-//            let month = monthFormatter.string(from: date)
-//            
-//            return [day, month]
-//        }
-//        return ["Invalid", "Date"]
-//    }
-    
     var body: some View {
         
         ZStack {
-            Color.green // white
+            Color.white // white
             VStack(alignment: .leading) {
-                
-                if event.image != nil {
                     ZStack {
-                        Image(.cardImg1) // Image ?!?
-                            .resizable()
-                            .frame(width: 219, height: 133)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .padding(.top, 9)
-                            .padding(.bottom,14)
+                        if let imageUrl = event.image, let url = URL(string: imageUrl) {
+                                KFImage(url)
+                                    .placeholder {
+                                        ShimmerView(ratio: 1)
+                                            .scaledToFit()
+                                            .frame(width: 219, height: 133)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    }
+                                    .resizable()
+                                    .frame(width: 219, height: 133)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .padding(.top, 9)
+                                    .padding(.bottom, 14)
+                            } else {
+                                Image(.cardImg1)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 227, height: 145)
+                                    .padding(.top, 9)
+                                    .padding(.bottom, 14)
+                            }
+                        
                         VStack {
                             Button {
                                 // add bookmark
@@ -81,15 +78,6 @@ struct EventCardView: View {
                         }
                         .offset(x: -78, y: -38)
                     }
-                } else {
-                    Image(systemName: "xmark.square.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width:227, height: 145)
-                        .padding(.top,9)
-                        .padding(.bottom,14)
-                }
-                
                 Text(event.title)
                     .airbnbCerealFont(AirbnbCerealFont.medium, size: 18)
                     .frame(width: 207, height: 21, alignment: .leading)
@@ -153,6 +141,7 @@ struct EventCardView: View {
                 }
         .frame(width: 237, height: 255)
         .clipShape(RoundedRectangle(cornerRadius: 18))
+        .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
     }
     
     private func getOffset(index: Int, visitors: Int) -> CGFloat {

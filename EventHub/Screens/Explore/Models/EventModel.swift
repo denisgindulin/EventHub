@@ -31,6 +31,25 @@ struct Event: Identifiable {
         image: "cardImg1", isFavorite: true )
 }
 
+extension Event {
+    init(dto: EventDTO, isFavorite: Bool) {
+        self.id = dto.id
+        self.title = dto.title ?? "No Title"
+        self.visitors = dto.participants?.map { participant in
+            Visitor(
+                image: participant.agent?.images?.first ?? "default_visitor_image",
+                name: participant.agent?.title ?? "No participant"
+            )
+        }
+        self.date = dto.dates.first?.startDate ??
+            (Date(timeIntervalSince1970: TimeInterval(dto.dates.first?.start ?? 1489312800)))
+                .formattedDate(format: "dd\nMMM")
+        self.adress = dto.place?.address ?? "Unknown Address"
+        self.image = dto.images.first?.image
+        self.isFavorite = isFavorite
+    }
+}
+
 struct Visitor: Identifiable {
     let id = UUID()
     let image: String
