@@ -38,6 +38,8 @@
 		4806818B2CF20BFC001A2D9A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4806818A2CF20BFC001A2D9A /* Swinject */; };
 		4806818E2CF20C28001A2D9A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4806818D2CF20C28001A2D9A /* Kingfisher */; };
 		480681922CF34DC2001A2D9A /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681912CF34DC2001A2D9A /* BottomSheet.swift */; };
+		480681942CF4E5E5001A2D9A /* SocialNetworksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */; };
+		480681962CF4E860001A2D9A /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681952CF4E860001A2D9A /* ShareView.swift */; };
 		4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */; };
 		4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */; };
 		4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */; };
@@ -117,6 +119,8 @@
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		480681912CF34DC2001A2D9A /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworksView.swift; sourceTree = "<group>"; };
+		480681952CF4E860001A2D9A /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		4831BA3C2CEB1D1500141C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bd.otf; sourceTree = "<group>"; };
 		4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bk.otf; sourceTree = "<group>"; };
@@ -420,6 +424,7 @@
 				E10ED0332CF0E47F00AFDBC2 /* SmallEventCard.swift */,
 				E10ED03B2CF0E47F00AFDBC2 /* ThirdSmallEventCard.swift */,
 				E10ED03C2CF0E47F00AFDBC2 /* ToolBarButtonView.swift */,
+				480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -492,6 +497,7 @@
 			children = (
 				E14D57272CF12272009949BC /* DetailComponentView.swift */,
 				E14D57282CF12272009949BC /* DetailView.swift */,
+				480681952CF4E860001A2D9A /* ShareView.swift */,
 				E14D57292CF12272009949BC /* DetailViewModel.swift */,
 				480681912CF34DC2001A2D9A /* BottomSheet.swift */,
 			);
@@ -637,6 +643,7 @@
 				E10ED0462CF0E47F00AFDBC2 /* BlueButtonWithArrow.swift in Sources */,
 				E10ED0472CF0E47F00AFDBC2 /* SecureTextField.swift in Sources */,
 				E10ED0482CF0E47F00AFDBC2 /* EventCardView.swift in Sources */,
+				480681942CF4E5E5001A2D9A /* SocialNetworksView.swift in Sources */,
 				E10ED04A2CF0E47F00AFDBC2 /* CategoryButtonView.swift in Sources */,
 				E10ED04B2CF0E47F00AFDBC2 /* ToolBarButtonView.swift in Sources */,
 				E10ED04C2CF0E47F00AFDBC2 /* AuthTextField.swift in Sources */,
@@ -651,6 +658,7 @@
 				1B7EAD222CEBC2D800D2AB3D /* ExploreView.swift in Sources */,
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
 				1B7EAD2F2CEBC38C00D2AB3D /* ProfileViewModel.swift in Sources */,
+				480681962CF4E860001A2D9A /* ShareView.swift in Sources */,
 				1B7EAD372CEBC3CF00D2AB3D /* BookmarksView.swift in Sources */,
 				1B7EAD122CEBC1FF00D2AB3D /* OnboardingView.swift in Sources */,
 				1BB6A3D52CEFA36F0069A17D /* Router.swift in Sources */,

@@ -41,6 +41,7 @@ class ViewModelAssembly: Assembly {
             let apiService = resolver.resolve(EventAPIService.self)!
             return ExploreViewModel(actions: actions, apiService: apiService)
         }.inObjectScope(.transient)
+        
 #warning("не понимаю как прокинуть айдишник")
         container.register(DetailViewModel.self) { (resolver, actions: DetailActions) in
 //            let apiService = resolver.resolve(EventAPIService.self)!
