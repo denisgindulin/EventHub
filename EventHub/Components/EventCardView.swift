@@ -134,7 +134,7 @@ struct EventCardView: View {
                         Image(.placePin)
                             .resizable()
                             .frame(width: 16, height: 16)
-                        Text(event.adress)
+                        Text(event.adress) // event.visitors?.count ?? 321
                             .airbnbCerealFont(AirbnbCerealFont.book, size: 13)
                             .foregroundStyle(.gray) //Color
                     }
