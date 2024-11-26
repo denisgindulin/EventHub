@@ -22,14 +22,21 @@ protocol IEventAPIServiceForExplore: IEventAPIServiceForSearch {
     /// - Returns: An array of `CategoryDTO`, or `nil` if no categories are found.
     func getCategories(with language: Language?) async throws -> [CategoryDTO]?
     
-    /// Fetches a paginated list of events.
+    /// Fetches a paginated list of Upcoming events.
     /// - Parameters:
-    ///   - location: The location filter.
     ///   - language: The language for event data.
     ///   - category: The event category filter.
     ///   - page: The page number for pagination.
     /// - Returns: An array of `EventDTO`.
-    func getEvents(with category: String,_ location: String, _ language: Language, _ page: Int) async throws -> [EventDTO]
+    func getUpcomingEvents(with category: String?,_ language: Language, _ page: Int?) async throws -> [EventDTO]
+    
+    /// Fetches a paginated list of Nearby You  events.
+    /// - Parameters:
+    ///   - language: The language for event data.
+    ///   - location: The event location filter.
+    ///   - page: The page number for pagination.
+    /// - Returns: An array of `EventDTO`.
+    func getNearbyYouEvents(with language: Language?,_ location: String,_ page: Int?) async throws -> [EventDTO]
 }
 
 /// Protocol for fetching detailed event information.

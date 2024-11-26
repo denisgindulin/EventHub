@@ -88,7 +88,3 @@ struct DetailView: View {
         .edgesIgnoringSafeArea(.all)
     }
 }
-
-#Preview {
-    DetailView(model: DetailViewModel(eventId: 168359))
-}
