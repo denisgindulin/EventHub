@@ -12,4 +12,5 @@ struct SocialNetwork: Identifiable {
     let imageName: String
     let text: String
     let appId: String?
+    let urlScheme: String?
 }
