@@ -15,7 +15,7 @@ struct ExploreView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.appMainBackground // zIndex // UIScreen.main.bounds.width
+                Color.appMainBackground // zIndex modifire // UIScreen.main.bounds.width
                 VStack {
                     ZStack {
                         
