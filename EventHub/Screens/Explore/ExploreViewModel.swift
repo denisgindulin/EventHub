@@ -17,9 +17,10 @@ final class ExploreViewModel: ObservableObject {
     
     let actions: ExploreActions
     
-    let currentPosition: String = "New York, USA"
-    
-    @Published var searchString: String = ""
+    let functionalButtonsNames = ["Today","Films", "Lists"]
+    @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
+    @Published var currentPosition: String = "Moscow"
+    @Published var searchText: String = ""
     
     @Published var upcomingEvents: [ExploreEvent] = []
     @Published var nearbyYouEvents: [ExploreEvent] = []
