@@ -10,7 +10,6 @@ import Combine
 
 struct OnboardingActions {
     let showSignIn: CompletionBlock
-    let showSignUp: CompletionBlock
     let showTabbar: CompletionBlock
     let closed: CompletionBlock
 }
@@ -65,10 +64,6 @@ final class OnboardingViewModel: ObservableObject {
     
     func showSignInView() {
         actions.showSignIn()
-    }
-    
-    func showSignUpView() {
-        actions.showSignUp()
     }
     
     func close() {

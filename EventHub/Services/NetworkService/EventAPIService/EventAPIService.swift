@@ -17,7 +17,7 @@ import Foundation
 /// `EventAPIService` interacts with the KudaGo API to retrieve event data.
 /// Includes fetching locations, categories, events, event details, and search results.
 final class EventAPIService: APIService, IEventAPIService {
-    
+
     // MARK: - Initializer
     /// Initializes the EventAPIService with an API client.
     init() {
@@ -53,13 +53,25 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Events
     /// Fetches a paginated list of events filtered by location, language, and category.
-    func getEvents(with category: String, _ location: String, _ language: Language, _ page: Int) async throws -> [EventDTO] {
-        let apiSpec: EventAPISpec = .getEventsWith(
+    func getUpcomingEvents(with category: String?, _ language: Language, _ page: Int?) async throws -> [EventDTO] {
+        let apiSpec: EventAPISpec = .getUpcomingEventsWith(
             category: category,
-            location: location,
             language: language,
-            page: page
+            page: page ?? 1
         )
+        do {
+            if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
+                return response.results
+            }
+        } catch {
+            print(error)
+        }
+        return []
+    }
+    
+    func getNearbyYouEvents(with language: Language?, _ location: String, _ page: Int?) async throws -> [EventDTO] {
+        let apiSpec: EventAPISpec = .getNearbyYouEvents(language: language, location: location, page: page ?? 1)
+
         do {
             if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
                 return response.results

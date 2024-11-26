@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct ExploreActions {
-    let showDetail: CompletionBlockWithID
+    let showDetail: (Int) -> Void
     let closed: CompletionBlock
 }
 
@@ -18,15 +18,16 @@ final class ExploreViewModel: ObservableObject {
     let actions: ExploreActions
     
     let currentPosition: String = "New York, USA"
-    let categoryColors: [Color] = [.appRed, .appOrange, .appGreen, .appCyan]
-    let categoryPictures: [String] = ["ball", "music","eat", "profile"] // paint image = person ???
     
+    @Published var searchString: String = ""
     
-    @Published var events: [Event] = []
+    @Published var upcomingEvents: [Event] = []
+    @Published var nearbyYouEvents: [Event] = []
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
+    
     @Published var error: Error? = nil
-    @Published var currentCategory: String = "cinema"
+    @Published var currentCategory: String? = nil
     @Published var currentLocation: String = "msk"
     
     var isFavoriteEvent = false
@@ -34,6 +35,7 @@ final class ExploreViewModel: ObservableObject {
     private let apiService: IEventAPIServiceForExplore
     
     private let language = Language.en
+    
     private var page: Int = 1
     
     // MARK: - INIT
@@ -42,65 +44,69 @@ final class ExploreViewModel: ObservableObject {
         self.apiService = apiService
     }
     
+    // MARK: - Filter Events
+    func filterEvents(orderType: DisplayOrderType) {
+        switch orderType {
+        case .alphabetical:
+            upcomingEvents = upcomingEvents.sorted(by: { $0.title < $1.title })
+        case .date:
+            upcomingEvents = upcomingEvents.sorted(by: { $0.date < $1.date })
+        }
+    }
+    
     // MARK: - Network API Methods
     func fetchLocations() async {
         do {
-            locations = try await apiService.getLocations(with: language)
+            let fetchedLocations = try await apiService.getLocations(with: language)
+            await MainActor.run { [weak self] in
+                self?.locations = fetchedLocations
+            }
         } catch {
-            self.error = error
+            await MainActor.run {
+                self.error = error
+            }
         }
     }
     
     func fetchCategories() async {
         do {
             let categoriesFromAPI = try await apiService.getCategories(with: language) ?? []
-            loadCategories(from: categoriesFromAPI)
+            await loadCategories(from: categoriesFromAPI)
         } catch {
             self.error = error
         }
     }
     
-    func fetchEvents() async {
+    func fetchUpcomingEvents() async {
         do {
-            let eventsDTO = try await apiService.getEvents(
+            let eventsDTO = try await apiService.getUpcomingEvents(
                 with: currentCategory,
-                currentLocation,
                 language,
                 page
             )
-            let apiSpec = EventAPISpec.getEventsWith(
-                category: currentCategory,
-                location: currentLocation,
-                language: language,
-                page: page
-            )
-            print("Endpoint Events: \(apiSpec.endpoint)")
             
-            events = eventsDTO.map { dto in
-                Event(
-                    id: dto.id,
-                    title: dto.title ?? "No Title",
-                    visitors: dto.participants?.map { participant in
-                        Visitor(
-                            image: participant.agent?.images?.first ?? "default_visitor_image",
-                            name: participant.agent?.title ?? "No participant"
-                        )
-                    },
-                    date: Date(timeIntervalSince1970: TimeInterval((dto.dates?.first?.start ?? 1489312800))).formattedDate(format: "dd\nMMM"),
-                    adress: "Unknown Address",
-//                    adress: dto.place?.address ?? "Unknown Address",
-                    image: dto.images?.first?.image,
-                    isFavorite: isFavoriteEvent
-                )
-            }
+            upcomingEvents = eventsDTO.map { Event(dto: $0, isFavorite: isFavoriteEvent) }
         } catch {
             self.error = error
         }
     }
     
+    func featchNearbyYouEvents() async {
+        do {
+            let eventsDTO = try await apiService.getNearbyYouEvents(
+                with: language,
+                currentLocation,
+                page
+            )
+            nearbyYouEvents = eventsDTO.map { Event(dto: $0, isFavorite: isFavoriteEvent) }
+        } catch {
+            self.error = error
+        }
+    }
     
 //    MARK: -  Navigation
     func showDetail(_ eventID: Int) {
+        print("showDetails: \(eventID)")
         actions.showDetail(eventID)
     }
     
@@ -110,11 +116,18 @@ final class ExploreViewModel: ObservableObject {
     
     
     //    MARK: - Helper Methods
-    private func loadCategories(from eventCategories: [CategoryDTO]) {
-        categories = eventCategories.map { category in
+    private func loadCategories(from eventCategories: [CategoryDTO]) async {
+        let mappedCategories = eventCategories.map { category in
             let color = CategoryImageMapping.color(for: category)
             let image = CategoryImageMapping.image(for: category)
             return CategoryUIModel(id: category.id, category: category, color: color, image: image)
         }
+        
+        await MainActor.run { [weak self] in
+            self?.categories = mappedCategories
+        }
     }
+    
+
+    
 }

@@ -7,15 +7,23 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct FiltersButtonView: View {
     
-    // some func
-    
-    let color: Color // explore and search bar button color
+    @State private var selectedOrder: DisplayOrderType = .alphabetical
+    let filterAction: (DisplayOrderType) -> Void
     
     var body: some View {
-        Button {
-            // show filters func
+        Menu {
+            ForEach(DisplayOrderType.allCases, id: \.self) { order in
+                Button(action: {
+                    selectedOrder = order
+                    filterAction(order)
+                }) {
+                    Text(order.name)
+                }
+            }
         } label: {
             HStack {
                 Image(.filter)
@@ -24,19 +32,21 @@ struct FiltersButtonView: View {
                 
                 Text("Filters")
                     .frame(width: 35, height: 16, alignment: .leading)
-                    .airbnbCerealFont( AirbnbCerealFont.book, size: 12)
+                    .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                     .foregroundStyle(Color.white)
-                    .padding(.trailing,1)
+                    .padding(.trailing, 1)
             }
             .padding(5)
             .frame(width: 75, height: 32.1)
-            .background(.appPurpleSecondary)
+            .background(.appPurple)
             .clipShape(Capsule())
-            
         }
     }
 }
 
+
 #Preview {
-    FiltersButtonView(color: Color.appPurple)
+    FiltersButtonView() { selectedOrder in
+        print("Selected filter: \(selectedOrder.name)")
+    }
 }

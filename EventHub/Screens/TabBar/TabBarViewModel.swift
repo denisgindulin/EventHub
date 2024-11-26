@@ -12,7 +12,7 @@ struct TabBarActions {
     let showFavoritesView: CompletionBlock
     let showMapView: CompletionBlock
     let showProfileView:CompletionBlock
-    let showExploverView: CompletionBlock
+    let showExploreView: CompletionBlock
     let close: CompletionBlock
 }
 
@@ -34,7 +34,7 @@ class TabBarViewModel: ObservableObject {
     }
     
     func showExploverView() {
-        actions.showExploverView()
+        actions.showExploreView()
     }
     
     func showProfileView() {
