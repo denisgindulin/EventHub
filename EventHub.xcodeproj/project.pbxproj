@@ -40,6 +40,8 @@
 		480681922CF34DC2001A2D9A /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681912CF34DC2001A2D9A /* BottomSheet.swift */; };
 		480681942CF4E5E5001A2D9A /* SocialNetworksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */; };
 		480681962CF4E860001A2D9A /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681952CF4E860001A2D9A /* ShareView.swift */; };
+		480681992CF5B708001A2D9A /* SocialNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681982CF5B708001A2D9A /* SocialNetwork.swift */; };
+		4806819B2CF5B723001A2D9A /* SocialNetworksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806819A2CF5B723001A2D9A /* SocialNetworksViewModel.swift */; };
 		4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */; };
 		4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */; };
 		4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */; };
@@ -121,6 +123,8 @@
 		480681912CF34DC2001A2D9A /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworksView.swift; sourceTree = "<group>"; };
 		480681952CF4E860001A2D9A /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		480681982CF5B708001A2D9A /* SocialNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetwork.swift; sourceTree = "<group>"; };
+		4806819A2CF5B723001A2D9A /* SocialNetworksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworksViewModel.swift; sourceTree = "<group>"; };
 		4831BA3C2CEB1D1500141C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bd.otf; sourceTree = "<group>"; };
 		4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bk.otf; sourceTree = "<group>"; };
@@ -345,6 +349,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		480681972CF5B272001A2D9A /* SocialNetworks */ = {
+			isa = PBXGroup;
+			children = (
+				480681982CF5B708001A2D9A /* SocialNetwork.swift */,
+				480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */,
+				4806819A2CF5B723001A2D9A /* SocialNetworksViewModel.swift */,
+			);
+			path = SocialNetworks;
+			sourceTree = "<group>";
+		};
 		4831BA3D2CEB28C400141C9A /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,7 +438,6 @@
 				E10ED0332CF0E47F00AFDBC2 /* SmallEventCard.swift */,
 				E10ED03B2CF0E47F00AFDBC2 /* ThirdSmallEventCard.swift */,
 				E10ED03C2CF0E47F00AFDBC2 /* ToolBarButtonView.swift */,
-				480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -495,6 +508,7 @@
 		E14D572A2CF12272009949BC /* EventDetals */ = {
 			isa = PBXGroup;
 			children = (
+				480681972CF5B272001A2D9A /* SocialNetworks */,
 				E14D57272CF12272009949BC /* DetailComponentView.swift */,
 				E14D57282CF12272009949BC /* DetailView.swift */,
 				480681952CF4E860001A2D9A /* ShareView.swift */,
@@ -628,6 +642,7 @@
 				1BB6A3DE2CEFB0AD0069A17D /* Coordinator.swift in Sources */,
 				1B7EAD172CEBC25C00D2AB3D /* SignUpView.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
+				480681992CF5B708001A2D9A /* SocialNetwork.swift in Sources */,
 				E10ED01F2CF0E2F400AFDBC2 /* CategoryUIModel.swift in Sources */,
 				E10ED0202CF0E2F400AFDBC2 /* EventModel.swift in Sources */,
 				1B7EAD0F2CEBC19900D2AB3D /* DI.swift in Sources */,
@@ -638,6 +653,7 @@
 				E10ED0402CF0E47F00AFDBC2 /* BackBarButtonView.swift in Sources */,
 				E10ED0412CF0E47F00AFDBC2 /* BlueCapsuleButtonWithArrow.swift in Sources */,
 				E10ED0422CF0E47F00AFDBC2 /* ToolBarAction.swift in Sources */,
+				4806819B2CF5B723001A2D9A /* SocialNetworksViewModel.swift in Sources */,
 				E10ED0442CF0E47F00AFDBC2 /* ScrollEventCardsView.swift in Sources */,
 				E10ED0452CF0E47F00AFDBC2 /* FiltersButtonView.swift in Sources */,
 				E10ED0462CF0E47F00AFDBC2 /* BlueButtonWithArrow.swift in Sources */,

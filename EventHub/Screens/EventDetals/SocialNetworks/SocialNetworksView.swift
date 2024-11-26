@@ -7,23 +7,8 @@
 
 import SwiftUI
 
-struct SocialNetworks: Identifiable {
-    let id = UUID()
-    let imageName: String
-    let text: String
-}
-
 struct SocialNetworksView: View {
-    let socialNetworks: [SocialNetworks] = [
-        SocialNetworks(imageName: "CopyLink", text: "Copy Link"),
-        SocialNetworks(imageName: "WhatsApp", text: "WhatsApp"),
-        SocialNetworks(imageName: "Facebook", text: "Facebook"),
-        SocialNetworks(imageName: "Messenger", text: "Messenger"),
-        SocialNetworks(imageName: "Twitter", text: "Twitter"),
-        SocialNetworks(imageName: "Instagram", text: "Instagram"),
-        SocialNetworks(imageName: "Skype", text: "Skype"),
-        SocialNetworks(imageName: "Message", text: "Message")
-    ]
+    @StateObject private var viewModel = SocialNetworksViewModel()
     
     let columns = [
         GridItem(.flexible()),
@@ -34,9 +19,9 @@ struct SocialNetworksView: View {
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 23) {
-            ForEach(socialNetworks) { socialNetwork in
+            ForEach(viewModel.socialNetworks) { socialNetwork in
                 Button {
-                    // Действие при нажатии на кнопку
+                    viewModel.share(in: socialNetwork)
                 } label: {
                     VStack(spacing: 11) {
                         Image(socialNetwork.imageName)

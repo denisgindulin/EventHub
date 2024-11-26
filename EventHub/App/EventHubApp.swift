@@ -13,7 +13,7 @@ struct EventHubApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootViewControllerWrapper()
+            DetailView(model: DetailViewModel(eventId: 168359))
         }
     }
 }

@@ -13,7 +13,7 @@ struct DetailView: View {
     
     var body: some View {
         ZStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 50) {
                     ZStack(alignment: .bottomTrailing) {
                         AsyncImage(url: model.imageUrl) { image in
@@ -24,6 +24,8 @@ struct DetailView: View {
                                 .clipped()
                         } placeholder: {
                             ProgressView()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 244)
                         }
                         
                         Button {

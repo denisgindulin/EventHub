@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 struct DetailActions {
 #warning("добавить все переходы с этого экрана")
     let closed: CompletionBlock
@@ -60,7 +61,9 @@ final class DetailViewModel: ObservableObject {
     func fetchEventDetails() async {
         do {
             let fetchedEvent = try await eventService.getEventDetails(eventID: eventId)
-            self.event = fetchedEvent
+            DispatchQueue.main.async {
+                self.event = fetchedEvent
+            }
         } catch {
             self.errorMessage = "Не удалось загрузить событие: \(error.localizedDescription)"
             print("Ошибка при получении события: \(error.localizedDescription)")
