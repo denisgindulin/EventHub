@@ -32,7 +32,6 @@
 		1BB6A3E02CEFB0C90069A17D /* LaunchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6A3DF2CEFB0C90069A17D /* LaunchCoordinator.swift */; };
 		1BB6A3E32CEFD79E0069A17D /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6A3E22CEFD79E0069A17D /* TabBarViewModel.swift */; };
 		222838692CE937A400DCF847 /* EventHubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222838682CE937A400DCF847 /* EventHubApp.swift */; };
-		2228386B2CE937A400DCF847 /* MaintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228386A2CE937A400DCF847 /* MaintView.swift */; };
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
 		22FE3C2A2CF28E4B00FAEACF /* TextOnlyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C292CF28E4B00FAEACF /* TextOnlyButton.swift */; };
@@ -40,10 +39,16 @@
 		22FE3C2E2CF334C000FAEACF /* SignOutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C2D2CF334C000FAEACF /* SignOutButton.swift */; };
 		4806818B2CF20BFC001A2D9A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4806818A2CF20BFC001A2D9A /* Swinject */; };
 		4806818E2CF20C28001A2D9A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4806818D2CF20C28001A2D9A /* Kingfisher */; };
+		480681922CF34DC2001A2D9A /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681912CF34DC2001A2D9A /* BottomSheet.swift */; };
+		480681942CF4E5E5001A2D9A /* SocialNetworksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */; };
+		480681962CF4E860001A2D9A /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681952CF4E860001A2D9A /* ShareView.swift */; };
+		480681992CF5B708001A2D9A /* SocialNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681982CF5B708001A2D9A /* SocialNetwork.swift */; };
+		4806819B2CF5B723001A2D9A /* SocialNetworksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4806819A2CF5B723001A2D9A /* SocialNetworksViewModel.swift */; };
 		4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA422CEB28DC00141C9A /* AirbnbCereal_W_Md.otf */; };
 		4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */; };
 		4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */; };
 		4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */; };
+		483B91F62CF5D03300A22FD0 /* EventHubContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228386A2CE937A400DCF847 /* EventHubContentView.swift */; };
 		6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
 		6C75B38C2CEF8D2B0086A03D /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
 		8763C1652CF269AF002E4535 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763C1642CF269AF002E4535 /* GoogleButton.swift */; };
@@ -118,6 +123,8 @@
 		E14D572C2CF12272009949BC /* DetailComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D57272CF12272009949BC /* DetailComponentView.swift */; };
 		E14D572D2CF12272009949BC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D57282CF12272009949BC /* DetailView.swift */; };
 		E14D572F2CF1229A009949BC /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14D572E2CF1229A009949BC /* String+Ex.swift */; };
+		E165D1BC2CF385A00030BA88 /* UIHostingController + Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E165D1BB2CF385A00030BA88 /* UIHostingController + Ex.swift */; };
+		E165D1BE2CF44F250030BA88 /* DisplayOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E165D1BD2CF44F250030BA88 /* DisplayOrderType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,12 +153,17 @@
 		1BB6A3E22CEFD79E0069A17D /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		222838652CE937A400DCF847 /* EventHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		222838682CE937A400DCF847 /* EventHubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHubApp.swift; sourceTree = "<group>"; };
-		2228386A2CE937A400DCF847 /* MaintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintView.swift; sourceTree = "<group>"; };
+		2228386A2CE937A400DCF847 /* EventHubContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHubContentView.swift; sourceTree = "<group>"; };
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22FE3C292CF28E4B00FAEACF /* TextOnlyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnlyButton.swift; sourceTree = "<group>"; };
 		22FE3C2B2CF2F64900FAEACF /* EventReminderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventReminderCard.swift; sourceTree = "<group>"; };
 		22FE3C2D2CF334C000FAEACF /* SignOutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutButton.swift; sourceTree = "<group>"; };
+		480681912CF34DC2001A2D9A /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworksView.swift; sourceTree = "<group>"; };
+		480681952CF4E860001A2D9A /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		480681982CF5B708001A2D9A /* SocialNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetwork.swift; sourceTree = "<group>"; };
+		4806819A2CF5B723001A2D9A /* SocialNetworksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworksViewModel.swift; sourceTree = "<group>"; };
 		4831BA3C2CEB1D1500141C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4831BA3E2CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bd.otf; sourceTree = "<group>"; };
 		4831BA3F2CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirbnbCereal_W_Bk.otf; sourceTree = "<group>"; };
@@ -205,6 +217,8 @@
 		E14D57282CF12272009949BC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		E14D57292CF12272009949BC /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		E14D572E2CF1229A009949BC /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
+		E165D1BB2CF385A00030BA88 /* UIHostingController + Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHostingController + Ex.swift"; sourceTree = "<group>"; };
+		E165D1BD2CF44F250030BA88 /* DisplayOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayOrderType.swift; sourceTree = "<group>"; };
 		E1B52AD22CEE582F001AA8E0 /* EventDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -259,10 +273,8 @@
 		1B7EAD102CEBC1E800D2AB3D /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				E10ED0002CF0DE6B00AFDBC2 /* OnboardingControlsView.swift */,
-				E10ED0012CF0DE6B00AFDBC2 /* OnboardingItem.swift */,
-				E10ED0022CF0DE6B00AFDBC2 /* OnboardingPageView.swift */,
-				E10ED0032CF0DE6B00AFDBC2 /* OnboardingTabView.swift */,
+				E165D1B82CF381930030BA88 /* SubViews */,
+				E165D1B72CF381790030BA88 /* Model */,
 				1B7EAD112CEBC1FF00D2AB3D /* OnboardingView.swift */,
 				1B7EAD3A2CEBD14D00D2AB3D /* OnboardingViewModel.swift */,
 			);
@@ -411,6 +423,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		480681972CF5B272001A2D9A /* SocialNetworks */ = {
+			isa = PBXGroup;
+			children = (
+				480681982CF5B708001A2D9A /* SocialNetwork.swift */,
+				480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */,
+				4806819A2CF5B723001A2D9A /* SocialNetworksViewModel.swift */,
+			);
+			path = SocialNetworks;
+			sourceTree = "<group>";
+		};
 		4831BA3D2CEB28C400141C9A /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +450,7 @@
 				E14D572E2CF1229A009949BC /* String+Ex.swift */,
 				E10ED0612CF0E55300AFDBC2 /* Date+Ex.swift */,
 				4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */,
+				E165D1BB2CF385A00030BA88 /* UIHostingController + Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -453,7 +476,7 @@
 		4831BA532CEB2FEE00141C9A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				2228386A2CE937A400DCF847 /* MaintView.swift */,
+				2228386A2CE937A400DCF847 /* EventHubContentView.swift */,
 				1B7EAD102CEBC1E800D2AB3D /* Onboarding */,
 				1B7EAD132CEBC22000D2AB3D /* AuthView */,
 				1BB6A3DA2CEFAD5C0069A17D /* TabBar */,
@@ -470,8 +493,8 @@
 		4831BA582CEB421C00141C9A /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				8763C1642CF269AF002E4535 /* GoogleButton.swift */,
 				E10ED0362CF0E47F00AFDBC2 /* ToolBar */,
+				8763C1642CF269AF002E4535 /* GoogleButton.swift */,
 				E10ED0232CF0E47F00AFDBC2 /* ActivityView.swift */,
 				E10ED0242CF0E47F00AFDBC2 /* AuthTextField.swift */,
 				E10ED0252CF0E47F00AFDBC2 /* BackBarButtonView.swift */,
@@ -546,6 +569,7 @@
 		E10ED01E2CF0E2F400AFDBC2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E165D1BD2CF44F250030BA88 /* DisplayOrderType.swift */,
 				E10ED01C2CF0E2F400AFDBC2 /* CategoryUIModel.swift */,
 				E10ED01D2CF0E2F400AFDBC2 /* EventModel.swift */,
 			);
@@ -564,11 +588,32 @@
 		E14D572A2CF12272009949BC /* EventDetals */ = {
 			isa = PBXGroup;
 			children = (
+				480681972CF5B272001A2D9A /* SocialNetworks */,
 				E14D57272CF12272009949BC /* DetailComponentView.swift */,
 				E14D57282CF12272009949BC /* DetailView.swift */,
+				480681952CF4E860001A2D9A /* ShareView.swift */,
 				E14D57292CF12272009949BC /* DetailViewModel.swift */,
+				480681912CF34DC2001A2D9A /* BottomSheet.swift */,
 			);
 			path = EventDetals;
+			sourceTree = "<group>";
+		};
+		E165D1B72CF381790030BA88 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E10ED0012CF0DE6B00AFDBC2 /* OnboardingItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E165D1B82CF381930030BA88 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				E10ED0002CF0DE6B00AFDBC2 /* OnboardingControlsView.swift */,
+				E10ED0022CF0DE6B00AFDBC2 /* OnboardingPageView.swift */,
+				E10ED0032CF0DE6B00AFDBC2 /* OnboardingTabView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		E1B52ADB2CEE5853001AA8E0 /* Services */ = {
@@ -689,11 +734,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483B91F62CF5D03300A22FD0 /* EventHubContentView.swift in Sources */,
 				E10ED0622CF0E55300AFDBC2 /* Date+Ex.swift in Sources */,
 				E10ED0042CF0DE6B00AFDBC2 /* OnboardingItem.swift in Sources */,
 				E10ED0052CF0DE6B00AFDBC2 /* OnboardingPageView.swift in Sources */,
 				E10ED0062CF0DE6B00AFDBC2 /* OnboardingTabView.swift in Sources */,
 				8763C1652CF269AF002E4535 /* GoogleButton.swift in Sources */,
+				22FE3C2A2CF28E4B00FAEACF /* TextOnlyButton.swift in Sources */,
 				E10ED0072CF0DE6B00AFDBC2 /* OnboardingControlsView.swift in Sources */,
 				6C75B38C2CEF8D2B0086A03D /* FontModifier.swift in Sources */,
 				6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */,
@@ -707,7 +754,7 @@
 				1B7EAD2A2CEBC35B00D2AB3D /* EventsViewModel.swift in Sources */,
 				E10ED00A2CF0E00200AFDBC2 /* EventDTO.swift in Sources */,
 				E14D572F2CF1229A009949BC /* String+Ex.swift in Sources */,
-				2228386B2CE937A400DCF847 /* MaintView.swift in Sources */,
+				480681922CF34DC2001A2D9A /* BottomSheet.swift in Sources */,
 				1BB6A3D92CEFA79A0069A17D /* TabCoordinator.swift in Sources */,
 				E14D572B2CF12272009949BC /* DetailViewModel.swift in Sources */,
 				E14D572C2CF12272009949BC /* DetailComponentView.swift in Sources */,
@@ -726,7 +773,9 @@
 				1BB6A3DE2CEFB0AD0069A17D /* Coordinator.swift in Sources */,
 				1B7EAD172CEBC25C00D2AB3D /* SignUpView.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
+				480681992CF5B708001A2D9A /* SocialNetwork.swift in Sources */,
 				E10ED01F2CF0E2F400AFDBC2 /* CategoryUIModel.swift in Sources */,
+				E165D1BE2CF44F250030BA88 /* DisplayOrderType.swift in Sources */,
 				E10ED0202CF0E2F400AFDBC2 /* EventModel.swift in Sources */,
 				1B7EAD0F2CEBC19900D2AB3D /* DI.swift in Sources */,
 				1BB6A3E32CEFD79E0069A17D /* TabBarViewModel.swift in Sources */,
@@ -736,12 +785,14 @@
 				E10ED0402CF0E47F00AFDBC2 /* BackBarButtonView.swift in Sources */,
 				E10ED0412CF0E47F00AFDBC2 /* BlueCapsuleButtonWithArrow.swift in Sources */,
 				E10ED0422CF0E47F00AFDBC2 /* ToolBarAction.swift in Sources */,
+				4806819B2CF5B723001A2D9A /* SocialNetworksViewModel.swift in Sources */,
 				E10ED0442CF0E47F00AFDBC2 /* ScrollEventCardsView.swift in Sources */,
 				E10ED0452CF0E47F00AFDBC2 /* FiltersButtonView.swift in Sources */,
 				22FE3C2C2CF2F64900FAEACF /* EventReminderCard.swift in Sources */,
 				E10ED0462CF0E47F00AFDBC2 /* BlueButtonWithArrow.swift in Sources */,
 				E10ED0472CF0E47F00AFDBC2 /* SecureTextField.swift in Sources */,
 				E10ED0482CF0E47F00AFDBC2 /* EventCardView.swift in Sources */,
+				480681942CF4E5E5001A2D9A /* SocialNetworksView.swift in Sources */,
 				E10ED04A2CF0E47F00AFDBC2 /* CategoryButtonView.swift in Sources */,
 				E10ED04B2CF0E47F00AFDBC2 /* ToolBarButtonView.swift in Sources */,
 				8763C1672CF26A2D002E4535 /* SignInMainView.swift in Sources */,
@@ -758,11 +809,13 @@
 				87D851242CF30481002DC428 /* AuthViewModel.swift in Sources */,
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
 				1B7EAD2F2CEBC38C00D2AB3D /* ProfileViewModel.swift in Sources */,
+				480681962CF4E860001A2D9A /* ShareView.swift in Sources */,
 				1B7EAD372CEBC3CF00D2AB3D /* BookmarksView.swift in Sources */,
 				1B7EAD122CEBC1FF00D2AB3D /* OnboardingView.swift in Sources */,
 				1BB6A3D52CEFA36F0069A17D /* Router.swift in Sources */,
 				1B7EAD2D2CEBC38200D2AB3D /* ProfileView.swift in Sources */,
 				1B7EAD1D2CEBC29800D2AB3D /* SignInViewModel.swift in Sources */,
+				E165D1BC2CF385A00030BA88 /* UIHostingController + Ex.swift in Sources */,
 				1B7EAD342CEBC3AF00D2AB3D /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -898,7 +951,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EventHub/Preview Content\"";
-				DEVELOPMENT_TEAM = D3BJGB736B;
+				DEVELOPMENT_TEAM = TUPKULQZ9B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EventHub/App/Info.plist;
@@ -934,7 +987,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EventHub/Preview Content\"";
-				DEVELOPMENT_TEAM = D3BJGB736B;
+				DEVELOPMENT_TEAM = TUPKULQZ9B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EventHub/App/Info.plist;

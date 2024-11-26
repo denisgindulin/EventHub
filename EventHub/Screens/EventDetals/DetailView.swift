@@ -8,75 +8,83 @@
 import SwiftUI
 
 struct DetailView: View {
-    @StateObject var viewModel = DetailViewModel()
+    @ObservedObject var model: DetailViewModel
     @State private var isPresented: Bool = false
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 50) {
-                ZStack(alignment: .bottomTrailing) {
-                    AsyncImage(url: viewModel.imageUrl) { image in
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(maxHeight: 244)
-                            .clipped()
-                    } placeholder: {
-                        ProgressView()
+        ZStack {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 50) {
+                    ZStack(alignment: .bottomTrailing) {
+                        AsyncImage(url: model.imageUrl) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(maxHeight: 244)
+                                .clipped()
+                        } placeholder: {
+                            ProgressView()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 244)
+                        }
+                        
+                        Button {
+                            isPresented = true
+                        } label: {
+                            Image(.share)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: 24, maxHeight: 24)
+                                .padding(6)
+                                .background(.white.opacity(0.3))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .padding(14)
+                        }
+                        
                     }
-                    
-                    Button {
-                        isPresented = true
-                    } label: {
-                        Image(.share)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: 24, maxHeight: 24)
-                            .padding(6)
-                            .background(.white.opacity(0.3))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .padding(14)
-                    }
-
-                }
-                
-                VStack(alignment: .leading, spacing: 24) {
-                    Text(viewModel.title)
-                        .airbnbCerealFont(.book, size: 35)
                     
                     VStack(alignment: .leading, spacing: 24) {
-                        DetailComponentView(image: Image(systemName: "calendar"),
-                                            title: viewModel.startDate,
-                                            description: viewModel.endDate)
+                        Text(model.title)
+                            .airbnbCerealFont(.book, size: 35)
                         
-                        DetailComponentView(image: Image(.location),
-                                            title: "viewModel.place",
-                                            description: viewModel.adress)
+                        VStack(alignment: .leading, spacing: 24) {
+                            DetailComponentView(image: Image(systemName: "calendar"),
+                                                title: model.startDate,
+                                                description: model.endDate)
+                            
+                            DetailComponentView(image: Image(.location),
+                                                title: "viewModel.place",
+                                                description: model.adress)
+                            
+                            DetailComponentView(image: Image(.cardImg2),
+                                                title: model.agentTitle,
+                                                description: model.role,
+                                                showImgBg: false)
+                        }
                         
-                        DetailComponentView(image: Image(.cardImg2),
-                                            title: viewModel.agentTitle,
-                                            description: viewModel.role,
-                                            showImgBg: false)
+                        Text("About Event")
+                            .airbnbCerealFont(.medium, size: 18)
+                        Text(model.bodyText)
+                            .airbnbCerealFont(.book)
                     }
-                    
-                    Text("About Event")
-                        .airbnbCerealFont(.medium, size: 18)
-                    Text(viewModel.bodyText)
-                        .airbnbCerealFont(.book)
+                    .padding(.horizontal, 20)
                 }
-                .padding(.horizontal, 20)
             }
-            .sheet(isPresented: $isPresented) {
-                ActivityViewController(text: viewModel.title)
+            .task {
+                await model.fetchEventDetails()
+            }
+            .ignoresSafeArea()
+            
+            if isPresented {
+                Color.black.opacity(0.5)
+                    .edgesIgnoringSafeArea(.all)
+                    .transition(.opacity)
+            }
+            
+            if isPresented {
+                ShareView(isPresented: $isPresented)
             }
         }
-        .task {
-            await viewModel.fetchEventDetails(eventID: 168359)
-        }
-        .ignoresSafeArea()
+        .edgesIgnoringSafeArea(.all)
     }
-}
-
-#Preview {
-    DetailView()
 }

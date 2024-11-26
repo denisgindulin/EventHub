@@ -2,18 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleURLTypes</key>
+	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>Google SignIn</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.715413432664-9os5sr96q4r32u8r7m83icjg2ej1julm</string>
-			</array>
-		</dict>
+		<string>whatsapp</string>
+		<string>tg</string>
+		<string>fb</string>
+		<string>instagram</string>
+		<string>x</string>
+		<string>messenger</string>
+		<string>sms</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>

@@ -11,26 +11,34 @@ import Firebase
 @main
 struct EventHubApp: App {
     static let dependencyProvider = DependencyProvider()
+    
     init(){
         FirebaseApp.configure()
     }
+    
+
     var body: some Scene {
         WindowGroup {
-            RootViewControllerWrapper()
+            RootViewControllerWrapper(dependencyProvider: EventHubApp.dependencyProvider)
         }
     }
 }
 
 struct RootViewControllerWrapper: UIViewControllerRepresentable {
+    private let dependencyProvider: DependencyProvider
     @StateObject private var coordinatorHolder = CoordinatorHolder()
 
+    
+    init(dependencyProvider: DependencyProvider) {
+        self.dependencyProvider = dependencyProvider
+    }
+    
     func makeUIViewController(context: Context) -> UIViewController {
-        let navigationController = UINavigationController()
-        let router = Router(rootController: navigationController)
-        let coordinator = LaunchCoordinator(router: router)
+        let navigationController = dependencyProvider.container.resolve(UINavigationController.self)!
+        let coordinator = dependencyProvider.container.resolve(LaunchCoordinator.self)!
         coordinatorHolder.coordinator = coordinator
         coordinator.start()
-        
+        navigationController.navigationBar.isHidden = true
         return navigationController
     }
 
@@ -42,7 +50,3 @@ struct RootViewControllerWrapper: UIViewControllerRepresentable {
         var coordinator: LaunchCoordinator?
     }
 }
-
-
-
-
