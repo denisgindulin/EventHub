@@ -49,7 +49,7 @@ struct EventsView: View {
                 .padding(.bottom, 50)
             }
             .task {
-                await fetchUpcomingEventsWithErrorHandling()
+                await model.fetchUpcomingEvents()
             }
     
             .alert(isPresented: isPresentedAlert(for: $model.upcomingEventsPhase)) {
