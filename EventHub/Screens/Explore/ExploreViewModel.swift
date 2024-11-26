@@ -28,7 +28,7 @@ final class ExploreViewModel: ObservableObject {
     
     @Published var error: Error? = nil
     @Published var currentCategory: String? = nil
-    @Published var currentLocation: String = "msk"
+    @Published var currentLocation: String = "new-york"
     
     var isFavoriteEvent = false
 

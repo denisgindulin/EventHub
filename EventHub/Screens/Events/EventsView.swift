@@ -7,25 +7,17 @@
 
 import SwiftUI
 
+// MARK: - EventsView
 struct EventsView: View {
     @ObservedObject var model: EventsViewModel
-    
-    // MARK: - Drawing Constants
-    private enum Drawing {
-        static let toolbarHeight: CGFloat = 44
-        static let horizontalSpacing: CGFloat = 24
-    }
-    
-    // MARK: - Body
+
     var body: some View {
         ZStack {
             Color.appBackground.ignoresSafeArea(.all)
             VStack {
-                ToolBarView(
-                    title: "Event"
-                )
-                .frame(height: Drawing.toolbarHeight)
-                .zIndex(1)
+                ToolBarView(title: "Event")
+                    .frame(height: 44)
+                    .zIndex(1)
                 
                 ChangeModeButton(selectedMode: $model.selectedMode)
                     .onChange(of: model.selectedMode) { newValue in
@@ -47,29 +39,67 @@ struct EventsView: View {
                             )
                         }
                     }
-                    .padding(.horizontal, Drawing.horizontalSpacing)
+                    .padding(.horizontal, 24)
                 }
                 
                 BlueButtonWithArrow(text: "Explore Events") {
+                    // Additional button logic
                 }
                 .padding(.horizontal, 53)
                 .padding(.bottom, 50)
             }
-            .task { await model.fetchUpcomingEvents() } 
+            .task {
+                await fetchUpcomingEventsWithErrorHandling()
+            }
+    
+            .alert(isPresented: isPresentedAlert(for: $model.upcomingEventsPhase)) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(model.errorMessage(for: model.upcomingEventsPhase)),
+                    dismissButton: .default(Text("OK")) {
+                        Task {
+                            await model.fetchUpcomingEvents(ignoreCache: true)
+                        }
+                    }
+                )
+            }
         }
     }
+
+   
+    private func isPresentedAlert(for phase: Binding<DataFetchPhase<[EventModel]>>) -> Binding<Bool> {
+        Binding(
+            get: {
+                if case .failure = phase.wrappedValue {
+                    return true
+                }
+                return false
+            },
+            set: { isPresented in
+                if !isPresented {
+                    phase.wrappedValue = .empty
+                }
+            }
+        )
+    }
     
-    // MARK: - Methods
     private func loadEvents(for mode: EventsMode) async {
         switch mode {
         case .upcoming:
-            await model.fetchUpcomingEvents()
+            await fetchUpcomingEventsWithErrorHandling()
         case .pastEvents:
             await model.fetchPastEvents()
         }
     }
+    
+    private func fetchUpcomingEventsWithErrorHandling() async {
+        do {
+            await model.fetchUpcomingEvents()
+        } catch {
+            model.upcomingEventsPhase = .failure(error)
+        }
+    }
 }
-
 #Preview {
-    EventsView(model: EventsViewModel(apiService: EventAPIService(), actions: EventsActions(closed: {})))
+    EventsView(model: EventsViewModel(actions: EventsActions(closed: {}), apiService: EventAPIService()))
 }

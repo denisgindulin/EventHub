@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 struct DetailActions {
     let closed: CompletionBlock
 }
@@ -18,7 +19,6 @@ final class DetailViewModel: ObservableObject {
     private let actions: DetailActions
     
     @Published var event: EventDTO?
-    @Published var errorMessage: String?
     
     // Вычисляемые свойства для удобства использования во View
     var title: String {
@@ -64,9 +64,11 @@ final class DetailViewModel: ObservableObject {
     func fetchEventDetails() async {
         do {
             let fetchedEvent = try await eventService.getEventDetails(eventID: eventID)
-            self.event = fetchedEvent
+            DispatchQueue.main.async {
+                self.event = fetchedEvent
+            }
         } catch {
-            self.errorMessage = "Не удалось загрузить событие: \(error.localizedDescription)"
+//            self.errorMessage = "Не удалось загрузить событие: \(error.localizedDescription)"
             print("Ошибка при получении события: \(error.localizedDescription)")
         }
     }
@@ -81,7 +83,7 @@ final class DetailViewModel: ObservableObject {
     }
     
 //    MARK: - Navigation
-    func close() {
+    @MainActor func close() {
         actions.closed()
     }
     
