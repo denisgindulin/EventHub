@@ -11,12 +11,22 @@ struct BookmarksView: View {
     @ObservedObject var model: BookmarksViewModel
     
     var body: some View {
-        Text("A")
+        if model.events.isEmpty {
+            NoFavorites()
+        } else {
+            List {
+                SmallEventCard(image: "cardImg1",
+                               date: .now,
+                               title: "Jo Malone London’s Mother’s Day Presents",
+                               place: "Radius Gallery • Santa Cruz, CA",
+                               showBookmark: true)
+                .listRowSeparator(.hidden)
+            }
+            .listStyle(.inset)
+        }
     }
 }
 
-struct BookmarksView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventHubApp.dependencyProvider.assembler.resolver.resolve(BookmarksView.self)!
-    }
+#Preview {
+    BookmarksView(model: BookmarksViewModel(actions: BookmarksViewActions()))
 }
