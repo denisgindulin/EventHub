@@ -84,7 +84,8 @@ class ViewModelAssembly: Assembly {
         }.inObjectScope(.transient)
         
         container.register(EventsViewModel.self) { (resolver, actions: EventsActions) in
-            EventsViewModel(actions: actions)
+            let apiService = resolver.resolve(EventAPIService.self)!
+            return EventsViewModel(apiService: apiService, actions: actions)
         }.inObjectScope(.transient)
         
         container.register(ProfileViewModel.self) { (resolver, actions: ProfileActions) in

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SmallEventCard: View {
     let image: String
@@ -26,11 +27,19 @@ struct SmallEventCard: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 18) {
-            Image(image)
+            let url = URL(string: image) 
+            KFImage(url)
+                .placeholder {
+                    ShimmerView(ratio: 1.6)
+                        .scaledToFit()
+                        .frame(width: 80, height: 92)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
                 .resizable()
                 .scaledToFill()
                 .frame(width: 80, height: 92)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+        
             VStack( alignment: .leading, spacing: 4) {
                 Text(showPlace ? date.formattedDate(format: "E, MMM d • h:mm a") : date.formattedWithSuffix())
                     .airbnbCerealFont(showPlace ? .book : .medium, size: 13)

@@ -10,7 +10,7 @@ import Kingfisher
 
 struct EventCardView: View {
     
-    let event: Event
+    let event: ExploreEvent
     var showDetail: (Int) -> Void
     
     var body: some View {
@@ -208,5 +208,5 @@ struct EventCardView: View {
 }
 
 #Preview {
-    EventCardView(event: Event.example, showDetail: {_ in })
+    EventCardView(event: ExploreEvent.example, showDetail: {_ in })
 }

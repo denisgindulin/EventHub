@@ -21,8 +21,8 @@ final class ExploreViewModel: ObservableObject {
     
     @Published var searchString: String = ""
     
-    @Published var upcomingEvents: [Event] = []
-    @Published var nearbyYouEvents: [Event] = []
+    @Published var upcomingEvents: [ExploreEvent] = []
+    @Published var nearbyYouEvents: [ExploreEvent] = []
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
     
@@ -85,7 +85,7 @@ final class ExploreViewModel: ObservableObject {
                 page
             )
             
-            upcomingEvents = eventsDTO.map { Event(dto: $0, isFavorite: isFavoriteEvent) }
+            upcomingEvents = eventsDTO.map { ExploreEvent(dto: $0, isFavorite: isFavoriteEvent) }
         } catch {
             self.error = error
         }
@@ -98,7 +98,7 @@ final class ExploreViewModel: ObservableObject {
                 currentLocation,
                 page
             )
-            nearbyYouEvents = eventsDTO.map { Event(dto: $0, isFavorite: isFavoriteEvent) }
+            nearbyYouEvents = eventsDTO.map { ExploreEvent(dto: $0, isFavorite: isFavoriteEvent) }
         } catch {
             self.error = error
         }

@@ -5,9 +5,11 @@
 //  Created by Келлер Дмитрий on 22.11.2024.
 //
 
+import Foundation
+
 
 /// Tuple alias combining all event-related protocols.
-typealias IEventAPIService = IEventAPIServiceForExplore & IEventAPIServiceForDetail & IEventAPIServiceForSearch
+typealias IEventAPIService = IEventAPIServiceForExplore & IEventAPIServiceForDetail & IEventAPIServiceForSearch & IEventAPIServiceForEvents
 
 /// Protocol for fetching event data related to exploration.
 /// Includes methods for retrieving locations, categories, and events.
@@ -55,4 +57,9 @@ protocol IEventAPIServiceForSearch {
     /// - Parameter searchText: The text to search for.
     /// - Returns: An optional `APIResponseDTO` containing the search results.
     func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO?
+}
+
+protocol IEventAPIServiceForEvents {
+    func getUpcomingEvents(_ actualSince: String,_ actualUntil: String,_ language: Language, _ page: Int?) async throws -> [EventDTO]
+    func getPastEventsEvents(_ actualUntil: String,_ language: Language, _ page: Int?) async throws -> [EventDTO]
 }

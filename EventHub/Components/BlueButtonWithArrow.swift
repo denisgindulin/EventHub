@@ -18,7 +18,7 @@ struct BlueButtonWithArrow: View {
             HStack {
                 ZStack {
                     Text(text.uppercased())
-                        .airbnbCerealFont(.bold)
+                        .airbnbCerealFont(.medium)
                         .minimumScaleFactor(0.5)
                     HStack {
                         Spacer()

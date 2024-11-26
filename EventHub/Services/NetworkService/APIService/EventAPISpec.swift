@@ -18,6 +18,8 @@ enum EventAPISpec: APISpec {
         page: Int?
     )
     case getNearbyYouEvents(language: Language?, location: String, page: Int?)
+    case getUpcominglEvents(actualSince: String, actualUntil: String, language: Language?, page: Int?)
+    case getPastEvents(actualUntil: String,language: Language?, page: Int?)
     case getEventDetails(eventID: Int)
     case getSerchedEventsWith(searchText: String)
     
@@ -32,6 +34,10 @@ enum EventAPISpec: APISpec {
         case .getUpcomingEventsWith:
             return "public-api/v1.4/events/"
         case .getNearbyYouEvents:
+            return "public-api/v1.4/events/"
+        case .getUpcominglEvents:
+            return "public-api/v1.4/events/"
+        case .getPastEvents:
             return "public-api/v1.4/events/"
         case .getEventDetails(eventID: let eventID):
             return "public-api/v1.4/events/\(eventID)"
@@ -95,7 +101,42 @@ enum EventAPISpec: APISpec {
             }
             
             return items
-        
+            
+        case .getUpcominglEvents(actualSince: let actualSince, actualUntil: let actualUntil, language: let language, page: let page):
+            var items: [URLQueryItem] = [
+                URLQueryItem(name: "actual_since", value: actualSince),
+                URLQueryItem(name: "actual_until", value: actualUntil),
+                URLQueryItem(name: "expand", value: "location,place,dates,participants"),
+                URLQueryItem(name: "fields", value: "id,title,body_text,place,location,dates,images")
+            ]
+            
+            if let language = language {
+                items.append(URLQueryItem(name: "lang", value: language.rawValue))
+            }
+            
+            if let page = page {
+                items.append(URLQueryItem(name: "page", value: String(page)))
+            }
+            
+            return items
+            
+        case .getPastEvents(actualUntil: let actualUntil, language: let language, page: let page):
+            var items: [URLQueryItem] = [
+                URLQueryItem(name: "actual_until", value: actualUntil),
+                URLQueryItem(name: "expand", value: "location,place,dates,participants"),
+                URLQueryItem(name: "fields", value: "id,title,body_text,place,location,dates,images")
+            ]
+            
+            if let language = language {
+                items.append(URLQueryItem(name: "lang", value: language.rawValue))
+            }
+            
+            if let page = page {
+                items.append(URLQueryItem(name: "page", value: String(page)))
+            }
+            
+            return items
+            
         case .getEventDetails:
             let items: [URLQueryItem] = [
                 URLQueryItem(name: "expand", value: "location,place,dates,participants"),
@@ -105,6 +146,7 @@ enum EventAPISpec: APISpec {
             
         case .getSerchedEventsWith(searchText: let searchText):
             return [URLQueryItem(name: "q", value: searchText)]
+
         }
     }
   
@@ -136,6 +178,10 @@ enum EventAPISpec: APISpec {
         case .getUpcomingEventsWith:
             return APIResponseDTO.self
         case .getNearbyYouEvents:
+            return APIResponseDTO.self
+        case .getUpcominglEvents:
+            return APIResponseDTO.self
+        case .getPastEvents:
             return APIResponseDTO.self
         case .getEventDetails:
             return EventDTO.self
