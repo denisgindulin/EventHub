@@ -86,17 +86,9 @@ struct EventsView: View {
     private func loadEvents(for mode: EventsMode) async {
         switch mode {
         case .upcoming:
-            await fetchUpcomingEventsWithErrorHandling()
+            await model.fetchUpcomingEvents()
         case .pastEvents:
             await model.fetchPastEvents()
-        }
-    }
-    
-    private func fetchUpcomingEventsWithErrorHandling() async {
-        do {
-            await model.fetchUpcomingEvents()
-        } catch {
-            model.upcomingEventsPhase = .failure(error)
         }
     }
 }

@@ -16,80 +16,88 @@ struct EventCardView: View {
     var body: some View {
         
         ZStack {
-            Color.white // white
+            Color.white
             VStack(alignment: .leading) {
-                    ZStack {
-                        if let imageUrl = event.image, let url = URL(string: imageUrl) {
-                                KFImage(url)
-                                    .placeholder {
-                                        ShimmerView(ratio: 1)
-                                            .scaledToFit()
-                                            .frame(width: 219, height: 133)
-                                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    }
+                
+                ZStack(alignment: .top) {
+                                        if let imageUrl = event.image, let url = URL(string: imageUrl) {
+                                            KFImage(url)
+                                                .placeholder {
+                                                    ShimmeringImageView() // sizes ??
+                                                }
+                                                .resizable()
+                                                .frame(width: 218, height: 131)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        } else {
+                    Image(.cardImg1)
+                        .resizable()
+                        .frame(width: 218, height: 131)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        }
+                    
+                    VStack {
+                        Button {
+                            // add bookmark
+                            print("add/remove bookmark")
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 7)
+                                    .frame(width: 30, height: 30)
+                                    .foregroundStyle(.appOrangeSecondary)
+                                    .opacity(0.7)
+                                Image(event.isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
                                     .resizable()
-                                    .frame(width: 219, height: 133)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .padding(.top, 9)
-                                    .padding(.bottom, 14)
-                            } else {
-                                Image(.cardImg1)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 227, height: 145)
-                                    .padding(.top, 9)
-                                    .padding(.bottom, 14)
-                            }
-                        
-                        VStack {
-                            Button {
-                                // add bookmark
-                                print("bookmark trigg")
-                            } label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 7)
-                                        .frame(width: 30, height: 30)
-                                        .foregroundStyle(.appOrangeSecondary)
-                                        .opacity(0.7)
-                                    Image(event.isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
-                                        .resizable()
-                                        .frame(width: 14, height: 14)
-                                }
+                                    .frame(width: 14, height: 14)
                             }
                         }
-                        .offset(x: 86,y: -46)
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(width: 45, height: 45)
-                                .foregroundStyle(.appOrangeSecondary)
-                                .opacity(0.7)
-                            //  .blur(radius: 3) ??
-                            VStack {
-                                Text(event.date)
-                                    .foregroundStyle(.appDateText)
-                                    .airbnbCerealFont(AirbnbCerealFont.book, size: 18)
-                                    .multilineTextAlignment(.center)
-                                
-//                                Text(dayAndMonth[1].uppercased())
-//                                    .font(.system(size: 10))
-//                                    .foregroundStyle(.appDateText)
-                            }
-                        }
-                        .offset(x: -78, y: -38)
                     }
+                    .padding(.top,9)
+                    .offset(x: 85)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 45, height: 45)
+                            .foregroundStyle(.appOrangeSecondary)
+                            .opacity(0.7)
+                        VStack {
+                            Text(event.date)
+                                .foregroundStyle(.appDateText)
+                                .airbnbCerealFont(AirbnbCerealFont.book, size: 18)
+                                .multilineTextAlignment(.center)
+                        }
+                    }
+                    .padding(.top, 9)
+                    .offset(x: -77)
+                }
+                .padding(.top, 10)
+                
                 Text(event.title)
                     .airbnbCerealFont(AirbnbCerealFont.medium, size: 18)
                     .frame(width: 207, height: 21, alignment: .leading)
-                    .padding(.bottom, 12)
+                    .padding(.bottom,10)
                 
-#warning("image for avatars")
-                if let visitors = event.visitors {
-                    HStack{
+              
+                if event.visitors?.count == 0 {
+                    HStack {
+                        ShimmerAvatarView()
+                        
+                        Text("No visitors")
+                            .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
+                    }
+                } else if let visitors = event.visitors { // Visitor Images
+                    HStack {
                         ZStack {
-                            ForEach(getVisitorsAvatars(visitors: visitors).indices, id:\.self) { avatar in
+                            ForEach(getVisitorsAvatars(visitors: visitors).indices, id:\.self) { index in
                                 
-                                Image(.visitor) // avatar image
+                                let visitors = getVisitorsAvatars(visitors: visitors)
+                                
+                                let imageURL = visitors[index].image
+                                let url = URL(string: imageURL)
+                                
+                                KFImage(url)
+                                    .placeholder {
+                                        ShimmerAvatarView()
+                                    }
                                     .resizable()
                                     .frame(width: 24, height: 24)
                                     .clipShape(Circle())
@@ -97,7 +105,7 @@ struct EventCardView: View {
                                         Circle().stroke(style: StrokeStyle(lineWidth: 1))
                                             .foregroundStyle(Color.white)
                                     }
-                                    .offset(x: getOffset(index: avatar, visitors: getVisitorsAvatars(visitors: visitors).count))
+                                    .offset(x: getOffset(index: index, visitors: getVisitorsAvatars(visitors: visitors).count))
                             }
                         }
                         
@@ -108,8 +116,11 @@ struct EventCardView: View {
                                 Text(visitors.count > 3 ? "+" : "")
                                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                                 
-                                Text(checkRemainingNumberOfVisitors(visitors: visitors) == 0 ? "" : String(checkRemainingNumberOfVisitors(visitors: visitors)))
-                                    .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
+                                Text(checkRemainingNumberOfVisitors(
+                                    visitors: visitors) == 0
+                                     ? ""
+                                     : String(checkRemainingNumberOfVisitors(visitors: visitors)))
+                                .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                                 
                                 Text(visitors.count > 0 ? " Going" : "")
                                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
@@ -117,28 +128,31 @@ struct EventCardView: View {
                         }
                         .padding(.leading, 25)
                     }
-                }
+            }
                 
                 
                 Button {
-                    // show map button ?
+                    // show map
                 } label: {
                     HStack {
-                        Image(.placePin)
+                        Image(.mapPin)
                             .resizable()
+                            .foregroundStyle(.geolocationText)
                             .frame(width: 16, height: 16)
                         Text(event.adress)
                             .airbnbCerealFont(AirbnbCerealFont.book, size: 13)
-                            .foregroundStyle(.gray) //Color
+                            .foregroundStyle(.geolocationText)
                     }
-                    .frame(width: 190, height: 17)
-                    .padding(.bottom, 9)
+                    .frame(width: 185, height: 17, alignment: .leading)
                 }
             }
+            .padding(.top,9)
+            .padding(.horizontal, 9)
+            .padding(.bottom, 15)
         }
         .onTapGesture {
             showDetail(event.id)
-                }
+        }
         .frame(width: 237, height: 255)
         .clipShape(RoundedRectangle(cornerRadius: 18))
         .shadow(color: .gray.opacity(0.2), radius: 5, x: 0, y: 2)
@@ -147,20 +161,20 @@ struct EventCardView: View {
     private func getOffset(index: Int, visitors: Int) -> CGFloat {
         var offset = 0
         let ratio = 15
-
+        
         if visitors == 1 {
             offset = 0
         } else if visitors == 2 {
             switch index {
             case 0: offset = ratio
             default: offset = 0
-                    }
+            }
         } else if visitors == 3 {
             switch index {
             case 0: offset = 2 * ratio
             case 1: offset = ratio
             default: offset = 0
-                    }
+            }
         }
         return CGFloat(offset)
     }
@@ -180,7 +194,7 @@ struct EventCardView: View {
         
         if visitors.count > 3 {
             for i in 0...2 {
-             let visitor = visitors[i]
+                let visitor = visitors[i]
                 randomThreeVisitors.append(visitor)
             }
         }
@@ -201,11 +215,12 @@ struct EventCardView: View {
                 randomThreeVisitors.append(visitor)
             }
         }
-        
         return randomThreeVisitors
     }
+
+    }
     
-}
+
 
 #Preview {
     EventCardView(event: ExploreEvent.example, showDetail: {_ in })

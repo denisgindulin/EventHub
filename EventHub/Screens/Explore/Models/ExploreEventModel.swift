@@ -13,7 +13,7 @@ struct ExploreEvent: Identifiable {
     let visitors: [Visitor]?
     let date: String
     let adress: String
-    let image: String? // url/data ?
+    let image: String?
     let isFavorite: Bool
     
     static let example = ExploreEvent(
