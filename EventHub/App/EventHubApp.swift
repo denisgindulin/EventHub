@@ -50,7 +50,3 @@ struct RootViewControllerWrapper: UIViewControllerRepresentable {
         var coordinator: LaunchCoordinator?
     }
 }
-
-
-
-
