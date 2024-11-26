@@ -15,29 +15,35 @@ struct ExploreView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.appMainBackground // zIndex // UIScreen.main.bounds.width
+                Color.appMainBackground // zIndex modifire // UIScreen.main.bounds.width
                 VStack {
                     ZStack {
                         
                         CustomToolBar(
-                            title: model.currentPosition,
+                            searchText: $model.searchText,
+                            currentLocation: $model.currentLocation,
+                            title: $model.currentPosition,
                             magnifierColor: .white,
                             notifications: true,
                             filterAction: model.filterEvents(orderType:),
-                            getSearchString: {} // передать поисковую строку
-                            
-                        )
-                    
+                            locations: model.locations)
+ 
                         CategoryScroll(categories:
                                         model.categories,
                                        onCategorySelected: { selectedCategory in
-                            model.currentCategory = selectedCategory.category.slug // отдаем на сервер name или slug ?
+                            model.currentCategory = selectedCategory.category.slug ;
+                            model.upcomingEvents = []
                             
                             Task {
                                 await model.fetchUpcomingEvents()
                             }
                         })
-                        .offset(y: 92)
+                        .offset(y: 87)
+                        
+                        // LVL2
+                        FunctionalButtonsView(names: model.functionalButtonsNames, chooseButton: $model.choosedButton)
+                            .offset(y: 155)
+                        
                     }
                     .zIndex(1)
                     
@@ -46,18 +52,31 @@ struct ExploreView: View {
                             MainCategorySectionView(title: "Upcomimg Events")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(events: model.upcomingEvents, showDetail: model.showDetail)
-                                .padding(.bottom, 10)
+                            if model.upcomingEvents.isEmpty {
+                                ScrollEventCardsView(events: nil, showDetail: model.showDetail)
+                                    .padding(.bottom, 10)
+                            } else {
+                                ScrollEventCardsView(events: model.upcomingEvents, showDetail: model.showDetail)
+                                    .padding(.bottom, 10)
+                            }
                             
                             MainCategorySectionView(title: "Nearby You")
                                 .padding(.bottom, 10)
                             
-                            ScrollEventCardsView(
-                                events: model.nearbyYouEvents,
-                                showDetail: model.showDetail)
-                                .padding(.bottom, 150) // for TabBar
+                            if model.nearbyYouEvents.isEmpty {
+                                ScrollEventCardsView(
+                                    events: nil,
+                                    showDetail: model.showDetail)
+                                .padding(.bottom, 250) // tabBer
+                            } else {
+                                ScrollEventCardsView(
+                                    events: model.nearbyYouEvents,
+                                    showDetail: model.showDetail)
+                                .padding(.bottom, 250) // tabBer
+                            }
+                            
                         }
-                        .offset(y: 25)
+                        .offset(y: 100)
                     }
                     .offset(y: -10)
                     .zIndex(0)

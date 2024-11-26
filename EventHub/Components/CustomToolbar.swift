@@ -9,19 +9,30 @@ import SwiftUI
 
 struct CustomToolBar: View {
     
-    let title: String
+    @Binding var searchText: String
+    @Binding var currentLocation: String
+    
+    @Binding var title: String
     let magnifierColor: Color
     let notifications: Bool
     let filterAction: (DisplayOrderType) -> Void
-   
-    let getSearchString: () -> Void
+    
+    let locations: [EventLocation]
     
     var body: some View {
             VStack {
                 HStack{
                     VStack(alignment: .leading) {
-                        Button {
-                            // redefinition geo
+                        
+                        Menu {
+                            ForEach(locations, id: \.name) { location in
+                                Button {
+                                    currentLocation = location.slug
+                                    title = location.name ?? "no location name"
+                                } label: {
+                                    Text(location.name ?? "no location name")
+                                }
+                            }
                         } label: {
                             Text("Current Location")
                                 .airbnbCerealFont( AirbnbCerealFont.book, size: 12)
@@ -47,7 +58,7 @@ struct CustomToolBar: View {
                         } label: {
                             ZStack {
                                 Rectangle()
-                                    .foregroundStyle(.appPurpleSecondary)
+                                    .foregroundStyle(.filterButton)
                                
                                 ZStack(alignment: .topTrailing) {
                                     Image(.notificationsBell)
@@ -70,19 +81,19 @@ struct CustomToolBar: View {
                 .padding(.bottom, 10)
                 
                 SearchBarView(
-                    action: { },
+                    searchText: $searchText,
                     fiterAction: filterAction,
                     magnifierColor: magnifierColor)
                     .padding(.horizontal,24)
                 
             }
-            .frame(width: .infinity, height: 190)
+            .frame(width: .infinity, height: 179)
             .background(.appBlue)
             .clipShape(RoundedCorner(radius: 30, corners: [.bottomLeft,.bottomRight]))
 
     }
 }
 
-#Preview {
-    CustomToolBar(title: "City ", magnifierColor: .white, notifications: true, filterAction: {_ in }, getSearchString: {})
-}
+//#Preview {
+//    CustomToolBar(searchText: .constant("Sear EXAMPL"), title: "City ", magnifierColor: .white, notifications: true, filterAction: {_ in })
+//}
