@@ -8,53 +8,23 @@
 import SwiftUI
 
 struct BookmarkWithBgButton: View {
-    //    let event: Event
-    let isFavorite: Bool
-    //    var width: CGFloat
-    //    var height: CGFloat
-    //
-    //    init(isFavorite: Bool, width: CGFloat, height: CGFloat) {
-    //        self.isFavorite = isFavorite
-    //        self.width = UIScreen.main.bounds.width * width / 375
-    //        self.height = UIScreen.main.bounds.height * height / 812
-    //    }
-    
-    init(isFavorite: Bool) {
-        self.isFavorite = isFavorite
-    }
-    
-    
+    var isFavorite: Bool
+    var action: () -> Void
     
     var body: some View {
-        //        Image(event.isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
-        BookmarkButton(isFavorite: isFavorite, width: 14, height: 14)
-            .background(.ultraThinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 7))
+        GeometryReader { geometry in
+            Button (action: action) {
+                Image(isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
+                    .resizable()
+                    .frame(width: geometry.size.width,
+                           height: geometry.size.height)
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: geometry.size.width / 2))
+            }
+        }
     }
 }
-
-
-//        Image(isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
-//            .resizable()
-//            .frame(width: width, height: height)
-//            .padding()
-//            .background(.ultraThinMaterial)
-//            .clipShape(RoundedRectangle(cornerRadius: width / 5))
-        
-//        ZStack {
-//            RoundedRectangle(cornerRadius: 7)
-//                .frame(width: 30, height: 30)
-////                .foregroundStyle(.appOrangeSecondary)
-//                .opacity(0.7)
-//            Image(event.isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
-//                .resizable()
-//                .frame(width: 14, height: 14)
-////                .background(.secondary)
-//                .background(.ultraThinMaterial)
-//        }
-
-
-
 
 #Preview {
     ZStack {
@@ -62,9 +32,11 @@ struct BookmarkWithBgButton: View {
             .opacity(0.5)
         
         VStack {
-            //            BookmarkWithBgButton(event: Event.example)
-            BookmarkWithBgButton(isFavorite: true)
-            BookmarkWithBgButton(isFavorite: false)
+            BookmarkWithBgButton(isFavorite: true, action: {})
+                .frame(width: 30, height: 30)
+                .padding(.bottom, 50)
+            BookmarkWithBgButton(isFavorite: false, action: {})
+                .frame(width: 30, height: 30)
         }
     }
 }
