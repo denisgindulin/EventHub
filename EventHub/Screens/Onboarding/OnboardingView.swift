@@ -8,31 +8,27 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @ObservedObject var model: OnboardingViewModel
+    @StateObject var viewModel: OnboardingViewModel
     
-    init(model: OnboardingViewModel) {
-        self.model = model
+    init(router: StartRouter) {
+        self._viewModel = StateObject(wrappedValue: OnboardingViewModel(router: router))
         UIScrollView.appearance().bounces = false
     }
     
     var body: some View {
         VStack(spacing: 0) {
             OnboardingTabView(
-                currentStep: $model.currentStep,
-                onboardingItems: model.onboardingItems
+                currentStep: $viewModel.currentStep,
+                onboardingItems: viewModel.onboardingItems
             )
             OnboardingControlsView(
-                currentStep: $model.currentStep,
-                totalSteps: model.onboardingItems.count,
-                skipAction: model.skip, nextAction: model.nextStep
+                currentStep: $viewModel.currentStep,
+                totalSteps: viewModel.onboardingItems.count,
+                skipAction: viewModel.skip, nextAction: viewModel.nextStep
             )
         }
         .ignoresSafeArea()
     }
 }
 
-struct OnboardingView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventHubApp.dependencyProvider.assembler.resolver.resolve(OnboardingView.self)!
-    }
-}
+

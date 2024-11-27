@@ -98,5 +98,5 @@ struct DetailView: View {
 }
 
 #Preview {
-    DetailView(model: DetailViewModel(eventID: 125721, actions: DetailActions(closed: {}), eventService: EventAPIService()))
+
 }

@@ -8,15 +8,10 @@
 import Foundation
 
 @MainActor
-struct DetailActions {
-    let closed: CompletionBlock
-}
-
 final class DetailViewModel: ObservableObject {
     
     private let eventID: Int
     private let eventService: IEventAPIServiceForDetail
-    private let actions: DetailActions
     
     @Published var event: EventDTO?
     
@@ -66,9 +61,8 @@ final class DetailViewModel: ObservableObject {
     }
     
 //    MARK: - Init
-    init(eventID: Int, actions: DetailActions, eventService: IEventAPIServiceForDetail) {
+    init(eventID: Int, eventService: IEventAPIServiceForDetail) {
         self.eventID = eventID
-        self.actions = actions
         self.eventService = eventService
     }
     
@@ -90,8 +84,6 @@ final class DetailViewModel: ObservableObject {
     }
     
 //    MARK: - Navigation
-    @MainActor func close() {
-        actions.closed()
-    }
+
     
 }

@@ -5,17 +5,19 @@
 //  Created by Руслан on 18.11.2024.
 //
 
-import SwiftUI
-import Combine
-
-struct ProfileActions {
-//    let closed: CompletionBlock
-}
+import Foundation
 
 class ProfileViewModel: ObservableObject {
-    let actions: ProfileActions
+
+    private let router: StartRouter
     
-    init(actions: ProfileActions) {
-        self.actions = actions
+    init(router: StartRouter) {
+        self.router = router
     }
+    
+    
+    func openApp() {
+        router.updateRouterState(with: .userLoggedOut)
+    }
+    
 }

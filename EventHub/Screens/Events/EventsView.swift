@@ -9,8 +9,14 @@ import SwiftUI
 
 // MARK: - EventsView
 struct EventsView: View {
-    @ObservedObject var model: EventsViewModel
 
+    @StateObject var viewModel: EventsViewModel
+    
+    
+    init(eventAPIService: IEventAPIServiceForEvents) {
+        self._viewModel = StateObject(wrappedValue: EventsViewModel(apiService: eventAPIService)
+        )
+    }
     var body: some View {
         ZStack {
             Color.appBackground.ignoresSafeArea(.all)
@@ -19,18 +25,18 @@ struct EventsView: View {
                     .frame(height: 44)
                     .zIndex(1)
                 
-                ChangeModeButton(selectedMode: $model.selectedMode)
-                    .onChange(of: model.selectedMode) { newValue in
+                ChangeModeButton(selectedMode: $viewModel.selectedMode)
+                    .onChange(of: viewModel.selectedMode) { newValue in
                         Task {
                             await loadEvents(for: newValue)
                         }
                     }
                 
-                if model.eventsForCurrentMode().isEmpty {
-                    EmptyEventsView(selectedMode: model.selectedMode)
+                if viewModel.eventsForCurrentMode().isEmpty {
+                    EmptyEventsView(selectedMode: viewModel.selectedMode)
                 } else {
                     ScrollView(.vertical) {
-                        ForEach(model.eventsForCurrentMode()) { event in
+                        ForEach(viewModel.eventsForCurrentMode()) { event in
                             SmallEventCard(
                                 image: event.image,
                                 date: event.date,
@@ -49,16 +55,16 @@ struct EventsView: View {
                 .padding(.bottom, 50)
             }
             .task {
-                await model.fetchUpcomingEvents()
+                await viewModel.fetchUpcomingEvents()
             }
     
-            .alert(isPresented: isPresentedAlert(for: $model.upcomingEventsPhase)) {
+            .alert(isPresented: isPresentedAlert(for: $viewModel.upcomingEventsPhase)) {
                 Alert(
                     title: Text("Error"),
-                    message: Text(model.errorMessage(for: model.upcomingEventsPhase)),
+                    message: Text(viewModel.errorMessage(for: viewModel.upcomingEventsPhase)),
                     dismissButton: .default(Text("OK")) {
                         Task {
-                            await model.fetchUpcomingEvents(ignoreCache: true)
+                            await viewModel.fetchUpcomingEvents(ignoreCache: true)
                         }
                     }
                 )
@@ -86,12 +92,12 @@ struct EventsView: View {
     private func loadEvents(for mode: EventsMode) async {
         switch mode {
         case .upcoming:
-            await model.fetchUpcomingEvents()
+            await viewModel.fetchUpcomingEvents()
         case .pastEvents:
-            await model.fetchPastEvents()
+            await viewModel.fetchPastEvents()
         }
     }
 }
 #Preview {
-    EventsView(model: EventsViewModel(actions: EventsActions(closed: {}), apiService: EventAPIService()))
+
 }

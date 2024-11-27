@@ -7,7 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
-struct SignInMainView: View {
+struct SignInView: View {
     var iconImageName: String = "shortLogo"
     var title: LocalizedStringKey = "EventHub"
     var signInText: LocalizedStringKey = "Sign In"
@@ -15,8 +15,13 @@ struct SignInMainView: View {
     var forgotPasswordText: LocalizedStringKey = "Forgot Password?"
     var dontHaveAnAccText: LocalizedStringKey = "Don’t have an account?"
     var signUpText: LocalizedStringKey = "Sign up"
-    @ObservedObject var viewModel: AuthViewModel
+    
+    @StateObject var viewModel: AuthViewModel
     @State private var isRememberMeOn: Bool = false
+    
+    init(router: StartRouter) {
+        self._viewModel = StateObject(wrappedValue: AuthViewModel(router: router))
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -130,5 +135,5 @@ struct SignInMainView: View {
 }
 
 #Preview {
-    SignInMainView(viewModel: AuthViewModel())
+  
 }

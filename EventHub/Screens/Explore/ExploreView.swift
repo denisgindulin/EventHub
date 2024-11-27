@@ -9,7 +9,13 @@ import SwiftUI
 
 struct ExploreView: View {
     
-    @ObservedObject var model: ExploreViewModel
+    @StateObject var viewModel: ExploreViewModel
+    
+    
+    init(exploreAPIService: IAPIServiceForExplore) {
+        self._viewModel = StateObject(wrappedValue: ExploreViewModel(apiService: exploreAPIService)
+        )
+    }
     
     // MARK: - BODY
     var body: some View {
@@ -20,28 +26,28 @@ struct ExploreView: View {
                     ZStack {
                         
                         CustomToolBar(
-                            searchText: $model.searchText,
-                            currentLocation: $model.currentLocation,
-                            title: $model.currentPosition,
+                            searchText: $viewModel.searchText,
+                            currentLocation: $viewModel.currentLocation,
+                            title: $viewModel.currentPosition,
                             magnifierColor: .white,
                             notifications: true,
-                            filterAction: model.filterEvents(orderType:),
-                            locations: model.locations)
+                            filterAction: viewModel.filterEvents(orderType:),
+                            locations: viewModel.locations)
  
                         CategoryScroll(categories:
-                                        model.categories,
+                                        viewModel.categories,
                                        onCategorySelected: { selectedCategory in
-                            model.currentCategory = selectedCategory.category.slug ;
-                            model.upcomingEvents = []
+                            viewModel.currentCategory = selectedCategory.category.slug ;
+                            viewModel.upcomingEvents = []
                             
                             Task {
-                                await model.fetchUpcomingEvents()
+                                await viewModel.fetchUpcomingEvents()
                             }
                         })
                         .offset(y: 87)
                         
                         // LVL2
-                        FunctionalButtonsView(names: model.functionalButtonsNames, chooseButton: $model.choosedButton)
+                        FunctionalButtonsView(names: viewModel.functionalButtonsNames, chooseButton: $viewModel.choosedButton)
                             .offset(y: 155)
                         
                     }
@@ -52,26 +58,26 @@ struct ExploreView: View {
                             MainCategorySectionView(title: "Upcomimg Events")
                                 .padding(.bottom, 10)
                             
-                            if model.upcomingEvents.isEmpty {
-                                ScrollEventCardsView(events: nil, showDetail: model.showDetail)
+                            if viewModel.upcomingEvents.isEmpty {
+                                ScrollEventCardsView(events: nil, showDetail: viewModel.showDetail)
                                     .padding(.bottom, 10)
                             } else {
-                                ScrollEventCardsView(events: model.upcomingEvents, showDetail: model.showDetail)
+                                ScrollEventCardsView(events: viewModel.upcomingEvents, showDetail: viewModel.showDetail)
                                     .padding(.bottom, 10)
                             }
                             
                             MainCategorySectionView(title: "Nearby You")
                                 .padding(.bottom, 10)
                             
-                            if model.nearbyYouEvents.isEmpty {
+                            if viewModel.nearbyYouEvents.isEmpty {
                                 ScrollEventCardsView(
                                     events: nil,
-                                    showDetail: model.showDetail)
+                                    showDetail: viewModel.showDetail)
                                 .padding(.bottom, 250) // tabBer
                             } else {
                                 ScrollEventCardsView(
-                                    events: model.nearbyYouEvents,
-                                    showDetail: model.showDetail)
+                                    events: viewModel.nearbyYouEvents,
+                                    showDetail: viewModel.showDetail)
                                 .padding(.bottom, 250) // tabBer
                             }
                             
@@ -86,17 +92,14 @@ struct ExploreView: View {
             .ignoresSafeArea()
         }
         .task {
-            await model.fetchCategories()
-            await model.fetchLocations()
-            await model.fetchUpcomingEvents()
-            await model.featchNearbyYouEvents()
+            await viewModel.fetchCategories()
+            await viewModel.fetchLocations()
+            await viewModel.fetchUpcomingEvents()
+            await viewModel.featchNearbyYouEvents()
         }
     }
 }
 
 #Preview {
-    ExploreView(model: ExploreViewModel(
-        actions: ExploreActions(showDetail: {_ in },
-                                closed: {}),
-        apiService: EventAPIService()))
+    
 }

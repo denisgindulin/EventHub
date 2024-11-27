@@ -114,5 +114,5 @@ struct SignUpMainView: View {
 }
 
 #Preview {
-    SignUpMainView(viewModel: AuthViewModel())
+
 }

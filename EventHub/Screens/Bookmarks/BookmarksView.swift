@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct BookmarksView: View {
-    @ObservedObject var model: BookmarksViewModel
+    
+    @StateObject var viewModel: BookmarksViewModel
+    
+    
+    init() {
+        self._viewModel = StateObject(wrappedValue: BookmarksViewModel()
+        )
+    }
     
     var body: some View {
-        if model.events.isEmpty {
+        if viewModel.events.isEmpty {
             NoFavorites()
         } else {
             List {
@@ -28,5 +35,5 @@ struct BookmarksView: View {
 }
 
 #Preview {
-    BookmarksView(model: BookmarksViewModel(actions: BookmarksViewActions()))
+
 }
