@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct EventCardView: View {
+    @EnvironmentObject private var coreDataManager: CoreDataManager
     
     let event: ExploreEvent
     var showDetail: (Int) -> Void
@@ -37,7 +38,7 @@ struct EventCardView: View {
                     
                     VStack {
                         Button {
-                            // add bookmark
+                            coreDataManager.createEvent(event: event)
                             print("add/remove bookmark")
                         } label: {
                             ZStack {
@@ -60,7 +61,7 @@ struct EventCardView: View {
                             .foregroundStyle(.appOrangeSecondary)
                             .opacity(0.7)
                         VStack {
-                            Text(event.date)
+                            Text(event.date.formattedDate(format: "dd\nMMM"))
                                 .foregroundStyle(.appDateText)
                                 .airbnbCerealFont(AirbnbCerealFont.book, size: 18)
                                 .multilineTextAlignment(.center)
