@@ -25,7 +25,8 @@ struct BookmarksView: View {
                         SmallEventCard(image: event.image ?? "cardImg1",
                                        date: event.date ?? .now,
                                        title: event.title?.capitalized ?? "No Title",
-                                       place: event.adress ?? "No Adress")
+                                       place: event.adress ?? "No Adress",
+                                       showBookmark: true)
                     }
                     .listRowSeparator(.hidden)
                 }

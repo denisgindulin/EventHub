@@ -48,6 +48,7 @@ struct SmallEventCard: View {
                 Text(title)
                     .airbnbCerealFont(.bold, size: 15)
                     .foregroundStyle(.titleFont)
+                    .lineLimit(2)
                 
                 if showPlace {
                     HStack {
