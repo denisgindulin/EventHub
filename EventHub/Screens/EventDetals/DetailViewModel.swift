@@ -21,6 +21,10 @@ final class DetailViewModel: ObservableObject {
     @Published var event: EventDTO?
     
     // Вычисляемые свойства для удобства использования во View
+    var image: String? {
+        return event?.images.first?.image
+    }
+    
     var title: String {
         event?.title?.capitalized ?? "Нет заголовка"
     }
@@ -53,6 +57,14 @@ final class DetailViewModel: ObservableObject {
         event?.participants?.first?.role?.slug ?? "No Role"
     }
     
+    var adress: String {
+        event?.place?.address ?? "Unknown Address"
+    }
+    
+    var location: String {
+        event?.place?.location ?? "Unknown Location"
+    }
+    
 //    MARK: - Init
     init(eventID: Int, actions: DetailActions, eventService: IEventAPIServiceForDetail) {
         self.eventID = eventID
@@ -72,12 +84,7 @@ final class DetailViewModel: ObservableObject {
             print("Ошибка при получении события: \(error.localizedDescription)")
         }
     }
-
-    let imageUrl = URL(string: "https://images.unsplash.com/photo-1731921954767-8473de81c99e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8")
-    let adress = "36 Guild Street London, UK"
     
-    
-//
     func changeBookmark() {
         
     }

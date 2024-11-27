@@ -50,6 +50,7 @@
 		4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */; };
 		483B91F62CF5D03300A22FD0 /* EventHubContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228386A2CE937A400DCF847 /* EventHubContentView.swift */; };
 		483B91F82CF6102300A22FD0 /* NoFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B91F72CF6102200A22FD0 /* NoFavorites.swift */; };
+		48AD2DC12CF6F75C00944547 /* EventHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48AD2DBF2CF6F75C00944547 /* EventHub.xcdatamodeld */; };
 		6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
 		6C75B38C2CEF8D2B0086A03D /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
 		8763C1652CF269AF002E4535 /* GoogleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8763C1642CF269AF002E4535 /* GoogleButton.swift */; };
@@ -173,6 +174,7 @@
 		4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ex.swift"; sourceTree = "<group>"; };
 		4831BA502CEB2F9500141C9A /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
 		483B91F72CF6102200A22FD0 /* NoFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavorites.swift; sourceTree = "<group>"; };
+		48AD2DC02CF6F75C00944547 /* EventHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventHub.xcdatamodel; sourceTree = "<group>"; };
 		8763C1642CF269AF002E4535 /* GoogleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleButton.swift; sourceTree = "<group>"; };
 		8763C1662CF26A0C002E4535 /* SignInMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMainView.swift; sourceTree = "<group>"; };
 		87D8511F2CF26AAC002DC428 /* SignUpMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpMainView.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				4831BA4C2CEB2F4000141C9A /* Extensions */,
 				2228386C2CE937A700DCF847 /* Assets.xcassets */,
 				2228386E2CE937A700DCF847 /* Preview Content */,
+				48AD2DBF2CF6F75C00944547 /* EventHub.xcdatamodeld */,
 			);
 			path = EventHub;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				1B7EAD222CEBC2D800D2AB3D /* ExploreView.swift in Sources */,
 				483B91F82CF6102300A22FD0 /* NoFavorites.swift in Sources */,
 				87D851242CF30481002DC428 /* AuthViewModel.swift in Sources */,
+				48AD2DC12CF6F75C00944547 /* EventHub.xcdatamodeld in Sources */,
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
 				1B7EAD2F2CEBC38C00D2AB3D /* ProfileViewModel.swift in Sources */,
 				480681962CF4E860001A2D9A /* ShareView.swift in Sources */,
@@ -1207,6 +1211,19 @@
 			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		48AD2DBF2CF6F75C00944547 /* EventHub.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				48AD2DC02CF6F75C00944547 /* EventHub.xcdatamodel */,
+			);
+			currentVersion = 48AD2DC02CF6F75C00944547 /* EventHub.xcdatamodel */;
+			path = EventHub.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2228385D2CE937A400DCF847 /* Project object */;
 }

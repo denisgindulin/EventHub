@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct DetailView: View {
     @ObservedObject var model: DetailViewModel
@@ -16,18 +17,25 @@ struct DetailView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 50) {
                     ZStack(alignment: .bottomTrailing) {
-                        AsyncImage(url: model.imageUrl) { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxHeight: 244)
-                                .clipped()
-                        } placeholder: {
-                            ProgressView()
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 244)
-                        }
-                        
+                        if let imageUrl = model.image,
+                           let url = URL(string: imageUrl) {
+                                KFImage(url)
+                                    .placeholder {
+                                        ShimmerView(ratio: 0.6)
+                                            .scaledToFit()
+                                            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 244)
+                                    }
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: .infinity, maxHeight: 244)
+                                    .clipped()
+                            } else {
+                                Image(.cardImg1)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: .infinity, maxHeight: 244)
+                                    .clipped()
+                            }
                         Button {
                             isPresented = true
                         } label: {
@@ -53,8 +61,8 @@ struct DetailView: View {
                                                 description: model.endDate)
                             
                             DetailComponentView(image: Image(.location),
-                                                title: "viewModel.place",
-                                                description: model.adress)
+                                                title: model.adress,
+                                                description: model.location)
                             
                             DetailComponentView(image: Image(.cardImg2),
                                                 title: model.agentTitle,
@@ -87,4 +95,8 @@ struct DetailView: View {
         }
         .edgesIgnoringSafeArea(.all)
     }
+}
+
+#Preview {
+    DetailView(model: DetailViewModel(eventID: 125721, actions: DetailActions(closed: {}), eventService: EventAPIService()))
 }
