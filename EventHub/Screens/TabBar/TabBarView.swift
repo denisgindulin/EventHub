@@ -7,8 +7,51 @@
 
 import SwiftUI
 
+// MARK: - Tab Enum
+enum Tab: String, CaseIterable {
+    case explore
+    case events
+    case bookmark
+    case map
+    case profile
+    
+    // MARK: - Title for Tabs
+    var title: String {
+        switch self {
+        case .explore:
+            return "Explore"
+        case .events:
+            return "Events"
+        case .map:
+            return "Map"
+        case .profile:
+            return "Profile"
+        case .bookmark:
+            return "" // Bookmark doesn't have a title
+        }
+    }
+    
+    // MARK: - Icon for Tabs
+    var icon: String {
+        switch self {
+        case .explore:
+            return "explore"
+        case .events:
+            return "events"
+        case .map:
+            return "map"
+        case .profile:
+            return "profileTab"
+        case .bookmark:
+            return "bookmark"
+        }
+    }
+}
+
 struct TabBarView: View {
-    @EnvironmentObject var router: NavigationRouter
+    // MARK: - Properties
+    @Binding var selectedTab: Tab
+    var switchTab: (Tab) -> Void
     
     @Namespace private var animationNamespace
     
@@ -56,12 +99,12 @@ struct TabBarView: View {
     private func BookmarkButton(tab: Tab, iconName: String) -> some View {
         Button {
             withAnimation(.easeInOut) {
-                router.switchTab(tab)
+                switchTab(tab)
             }
         } label: {
             ZStack {
                 Circle()
-                    .foregroundColor(router.selectedTab == tab ? .appRed : .appBlue)
+                    .foregroundColor(selectedTab == tab ? .appRed : .appBlue)
                     .frame(width: Drawing.floatingButtonSize, height: Drawing.floatingButtonSize)
                     .shadow(color: Color.blue.opacity(0.3), radius: 10, x: 0, y: 5)
                 
@@ -78,7 +121,7 @@ struct TabBarView: View {
     // MARK: - Tab Bar Button
     private func TabBarButton(tab: Tab, iconName: String, title: String) -> some View {
         Button(action: {
-            router.switchTab(tab)
+           switchTab(tab)
         }) {
             VStack {
                 Image(iconName)
@@ -95,7 +138,7 @@ struct TabBarView: View {
                 }
             }
             .frame(width: Drawing.buttonSize)
-            .foregroundColor(router.selectedTab == tab ? .appBlue : .gray)
+            .foregroundColor(selectedTab == tab ? .appBlue : .gray)
         }
     }
     
@@ -113,4 +156,6 @@ struct TabBarView: View {
         // Equal spacing for edges
         return calculateSpacing() / 2
     }
+    
+
 }

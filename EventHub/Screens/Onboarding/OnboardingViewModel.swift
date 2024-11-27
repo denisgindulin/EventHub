@@ -6,16 +6,9 @@
 //
 
 import SwiftUI
-import Combine
-
-struct OnboardingActions {
-    let showSignIn: CompletionBlock
-    let showTabbar: CompletionBlock
-    let closed: CompletionBlock
-}
 
 final class OnboardingViewModel: ObservableObject {
-    let actions: OnboardingActions
+    private let router: StartRouter
     @Published var currentStep = 0
     
     let onboardingItems = [
@@ -37,8 +30,8 @@ final class OnboardingViewModel: ObservableObject {
     ]
     
     
-    init(actions: OnboardingActions) {
-        self.actions = actions
+    init(router: StartRouter) {
+        self.router = router
     }
     
     func nextStep() {
@@ -54,19 +47,12 @@ final class OnboardingViewModel: ObservableObject {
     }
     
     private func completeOnboarding() {
-        UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
-        showTabBar()
+    
+        onboardingCompleted()
     }
 
-    func showTabBar() {
-        actions.showTabbar()
-    }
-    
-    func showSignInView() {
-        actions.showSignIn()
-    }
-    
-    func close() {
-        actions.closed()
+    //MARK: - NavigationState
+    func onboardingCompleted() {
+        router.updateRouterState(with: .onboardingCompleted)
     }
 }

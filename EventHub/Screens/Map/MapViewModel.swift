@@ -6,17 +6,9 @@
 //
 
 import SwiftUI
-import Combine
 
-struct MapViewActions {
-//    let closed: CompletionBlock
-}
 
 class MapViewModel: ObservableObject {
-    let actions: MapViewActions
-    
-    init(actions: MapViewActions) {
-        self.actions = actions
-    }
+
 }
 

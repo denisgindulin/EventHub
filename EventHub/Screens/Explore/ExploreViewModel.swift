@@ -8,14 +8,8 @@
 import SwiftUI
 import Combine
 
-struct ExploreActions {
-    let showDetail: (Int) -> Void
-    let closed: CompletionBlock
-}
-
+@MainActor
 final class ExploreViewModel: ObservableObject {
-    
-    let actions: ExploreActions
     
     let functionalButtonsNames = ["Today","Films", "Lists"]
     @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
@@ -33,15 +27,14 @@ final class ExploreViewModel: ObservableObject {
     
     var isFavoriteEvent = false
 
-    private let apiService: IEventAPIServiceForExplore
+    private let apiService: IAPIServiceForExplore
     
     private let language = Language.en
     
     private var page: Int = 1
     
     // MARK: - INIT
-    init(actions: ExploreActions, apiService: IEventAPIServiceForExplore) {
-        self.actions = actions
+    init(apiService: IAPIServiceForExplore) {
         self.apiService = apiService
     }
     
@@ -107,12 +100,7 @@ final class ExploreViewModel: ObservableObject {
     
 //    MARK: -  Navigation
     func showDetail(_ eventID: Int) {
-        print("showDetails: \(eventID)")
-        actions.showDetail(eventID)
-    }
-    
-    func close() {
-        actions.closed()
+
     }
     
     

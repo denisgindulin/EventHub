@@ -9,31 +9,38 @@ import SwiftUI
 import Swinject
 
 struct EventHubContentView: View {
-    @EnvironmentObject var router: NavigationRouter
+    @State private var selectedTab: Tab = .explore
+    private let router: StartRouter
+    private let eventAPIManager: IEventAPIService
     
-    let container: Container
+    
+    init(router: StartRouter, eventAPIManager: IEventAPIService) {
+        self.router = router
+        self.eventAPIManager = eventAPIManager
+    }
+    
+    func switchTab(_ tab: Tab) {
+        selectedTab = tab
+    }
     
     var body: some View {
-        VStack(spacing: 0) {
-            Group {
-                switch router.selectedTab {
-                case .explore:
-                    let actions = container.resolve(ExploreActions.self)!
-                    container.resolve(ExploreView.self, argument: actions)
-                case .events:
-                    container.resolve(EventsView.self, argument: EventsActions(closed: {}))!
-                case .bookmark:
-                    container.resolve(BookmarksView.self, argument: BookmarksViewActions())!
-                case .map:
-                    container.resolve(MapView.self, argument: MapViewActions())!
-                case .profile:
-                    container.resolve(ProfileView.self, argument: ProfileActions())!
-                }
+        ZStack(alignment: .bottom) {
+            switch selectedTab {
+            case .explore:
+                ExploreView(exploreAPIService: eventAPIManager)
+            case .events:
+                EventsView(eventAPIService: eventAPIManager)
+            case .map:
+                MapView()
+            case .bookmark:
+                BookmarksView()
+            case .profile:
+                ProfileView(router: router)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            TabBarView()
+            TabBarView(selectedTab: $selectedTab, switchTab: switchTab)
         }
-        .ignoresSafeArea()
+        .edgesIgnoringSafeArea(.bottom)
     }
+    
+
 }
