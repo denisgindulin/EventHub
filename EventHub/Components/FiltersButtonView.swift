@@ -31,14 +31,14 @@ struct FiltersButtonView: View {
                     .frame(width: 24, height: 24)
                 
                 Text("Filters")
-                    .frame(width: 35, height: 16, alignment: .leading)
+                    .frame(width: 36, height: 16, alignment: .leading)
                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                     .foregroundStyle(Color.white)
                     .padding(.trailing, 1)
             }
             .padding(5)
-            .frame(width: 75, height: 32.1)
-            .background(.appPurple)
+            .frame(height: 32.1) // width auto
+            .background(.filterButton)
             .clipShape(Capsule())
         }
     }

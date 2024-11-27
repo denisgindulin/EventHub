@@ -17,18 +17,19 @@ final class ExploreViewModel: ObservableObject {
     
     let actions: ExploreActions
     
-    let currentPosition: String = "New York, USA"
+    let functionalButtonsNames = ["Today","Films", "Lists"]
+    @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
+    @Published var currentPosition: String = "Moscow"
+    @Published var searchText: String = ""
     
-    @Published var searchString: String = ""
-    
-    @Published var upcomingEvents: [Event] = []
-    @Published var nearbyYouEvents: [Event] = []
+    @Published var upcomingEvents: [ExploreEvent] = []
+    @Published var nearbyYouEvents: [ExploreEvent] = []
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
     
     @Published var error: Error? = nil
     @Published var currentCategory: String? = nil
-    @Published var currentLocation: String = "msk"
+    @Published var currentLocation: String = "new-york"
     
     var isFavoriteEvent = false
 
@@ -85,7 +86,7 @@ final class ExploreViewModel: ObservableObject {
                 page
             )
             
-            upcomingEvents = eventsDTO.map { Event(dto: $0, isFavorite: isFavoriteEvent) }
+            upcomingEvents = eventsDTO.map { ExploreEvent(dto: $0, isFavorite: isFavoriteEvent) }
         } catch {
             self.error = error
         }
@@ -98,7 +99,7 @@ final class ExploreViewModel: ObservableObject {
                 currentLocation,
                 page
             )
-            nearbyYouEvents = eventsDTO.map { Event(dto: $0, isFavorite: isFavoriteEvent) }
+            nearbyYouEvents = eventsDTO.map { ExploreEvent(dto: $0, isFavorite: isFavoriteEvent) }
         } catch {
             self.error = error
         }

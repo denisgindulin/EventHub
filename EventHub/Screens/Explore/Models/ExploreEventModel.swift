@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct Event: Identifiable {
+struct ExploreEvent: Identifiable {
     let id: Int
     let title: String
     let visitors: [Visitor]?
     let date: String
     let adress: String
-    let image: String? // url/data ?
+    let image: String?
     let isFavorite: Bool
     
-    static let example = Event(
+    static let example = ExploreEvent(
         id: 123,
         title: "Internationl Band Muzzzzz",
         visitors: [Visitor(image: "visitor", name: "Sonya"),
@@ -31,7 +31,7 @@ struct Event: Identifiable {
         image: "cardImg1", isFavorite: true )
 }
 
-extension Event {
+extension ExploreEvent {
     init(dto: EventDTO, isFavorite: Bool) {
         self.id = dto.id
         self.title = dto.title ?? "No Title"
