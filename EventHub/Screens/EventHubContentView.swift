@@ -21,7 +21,7 @@ struct EventHubContentView: View {
                     let actions = container.resolve(ExploreActions.self)!
                     container.resolve(ExploreView.self, argument: actions)
                 case .events:
-                    container.resolve(EventsView.self, argument: EventsActions())!
+                    container.resolve(EventsView.self, argument: EventsActions(closed: {}))!
                 case .bookmark:
                     container.resolve(BookmarksView.self, argument: BookmarksViewActions())!
                 case .map:

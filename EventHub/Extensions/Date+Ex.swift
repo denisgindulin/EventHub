@@ -15,6 +15,11 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func iso8601Format() -> String {
+           let formatter = ISO8601DateFormatter()
+           return formatter.string(from: self)
+       }
+    
     private func daySuffix() -> String {
             let calendar = Calendar.current
             let day = calendar.component(.day, from: self)

@@ -95,6 +95,37 @@ final class EventAPIService: APIService, IEventAPIService {
         }
     }
     
+    func getUpcomingEvents(_ actualSince: String, _ actualUntil: String, _ language: Language, _ page: Int?) async throws -> [EventDTO] {
+        let apiSpec: EventAPISpec = .getUpcominglEvents(
+            actualSince: actualSince,
+            actualUntil: actualUntil,
+            language: language,
+            page: page
+        )
+
+        do {
+            if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
+                return response.results
+            }
+        } catch {
+            print(error)
+        }
+        return []
+    }
+    
+    func getPastEventsEvents(_ actualUntil: String, _ language: Language, _ page: Int?) async throws -> [EventDTO] {
+        let apiSpec: EventAPISpec = .getPastEvents(actualUntil: actualUntil, language: language, page: page)
+
+        do {
+            if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
+                return response.results
+            }
+        } catch {
+            print(error)
+        }
+        return []
+    }
+    
     // MARK: - Search
     /// Searches for events using a text query.
     func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO? {
