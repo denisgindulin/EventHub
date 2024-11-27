@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B7EAD0C2CEBC16C00D2AB3D /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 1B7EAD0B2CEBC16C00D2AB3D /* Swinject */; };
 		1B7EAD122CEBC1FF00D2AB3D /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD112CEBC1FF00D2AB3D /* OnboardingView.swift */; };
 		1B7EAD222CEBC2D800D2AB3D /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD212CEBC2D800D2AB3D /* ExploreView.swift */; };
 		1B7EAD282CEBC34F00D2AB3D /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD272CEBC34F00D2AB3D /* EventsView.swift */; };
@@ -26,7 +25,6 @@
 		22FE3C2A2CF28E4B00FAEACF /* TextOnlyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C292CF28E4B00FAEACF /* TextOnlyButton.swift */; };
 		22FE3C2C2CF2F64900FAEACF /* EventReminderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C2B2CF2F64900FAEACF /* EventReminderCard.swift */; };
 		22FE3C2E2CF334C000FAEACF /* SignOutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C2D2CF334C000FAEACF /* SignOutButton.swift */; };
-		4806818B2CF20BFC001A2D9A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4806818A2CF20BFC001A2D9A /* Swinject */; };
 		4806818E2CF20C28001A2D9A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4806818D2CF20C28001A2D9A /* Kingfisher */; };
 		480681922CF34DC2001A2D9A /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681912CF34DC2001A2D9A /* BottomSheet.swift */; };
 		480681942CF4E5E5001A2D9A /* SocialNetworksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480681932CF4E5E5001A2D9A /* SocialNetworksView.swift */; };
@@ -251,7 +249,6 @@
 				AD4D777D2CF30B6E0049493B /* FirebaseStorage in Frameworks */,
 				AD4D77572CF30B6E0049493B /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				AD4D77612CF30B6E0049493B /* FirebaseCore in Frameworks */,
-				1B7EAD0C2CEBC16C00D2AB3D /* Swinject in Frameworks */,
 				AD4D77862CF30B800049493B /* GoogleSignInSwift in Frameworks */,
 				AD4D77752CF30B6E0049493B /* FirebaseMLModelDownloader in Frameworks */,
 				AD4D77672CF30B6E0049493B /* FirebaseDynamicLinks in Frameworks */,
@@ -267,7 +264,6 @@
 				AD4D777F2CF30B6E0049493B /* FirebaseStorageCombine-Community in Frameworks */,
 				AD4D777B2CF30B6E0049493B /* FirebaseRemoteConfig in Frameworks */,
 				AD4D77532CF30B6E0049493B /* FirebaseAnalytics in Frameworks */,
-				4806818B2CF20BFC001A2D9A /* Swinject in Frameworks */,
 				AD4D77792CF30B6E0049493B /* FirebasePerformance in Frameworks */,
 				AD4D77632CF30B6E0049493B /* FirebaseCrashlytics in Frameworks */,
 				AD4D775B2CF30B6E0049493B /* FirebaseAppDistribution-Beta in Frameworks */,
@@ -668,7 +664,6 @@
 			);
 			name = EventHub;
 			packageProductDependencies = (
-				4806818A2CF20BFC001A2D9A /* Swinject */,
 				4806818D2CF20C28001A2D9A /* Kingfisher */,
 				AD4D77522CF30B6E0049493B /* FirebaseAnalytics */,
 				AD4D77542CF30B6E0049493B /* FirebaseAnalyticsOnDeviceConversion */,
@@ -726,7 +721,6 @@
 			);
 			mainGroup = 2228385C2CE937A400DCF847;
 			packageReferences = (
-				480681892CF20BFC001A2D9A /* XCRemoteSwiftPackageReference "Swinject" */,
 				4806818C2CF20C28001A2D9A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				480681902CF271EB001A2D9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				AD4D77822CF30B800049493B /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
@@ -1074,22 +1068,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1B7EAD0A2CEBC16C00D2AB3D /* XCRemoteSwiftPackageReference "Swinject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Swinject/Swinject";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.1;
-			};
-		};
-		480681892CF20BFC001A2D9A /* XCRemoteSwiftPackageReference "Swinject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Swinject/Swinject";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.1;
-			};
-		};
 		4806818C2CF20C28001A2D9A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1117,16 +1095,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1B7EAD0B2CEBC16C00D2AB3D /* Swinject */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1B7EAD0A2CEBC16C00D2AB3D /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = Swinject;
-		};
-		4806818A2CF20BFC001A2D9A /* Swinject */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 480681892CF20BFC001A2D9A /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = Swinject;
-		};
 		4806818D2CF20C28001A2D9A /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4806818C2CF20C28001A2D9A /* XCRemoteSwiftPackageReference "Kingfisher" */;
