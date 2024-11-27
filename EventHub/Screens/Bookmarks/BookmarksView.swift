@@ -8,21 +8,32 @@
 import SwiftUI
 
 struct BookmarksView: View {
+    @EnvironmentObject private var coreDataManager: CoreDataManager
     @ObservedObject var model: BookmarksViewModel
     
+    init(model: BookmarksViewModel) {
+        self.model = model
+    }
+    
     var body: some View {
-        if model.events.isEmpty {
-            NoFavorites()
-        } else {
-            List {
-                SmallEventCard(image: "cardImg1",
-                               date: .now,
-                               title: "Jo Malone London’s Mother’s Day Presents",
-                               place: "Radius Gallery • Santa Cruz, CA",
-                               showBookmark: true)
-                .listRowSeparator(.hidden)
+        VStack {
+            if coreDataManager.events.isEmpty {
+                NoFavorites()
+            } else {
+                List {
+                    ForEach(coreDataManager.events) { event in
+                        SmallEventCard(image: event.image ?? "cardImg1",
+                                       date: event.date ?? .now,
+                                       title: event.title?.capitalized ?? "No Title",
+                                       place: event.adress ?? "No Adress")
+                    }
+                    .listRowSeparator(.hidden)
+                }
+                .listStyle(.inset)
             }
-            .listStyle(.inset)
+        }
+        .onAppear {
+            coreDataManager.fetchEvents()
         }
     }
 }

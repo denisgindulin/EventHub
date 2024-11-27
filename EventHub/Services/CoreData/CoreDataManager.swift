@@ -28,24 +28,13 @@ final class CoreDataManager: ObservableObject {
         }
     }
     
-    func createEvent(event: EventDTO) {
+    func createEvent(event: ExploreEvent) {
         let favoriteEvent = FavoriteEvent(context: viewContext)
         favoriteEvent.id = Int64(event.id)
         favoriteEvent.title = event.title
-        favoriteEvent.descript = event.description
-        favoriteEvent.bodyText = event.bodyText
-        favoriteEvent.image = event.images.first?.image
-        
-        if let startTimestamp = event.dates.first?.start {
-            favoriteEvent.start = Date(timeIntervalSince1970: TimeInterval(startTimestamp))
-        }
-        
-        if let endTimestamp = event.dates.first?.end {
-            favoriteEvent.end = Date(timeIntervalSince1970: TimeInterval(endTimestamp))
-        }
-        
-        favoriteEvent.startDate = event.dates.first?.startDate
-        favoriteEvent.endTime = event.dates.first?.endTime
+        favoriteEvent.date = event.date
+        favoriteEvent.adress = event.adress
+        favoriteEvent.image = event.image
         
         saveContext()
         fetchEvents()

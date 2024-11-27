@@ -11,7 +11,7 @@ struct ExploreEvent: Identifiable {
     let id: Int
     let title: String
     let visitors: [Visitor]?
-    let date: String
+    let date: Date
     let adress: String
     let image: String?
     let isFavorite: Bool
@@ -26,7 +26,7 @@ struct ExploreEvent: Identifiable {
                    // Visitor(image: "visitor", name: "Sonya"),
                    // Visitor(image: "visitor", name: "Sonya"),
                    Visitor(image: "visitor", name: "Sonya")],
-        date: "10 JUN",
+        date: .now,
         adress: "36 Guild Street London, UK",
         image: "cardImg1", isFavorite: true )
 }
@@ -41,9 +41,7 @@ extension ExploreEvent {
                 name: participant.agent?.title ?? "No participant"
             )
         }
-        self.date = dto.dates.first?.startDate ??
-            (Date(timeIntervalSince1970: TimeInterval(dto.dates.first?.start ?? 1489312800)))
-                .formattedDate(format: "dd\nMMM")
+        self.date = (Date(timeIntervalSince1970: TimeInterval(dto.dates.first?.start ?? 1489312800)))
         self.adress = dto.place?.address ?? "Unknown Address"
         self.image = dto.images.first?.image
         self.isFavorite = isFavorite
