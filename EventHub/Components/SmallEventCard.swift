@@ -26,45 +26,51 @@ struct SmallEventCard: View {
     }
     
     var body: some View {
-        HStack(alignment: .top, spacing: 18) {
-            let url = URL(string: image) 
-            KFImage(url)
-                .placeholder {
-                    ShimmerView(ratio: 1.6)
-                        .scaledToFit()
-                        .frame(width: 80, height: 92)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
-                .resizable()
-                .scaledToFill()
-                .frame(width: 80, height: 92)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-        
-            VStack( alignment: .leading, spacing: 4) {
-                Text(showPlace ? date.formattedDate(format: "E, MMM d • h:mm a") : date.formattedWithSuffix())
-                    .airbnbCerealFont(showPlace ? .book : .medium, size: 13)
-                    .foregroundStyle(.appBlue)
-                
-                Text(title)
-                    .airbnbCerealFont(.bold, size: 15)
-                    .foregroundStyle(.titleFont)
-                    .lineLimit(2)
-                
-                if showPlace {
-                    HStack {
-                        Image(.mapPin)
-                            .resizable()
+        ZStack(alignment: .topTrailing) {
+            HStack(alignment: .top, spacing: 18) {
+                let url = URL(string: image)
+                KFImage(url)
+                    .placeholder {
+                        ShimmerView(ratio: 1.6)
                             .scaledToFit()
-                            .frame(width: 14, height: 14)
-                        Text(place)
-                            .airbnbCerealFont(.book, size: 13)
-                            .lineLimit(1)
+                            .frame(width: 80, height: 92)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
-                    .foregroundStyle(.appDarkGray)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 80, height: 92)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                VStack( alignment: .leading, spacing: 4) {
+                    Text(showPlace ? date.formattedDate(format: "E, MMM d • h:mm a") : date.formattedWithSuffix())
+                        .airbnbCerealFont(showPlace ? .book : .medium, size: 13)
+                        .foregroundStyle(.appBlue)
+                    
+                    Text(title)
+                        .airbnbCerealFont(.bold, size: 15)
+                        .foregroundStyle(.titleFont)
+                        .lineLimit(2)
+                    if showPlace {
+                        HStack {
+                            Image(.mapPin)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 14, height: 14)
+                            Text(place)
+                                .airbnbCerealFont(.book, size: 13)
+                                .lineLimit(1)
+                        }
+                        .foregroundStyle(.appDarkGray)
+                    }
                 }
+                Spacer()
             }
+            .padding(7)
+            .frame(maxWidth: .infinity)
+            .background(.appBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(color: .titleFont.opacity(0.1), radius: 8, x: 0, y: 10)
             
-            Spacer()
             if showBookmark {
                 VStack {
                     Button {
@@ -74,13 +80,9 @@ struct SmallEventCard: View {
                             .foregroundStyle(.appRed)
                     }
                 }
+                .padding(8)
             }
         }
-        .padding(7)
-        .frame(maxWidth: .infinity)
-        .background(.appBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(color: .titleFont.opacity(0.1), radius: 8, x: 0, y: 10)
     }
 }
 
