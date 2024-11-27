@@ -52,4 +52,10 @@ final class CoreDataManager: ObservableObject {
             print("Не удалось получить события: \(nserror), \(nserror.userInfo)")
         }
     }
+    
+    func deleteEvent(event: FavoriteEvent) {
+        viewContext.delete(event)
+        saveContext()
+        fetchEvents()
+    }
 }

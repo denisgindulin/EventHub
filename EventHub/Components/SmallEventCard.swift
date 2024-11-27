@@ -15,14 +15,16 @@ struct SmallEventCard: View {
     let place: String
     let showPlace: Bool
     let showBookmark: Bool
+    let bookmarkAction: (() -> Void)?
     
-    init(image: String, date: Date, title: String, place: String, showPlace: Bool = true, showBookmark: Bool = false) {
+    init(image: String, date: Date, title: String, place: String, showPlace: Bool = true, showBookmark: Bool = false, bookmarkAction: (() -> Void)? = nil) {
         self.image = image
         self.date = date
         self.title = title
         self.place = place
         self.showPlace = showPlace
         self.showBookmark = showBookmark
+        self.bookmarkAction = bookmarkAction
     }
     
     var body: some View {
@@ -74,7 +76,7 @@ struct SmallEventCard: View {
             if showBookmark {
                 VStack {
                     Button {
-                        //
+                        bookmarkAction?()
                     } label: {
                         Image(systemName: "bookmark.fill")
                             .foregroundStyle(.appRed)

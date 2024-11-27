@@ -26,15 +26,22 @@ struct BookmarksView: View {
                                        date: event.date ?? .now,
                                        title: event.title?.capitalized ?? "No Title",
                                        place: event.adress ?? "No Adress",
-                                       showBookmark: true)
+                                       showBookmark: true) { coreDataManager.deleteEvent(event: event) }
                     }
                     .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
                 }
                 .listStyle(.inset)
             }
         }
         .onAppear {
             coreDataManager.fetchEvents()
+        }
+    }
+    
+    func deleteEvent(offsets: IndexSet) {
+        offsets.map { coreDataManager.events[$0] }.forEach { event in
+            coreDataManager.deleteEvent(event: event)
         }
     }
 }
