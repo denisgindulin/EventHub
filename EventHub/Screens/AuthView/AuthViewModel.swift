@@ -39,7 +39,9 @@ enum ErrorMessages {
 
 
 @MainActor
-class AuthViewModel: ObservableObject{
+final class AuthViewModel: ObservableObject{
+    private let router: StartRouter
+    
     @Published  var name: String = ""
     @Published  var email: String = ""
     @Published  var password2: String = ""
@@ -49,9 +51,11 @@ class AuthViewModel: ObservableObject{
     @Published var authenticationState: authStatus = .unauthenticated
     @Published var displayName: String = ""
     
-    init() {
+    init(router: StartRouter) {
+        self.router = router
       registerAuthStateHandler()
     }
+    
     // MARK: - Handle Whether User Logged or not
     private var authStateHandler: AuthStateDidChangeListenerHandle?
     func registerAuthStateHandler() {
@@ -193,6 +197,9 @@ class AuthViewModel: ObservableObject{
          }
      }
     
-    
+    //MARK: - NavigationState
+    func userAuthenticated() {
+        router.updateRouterState(with: .userAuthorized)
+    }
     
 }

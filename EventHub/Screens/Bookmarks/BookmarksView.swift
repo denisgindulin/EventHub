@@ -9,7 +9,13 @@ import SwiftUI
 
 struct BookmarksView: View {
     @EnvironmentObject private var coreDataManager: CoreDataManager
-    @ObservedObject var model: BookmarksViewModel
+    @StateObject var viewModel: BookmarksViewModel
+    
+    
+    init() {
+        self._viewModel = StateObject(wrappedValue: BookmarksViewModel()
+        )
+    }
     
     init(model: BookmarksViewModel) {
         self.model = model
@@ -47,5 +53,5 @@ struct BookmarksView: View {
 }
 
 #Preview {
-    BookmarksView(model: BookmarksViewModel(actions: BookmarksViewActions()))
+
 }

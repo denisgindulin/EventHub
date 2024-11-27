@@ -8,10 +8,6 @@
 import SwiftUI
 import Combine
 
-struct EventsActions {
-    let closed: CompletionBlock
-}
-
 // MARK: - FetchTaskToken
 
 struct FetchTaskToken: Equatable {
@@ -22,8 +18,6 @@ struct FetchTaskToken: Equatable {
 // MARK: - EventsViewModel
 final class EventsViewModel: ObservableObject {
     // MARK: - Properties
-    
-    let actions: EventsActions
     
     private let apiService: IEventAPIServiceForEvents
     private let cache: DiskCache<[EventDTO]>
@@ -38,8 +32,7 @@ final class EventsViewModel: ObservableObject {
     private var page: Int = 1
     
     // MARK: - Initialization
-    init(actions: EventsActions, apiService: IEventAPIServiceForEvents) {
-        self.actions = actions
+    init(apiService: IEventAPIServiceForEvents) {
         self.apiService = apiService
         self.cache = DiskCache<[EventDTO]>(
             filename: "xca_events",

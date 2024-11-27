@@ -9,11 +9,11 @@ import Foundation
 
 
 /// Tuple alias combining all event-related protocols.
-typealias IEventAPIService = IEventAPIServiceForExplore & IEventAPIServiceForDetail & IEventAPIServiceForSearch & IEventAPIServiceForEvents
+typealias IEventAPIService = IAPIServiceForExplore & IEventAPIServiceForDetail & IEventAPIServiceForSearch & IEventAPIServiceForEvents
 
 /// Protocol for fetching event data related to exploration.
 /// Includes methods for retrieving locations, categories, and events.
-protocol IEventAPIServiceForExplore: IEventAPIServiceForSearch {
+protocol IAPIServiceForExplore: IEventAPIServiceForSearch {
     /// Fetches a list of locations.
     /// - Parameter language: The language for location names.
     /// - Returns: An array of `EventLocation`.

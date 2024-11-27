@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @ObservedObject var model: ProfileViewModel
+    @StateObject var viewModel: ProfileViewModel
+    
+    init(router: StartRouter) {
+        self._viewModel = StateObject(
+            wrappedValue: ProfileViewModel(router: router)
+        )
+    }
+    
     var body: some View {
         Text("C")
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventHubApp.dependencyProvider.assembler.resolver.resolve(ProfileView.self)!
-    }
-}
+
