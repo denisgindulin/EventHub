@@ -13,12 +13,7 @@ struct BookmarksView: View {
     
     
     init() {
-        self._viewModel = StateObject(wrappedValue: BookmarksViewModel()
-        )
-    }
-    
-    init(model: BookmarksViewModel) {
-        self.model = model
+        self._viewModel = StateObject(wrappedValue: BookmarksViewModel())
     }
     
     var body: some View {
