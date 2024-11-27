@@ -13,6 +13,7 @@ struct BookmarksViewActions {
 }
 
 class BookmarksViewModel: ObservableObject {
+    @Published var events: [EventDTO] = []
     let actions: BookmarksViewActions
     
     init(actions: BookmarksViewActions) {

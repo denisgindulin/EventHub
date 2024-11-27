@@ -12,6 +12,9 @@ import FirebaseCore
 struct EventHubApp: App {
     static let dependencyProvider = DependencyProvider()
     
+    // Инициализируем CoreDataManager
+    @StateObject private var coreDataManager = CoreDataManager()
+    
     init(){
         FirebaseApp.configure()
     }
@@ -20,6 +23,8 @@ struct EventHubApp: App {
     var body: some Scene {
         WindowGroup {
             RootViewControllerWrapper(dependencyProvider: EventHubApp.dependencyProvider)
+                .environment(\.managedObjectContext, coreDataManager.viewContext)
+                .environmentObject(coreDataManager)
         }
     }
 }
