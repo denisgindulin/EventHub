@@ -9,8 +9,12 @@ import SwiftUI
 import Kingfisher
 
 struct DetailView: View {
-    @StateObject var viewModel = DetailViewModel(eventID: 125721, eventService: EventAPIService())
+    @StateObject var viewModel: DetailViewModel
     @State private var isPresented: Bool = false
+    
+    init() {
+        _viewModel = StateObject(wrappedValue: DetailViewModel(eventID: 125721, eventService: EventAPIService()))
+    }
     
     var body: some View {
         ZStack {
