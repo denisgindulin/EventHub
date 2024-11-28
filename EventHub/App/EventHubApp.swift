@@ -14,10 +14,8 @@ struct EventHubApp: App {
     // Инициализируем CoreDataManager
     @StateObject private var coreDataManager = CoreDataManager()
     
-    init() {
+    init(){
         FirebaseApp.configure()
-        
-        DIContainer.register({ EventAPIService() as IAPIServiceForExplore & IAPIServiceForDetail }, forKey: .networkService, lifecycle: .singleton)
     }
     
 

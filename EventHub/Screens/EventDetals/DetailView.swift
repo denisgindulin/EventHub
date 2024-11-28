@@ -9,14 +9,11 @@ import SwiftUI
 import Kingfisher
 
 struct DetailView: View {
-    @StateObject private var viewModel: DetailViewModel
-    
+    @StateObject var viewModel: DetailViewModel
     @State private var isPresented: Bool = false
     
-//    MARK: - Init
-    init(detailID: Int) {
-        self._viewModel = StateObject(wrappedValue: DetailViewModel(eventID: detailID)
-        )
+    init() {
+        _viewModel = StateObject(wrappedValue: DetailViewModel(eventID: 125721, eventService: EventAPIService()))
     }
     
     var body: some View {
@@ -26,23 +23,23 @@ struct DetailView: View {
                     ZStack(alignment: .bottomTrailing) {
                         if let imageUrl = viewModel.image,
                            let url = URL(string: imageUrl) {
-                            KFImage(url)
-                                .placeholder {
-                                    ShimmerView(ratio: 0.6)
-                                        .scaledToFit()
-                                        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 244)
-                                }
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: .infinity, maxHeight: 244)
-                                .clipped()
-                        } else {
-                            Image(.cardImg1)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: .infinity, maxHeight: 244)
-                                .clipped()
-                        }
+                                KFImage(url)
+                                    .placeholder {
+                                        ShimmerView(ratio: 0.6)
+                                            .scaledToFit()
+                                            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 244)
+                                    }
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: .infinity, maxHeight: 244)
+                                    .clipped()
+                            } else {
+                                Image(.cardImg1)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(maxWidth: .infinity, maxHeight: 244)
+                                    .clipped()
+                            }
                         Button {
                             isPresented = true
                         } label: {
@@ -102,8 +99,4 @@ struct DetailView: View {
         }
         .edgesIgnoringSafeArea(.all)
     }
-}
-
-#Preview {
-    
 }

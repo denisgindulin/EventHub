@@ -57,10 +57,10 @@ struct TabBarView: View {
     
     // MARK: - Drawing Constants
     private enum Drawing {
-        static let tabBarHeight: CGFloat = 88
+        static let tabBarHeight: CGFloat = 80
         static let tabBarCornerRadius: CGFloat = 20
         static let iconSize: CGFloat = 23
-        static let floatingButtonSize: CGFloat = 50
+        static let floatingButtonSize: CGFloat = 64
         static let floatingButtonOffsetY: CGFloat = -32
         static let shadowRadius: CGFloat = 8
         static let fontSize: CGFloat = 12

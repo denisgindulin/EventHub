@@ -20,7 +20,7 @@ extension FavoriteEvent {
         return NSFetchRequest<FavoriteEvent>(entityName: "FavoriteEvent")
     }
 
-    @NSManaged public var id: Int
+    @NSManaged public var id: Int64
     @NSManaged public var image: String?
     @NSManaged public var title: String?
     @NSManaged public var date: Date?
