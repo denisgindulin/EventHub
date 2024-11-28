@@ -79,7 +79,7 @@ final class ExploreViewModel: ObservableObject {
                 page
             )
             
-            upcomingEvents = eventsDTO.map { ExploreEvent(dto: $0, isFavorite: isFavoriteEvent) }
+            upcomingEvents = eventsDTO.map { ExploreEvent(dto: $0) }
         } catch {
             self.error = error
         }
@@ -92,7 +92,7 @@ final class ExploreViewModel: ObservableObject {
                 currentLocation,
                 page
             )
-            nearbyYouEvents = eventsDTO.map { ExploreEvent(dto: $0, isFavorite: isFavoriteEvent) }
+            nearbyYouEvents = eventsDTO.map { ExploreEvent(dto: $0) }
         } catch {
             self.error = error
         }
