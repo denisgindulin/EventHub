@@ -13,7 +13,7 @@ struct ShareView: View {
     var body: some View {
         BottomSheetView(isOpen: $isPresented, maxHeight: 360) {
             VStack(alignment: .leading) {
-                Text("Share with frieds")
+                Text("Share with friends")
                     .airbnbCerealFont(.medium, size: 24)
                     .multilineTextAlignment(.leading)
                 SocialNetworksView()

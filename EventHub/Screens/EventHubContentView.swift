@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Swinject
+//import Swinject
 
 struct EventHubContentView: View {
     @State private var selectedTab: Tab = .explore
