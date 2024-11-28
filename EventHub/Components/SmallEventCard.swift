@@ -93,5 +93,5 @@ struct SmallEventCard: View {
     SmallEventCard(image: "cardImg1",
                    date: .now,
                    title: "Jo Malone London’s Mother’s Day Presents",
-                   place: "Radius Gallery • Santa Cruz, CAsdf", showBookmark: true)
+                   place: "Radius Gallery • Santa Cruz, CA", showBookmark: true)
 }
