@@ -37,10 +37,11 @@
 		4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */; };
 		483B91F62CF5D03300A22FD0 /* EventHubContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2228386A2CE937A400DCF847 /* EventHubContentView.swift */; };
 		483B91F82CF6102300A22FD0 /* NoFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B91F72CF6102200A22FD0 /* NoFavorites.swift */; };
+		487957712CF75CB40079EA41 /* FavoriteEvent+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4879576F2CF75CB40079EA41 /* FavoriteEvent+CoreDataClass.swift */; };
 		48AD2DC12CF6F75C00944547 /* EventHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48AD2DBF2CF6F75C00944547 /* EventHub.xcdatamodeld */; };
-		48AD2DC42CF7052100944547 /* FavoriteEvent+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AD2DC22CF7052100944547 /* FavoriteEvent+CoreDataClass.swift */; };
 		48AD2DC82CF705DC00944547 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AD2DC72CF705DC00944547 /* PersistenceController.swift */; };
 		48AD2DCA2CF7083E00944547 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AD2DC92CF7083E00944547 /* CoreDataManager.swift */; };
+		48C66CFA2CF87EBE006339CD /* FavoriteEventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C66CF92CF87EBC006339CD /* FavoriteEventsList.swift */; };
 		6C1AEC1B2CF51EED00125117 /* ProfileViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1AEC1A2CF51EED00125117 /* ProfileViewTest.swift */; };
 		6C1AEC1D2CF5275D00125117 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1AEC1C2CF5275D00125117 /* EditButton.swift */; };
 		6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
@@ -169,10 +170,11 @@
 		4831BA4D2CEB2F4B00141C9A /* View+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ex.swift"; sourceTree = "<group>"; };
 		4831BA502CEB2F9500141C9A /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
 		483B91F72CF6102200A22FD0 /* NoFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavorites.swift; sourceTree = "<group>"; };
+		4879576F2CF75CB40079EA41 /* FavoriteEvent+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEvent+CoreDataClass.swift"; sourceTree = "<group>"; };
 		48AD2DC02CF6F75C00944547 /* EventHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventHub.xcdatamodel; sourceTree = "<group>"; };
-		48AD2DC22CF7052100944547 /* FavoriteEvent+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteEvent+CoreDataClass.swift"; sourceTree = "<group>"; };
 		48AD2DC72CF705DC00944547 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		48AD2DC92CF7083E00944547 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		48C66CF92CF87EBC006339CD /* FavoriteEventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventsList.swift; sourceTree = "<group>"; };
 		6C1AEC1A2CF51EED00125117 /* ProfileViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTest.swift; sourceTree = "<group>"; };
 		6C1AEC1C2CF5275D00125117 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerImageView.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				1B7EAD362CEBC3CF00D2AB3D /* BookmarksView.swift */,
+				48C66CF92CF87EBC006339CD /* FavoriteEventsList.swift */,
 				483B91F72CF6102200A22FD0 /* NoFavorites.swift */,
 				1B7EAD382CEBC3D900D2AB3D /* BookmarksViewModel.swift */,
 			);
@@ -517,7 +520,7 @@
 			children = (
 				48AD2DC72CF705DC00944547 /* PersistenceController.swift */,
 				48AD2DC92CF7083E00944547 /* CoreDataManager.swift */,
-				48AD2DC22CF7052100944547 /* FavoriteEvent+CoreDataClass.swift */,
+				4879576F2CF75CB40079EA41 /* FavoriteEvent+CoreDataClass.swift */,
 				48AD2DBF2CF6F75C00944547 /* EventHub.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -773,6 +776,7 @@
 				E10ED0052CF0DE6B00AFDBC2 /* OnboardingPageView.swift in Sources */,
 				E10ED0062CF0DE6B00AFDBC2 /* OnboardingTabView.swift in Sources */,
 				8763C1652CF269AF002E4535 /* GoogleButton.swift in Sources */,
+				487957712CF75CB40079EA41 /* FavoriteEvent+CoreDataClass.swift in Sources */,
 				48AD2DC82CF705DC00944547 /* PersistenceController.swift in Sources */,
 				22FE3C2A2CF28E4B00FAEACF /* TextOnlyButton.swift in Sources */,
 				E10ED0072CF0DE6B00AFDBC2 /* OnboardingControlsView.swift in Sources */,
@@ -814,6 +818,7 @@
 				E165D1BE2CF44F250030BA88 /* DisplayOrderType.swift in Sources */,
 				E10ED0202CF0E2F400AFDBC2 /* ExploreEventModel.swift in Sources */,
 				E1725DB22CF74766001B4920 /* StartRouterView.swift in Sources */,
+				48C66CFA2CF87EBE006339CD /* FavoriteEventsList.swift in Sources */,
 				E10ED03D2CF0E47F00AFDBC2 /* CategoryScroll.swift in Sources */,
 				E165D1C02CF4DF2E0030BA88 /* SeeAllEvents.swift in Sources */,
 				E10ED03E2CF0E47F00AFDBC2 /* ThirdSmallEventCard.swift in Sources */,
@@ -851,7 +856,6 @@
 				87D851242CF30481002DC428 /* AuthViewModel.swift in Sources */,
 				48AD2DC12CF6F75C00944547 /* EventHub.xcdatamodeld in Sources */,
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
-				48AD2DC42CF7052100944547 /* FavoriteEvent+CoreDataClass.swift in Sources */,
 				1B7EAD2F2CEBC38C00D2AB3D /* ProfileViewModel.swift in Sources */,
 				480681962CF4E860001A2D9A /* ShareView.swift in Sources */,
 				1B7EAD372CEBC3CF00D2AB3D /* BookmarksView.swift in Sources */,

@@ -9,6 +9,12 @@ import SwiftUI
 import Kingfisher
 
 struct EventCardView: View {
+    @EnvironmentObject private var coreDataManager: CoreDataManager
+    private var isFavorite: Bool {
+        coreDataManager.events.contains { event in
+            Int(event.id) == self.event.id
+        }
+    }
     
     let event: ExploreEvent
     var showDetail: (Int) -> Void
@@ -20,32 +26,35 @@ struct EventCardView: View {
             VStack(alignment: .leading) {
                 
                 ZStack(alignment: .top) {
-                                        if let imageUrl = event.image, let url = URL(string: imageUrl) {
-                                            KFImage(url)
-                                                .placeholder {
-                                                    ShimmeringImageView() // sizes ??
-                                                }
-                                                .resizable()
-                                                .frame(width: 218, height: 131)
-                                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                        } else {
-                    Image(.cardImg1)
-                        .resizable()
-                        .frame(width: 218, height: 131)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                                        }
+                    if let imageUrl = event.image, let url = URL(string: imageUrl) {
+                        KFImage(url)
+                            .placeholder {
+                                ShimmeringImageView() // sizes ??
+                            }
+                            .resizable()
+                            .frame(width: 218, height: 131)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    } else {
+                        Image(.cardImg1)
+                            .resizable()
+                            .frame(width: 218, height: 131)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
                     
                     VStack {
                         Button {
-                            // add bookmark
-                            print("add/remove bookmark")
+                            if isFavorite {
+                                coreDataManager.deleteEvent(event: event)
+                            } else {
+                                coreDataManager.createEvent(event: event)
+                            }
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 7)
                                     .frame(width: 30, height: 30)
                                     .foregroundStyle(.appOrangeSecondary)
                                     .opacity(0.7)
-                                Image(event.isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
+                                Image(isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
                                     .resizable()
                                     .frame(width: 14, height: 14)
                             }
@@ -60,7 +69,7 @@ struct EventCardView: View {
                             .foregroundStyle(.appOrangeSecondary)
                             .opacity(0.7)
                         VStack {
-                            Text(event.date)
+                            Text(event.date.formattedDate(format: "dd\nMMM"))
                                 .foregroundStyle(.appDateText)
                                 .airbnbCerealFont(AirbnbCerealFont.book, size: 18)
                                 .multilineTextAlignment(.center)
@@ -76,7 +85,7 @@ struct EventCardView: View {
                     .frame(width: 207, height: 21, alignment: .leading)
                     .padding(.bottom,10)
                 
-              
+                
                 if event.visitors?.count == 0 {
                     HStack {
                         ShimmerAvatarView()
@@ -128,7 +137,7 @@ struct EventCardView: View {
                         }
                         .padding(.leading, 25)
                     }
-            }
+                }
                 
                 
                 Button {
@@ -217,9 +226,9 @@ struct EventCardView: View {
         }
         return randomThreeVisitors
     }
-
-    }
     
+}
+
 
 
 #Preview {

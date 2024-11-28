@@ -64,7 +64,9 @@ final class DetailViewModel: ObservableObject {
     init(eventID: Int, eventService: IAPIServiceForDetail = DIContainer.resolve(forKey: .networkService) ?? EventAPIService()) {
         self.eventID = eventID
         self.eventService = eventService
-       
+        Task {
+            await fetchEventDetails()
+        }
     }
     
     // Функция для получения деталей события

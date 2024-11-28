@@ -15,6 +15,7 @@ final class CoreDataManager: ObservableObject {
     
     init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.viewContext = viewContext
+        fetchEvents()
     }
     
     func saveContext() {
@@ -28,24 +29,13 @@ final class CoreDataManager: ObservableObject {
         }
     }
     
-    func createEvent(event: EventDTO) {
+    func createEvent(event: ExploreEvent) {
         let favoriteEvent = FavoriteEvent(context: viewContext)
-        favoriteEvent.id = Int64(event.id)
+        favoriteEvent.id = event.id
         favoriteEvent.title = event.title
-        favoriteEvent.descript = event.description
-        favoriteEvent.bodyText = event.bodyText
-        favoriteEvent.image = event.images.first?.image
-        
-        if let startTimestamp = event.dates.first?.start {
-            favoriteEvent.start = Date(timeIntervalSince1970: TimeInterval(startTimestamp))
-        }
-        
-        if let endTimestamp = event.dates.first?.end {
-            favoriteEvent.end = Date(timeIntervalSince1970: TimeInterval(endTimestamp))
-        }
-        
-        favoriteEvent.startDate = event.dates.first?.startDate
-        favoriteEvent.endTime = event.dates.first?.endTime
+        favoriteEvent.date = event.date
+        favoriteEvent.adress = event.adress
+        favoriteEvent.image = event.image
         
         saveContext()
         fetchEvents()
@@ -61,6 +51,28 @@ final class CoreDataManager: ObservableObject {
         } catch {
             let nserror = error as NSError
             print("Не удалось получить события: \(nserror), \(nserror.userInfo)")
+        }
+    }
+    
+    func deleteEvent(event: FavoriteEvent) {
+        viewContext.delete(event)
+        saveContext()
+        fetchEvents()
+    }
+    
+    func deleteEvent(event: ExploreEvent) {
+        let fetchRequest: NSFetchRequest<FavoriteEvent> = FavoriteEvent.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", event.id)
+        do {
+            let favoriteEvents = try viewContext.fetch(fetchRequest)
+            if let favoriteEvent = favoriteEvents.first {
+                viewContext.delete(favoriteEvent)
+                saveContext()
+                fetchEvents()
+            }
+        } catch {
+            let nserror = error as NSError
+            print("Не удалось удалить событие: \(nserror), \(nserror.userInfo)")
         }
     }
 }
