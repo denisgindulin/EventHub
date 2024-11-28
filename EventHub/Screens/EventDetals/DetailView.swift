@@ -97,6 +97,6 @@ struct DetailView: View {
     }
 }
 
-#Preview {
-
-}
+//#Preview {
+//
+//}

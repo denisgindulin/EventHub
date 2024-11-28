@@ -18,7 +18,7 @@ struct ExploreEvent: Identifiable {
     
     static let example = ExploreEvent(
         id: 123,
-        title: "Internationl Band Muzzzzz",
+        title: "International Band Music Concert",
         visitors: [Visitor(image: "visitor", name: "Sonya"),
                    Visitor(image: "visitor", name: "Sonya"),
                    Visitor(image: "visitor", name: "Sonya"),

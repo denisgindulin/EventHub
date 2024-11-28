@@ -22,6 +22,7 @@
 		222838692CE937A400DCF847 /* EventHubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222838682CE937A400DCF847 /* EventHubApp.swift */; };
 		2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386C2CE937A700DCF847 /* Assets.xcassets */; };
 		222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2228386F2CE937A700DCF847 /* Preview Assets.xcassets */; };
+		225123AE2CF885F400CD8FE9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 225123AD2CF885F400CD8FE9 /* Localizable.xcstrings */; };
 		22FE3C2A2CF28E4B00FAEACF /* TextOnlyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C292CF28E4B00FAEACF /* TextOnlyButton.swift */; };
 		22FE3C2C2CF2F64900FAEACF /* EventReminderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C2B2CF2F64900FAEACF /* EventReminderCard.swift */; };
 		22FE3C2E2CF334C000FAEACF /* SignOutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FE3C2D2CF334C000FAEACF /* SignOutButton.swift */; };
@@ -152,6 +153,7 @@
 		2228386A2CE937A400DCF847 /* EventHubContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHubContentView.swift; sourceTree = "<group>"; };
 		2228386C2CE937A700DCF847 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2228386F2CE937A700DCF847 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		225123AD2CF885F400CD8FE9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		22FE3C292CF28E4B00FAEACF /* TextOnlyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnlyButton.swift; sourceTree = "<group>"; };
 		22FE3C2B2CF2F64900FAEACF /* EventReminderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventReminderCard.swift; sourceTree = "<group>"; };
 		22FE3C2D2CF334C000FAEACF /* SignOutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutButton.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				4831BA4C2CEB2F4000141C9A /* Extensions */,
 				2228386C2CE937A700DCF847 /* Assets.xcassets */,
 				2228386E2CE937A700DCF847 /* Preview Content */,
+				225123AD2CF885F400CD8FE9 /* Localizable.xcstrings */,
 			);
 			path = EventHub;
 			sourceTree = "<group>";
@@ -717,7 +720,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				ru,
 			);
 			mainGroup = 2228385C2CE937A400DCF847;
 			packageReferences = (
@@ -744,6 +747,7 @@
 				4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */,
 				4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */,
 				222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */,
+				225123AE2CF885F400CD8FE9 /* Localizable.xcstrings in Resources */,
 				2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
