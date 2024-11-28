@@ -11,7 +11,7 @@ import Foundation
 final class DetailViewModel: ObservableObject {
     
     private let eventID: Int
-    private let eventService: IEventAPIServiceForDetail
+    private let eventService: IAPIServiceForDetail
     
     @Published var event: EventDTO?
     
@@ -61,18 +61,17 @@ final class DetailViewModel: ObservableObject {
     }
     
 //    MARK: - Init
-    init(eventID: Int, eventService: IEventAPIServiceForDetail) {
+    init(eventID: Int, eventService: IAPIServiceForDetail = DIContainer.resolve(forKey: .networkService) ?? EventAPIService()) {
         self.eventID = eventID
         self.eventService = eventService
+       
     }
     
     // Функция для получения деталей события
     func fetchEventDetails() async {
         do {
             let fetchedEvent = try await eventService.getEventDetails(eventID: eventID)
-            DispatchQueue.main.async {
                 self.event = fetchedEvent
-            }
         } catch {
 //            self.errorMessage = "Не удалось загрузить событие: \(error.localizedDescription)"
             print("Ошибка при получении события: \(error.localizedDescription)")
