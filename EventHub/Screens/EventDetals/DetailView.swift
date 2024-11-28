@@ -85,9 +85,9 @@ struct DetailView: View {
                     .padding(.horizontal, 20)
                 }
             }
-//            .task {
-//                await viewModel.fetchEventDetails()
-//            }
+            .task {
+                await viewModel.fetchEventDetails()
+            }
             .ignoresSafeArea()
             
             if isPresented {

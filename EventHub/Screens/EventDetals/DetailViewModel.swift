@@ -13,7 +13,14 @@ final class DetailViewModel: ObservableObject {
     private let eventID: Int
     private let eventService: IAPIServiceForDetail
     
-    @Published var event: EventDTO?
+    @Published var event: EventDTO? {
+        didSet {
+            self.updateTexts()
+        }
+    }
+    
+    @Published var bodyText: String = "Нет описания"
+    @Published var descriptionText: String = "Нет описания"
     
     // Вычисляемые свойства для удобства использования во View
     var image: String? {
@@ -22,14 +29,6 @@ final class DetailViewModel: ObservableObject {
     
     var title: String {
         event?.title?.capitalized ?? "Нет заголовка"
-    }
-    
-    var description: String {
-        event?.description?.htmlToString ?? "Нет описания"
-    }
-    
-    var bodyText: String {
-        event?.bodyText?.htmlToString ?? "Нет описания"
     }
     
     var startDate: String {
@@ -60,13 +59,15 @@ final class DetailViewModel: ObservableObject {
         event?.place?.location ?? "Unknown Location"
     }
     
-//    MARK: - Init
+    //    MARK: - Init
     init(eventID: Int, eventService: IAPIServiceForDetail = DIContainer.resolve(forKey: .networkService) ?? EventAPIService()) {
         self.eventID = eventID
         self.eventService = eventService
-        Task {
-            await fetchEventDetails()
-        }
+    }
+    
+    private func updateTexts() {
+        self.descriptionText = event?.description?.htmlToString ?? "Нет описания"
+        self.bodyText = event?.bodyText?.htmlToString ?? "Нет описания"
     }
     
     // Функция для получения деталей события
@@ -75,16 +76,7 @@ final class DetailViewModel: ObservableObject {
             let fetchedEvent = try await eventService.getEventDetails(eventID: eventID)
                 self.event = fetchedEvent
         } catch {
-//            self.errorMessage = "Не удалось загрузить событие: \(error.localizedDescription)"
             print("Ошибка при получении события: \(error.localizedDescription)")
         }
     }
-    
-    func changeBookmark() {
-        
-    }
-    
-//    MARK: - Navigation
-
-    
 }
