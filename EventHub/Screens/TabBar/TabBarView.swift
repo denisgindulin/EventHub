@@ -106,7 +106,7 @@ struct TabBarView: View {
                 Circle()
                     .foregroundColor(selectedTab == tab ? .appRed : .appBlue)
                     .frame(width: Drawing.floatingButtonSize, height: Drawing.floatingButtonSize)
-                    .shadow(color: Color.blue.opacity(0.3), radius: 10, x: 0, y: 5)
+                    .shadow(color: selectedTab == tab ? .appRed.opacity(0.3) : .appBlue.opacity(0.3), radius: 10, x: 0, y: 5)
                 
                 Image(iconName)
                     .resizable()

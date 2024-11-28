@@ -52,6 +52,7 @@ struct SmallEventCard: View {
                         .airbnbCerealFont(.bold, size: 15)
                         .foregroundStyle(.titleFont)
                         .lineLimit(2)
+                        .multilineTextAlignment(.leading)
                     if showPlace {
                         HStack {
                             Image(.mapPin)
@@ -78,7 +79,7 @@ struct SmallEventCard: View {
                     Button {
                         bookmarkAction?()
                     } label: {
-                        Image(systemName: "bookmark.fill")
+                        Image(.bookmarkRedFill)
                             .foregroundStyle(.appRed)
                     }
                 }

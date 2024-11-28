@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct DetailView: View {
-    @ObservedObject var model: DetailViewModel
+    @StateObject var viewModel = DetailViewModel(eventID: 125721, eventService: EventAPIService())
     @State private var isPresented: Bool = false
     
     var body: some View {
@@ -17,7 +17,7 @@ struct DetailView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 50) {
                     ZStack(alignment: .bottomTrailing) {
-                        if let imageUrl = model.image,
+                        if let imageUrl = viewModel.image,
                            let url = URL(string: imageUrl) {
                                 KFImage(url)
                                     .placeholder {
@@ -52,34 +52,34 @@ struct DetailView: View {
                     }
                     
                     VStack(alignment: .leading, spacing: 24) {
-                        Text(model.title)
+                        Text(viewModel.title)
                             .airbnbCerealFont(.book, size: 35)
                         
                         VStack(alignment: .leading, spacing: 24) {
                             DetailComponentView(image: Image(systemName: "calendar"),
-                                                title: model.startDate,
-                                                description: model.endDate)
+                                                title: viewModel.startDate,
+                                                description: viewModel.endDate)
                             
                             DetailComponentView(image: Image(.location),
-                                                title: model.adress,
-                                                description: model.location)
+                                                title: viewModel.adress,
+                                                description: viewModel.location)
                             
                             DetailComponentView(image: Image(.cardImg2),
-                                                title: model.agentTitle,
-                                                description: model.role,
+                                                title: viewModel.agentTitle,
+                                                description: viewModel.role,
                                                 showImgBg: false)
                         }
                         
                         Text("About Event")
                             .airbnbCerealFont(.medium, size: 18)
-                        Text(model.bodyText)
+                        Text(viewModel.bodyText)
                             .airbnbCerealFont(.book)
                     }
                     .padding(.horizontal, 20)
                 }
             }
             .task {
-                await model.fetchEventDetails()
+                await viewModel.fetchEventDetails()
             }
             .ignoresSafeArea()
             
@@ -95,8 +95,4 @@ struct DetailView: View {
         }
         .edgesIgnoringSafeArea(.all)
     }
-}
-
-#Preview {
-
 }

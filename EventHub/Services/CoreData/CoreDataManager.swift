@@ -15,6 +15,7 @@ final class CoreDataManager: ObservableObject {
     
     init(viewContext: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.viewContext = viewContext
+        fetchEvents()
     }
     
     func saveContext() {
@@ -57,5 +58,21 @@ final class CoreDataManager: ObservableObject {
         viewContext.delete(event)
         saveContext()
         fetchEvents()
+    }
+    
+    func deleteEvent(event: ExploreEvent) {
+        let fetchRequest: NSFetchRequest<FavoriteEvent> = FavoriteEvent.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", event.id)
+        do {
+            let favoriteEvents = try viewContext.fetch(fetchRequest)
+            if let favoriteEvent = favoriteEvents.first {
+                viewContext.delete(favoriteEvent)
+                saveContext()
+                fetchEvents()
+            }
+        } catch {
+            let nserror = error as NSError
+            print("Не удалось удалить событие: \(nserror), \(nserror.userInfo)")
+        }
     }
 }

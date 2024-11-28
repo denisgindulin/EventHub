@@ -14,7 +14,6 @@ struct ExploreEvent: Identifiable {
     let date: Date
     let adress: String
     let image: String?
-    let isFavorite: Bool
     
     static let example = ExploreEvent(
         id: 123,
@@ -28,11 +27,11 @@ struct ExploreEvent: Identifiable {
                    Visitor(image: "visitor", name: "Sonya")],
         date: .now,
         adress: "36 Guild Street London, UK",
-        image: "cardImg1", isFavorite: true )
+        image: "cardImg1")
 }
 
 extension ExploreEvent {
-    init(dto: EventDTO, isFavorite: Bool) {
+    init(dto: EventDTO) {
         self.id = dto.id
         self.title = dto.title ?? "No Title"
         self.visitors = dto.participants?.map { participant in
@@ -44,7 +43,6 @@ extension ExploreEvent {
         self.date = (Date(timeIntervalSince1970: TimeInterval(dto.dates.first?.start ?? 1489312800)))
         self.adress = dto.place?.address ?? "Unknown Address"
         self.image = dto.images.first?.image
-        self.isFavorite = isFavorite
     }
 }
 

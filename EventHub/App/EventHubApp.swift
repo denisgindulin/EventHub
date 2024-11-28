@@ -22,6 +22,8 @@ struct EventHubApp: App {
     var body: some Scene {
         WindowGroup {
             StartRouterView()
+                .environment(\.managedObjectContext, coreDataManager.viewContext)
+                .environmentObject(coreDataManager)
         }
     }
 }

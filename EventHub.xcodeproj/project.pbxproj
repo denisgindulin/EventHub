@@ -41,6 +41,7 @@
 		48AD2DC12CF6F75C00944547 /* EventHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48AD2DBF2CF6F75C00944547 /* EventHub.xcdatamodeld */; };
 		48AD2DC82CF705DC00944547 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AD2DC72CF705DC00944547 /* PersistenceController.swift */; };
 		48AD2DCA2CF7083E00944547 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AD2DC92CF7083E00944547 /* CoreDataManager.swift */; };
+		48C66CFA2CF87EBE006339CD /* FavoriteEventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C66CF92CF87EBC006339CD /* FavoriteEventsList.swift */; };
 		6C1AEC1B2CF51EED00125117 /* ProfileViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1AEC1A2CF51EED00125117 /* ProfileViewTest.swift */; };
 		6C1AEC1D2CF5275D00125117 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1AEC1C2CF5275D00125117 /* EditButton.swift */; };
 		6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
@@ -172,6 +173,7 @@
 		48AD2DC02CF6F75C00944547 /* EventHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventHub.xcdatamodel; sourceTree = "<group>"; };
 		48AD2DC72CF705DC00944547 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		48AD2DC92CF7083E00944547 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		48C66CF92CF87EBC006339CD /* FavoriteEventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEventsList.swift; sourceTree = "<group>"; };
 		6C1AEC1A2CF51EED00125117 /* ProfileViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTest.swift; sourceTree = "<group>"; };
 		6C1AEC1C2CF5275D00125117 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerImageView.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				1B7EAD362CEBC3CF00D2AB3D /* BookmarksView.swift */,
+				48C66CF92CF87EBC006339CD /* FavoriteEventsList.swift */,
 				483B91F72CF6102200A22FD0 /* NoFavorites.swift */,
 				1B7EAD382CEBC3D900D2AB3D /* BookmarksViewModel.swift */,
 			);
@@ -803,6 +806,7 @@
 				E165D1BE2CF44F250030BA88 /* DisplayOrderType.swift in Sources */,
 				E10ED0202CF0E2F400AFDBC2 /* ExploreEventModel.swift in Sources */,
 				E1725DB22CF74766001B4920 /* StartRouterView.swift in Sources */,
+				48C66CFA2CF87EBE006339CD /* FavoriteEventsList.swift in Sources */,
 				E10ED03D2CF0E47F00AFDBC2 /* CategoryScroll.swift in Sources */,
 				E165D1C02CF4DF2E0030BA88 /* SeeAllEvents.swift in Sources */,
 				E10ED03E2CF0E47F00AFDBC2 /* ThirdSmallEventCard.swift in Sources */,
