@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+//import Swinject
 
 struct EventHubContentView: View {
     @State private var selectedTab: Tab = .explore
@@ -23,25 +24,23 @@ struct EventHubContentView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            Group {
-                switch selectedTab {
-                case .explore:
-                    ExploreView()
-                case .events:
-                    EventsView(eventAPIService: eventAPIManager)
-                case .map:
-                    MapView()
-                case .bookmark:
-                    BookmarksView()
-                case .profile:
-                    ProfileView(router: router)
-                }
+        ZStack(alignment: .bottom) {
+            switch selectedTab {
+            case .explore:
+                ExploreView(exploreAPIService: eventAPIManager)
+            case .events:
+                EventsView(eventAPIService: eventAPIManager)
+            case .map:
+                MapView()
+            case .bookmark:
+                BookmarksView()
+            case .profile:
+                ProfileView(router: router)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.top)
             TabBarView(selectedTab: $selectedTab, switchTab: switchTab)
         }
         .edgesIgnoringSafeArea(.bottom)
     }
+    
+
 }

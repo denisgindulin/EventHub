@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
+import Combine
 
 @MainActor
 final class ExploreViewModel: ObservableObject {
-    
-    private let apiService: IAPIServiceForExplore
     
     let functionalButtonsNames = ["Today","Films", "Lists"]
     @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
@@ -28,13 +27,14 @@ final class ExploreViewModel: ObservableObject {
     
     var isFavoriteEvent = false
 
+    private let apiService: IAPIServiceForExplore
     
     private let language = Language.en
     
     private var page: Int = 1
     
     // MARK: - INIT
-    init(apiService: IAPIServiceForExplore = DIContainer.resolve(forKey: .networkService) ?? EventAPIService()) {
+    init(apiService: IAPIServiceForExplore) {
         self.apiService = apiService
     }
     
@@ -64,7 +64,7 @@ final class ExploreViewModel: ObservableObject {
     
     func fetchCategories() async {
         do {
-            let categoriesFromAPI = try await apiService.getCategories(with: language)
+            let categoriesFromAPI = try await apiService.getCategories(with: language) ?? []
             await loadCategories(from: categoriesFromAPI)
         } catch {
             self.error = error
