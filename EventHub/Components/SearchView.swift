@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     
     @Binding var text: String
-    
+    @State private var isSearchPresented = true
     
     let events: [EventDTO]
     
@@ -26,7 +26,8 @@ struct SearchView: View {
                                 isTitleLeading: false,
                                 showBackButton: true)
                     
-                    SearchBarView(searchText: $text,
+                    SearchBarView(isSearchPresented: $isSearchPresented,
+                                  searchText: $text,
                                   textColor: .black,
                                   placeholderColor: .searchBarPlaceholder,
                                   fiterAction: {_ in },
@@ -38,30 +39,29 @@ struct SearchView: View {
                 .zIndex(1)
                 
                 
-//                if events.isEmpty {
-//                    Text("No results".uppercased())
-//                        .airbnbCerealFont(AirbnbCerealFont.bold, size: 26)
-//                } else {
+                if events.isEmpty {
+                    Text("No results".uppercased())
+                        .airbnbCerealFont(AirbnbCerealFont.bold, size: 26)
+                } else {
                     
                     ScrollView {
                         VStack {
-//                            ForEach(events) { event in
-//                                SmallEventCard(image: ,
-//                                               date: <#T##Date#>,
-//                                               title: <#T##String#>,
-//                                               place: <#T##String#>)
-//                            }
-                            
-                            
+                            ForEach(events) { event in
+                                SmallEventCard(image: "sdd",
+                                               date: Date.now,
+                                               title: " example test",
+                                               place: " Home test")
+                                
+                            }
                         }
                     }
-//                } // if end
+                } // if end
             }
+        }.offset(y: 40)
         }
-    }
    
 }
 
-#Preview {
-    SearchView(text: .constant(""), events: [])
-}
+//#Preview {
+//    SearchView(text: .constant(""), isSearchPresented: , events: [])
+//}
