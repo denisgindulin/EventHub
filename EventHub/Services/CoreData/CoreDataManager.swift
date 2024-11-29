@@ -72,22 +72,6 @@ final class CoreDataManager: ObservableObject {
         fetchEvents()
     }
     
-    func deleteEvent(event: ExploreEvent) {
-        let fetchRequest: NSFetchRequest<FavoriteEvent> = FavoriteEvent.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d", event.id)
-        do {
-            let favoriteEvents = try viewContext.fetch(fetchRequest)
-            if let favoriteEvent = favoriteEvents.first {
-                viewContext.delete(favoriteEvent)
-                saveContext()
-                fetchEvents()
-            }
-        } catch {
-            let nserror = error as NSError
-            print("Не удалось удалить событие: \(nserror), \(nserror.userInfo)")
-        }
-    }
-    
     func deleteEvent(eventID: Int) {
         let fetchRequest: NSFetchRequest<FavoriteEvent> = FavoriteEvent.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %d", eventID)

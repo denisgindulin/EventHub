@@ -44,7 +44,7 @@ struct EventCardView: View {
                     VStack {
                         Button {
                             if isFavorite {
-                                coreDataManager.deleteEvent(event: event)
+                                coreDataManager.deleteEvent(eventID: event.id)
                             } else {
                                 coreDataManager.createEvent(event: event)
                             }
