@@ -65,7 +65,7 @@ final class StartRouter: ObservableObject {
         let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
 
         if hasCompletedOnboarding {
-            newState = (Auth.auth().currentUser == nil) ? .main : .auth
+            newState = (Auth.auth().currentUser != nil) ? .main : .auth
         } else {
             newState = .onboarding
             UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")

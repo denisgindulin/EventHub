@@ -18,7 +18,9 @@ struct StartRouterView: View {
             case .onboarding:
                 OnboardingView(router: startRouter)
             case .auth:
-                SignInView(router: startRouter)
+                NavigationView {
+                    SignInView(router: startRouter)
+                }
             case .main:
                 EventHubContentView(
                     router: startRouter,

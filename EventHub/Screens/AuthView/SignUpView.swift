@@ -7,8 +7,10 @@
 
 import SwiftUI
 import FirebaseAuth
-struct SignUpMainView: View {
+
+struct SignUpView: View {
     @ObservedObject var viewModel: AuthViewModel
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         GeometryReader { geometry in
@@ -36,7 +38,7 @@ struct SignUpMainView: View {
                     BlueButtonWithArrow(text: "Sign Up") {
                         Task{
                             let sucess =  await viewModel.signUp()
-                            if sucess{
+                            if sucess {
                                 viewModel.saveUsernameToUserDefaults(username: viewModel.name )
                                 //navigation 
                             }
@@ -45,19 +47,15 @@ struct SignUpMainView: View {
                     }
                     .padding(.top, smallPadding * 1.5)
                     .padding(.horizontal, horizontalPadding)
+                    .disabled(viewModel.isLoading)
                     
                     Text("OR")
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, smallPadding / 2)
                     
                     GoogleButton() {
-                        Task{
-                            let sucess = await viewModel.signInWithGoogle()
-                            if sucess{
-                                
-                            } else{
-                               
-                            }
+                        Task {
+                            await viewModel.signInWithGoogle()
                         }
                     }
                     .padding(.horizontal, horizontalPadding)
@@ -72,10 +70,14 @@ struct SignUpMainView: View {
                             .airbnbCerealFont(.book, size: 15)
                             .foregroundColor(.appBlue)
                     }
+                    .onTapGesture {
+                        dismiss()
+                    }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.bottom, smallPadding)
                 }
             }
+            .navigationBarHidden(true)
         }
     }
     
@@ -113,6 +115,6 @@ struct SignUpMainView: View {
     }
 }
 
-//#Preview {
-//
-//}
+#Preview {
+    SignUpView(viewModel: AuthViewModel(router: StartRouter()))
+}

@@ -18,6 +18,7 @@ struct SignInView: View {
     
     @StateObject var viewModel: AuthViewModel
     @State private var isRememberMeOn: Bool = false
+    @State private var isPresentedSignUp = false
     
     init(router: StartRouter) {
         self._viewModel = StateObject(wrappedValue: AuthViewModel(router: router))
@@ -67,11 +68,8 @@ struct SignInView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 BlueButtonWithArrow(text: "Sign In") {
-                    Task{
-                        let sucess =  await viewModel.signIn()
-                        if sucess{
-                           //navigation
-                        }
+                    Task {
+                        await viewModel.signIn()
                     }
                 }
                 .padding(.top, smallPadding)
@@ -82,15 +80,9 @@ struct SignInView: View {
                     .padding(.vertical, smallPadding)
                 
                 GoogleButton() {
-                    Task{
-                        let sucess = await viewModel.signInWithGoogle()
-                        if sucess{
-                            
-                        } else{
-                           
-                        }
+                    Task {
+                        await viewModel.signInWithGoogle()
                     }
-                   
                 }
                 .padding(.horizontal, horizontalPadding)
                 
@@ -104,10 +96,22 @@ struct SignInView: View {
                         .airbnbCerealFont(.book, size: 15)
                         .foregroundColor(.appBlue)
                 }
+                .onTapGesture {
+                    isPresentedSignUp.toggle()
+                }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.bottom, smallPadding)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .navigationBarHidden(true)
+            .background(
+                NavigationLink(
+                    destination: SignUpView(viewModel: viewModel),
+                    isActive: $isPresentedSignUp
+                ) {
+                    EmptyView()
+                }
+            )
         }
     }
     
@@ -134,6 +138,6 @@ struct SignInView: View {
     }
 }
 
-//#Preview {
-//  
-//}
+#Preview {
+    SignInView(router: StartRouter())
+}
