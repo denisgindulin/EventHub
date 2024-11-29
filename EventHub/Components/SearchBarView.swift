@@ -24,7 +24,7 @@ extension View {
 
 struct SearchBarView: View {
     
-    
+    @Binding var isSearchPresented: Bool
     @Binding var searchText: String
     @State private var searchString = ""
     
@@ -41,8 +41,9 @@ struct SearchBarView: View {
         
         HStack {
             Button {
-                action()
                 searchText = String(searchString)
+                action()
+                isSearchPresented = true
             } label: {
                 Image(.searchWhite)
                     .resizable()
@@ -73,5 +74,5 @@ struct SearchBarView: View {
 }
 
 #Preview {
-    SearchBarView(searchText: .constant(""), textColor: .white, placeholderColor: .searchBarPlaceholder, fiterAction: {_ in }, magnifierColor: .white, action: {})
+    SearchBarView(isSearchPresented: .constant(false), searchText: .constant(""), textColor: .white, placeholderColor: .searchBarPlaceholder, fiterAction: {_ in }, magnifierColor: .white, action: {})
 }

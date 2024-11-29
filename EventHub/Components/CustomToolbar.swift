@@ -13,6 +13,8 @@ struct CustomToolBar: View {
     @Binding var currentLocation: String
     
     @Binding var title: String
+    @Binding var isSearchPresented: Bool
+    
     let notifications: Bool
     let filterAction: (DisplayOrderType) -> Void
     
@@ -84,8 +86,10 @@ struct CustomToolBar: View {
                 .padding(.horizontal,24)
                 .padding(.bottom, 10)
                 
-                SearchBarView(
-                                    searchText: $searchText, textColor: textColor,
+                SearchBarView (
+                    isSearchPresented: $isSearchPresented,
+                    searchText: $searchText,
+                    textColor: textColor,
                                     placeholderColor: placeholderColor,
                                     fiterAction: filterAction,
                                     magnifierColor: magnifierColor,
