@@ -9,10 +9,11 @@ import SwiftUI
 
 // это компонент Кнопка Sign Out. Для экранов My profile и Edit profile
 struct SignOutButton: View {
+    
     let action: () -> Void
     
     var body: some View {
-        Button(action: {}) {
+        Button(action: action) {
             HStack {
                 Image(.signOut)
                     .resizable()
