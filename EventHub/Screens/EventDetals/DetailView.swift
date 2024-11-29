@@ -9,8 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct DetailView: View {
-    @StateObject private var viewModel: DetailViewModel
-    
+    @StateObject var viewModel: DetailViewModel
     @State private var isPresented: Bool = false
     
     //    MARK: - Init

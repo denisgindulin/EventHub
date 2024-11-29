@@ -11,12 +11,9 @@ struct ExploreView: View {
     
     @StateObject var viewModel: ExploreViewModel
     
-    @State private var selectedEventID: Int? = nil
-    @State private var isDetailPresented: Bool = false
     
-    //    MARK: - INIT
-    init() {
-        self._viewModel = StateObject(wrappedValue: ExploreViewModel()
+    init(exploreAPIService: IAPIServiceForExplore) {
+        self._viewModel = StateObject(wrappedValue: ExploreViewModel(apiService: exploreAPIService)
         )
     }
     
@@ -36,7 +33,7 @@ struct ExploreView: View {
                             notifications: true,
                             filterAction: viewModel.filterEvents(orderType:),
                             locations: viewModel.locations)
-                        
+ 
                         CategoryScroll(categories:
                                         viewModel.categories,
                                        onCategorySelected: { selectedCategory in
@@ -62,14 +59,10 @@ struct ExploreView: View {
                                 .padding(.bottom, 10)
                             
                             if viewModel.upcomingEvents.isEmpty {
-                                ScrollEventCardsView(events: nil, showDetail: {_ in }
-                                )
+                                ScrollEventCardsView(events: nil, showDetail: viewModel.showDetail)
                                     .padding(.bottom, 10)
                             } else {
-                                ScrollEventCardsView(events: viewModel.upcomingEvents, showDetail: { event in
-                                    selectedEventID = event
-                                    isDetailPresented = true
-                                })
+                                ScrollEventCardsView(events: viewModel.upcomingEvents, showDetail: viewModel.showDetail)
                                     .padding(.bottom, 10)
                             }
                             
@@ -79,15 +72,12 @@ struct ExploreView: View {
                             if viewModel.nearbyYouEvents.isEmpty {
                                 ScrollEventCardsView(
                                     events: nil,
-                                    showDetail:{_ in})
+                                    showDetail: viewModel.showDetail)
                                 .padding(.bottom, 250) // tabBer
                             } else {
                                 ScrollEventCardsView(
                                     events: viewModel.nearbyYouEvents,
-                                    showDetail: { event in
-                                        selectedEventID = event
-                                        isDetailPresented = true
-                                    })
+                                    showDetail: viewModel.showDetail)
                                 .padding(.bottom, 250) // tabBer
                             }
                             
@@ -98,17 +88,9 @@ struct ExploreView: View {
                     .zIndex(0)
                     .navigationBarHidden(true)
                 }
-                .ignoresSafeArea()
             }
-            .overlay(
-                    NavigationLink(
-                        destination: DetailView(detailID: selectedEventID ?? 0),
-                        isActive: $isDetailPresented
-                    ) {
-                        EmptyView()
-                    }
-                )
-            }
+            .ignoresSafeArea()
+        }
         .task {
             await viewModel.fetchCategories()
             await viewModel.fetchLocations()
@@ -118,6 +100,6 @@ struct ExploreView: View {
     }
 }
 
-#Preview {
-    ExploreView()
-}
+//#Preview {
+//    
+//}

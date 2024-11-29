@@ -40,14 +40,14 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Categories
     /// Fetches event categories based on the provided language.
-    func getCategories(with language: Language?) async throws -> [CategoryDTO] {
+    func getCategories(with language: Language?) async throws -> [CategoryDTO]? {
         let apiSpec: EventAPISpec = .getCategories(language: language)
         do {
             let categories = try await apiClient?.sendRequest(apiSpec)
-            return categories as? [CategoryDTO] ?? []
+            return categories as? [CategoryDTO]
         } catch {
             print(error)
-            return []
+            return nil
         }
     }
     

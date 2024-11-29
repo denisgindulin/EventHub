@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+//import Swinject
 
 struct EventHubContentView: View {
     @State private var selectedTab: Tab = .explore
@@ -48,10 +49,10 @@ struct EventHubContentView: View {
                     }
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.top)
             TabBarView(selectedTab: $selectedTab, switchTab: switchTab)
         }
         .edgesIgnoringSafeArea(.bottom)
     }
+    
+
 }
