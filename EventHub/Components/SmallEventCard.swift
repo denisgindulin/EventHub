@@ -79,7 +79,7 @@ struct SmallEventCard: View {
                     Button {
                         bookmarkAction?()
                     } label: {
-                        Image(.bookmarkRedFill)
+                        Image(.bookmarkFill)
                             .foregroundStyle(.appRed)
                     }
                 }

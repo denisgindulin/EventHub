@@ -161,42 +161,39 @@ final class AuthViewModel: ObservableObject{
     
     
     // MARK: Google
-   func signInWithGoogle() async -> Bool {
-       //MARK: -  Method for ensuring ClientId isValid
-       guard let clientID = FirebaseApp.app()?.options.clientID else {
-           fatalError()
-       }
-       let config = GIDConfiguration(clientID: clientID)
-       GIDSignIn.sharedInstance.configuration = config
- 
-       guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-             let window = windowScene.windows.first,
-             let rootViewController = window.rootViewController else {
-           print(ErrorMessages.controllerError)
-         return false
-       }
+    func signInWithGoogle() async -> Bool {
+        guard let clientID = FirebaseApp.app()?.options.clientID else {
+            errorMessage = ErrorMessages.noId
+            return false
+        }
+        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
+            errorMessage = ErrorMessages.controllerError
+            return false
+        }
+        do {
+            let config = GIDConfiguration(clientID: clientID)
+            GIDSignIn.sharedInstance.configuration = config
 
-         do {
-           let userAuthentication = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+            let userAuthentication = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+            guard let idToken = userAuthentication.user.idToken else {
+                throw AuthenticationError.tokenError(message: ErrorMessages.idMissing)
+            }
 
-           let user = userAuthentication.user
-             guard let idToken = user.idToken else { throw AuthenticationError.tokenError(message: ErrorMessages.idMissing) }
-           let accessToken = user.accessToken
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: idToken.tokenString,
+                accessToken: userAuthentication.user.accessToken.tokenString
+            )
+            _ = try await Auth.auth().signIn(with: credential)
 
-           let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString,
-                                                          accessToken: accessToken.tokenString)
-
-           let result = try await Auth.auth().signIn(with: credential)
-           let firebaseUser = result.user
-             print(" \(ErrorMessages.userPrompt) \(firebaseUser.uid) \(ErrorMessages.withEmail) \(firebaseUser.email ?? ErrorMessages.unknownError)")
-           return true
-         }
-         catch {
-           print(error.localizedDescription)
-           self.errorMessage = error.localizedDescription
-           return false
-         }
-     }
+            await MainActor.run {
+                userAuthenticated()
+            }
+            return true
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
     
     //MARK: - NavigationState
     func userAuthenticated() {

@@ -15,7 +15,15 @@ final class ExploreViewModel: ObservableObject {
     let functionalButtonsNames = ["Today","Films", "Lists"]
     @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
     @Published var currentPosition: String = "Moscow"
-    @Published var searchText: String = ""
+    @Published var searchText: String = "" {
+        didSet {
+            Task {
+                await fetchSearchedEvents()
+            }
+        }
+    }
+    
+    @Published var searchedEvents: [EventDTO] = []
     
     @Published var upcomingEvents: [ExploreEvent] = []
     @Published var nearbyYouEvents: [ExploreEvent] = []
@@ -107,6 +115,17 @@ final class ExploreViewModel: ObservableObject {
             )
             nearbyYouEvents = eventsDTO.map { ExploreEvent(dto: $0) }
         } catch {
+            self.error = error
+        }
+    }
+    
+    func fetchSearchedEvents() async {
+        do {
+            let eventsDTO = try await apiService.getSearchedEvents(with: searchText)
+            searchedEvents = eventsDTO?.results ?? []
+            print(Int(eventsDTO?.results.count ?? 1232))
+        } catch {
+            print(" No searched func result")
             self.error = error
         }
     }
