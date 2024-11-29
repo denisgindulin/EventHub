@@ -24,7 +24,7 @@ struct ExploreView: View {
     var body: some View {
             ZStack {
                 Color.appMainBackground // zIndex modifire // UIScreen.main.bounds.width
-                VStack {
+                VStack(spacing: 0) {
                     ZStack {
                         
                         CustomToolBar(
@@ -42,9 +42,9 @@ struct ExploreView: View {
                             viewModel.currentCategory = selectedCategory.category.slug ;
                             viewModel.upcomingEvents = []
                             
-                            Task {
-                                await viewModel.fetchUpcomingEvents()
-                            }
+//                            Task {
+//                                await viewModel.fetchUpcomingEvents()
+//                            }
                         })
                         .offset(y: 87)
                         
@@ -93,7 +93,7 @@ struct ExploreView: View {
                         }
                         .offset(y: 100)
                     }
-                    .offset(y: -10)
+//                    .offset(y: -10)
                     .zIndex(0)
                     .navigationBarHidden(true)
                 }

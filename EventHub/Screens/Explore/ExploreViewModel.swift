@@ -23,8 +23,16 @@ final class ExploreViewModel: ObservableObject {
     @Published var locations: [EventLocation] = []
     
     @Published var error: Error? = nil
-    @Published var currentCategory: String? = nil
-    @Published var currentLocation: String = "new-york"
+    @Published var currentCategory: String? = nil {
+        didSet{
+            Task {
+                await fetchUpcomingEvents()
+                await featchNearbyYouEvents()
+            }
+        }
+    }
+    
+    @Published var currentLocation: String = "msk"
     
     var isFavoriteEvent = false
     
@@ -87,6 +95,7 @@ final class ExploreViewModel: ObservableObject {
             let eventsDTO = try await apiService.getNearbyYouEvents(
                 with: language,
                 currentLocation,
+                currentCategory,
                 page
             )
             nearbyYouEvents = eventsDTO.map { ExploreEvent(dto: $0) }

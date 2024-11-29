@@ -17,7 +17,7 @@ enum EventAPISpec: APISpec {
         language: Language?,
         page: Int?
     )
-    case getNearbyYouEvents(language: Language?, location: String, page: Int?)
+    case getNearbyYouEvents(language: Language?, location: String, catetory: String?, page: Int?)
     case getUpcominglEvents(actualSince: String, actualUntil: String, language: Language?, page: Int?)
     case getPastEvents(actualUntil: String,language: Language?, page: Int?)
     case getEventDetails(eventID: Int)
@@ -79,7 +79,7 @@ enum EventAPISpec: APISpec {
             }
             return items
             
-        case .getNearbyYouEvents(language: let language, location: let location, page: let page):
+        case .getNearbyYouEvents(let language, let location, let category, let page):
             let currentDate = Date()
             let unixTimestamp = Int(currentDate.timeIntervalSince1970)
             
@@ -94,6 +94,10 @@ enum EventAPISpec: APISpec {
             
             if let language = language {
                 items.append(URLQueryItem(name: "lang", value: language.rawValue))
+            }
+            
+            if let category = category {
+                items.append(URLQueryItem(name: "categories", value: category))
             }
             
             if let page = page {
