@@ -1204,6 +1204,9 @@
         }
       }
     },
+    "Reset Password" : {
+
+    },
     "saved for user" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1407,6 +1410,9 @@
           }
         }
       }
+    },
+    "Submit" : {
+
     },
     "Telegram" : {
       "extractionState" : "manual",
