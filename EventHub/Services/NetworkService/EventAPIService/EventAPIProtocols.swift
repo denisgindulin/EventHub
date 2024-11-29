@@ -38,7 +38,7 @@ protocol IAPIServiceForExplore: IEventAPIServiceForSearch {
     ///   - location: The event location filter.
     ///   - page: The page number for pagination.
     /// - Returns: An array of `EventDTO`.
-    func getNearbyYouEvents(with language: Language?,_ location: String,_ page: Int?) async throws -> [EventDTO]
+    func getNearbyYouEvents(with language: Language?,_ location: String,_ category: String?,_ page: Int?) async throws -> [EventDTO]
 }
 
 /// Protocol for fetching detailed event information.

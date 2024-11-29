@@ -60,8 +60,8 @@ struct TabBarView: View {
         static let tabBarHeight: CGFloat = 88
         static let tabBarCornerRadius: CGFloat = 20
         static let iconSize: CGFloat = 23
-        static let floatingButtonSize: CGFloat = 50
-        static let floatingButtonOffsetY: CGFloat = -32
+        static let floatingButtonSize: CGFloat = 46
+        static let floatingButtonOffsetY: CGFloat = -45
         static let shadowRadius: CGFloat = 8
         static let fontSize: CGFloat = 12
         static let buttonSize: CGFloat = 43
@@ -84,7 +84,7 @@ struct TabBarView: View {
             HStack(spacing: calculateSpacing()) {
                 TabBarButton(tab: .explore, iconName: Tab.explore.icon, title: Tab.explore.title)
                 TabBarButton(tab: .events, iconName: Tab.events.icon, title: Tab.events.title)
-                BookmarkButton(tab: .favorites, iconName: Tab.favorites.icon)
+                FavoriteButton(tab: .favorites, iconName: Tab.favorites.icon)
                 TabBarButton(tab: .map, iconName: Tab.map.icon, title: Tab.map.title)
                 TabBarButton(tab: .profile, iconName: Tab.profile.icon, title: Tab.profile.title)
                 
@@ -96,7 +96,7 @@ struct TabBarView: View {
     
     
     // MARK: - Bookmark Button
-    private func BookmarkButton(tab: Tab, iconName: String) -> some View {
+    private func FavoriteButton(tab: Tab, iconName: String) -> some View {
         Button {
             withAnimation(.easeInOut) {
                 switchTab(tab)
@@ -109,6 +109,7 @@ struct TabBarView: View {
                     .shadow(color: selectedTab == tab ? .appRed.opacity(0.3) : .appBlue.opacity(0.3), radius: 10, x: 0, y: 5)
                 
                 Image(iconName)
+                
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: Drawing.iconSize, height: Drawing.iconSize)
