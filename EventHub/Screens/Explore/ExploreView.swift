@@ -22,7 +22,6 @@ struct ExploreView: View {
     
     // MARK: - BODY
     var body: some View {
-        NavigationView {
             ZStack {
                 Color.appMainBackground // zIndex modifire // UIScreen.main.bounds.width
                 VStack {
@@ -108,7 +107,6 @@ struct ExploreView: View {
                         EmptyView()
                     }
                 )
-            }
         .task {
             await viewModel.fetchCategories()
             await viewModel.fetchLocations()
