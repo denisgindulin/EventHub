@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 // MARK: - FetchTaskToken
 
@@ -16,10 +15,10 @@ struct FetchTaskToken: Equatable {
 }
 
 // MARK: - EventsViewModel
+
 final class EventsViewModel: ObservableObject {
     // MARK: - Properties
-    
-    private let apiService: IEventAPIServiceForEvents
+    private let apiService: IAPIServiceForEvents
     private let cache: DiskCache<[EventDTO]>
     private let language: Language = .en
     private let timeIntervalForUpdateCache: TimeInterval = 24 * 60
@@ -32,7 +31,7 @@ final class EventsViewModel: ObservableObject {
     private var page: Int = 1
     
     // MARK: - Initialization
-    init(apiService: IEventAPIServiceForEvents) {
+    init(apiService: IAPIServiceForEvents) {
         self.apiService = apiService
         self.cache = DiskCache<[EventDTO]>(
             filename: "xca_events",
