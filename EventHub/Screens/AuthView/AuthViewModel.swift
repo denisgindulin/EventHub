@@ -42,15 +42,18 @@ enum ErrorMessages {
 final class AuthViewModel: ObservableObject{
     private let router: StartRouter
     
-    @Published  var name: String = ""
-    @Published  var email: String = ""
-    @Published  var password2: String = ""
-    @Published  var password: String = ""
+    @Published var name: String = ""
+    @Published var email: String = ""
+    @Published var password2: String = ""
+    @Published var password: String = ""
     @Published var user: User?
     @Published var errorMessage: String = ""
     @Published var authenticationState: authStatus = .unauthenticated
     @Published var displayName: String = ""
     
+    @Published var isLoading: Bool = false
+    
+//    MARK: - INIT
     init(router: StartRouter) {
         self.router = router
       registerAuthStateHandler()
@@ -69,17 +72,16 @@ final class AuthViewModel: ObservableObject{
     }
     
     //MARK: - Sign In
-    func signIn() async -> Bool{
+    func signIn() async {
         authenticationState = .authenticating
-        do{
+        do {
             try await  Auth.auth().signIn(withEmail: email, password: password)
-            return true
+            userAuthenticated()
         }
         catch {
             print(error)
                  errorMessage = error.localizedDescription
                  authenticationState = .unauthenticated
-                 return false
         }
     }
     
@@ -88,11 +90,12 @@ final class AuthViewModel: ObservableObject{
     func signUp() async -> Bool {
        guard  validateFields() else { return false }
         authenticationState = .authenticating
-        do{
+        isLoading = true
+        do {
             try await  Auth.auth().createUser(withEmail: email, password: password)
             return true
         }
-        catch{
+        catch {
             print(error)
                  errorMessage = error.localizedDescription
                  authenticationState = .unauthenticated
@@ -100,20 +103,20 @@ final class AuthViewModel: ObservableObject{
         }
         
     }
+    
     //MARK: - Sign out
     func signOut() async -> Bool {
-        do{
+        do {
             try Auth.auth().signOut()
             return true
         }
-        catch{
+        catch {
             print(error)
                  errorMessage = error.localizedDescription
                  return false
         }
     }
     //MARK: - Reset Password
-    
     func resetPassword(email: String) async -> Bool {
       authenticationState = .authenticating
       do {
@@ -127,9 +130,7 @@ final class AuthViewModel: ObservableObject{
         return false
       }
     }
-    
-    
-    
+
     //MARK: - Save User to UserDefaults by id
     func saveUsernameToUserDefaults(username: String) {
         guard let user = Auth.auth().currentUser else {

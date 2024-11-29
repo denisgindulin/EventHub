@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class ProfileViewModel: ObservableObject {
 
@@ -21,6 +22,15 @@ final class ProfileViewModel: ObservableObject {
         self.router = router
     }
     
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            openApp()
+        } catch {
+            print("error SIGN OUT")
+        }
+    }
     
     func openApp() {
         router.updateRouterState(with: .userLoggedOut)

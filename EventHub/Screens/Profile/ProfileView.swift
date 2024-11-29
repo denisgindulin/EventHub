@@ -88,7 +88,7 @@ struct ProfileView: View {
                         }
                         .frame(height: 191)
                     }
-                    SignOutButton(action: { } )
+                    SignOutButton(action: { viewModel.signOut() } )
                         .padding(.bottom,137)
                 }
             }
