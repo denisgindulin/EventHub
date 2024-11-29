@@ -16,7 +16,7 @@ struct FavoriteEventsList: View {
                 VStack(spacing: 12) {
                     ForEach(coreDataManager.events) { event in
                         NavigationLink {
-                            DetailView(detailID: Int(Int64(event.id)))
+                            DetailView(detailID: event.id)
                         } label: {
                             SmallEventCard(image: event.image ?? "cardImg1",
                                            date: event.date ?? .now,

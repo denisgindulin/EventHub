@@ -31,7 +31,7 @@ final class CoreDataManager: ObservableObject {
     
     func createEvent(event: ExploreEvent) {
         let favoriteEvent = FavoriteEvent(context: viewContext)
-        favoriteEvent.id = Int64(event.id)
+        favoriteEvent.id = event.id
         favoriteEvent.title = event.title
         favoriteEvent.date = event.date
         favoriteEvent.adress = event.adress

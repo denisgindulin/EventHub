@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct BookmarksView: View {
+struct FavoritesView: View {
     @EnvironmentObject private var coreDataManager: CoreDataManager
-    @StateObject var viewModel: BookmarksViewModel
+    @StateObject var viewModel: FavoritesViewModel
     
     init() {
-        self._viewModel = StateObject(wrappedValue: BookmarksViewModel())
+        self._viewModel = StateObject(wrappedValue: FavoritesViewModel())
     }
     
     var body: some View {

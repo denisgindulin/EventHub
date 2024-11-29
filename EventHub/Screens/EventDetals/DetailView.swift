@@ -22,22 +22,7 @@ struct DetailView: View {
     var body: some View {
         ZStack {
             VStack {
-                ZStack(alignment: .bottomTrailing) {
-                    ToolBarView(
-                        title: "Event Details",
-                        foregroundStyle: .white,
-                        isTitleLeading: true,
-                        showBackButton: true,
-                        actions: [
-                            ToolBarAction(
-                                icon: ToolBarButtonType.bookmark.icon,
-                                action: {},
-                                hasBackground: true,
-                                foregroundStyle: .white
-                            )
-                        ]
-                    )
-                    .zIndex(1)
+                ZStack(alignment: .top) {
                     
                     if let imageUrl = viewModel.image,
                        let url = URL(string: imageUrl) {
@@ -70,9 +55,28 @@ struct DetailView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding(14)
                     }
+                    .padding(.bottom, 10)
+                    
+                    ToolBarView(
+                        title: "Event Details",
+                        foregroundStyle: .white,
+                        isTitleLeading: true,
+                        showBackButton: true,
+                        actions: [
+                            ToolBarAction(
+                                icon: ToolBarButtonType.bookmark.icon,
+                                action: {
+#warning("метод для сохранения в избранное")
+                                },
+                                hasBackground: true,
+                                foregroundStyle: .white
+                            )
+                        ]
+                    )
+                    .padding(.top, 50)
+                    .zIndex(1)
+                    
                 }
-                
-               
                 
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 24) {
@@ -102,11 +106,6 @@ struct DetailView: View {
                     .padding(.horizontal, 20)
                 }
             }
-            .padding(.top, 50)
-            .task {
-                await viewModel.fetchEventDetails()
-            }
-            .ignoresSafeArea()
             
             if isPresented {
                 Color.black.opacity(0.5)
@@ -117,6 +116,9 @@ struct DetailView: View {
             if isPresented {
                 ShareView(isPresented: $isPresented)
             }
+        }
+        .task {
+            await viewModel.fetchEventDetails()
         }
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.all)

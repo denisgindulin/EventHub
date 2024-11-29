@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ProfileViewModel: ObservableObject {
+final class ProfileViewModel: ObservableObject {
 
     private let router: StartRouter
     

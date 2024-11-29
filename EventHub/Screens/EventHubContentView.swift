@@ -38,9 +38,9 @@ struct EventHubContentView: View {
                     NavigationView {
                         MapView()
                     }
-                case .bookmark:
+                case .favorites:
                     NavigationView {
-                        BookmarksView()
+                        FavoritesView()
                     }
                 case .profile:
                     NavigationView {

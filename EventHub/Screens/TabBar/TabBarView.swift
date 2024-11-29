@@ -11,7 +11,7 @@ import SwiftUI
 enum Tab: String, CaseIterable {
     case explore
     case events
-    case bookmark
+    case favorites
     case map
     case profile
     
@@ -26,8 +26,8 @@ enum Tab: String, CaseIterable {
             return "Map"
         case .profile:
             return "Profile"
-        case .bookmark:
-            return "" // Bookmark doesn't have a title
+        case .favorites:
+            return ""
         }
     }
     
@@ -42,7 +42,7 @@ enum Tab: String, CaseIterable {
             return "map"
         case .profile:
             return "profileTab"
-        case .bookmark:
+        case .favorites:
             return "bookmark"
         }
     }
@@ -84,7 +84,7 @@ struct TabBarView: View {
             HStack(spacing: calculateSpacing()) {
                 TabBarButton(tab: .explore, iconName: Tab.explore.icon, title: Tab.explore.title)
                 TabBarButton(tab: .events, iconName: Tab.events.icon, title: Tab.events.title)
-                BookmarkButton(tab: .bookmark, iconName: Tab.bookmark.icon)
+                BookmarkButton(tab: .favorites, iconName: Tab.favorites.icon)
                 TabBarButton(tab: .map, iconName: Tab.map.icon, title: Tab.map.title)
                 TabBarButton(tab: .profile, iconName: Tab.profile.icon, title: Tab.profile.title)
                 
