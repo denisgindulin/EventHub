@@ -28,7 +28,6 @@ struct ToolBarButtonView: View {
                     RoundedRectangle(cornerRadius: Drawing.cornerRadius)
                         .fill(Color.white.opacity(Drawing.backgroundOpacity))
                         .frame(width: Drawing.buttonSize, height: Drawing.buttonSize)
-                        .background(.ultraThinMaterial)
                 }
                 Image(action.icon)
                     .resizable()

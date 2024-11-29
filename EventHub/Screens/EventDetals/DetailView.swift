@@ -9,20 +9,26 @@ import SwiftUI
 import Kingfisher
 
 struct DetailView: View {
+    @EnvironmentObject private var coreDataManager: CoreDataManager
     @StateObject private var viewModel: DetailViewModel
     
     @State private var isPresented: Bool = false
     
+    private var isFavorite: Bool {
+        coreDataManager.events.contains { event in
+            Int(event.id) == self.viewModel.event?.id
+        }
+    }
+    
     //    MARK: - Init
     init(detailID: Int) {
-        self._viewModel = StateObject(wrappedValue: DetailViewModel(eventID: detailID)
-        )
+        self._viewModel = StateObject(wrappedValue: DetailViewModel(eventID: detailID))
     }
     
     var body: some View {
         ZStack {
             VStack {
-                ZStack(alignment: .top) {
+                ZStack {
                     
                     if let imageUrl = viewModel.image,
                        let url = URL(string: imageUrl) {
@@ -43,39 +49,47 @@ struct DetailView: View {
                             .frame(maxWidth: .infinity, maxHeight: 244)
                             .clipped()
                     }
-                    Button {
-                        isPresented = true
-                    } label: {
-                        Image(.share)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: 24, maxHeight: 24)
-                            .padding(6)
-                            .background(.white.opacity(0.3))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .padding(14)
+                    VStack(alignment: .trailing) {
+                        ToolBarView(
+                            title: "Event Details",
+                            foregroundStyle: .white,
+                            isTitleLeading: true,
+                            showBackButton: true,
+                            actions: [
+                                ToolBarAction(
+                                    icon: isFavorite ? ToolBarButtonType.bookmarkFill.icon : ToolBarButtonType.bookmark.icon,
+                                    action: {
+                                        if !isFavorite {
+                                            if let event = viewModel.event {
+                                                coreDataManager.createEvent(event: event)
+                                            }
+                                        } else {
+                                            coreDataManager.deleteEvent(eventID: viewModel.event?.id ?? 0)
+                                        }
+                                    },
+                                    hasBackground: true,
+                                    foregroundStyle: .white
+                                )
+                            ]
+                        )
+                        .padding(.top, 40)
+                        
+                        Spacer()
+                        
+                        Button {
+                            isPresented = true
+                        } label: {
+                            Image(.share)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: 24, maxHeight: 24)
+                                .padding(6)
+                                .background(.white.opacity(0.3))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .padding(14)
+                        }
                     }
-                    .padding(.bottom, 10)
-                    
-                    ToolBarView(
-                        title: "Event Details",
-                        foregroundStyle: .white,
-                        isTitleLeading: true,
-                        showBackButton: true,
-                        actions: [
-                            ToolBarAction(
-                                icon: ToolBarButtonType.bookmark.icon,
-                                action: {
-#warning("метод для сохранения в избранное")
-                                },
-                                hasBackground: true,
-                                foregroundStyle: .white
-                            )
-                        ]
-                    )
-                    .padding(.top, 50)
-                    .zIndex(1)
-                    
+                    .frame(maxHeight: 244)
                 }
                 
                 ScrollView(showsIndicators: false) {

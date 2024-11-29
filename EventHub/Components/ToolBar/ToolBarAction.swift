@@ -23,6 +23,7 @@ enum ToolBarButtonType {
     case back
     case search
     case bookmark
+    case bookmarkFill
 
     
     // MARK: - Icon
@@ -31,6 +32,8 @@ enum ToolBarButtonType {
         case .back:
             return "arrow.left"
         case .bookmark:
+            return "bookmarkOverlay"
+        case .bookmarkFill:
             return "bookmarkFill"
         case .search:
             return "search"

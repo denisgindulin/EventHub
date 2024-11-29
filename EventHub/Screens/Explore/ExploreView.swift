@@ -111,15 +111,15 @@ struct ExploreView: View {
                         EmptyView()
                     }
                 )
-//        .task {
-//            await viewModel.fetchCategories()
-//            await viewModel.fetchLocations()
-//            await viewModel.fetchUpcomingEvents()
-//            await viewModel.featchNearbyYouEvents()
-//        }
+        .task {
+            await viewModel.fetchCategories()
+            await viewModel.fetchLocations()
+            await viewModel.fetchUpcomingEvents()
+            await viewModel.featchNearbyYouEvents()
+        }
     }
 }
 
-#Preview {
-    ExploreView()
-}
+//#Preview {
+//    ExploreView()
+//}
