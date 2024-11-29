@@ -12,7 +12,6 @@ struct DetailView: View {
     @StateObject private var viewModel: DetailViewModel
     
     @State private var isPresented: Bool = false
-    
     //    MARK: - Init
     init(detailID: Int) {
         self._viewModel = StateObject(wrappedValue: DetailViewModel(eventID: detailID)
@@ -20,6 +19,7 @@ struct DetailView: View {
     }
     
     var body: some View {
+        
         ZStack {
             VStack {
                 ZStack(alignment: .top) {
@@ -123,6 +123,7 @@ struct DetailView: View {
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.all)
     }
+    
 }
 
 #Preview {
