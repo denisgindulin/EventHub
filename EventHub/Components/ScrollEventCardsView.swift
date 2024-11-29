@@ -18,6 +18,7 @@ struct ScrollEventCardsView: View {
                 if let events = events {
                     ForEach(events) { event in
                         EventCardView(event: event, showDetail: showDetail)
+                            .padding(.vertical, 10)
                     }
                 } else {
                     ForEach(1..<6) { plug in

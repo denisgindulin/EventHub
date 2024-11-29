@@ -31,10 +31,10 @@ struct FiltersButtonView: View {
                     .frame(width: 24, height: 24)
                 
                 Text("Filters")
-                    .frame(width: 36, height: 16, alignment: .leading)
+                    .frame(height: 16, alignment: .leading)
                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                     .foregroundStyle(Color.white)
-                    .padding(.trailing, 1)
+                    .padding(.trailing, 5)
             }
             .padding(5)
             .frame(height: 32.1) // width auto

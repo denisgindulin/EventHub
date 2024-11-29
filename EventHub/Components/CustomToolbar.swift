@@ -13,9 +13,13 @@ struct CustomToolBar: View {
     @Binding var currentLocation: String
     
     @Binding var title: String
-    let magnifierColor: Color
     let notifications: Bool
     let filterAction: (DisplayOrderType) -> Void
+    
+    let magnifierColor: Color
+    let textColor: Color
+    let placeholderColor: Color
+    let action: () -> Void
     
     let locations: [EventLocation]
     
@@ -81,10 +85,12 @@ struct CustomToolBar: View {
                 .padding(.bottom, 10)
                 
                 SearchBarView(
-                    searchText: $searchText,
-                    fiterAction: filterAction,
-                    magnifierColor: magnifierColor)
-                    .padding(.horizontal,24)
+                                    searchText: $searchText, textColor: textColor,
+                                    placeholderColor: placeholderColor,
+                                    fiterAction: filterAction,
+                                    magnifierColor: magnifierColor,
+                                    action: action ) // action Button
+                                    .padding(.horizontal,24)
                 
             }
             .frame(height: 179)

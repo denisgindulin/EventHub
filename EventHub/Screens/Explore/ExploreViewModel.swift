@@ -23,17 +23,24 @@ final class ExploreViewModel: ObservableObject {
     @Published var locations: [EventLocation] = []
     
     @Published var error: Error? = nil
-    @Published var currentCategory: String? = nil {
+    
+    @Published var currentLocation: String = "msk" {
         didSet{
             Task {
-                await fetchUpcomingEvents()
                 await featchNearbyYouEvents()
             }
         }
     }
     
-    @Published var currentLocation: String = "msk"
-    
+        @Published var currentCategory: String? = nil {
+            didSet{
+                Task {
+                    await fetchUpcomingEvents()
+                    await featchNearbyYouEvents()
+                }
+            }
+        }
+        
     var isFavoriteEvent = false
     
     

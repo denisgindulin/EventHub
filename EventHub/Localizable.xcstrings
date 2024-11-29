@@ -13,6 +13,9 @@
     "                      " : {
 
     },
+    " About Me" : {
+
+    },
     " coming soon!" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -46,6 +49,9 @@
           }
         }
       }
+    },
+    "%@" : {
+
     },
     "+" : {
 
@@ -202,9 +208,6 @@
           }
         }
       }
-    },
-    "C" : {
-
     },
     "Cancel" : {
       "extractionState" : "manual",
