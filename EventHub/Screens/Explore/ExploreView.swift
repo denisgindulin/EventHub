@@ -11,6 +11,7 @@ struct ExploreView: View {
     
     @StateObject var viewModel: ExploreViewModel
     
+    @State private var isSearchPresented: Bool = false
     @State private var selectedEventID: Int? = nil
     @State private var isDetailPresented: Bool = false
     
@@ -31,12 +32,17 @@ struct ExploreView: View {
                         CustomToolBar(searchText: $viewModel.searchText,
                                       currentLocation: $viewModel.currentLocation,
                                       title: $viewModel.currentPosition,
+                                      isSearchPresented: $isSearchPresented,
                                       notifications: true,
                                       filterAction: {_ in } ,
                                       magnifierColor: .white,
                                       textColor: .white,
                                       placeholderColor: .searchBarPlaceholder,
-                                      action: {} ,
+                                      action:
+                                        { Task {
+                            await viewModel.fetchSearchedEvents()
+                        }
+                        } ,
                                       locations: viewModel.locations)
                         
                         CategoryScroll(categories:
@@ -60,7 +66,7 @@ struct ExploreView: View {
                     
                     ScrollView(showsIndicators: false) {
                         VStack {
-                            MainCategorySectionView(title: "Upcomimg Events")
+                            MainCategorySectionView(title: /*"Upcomimg Events"*/ viewModel.searchText + " - " + String(viewModel.searchedEvents.count))
                                 .padding(.bottom, 10)
                             
                             if viewModel.upcomingEvents.isEmpty {
@@ -104,6 +110,14 @@ struct ExploreView: View {
                 .ignoresSafeArea()
             }
             .overlay(
+                NavigationLink(
+                    destination: SearchView(text: $viewModel.searchText, events: viewModel.searchedEvents),
+                    isActive : $isSearchPresented )
+                {
+                    EmptyView()
+                }
+            )
+            .overlay(
                     NavigationLink(
                         destination: DetailView(detailID: selectedEventID ?? 0),
                         isActive: $isDetailPresented
@@ -116,6 +130,7 @@ struct ExploreView: View {
             await viewModel.fetchLocations()
             await viewModel.fetchUpcomingEvents()
             await viewModel.featchNearbyYouEvents()
+            await viewModel.fetchSearchedEvents()
         }
     }
 }
