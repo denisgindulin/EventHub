@@ -27,15 +27,25 @@ struct EventHubContentView: View {
             Group {
                 switch selectedTab {
                 case .explore:
-                    ExploreView()
+                    NavigationView {
+                        ExploreView()
+                    }
                 case .events:
-                    EventsView(eventAPIService: eventAPIManager)
+                    NavigationView {
+                        EventsView(eventAPIService: eventAPIManager)
+                    }
                 case .map:
-                    MapView()
+                    NavigationView {
+                        MapView()
+                    }
                 case .bookmark:
-                    BookmarksView()
+                    NavigationView {
+                        BookmarksView()
+                    }
                 case .profile:
-                    ProfileView(router: router)
+                    NavigationView {
+                        ProfileView(router: router)
+                    }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -13,7 +13,7 @@ struct DetailView: View {
     
     @State private var isPresented: Bool = false
     
-//    MARK: - Init
+    //    MARK: - Init
     init(detailID: Int) {
         self._viewModel = StateObject(wrappedValue: DetailViewModel(eventID: detailID)
         )
@@ -21,43 +21,60 @@ struct DetailView: View {
     
     var body: some View {
         ZStack {
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 50) {
-                    ZStack(alignment: .bottomTrailing) {
-                        if let imageUrl = viewModel.image,
-                           let url = URL(string: imageUrl) {
-                            KFImage(url)
-                                .placeholder {
-                                    ShimmerView(ratio: 0.6)
-                                        .scaledToFit()
-                                        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 244)
-                                }
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: .infinity, maxHeight: 244)
-                                .clipped()
-                        } else {
-                            Image(.cardImg1)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: .infinity, maxHeight: 244)
-                                .clipped()
-                        }
-                        Button {
-                            isPresented = true
-                        } label: {
-                            Image(.share)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 24, maxHeight: 24)
-                                .padding(6)
-                                .background(.white.opacity(0.3))
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .padding(14)
-                        }
-                        
-                    }
+            VStack {
+                ZStack(alignment: .bottomTrailing) {
+                    ToolBarView(
+                        title: "Event Details",
+                        foregroundStyle: .white,
+                        isTitleLeading: true,
+                        showBackButton: true,
+                        actions: [
+                            ToolBarAction(
+                                icon: ToolBarButtonType.bookmark.icon,
+                                action: {},
+                                hasBackground: true,
+                                foregroundStyle: .white
+                            )
+                        ]
+                    )
+                    .zIndex(1)
                     
+                    if let imageUrl = viewModel.image,
+                       let url = URL(string: imageUrl) {
+                        KFImage(url)
+                            .placeholder {
+                                ShimmerView(ratio: 0.6)
+                                    .scaledToFit()
+                                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 244)
+                            }
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity, maxHeight: 244)
+                            .clipped()
+                    } else {
+                        Image(.cardImg1)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity, maxHeight: 244)
+                            .clipped()
+                    }
+                    Button {
+                        isPresented = true
+                    } label: {
+                        Image(.share)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 24, maxHeight: 24)
+                            .padding(6)
+                            .background(.white.opacity(0.3))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding(14)
+                    }
+                }
+                
+               
+                
+                ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 24) {
                         Text(viewModel.title)
                             .airbnbCerealFont(.book, size: 35)
@@ -85,6 +102,7 @@ struct DetailView: View {
                     .padding(.horizontal, 20)
                 }
             }
+            .padding(.top, 50)
             .task {
                 await viewModel.fetchEventDetails()
             }
@@ -100,10 +118,11 @@ struct DetailView: View {
                 ShareView(isPresented: $isPresented)
             }
         }
+        .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.all)
     }
 }
 
 #Preview {
-    
+    DetailView(detailID: 32532)
 }

@@ -27,7 +27,7 @@ final class ExploreViewModel: ObservableObject {
     @Published var currentLocation: String = "new-york"
     
     var isFavoriteEvent = false
-
+    
     
     private let language = Language.en
     
@@ -52,13 +52,10 @@ final class ExploreViewModel: ObservableObject {
     func fetchLocations() async {
         do {
             let fetchedLocations = try await apiService.getLocations(with: language)
-            await MainActor.run { [weak self] in
-                self?.locations = fetchedLocations
-            }
+            self.locations = fetchedLocations
+            
         } catch {
-            await MainActor.run {
-                self.error = error
-            }
+            self.error = error
         }
     }
     
@@ -98,11 +95,6 @@ final class ExploreViewModel: ObservableObject {
         }
     }
     
-//    MARK: -  Navigation
-    func showDetail(_ eventID: Int) {
-
-    }
-    
     
     //    MARK: - Helper Methods
     private func loadCategories(from eventCategories: [CategoryDTO]) async {
@@ -111,12 +103,6 @@ final class ExploreViewModel: ObservableObject {
             let image = CategoryImageMapping.image(for: category)
             return CategoryUIModel(id: category.id, category: category, color: color, image: image)
         }
-        
-        await MainActor.run { [weak self] in
-            self?.categories = mappedCategories
-        }
+        self.categories = mappedCategories
     }
-    
-
-    
 }
