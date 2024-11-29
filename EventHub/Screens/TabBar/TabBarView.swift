@@ -11,7 +11,7 @@ import SwiftUI
 enum Tab: String, CaseIterable {
     case explore
     case events
-    case bookmark
+    case favorites
     case map
     case profile
     
@@ -26,8 +26,8 @@ enum Tab: String, CaseIterable {
             return "Map"
         case .profile:
             return "Profile"
-        case .bookmark:
-            return "" // Bookmark doesn't have a title
+        case .favorites:
+            return ""
         }
     }
     
@@ -42,7 +42,7 @@ enum Tab: String, CaseIterable {
             return "map"
         case .profile:
             return "profileTab"
-        case .bookmark:
+        case .favorites:
             return "bookmark"
         }
     }
@@ -57,11 +57,11 @@ struct TabBarView: View {
     
     // MARK: - Drawing Constants
     private enum Drawing {
-        static let tabBarHeight: CGFloat = 80
+        static let tabBarHeight: CGFloat = 88
         static let tabBarCornerRadius: CGFloat = 20
         static let iconSize: CGFloat = 23
-        static let floatingButtonSize: CGFloat = 64
-        static let floatingButtonOffsetY: CGFloat = -32
+        static let floatingButtonSize: CGFloat = 46
+        static let floatingButtonOffsetY: CGFloat = -45
         static let shadowRadius: CGFloat = 8
         static let fontSize: CGFloat = 12
         static let buttonSize: CGFloat = 43
@@ -84,7 +84,7 @@ struct TabBarView: View {
             HStack(spacing: calculateSpacing()) {
                 TabBarButton(tab: .explore, iconName: Tab.explore.icon, title: Tab.explore.title)
                 TabBarButton(tab: .events, iconName: Tab.events.icon, title: Tab.events.title)
-                BookmarkButton(tab: .bookmark, iconName: Tab.bookmark.icon)
+                FavoriteButton(tab: .favorites, iconName: Tab.favorites.icon)
                 TabBarButton(tab: .map, iconName: Tab.map.icon, title: Tab.map.title)
                 TabBarButton(tab: .profile, iconName: Tab.profile.icon, title: Tab.profile.title)
                 
@@ -96,7 +96,7 @@ struct TabBarView: View {
     
     
     // MARK: - Bookmark Button
-    private func BookmarkButton(tab: Tab, iconName: String) -> some View {
+    private func FavoriteButton(tab: Tab, iconName: String) -> some View {
         Button {
             withAnimation(.easeInOut) {
                 switchTab(tab)
@@ -109,6 +109,7 @@ struct TabBarView: View {
                     .shadow(color: selectedTab == tab ? .appRed.opacity(0.3) : .appBlue.opacity(0.3), radius: 10, x: 0, y: 5)
                 
                 Image(iconName)
+                
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: Drawing.iconSize, height: Drawing.iconSize)

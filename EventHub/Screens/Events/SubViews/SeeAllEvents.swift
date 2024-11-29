@@ -17,7 +17,6 @@ struct SeeAllEvents: View {
                     title: "Event",
                     isTitleLeading: true,
                     showBackButton: true,
-                    backButtonAction: {},
                     actions: [ToolBarAction(
                         icon: ToolBarButtonType.search.icon,
                         action: {},

@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-class BookmarksViewModel: ObservableObject {
+final class FavoritesViewModel: ObservableObject {
     @Published var events: [EventDTO] = []
 
 

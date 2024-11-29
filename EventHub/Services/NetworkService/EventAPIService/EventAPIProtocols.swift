@@ -9,7 +9,7 @@ import Foundation
 
 
 /// Tuple alias combining all event-related protocols.
-typealias IEventAPIService = IAPIServiceForExplore & IEventAPIServiceForDetail & IEventAPIServiceForSearch & IEventAPIServiceForEvents
+typealias IEventAPIService = IAPIServiceForExplore & IAPIServiceForDetail & IEventAPIServiceForSearch & IAPIServiceForEvents
 
 /// Protocol for fetching event data related to exploration.
 /// Includes methods for retrieving locations, categories, and events.
@@ -22,7 +22,7 @@ protocol IAPIServiceForExplore: IEventAPIServiceForSearch {
     /// Fetches a list of event categories.
     /// - Parameter language: The language for category names.
     /// - Returns: An array of `CategoryDTO`, or `nil` if no categories are found.
-    func getCategories(with language: Language?) async throws -> [CategoryDTO]?
+    func getCategories(with language: Language?) async throws -> [CategoryDTO]
     
     /// Fetches a paginated list of Upcoming events.
     /// - Parameters:
@@ -38,11 +38,11 @@ protocol IAPIServiceForExplore: IEventAPIServiceForSearch {
     ///   - location: The event location filter.
     ///   - page: The page number for pagination.
     /// - Returns: An array of `EventDTO`.
-    func getNearbyYouEvents(with language: Language?,_ location: String,_ page: Int?) async throws -> [EventDTO]
+    func getNearbyYouEvents(with language: Language?,_ location: String,_ category: String?,_ page: Int?) async throws -> [EventDTO]
 }
 
 /// Protocol for fetching detailed event information.
-protocol IEventAPIServiceForDetail {
+protocol IAPIServiceForDetail {
     /// Fetches details of a specific event.
     /// - Parameters:
     ///   - eventID: The ID of the event.
@@ -59,7 +59,7 @@ protocol IEventAPIServiceForSearch {
     func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO?
 }
 
-protocol IEventAPIServiceForEvents {
+protocol IAPIServiceForEvents {
     func getUpcomingEvents(_ actualSince: String,_ actualUntil: String,_ language: Language, _ page: Int?) async throws -> [EventDTO]
     func getPastEventsEvents(_ actualUntil: String,_ language: Language, _ page: Int?) async throws -> [EventDTO]
 }

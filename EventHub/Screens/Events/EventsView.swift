@@ -13,7 +13,7 @@ struct EventsView: View {
     @StateObject var viewModel: EventsViewModel
     
     
-    init(eventAPIService: IEventAPIServiceForEvents) {
+    init(eventAPIService: IAPIServiceForEvents) {
         self._viewModel = StateObject(wrappedValue: EventsViewModel(apiService: eventAPIService)
         )
     }
@@ -52,7 +52,7 @@ struct EventsView: View {
                     // Additional button logic
                 }
                 .padding(.horizontal, 53)
-                .padding(.bottom, 50)
+                .padding(.bottom, 120)
             }
             .task {
                 await viewModel.fetchUpcomingEvents()
@@ -98,7 +98,6 @@ struct EventsView: View {
         }
     }
 }
-
-//#Preview {
-//
-//}
+#Preview {
+    EventsView(eventAPIService: EventAPIService())
+}

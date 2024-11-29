@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
-import Combine
 
 @MainActor
 final class ExploreViewModel: ObservableObject {
+    
+    private let apiService: IAPIServiceForExplore
     
     let functionalButtonsNames = ["Today","Films", "Lists"]
     @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
@@ -22,19 +23,26 @@ final class ExploreViewModel: ObservableObject {
     @Published var locations: [EventLocation] = []
     
     @Published var error: Error? = nil
-    @Published var currentCategory: String? = nil
-    @Published var currentLocation: String = "new-york"
+    @Published var currentCategory: String? = nil {
+        didSet{
+            Task {
+                await fetchUpcomingEvents()
+                await featchNearbyYouEvents()
+            }
+        }
+    }
+    
+    @Published var currentLocation: String = "msk"
     
     var isFavoriteEvent = false
-
-    private let apiService: IAPIServiceForExplore
+    
     
     private let language = Language.en
     
     private var page: Int = 1
     
     // MARK: - INIT
-    init(apiService: IAPIServiceForExplore) {
+    init(apiService: IAPIServiceForExplore = DIContainer.resolve(forKey: .networkService) ?? EventAPIService()) {
         self.apiService = apiService
     }
     
@@ -52,19 +60,16 @@ final class ExploreViewModel: ObservableObject {
     func fetchLocations() async {
         do {
             let fetchedLocations = try await apiService.getLocations(with: language)
-            await MainActor.run { [weak self] in
-                self?.locations = fetchedLocations
-            }
+            self.locations = fetchedLocations
+            
         } catch {
-            await MainActor.run {
-                self.error = error
-            }
+            self.error = error
         }
     }
     
     func fetchCategories() async {
         do {
-            let categoriesFromAPI = try await apiService.getCategories(with: language) ?? []
+            let categoriesFromAPI = try await apiService.getCategories(with: language)
             await loadCategories(from: categoriesFromAPI)
         } catch {
             self.error = error
@@ -90,17 +95,13 @@ final class ExploreViewModel: ObservableObject {
             let eventsDTO = try await apiService.getNearbyYouEvents(
                 with: language,
                 currentLocation,
+                currentCategory,
                 page
             )
             nearbyYouEvents = eventsDTO.map { ExploreEvent(dto: $0) }
         } catch {
             self.error = error
         }
-    }
-    
-//    MARK: -  Navigation
-    func showDetail(_ eventID: Int) {
-
     }
     
     
@@ -111,12 +112,6 @@ final class ExploreViewModel: ObservableObject {
             let image = CategoryImageMapping.image(for: category)
             return CategoryUIModel(id: category.id, category: category, color: color, image: image)
         }
-        
-        await MainActor.run { [weak self] in
-            self?.categories = mappedCategories
-        }
+        self.categories = mappedCategories
     }
-    
-
-    
 }

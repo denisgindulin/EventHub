@@ -22,7 +22,7 @@ enum EventsMode: CaseIterable {
 }
 
 struct EventModel: Identifiable {
-    var id: Int = UUID().hashValue
+    var id: Int 
     let title: String
     let location: String
     let date: Date
@@ -31,7 +31,7 @@ struct EventModel: Identifiable {
 
 extension EventModel {
     init(dto: EventDTO) {
-        self.id = UUID().hashValue
+        self.id = dto.id
         self.title = dto.title ?? ""
         
         let locationName = dto.location?.name ?? dto.location?.slug ?? ""

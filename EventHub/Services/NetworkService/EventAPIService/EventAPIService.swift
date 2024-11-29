@@ -40,14 +40,14 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Categories
     /// Fetches event categories based on the provided language.
-    func getCategories(with language: Language?) async throws -> [CategoryDTO]? {
+    func getCategories(with language: Language?) async throws -> [CategoryDTO] {
         let apiSpec: EventAPISpec = .getCategories(language: language)
         do {
             let categories = try await apiClient?.sendRequest(apiSpec)
-            return categories as? [CategoryDTO]
+            return categories as? [CategoryDTO] ?? []
         } catch {
             print(error)
-            return nil
+            return []
         }
     }
     
@@ -69,8 +69,8 @@ final class EventAPIService: APIService, IEventAPIService {
         return []
     }
     
-    func getNearbyYouEvents(with language: Language?, _ location: String, _ page: Int?) async throws -> [EventDTO] {
-        let apiSpec: EventAPISpec = .getNearbyYouEvents(language: language, location: location, page: page ?? 1)
+    func getNearbyYouEvents(with language: Language?, _ location: String, _ category: String?, _ page: Int?) async throws -> [EventDTO] {
+        let apiSpec: EventAPISpec = .getNearbyYouEvents(language: language, location: location, catetory: category, page: page ?? 1)
 
         do {
             if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
