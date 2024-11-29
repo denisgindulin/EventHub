@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import SwiftUI
+
 extension View {
     func placeholder<Content: View>(
         when shouldShow: Bool,
@@ -26,16 +28,20 @@ struct SearchBarView: View {
     @Binding var searchText: String
     @State private var searchString = ""
     
-   
+    let textColor: Color
+    let placeholderColor: Color
+    
     let fiterAction: (DisplayOrderType) -> Void
     let magnifierColor: Color
     
+    let action: () -> Void
     
     
     var body: some View {
         
         HStack {
             Button {
+                action()
                 searchText = String(searchString)
             } label: {
                 Image(.searchWhite)
@@ -47,14 +53,14 @@ struct SearchBarView: View {
             
             Rectangle()
                 .frame(width: 1, height: 20)
-                .foregroundStyle(.searchBarPlaceholder)
+                .foregroundStyle(placeholderColor)
             
             TextField("", text: $searchString)
                 .airbnbCerealFont( AirbnbCerealFont.book, size: 18)
-                .tint(.white)
-                .foregroundStyle(.white)
+                .tint(textColor)
+                .foregroundStyle(textColor)
                 .placeholder(when: searchString.isEmpty) {
-                    Text("Search...").foregroundColor(.searchBarPlaceholder)
+                    Text("Search...").foregroundColor(placeholderColor)
                }
                 .onChange(of: searchString) { newValue in
                     searchText = newValue
@@ -66,6 +72,6 @@ struct SearchBarView: View {
     }
 }
 
-//#Preview {
-//    SearchBarView(action: {  }, magnifierColor: .white)
-//}
+#Preview {
+    SearchBarView(searchText: .constant(""), textColor: .white, placeholderColor: .searchBarPlaceholder, fiterAction: {_ in }, magnifierColor: .white, action: {})
+}

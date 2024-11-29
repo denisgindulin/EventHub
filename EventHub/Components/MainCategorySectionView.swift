@@ -23,9 +23,9 @@ struct MainCategorySectionView: View {
                 // see All View
             } label: {
                 Text("See All")
-                    .frame(width: 50, height: 23) //?
+                    .frame(height: 23)
                     .airbnbCerealFont(AirbnbCerealFont.medium, size: 14)
-                    .foregroundStyle(.gray) // Color
+                    .foregroundStyle(.gray)
                     .padding(.trailing, 16)
             }
         }

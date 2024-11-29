@@ -28,14 +28,17 @@ struct ExploreView: View {
                 VStack {
                     ZStack {
                         
-                        CustomToolBar(
-                            searchText: $viewModel.searchText,
-                            currentLocation: $viewModel.currentLocation,
-                            title: $viewModel.currentPosition,
-                            magnifierColor: .white,
-                            notifications: true,
-                            filterAction: viewModel.filterEvents(orderType:),
-                            locations: viewModel.locations)
+//                        
+                        CustomToolBar(searchText: $viewModel.searchText,
+                                      currentLocation: $viewModel.currentLocation,
+                                      title: $viewModel.currentPosition,
+                                      notifications: true,
+                                      filterAction: {_ in } ,
+                                      magnifierColor: .white,
+                                      textColor: .white,
+                                      placeholderColor: .searchBarPlaceholder,
+                                      action: {} ,
+                                      locations: viewModel.locations)
                         
                         CategoryScroll(categories:
                                         viewModel.categories,
@@ -66,7 +69,8 @@ struct ExploreView: View {
                                 )
                                     .padding(.bottom, 10)
                             } else {
-                                ScrollEventCardsView(events: viewModel.upcomingEvents, showDetail: { event in
+                                ScrollEventCardsView(events: viewModel.upcomingEvents,
+                                                     showDetail: { event in
                                     selectedEventID = event
                                     isDetailPresented = true
                                 })
@@ -118,6 +122,6 @@ struct ExploreView: View {
     }
 }
 
-#Preview {
-    ExploreView()
-}
+//#Preview {
+//    ExploreView()
+//}
