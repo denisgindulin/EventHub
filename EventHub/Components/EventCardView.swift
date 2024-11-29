@@ -44,7 +44,7 @@ struct EventCardView: View {
                     VStack {
                         Button {
                             if isFavorite {
-                                coreDataManager.deleteEvent(event: event)
+                                coreDataManager.deleteEvent(eventID: event.id)
                             } else {
                                 coreDataManager.createEvent(event: event)
                             }
@@ -54,9 +54,10 @@ struct EventCardView: View {
                                     .frame(width: 30, height: 30)
                                     .foregroundStyle(.appOrangeSecondary)
                                     .opacity(0.7)
-                                Image(isFavorite ? .bookmarkRedFill : .bookmarkOverlay)
+                                Image(isFavorite ? .bookmarkFill : .bookmarkOverlay)
                                     .resizable()
                                     .frame(width: 14, height: 14)
+                                    .foregroundStyle(.appRed)
                             }
                         }
                     }

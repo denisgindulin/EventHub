@@ -41,6 +41,18 @@ final class CoreDataManager: ObservableObject {
         fetchEvents()
     }
     
+    func createEvent(event: EventDTO) {
+        let favoriteEvent = FavoriteEvent(context: viewContext)
+        favoriteEvent.id = event.id
+        favoriteEvent.title = event.title
+        favoriteEvent.date = Date(timeIntervalSince1970: TimeInterval(event.dates.first?.start ?? 1489312800))
+        favoriteEvent.adress = event.place?.address
+        favoriteEvent.image = event.images.first?.image
+        
+        saveContext()
+        fetchEvents()
+    }
+    
     func fetchEvents() {
         let request = FavoriteEvent.fetchRequest()
         let sortDescription = NSSortDescriptor(keyPath: \FavoriteEvent.id, ascending: true)
@@ -60,19 +72,19 @@ final class CoreDataManager: ObservableObject {
         fetchEvents()
     }
     
-    func deleteEvent(event: ExploreEvent) {
+    func deleteEvent(eventID: Int) {
         let fetchRequest: NSFetchRequest<FavoriteEvent> = FavoriteEvent.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d", event.id)
+        fetchRequest.predicate = NSPredicate(format: "id == %d", eventID)
         do {
             let favoriteEvents = try viewContext.fetch(fetchRequest)
-            if let favoriteEvent = favoriteEvents.first {
-                viewContext.delete(favoriteEvent)
-                saveContext()
-                fetchEvents()
+            for event in favoriteEvents {
+                viewContext.delete(event)
             }
+            saveContext()
+            fetchEvents()
         } catch {
             let nserror = error as NSError
-            print("Не удалось удалить событие: \(nserror), \(nserror.userInfo)")
+            print("Ошибка при удалении события: \(nserror), \(nserror.userInfo)")
         }
     }
 }
