@@ -5,10 +5,12 @@
 //  Created by Руслан on 18.11.2024.
 //
 
+import PhotosUI
 import Kingfisher
 import SwiftUI
 
 struct ProfileView: View {
+    
     
     @StateObject var viewModel: ProfileViewModel
     @State private var showMore = false
@@ -48,6 +50,8 @@ struct ProfileView: View {
                             .foregroundStyle(.appBackground)
                             .frame(height: 28)
                     }
+                    
+                   
                     
                     Text(viewModel.name)
                         .airbnbCerealFont( AirbnbCerealFont.medium, size: 24)

@@ -135,6 +135,7 @@ final class EventAPIService: APIService, IEventAPIService {
             return events as? APIResponseDTO
         } catch {
             print(error)
+            print(  " error in func" )
             return nil
         }
     }
