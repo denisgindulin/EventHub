@@ -9,14 +9,16 @@ import SwiftUI
 
 // MARK: - EventsView
 struct EventsView: View {
-
+    
     @StateObject var viewModel: EventsViewModel
     
-    
-    init(eventAPIService: IAPIServiceForEvents) {
-        self._viewModel = StateObject(wrappedValue: EventsViewModel(apiService: eventAPIService)
+    //    MARK: - INIT
+    init() {
+        self._viewModel = StateObject(wrappedValue: EventsViewModel()
         )
     }
+    
+    //    MARK: - BODY
     var body: some View {
         ZStack {
             Color.appBackground.ignoresSafeArea(.all)
@@ -57,7 +59,7 @@ struct EventsView: View {
             .task {
                 await viewModel.fetchUpcomingEvents()
             }
-    
+            
             .alert(isPresented: isPresentedAlert(for: $viewModel.upcomingEventsPhase)) {
                 Alert(
                     title: Text("Error"),
@@ -71,8 +73,8 @@ struct EventsView: View {
             }
         }
     }
-
-   
+    
+    
     private func isPresentedAlert(for phase: Binding<DataFetchPhase<[EventModel]>>) -> Binding<Bool> {
         Binding(
             get: {
@@ -99,5 +101,5 @@ struct EventsView: View {
     }
 }
 #Preview {
-    EventsView(eventAPIService: EventAPIService())
+    EventsView()
 }

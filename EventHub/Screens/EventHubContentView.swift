@@ -10,12 +10,10 @@ import SwiftUI
 struct EventHubContentView: View {
     @State private var selectedTab: Tab = .explore
     private let router: StartRouter
-    private let eventAPIManager: IEventAPIService
     
     
-    init(router: StartRouter, eventAPIManager: IEventAPIService) {
+    init(router: StartRouter) {
         self.router = router
-        self.eventAPIManager = eventAPIManager
     }
     
     func switchTab(_ tab: Tab) {
@@ -32,7 +30,7 @@ struct EventHubContentView: View {
                     }
                 case .events:
                     NavigationView {
-                        EventsView(eventAPIService: eventAPIManager)
+                        EventsView()
                     }
                 case .map:
                     NavigationView {

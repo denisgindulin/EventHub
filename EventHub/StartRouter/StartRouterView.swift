@@ -13,26 +13,27 @@ struct StartRouterView: View {
     let newsAPIManager = EventAPIService()
     
     var body: some View {
-        Group {
-            switch startRouter.routerState {
-            case .onboarding:
-                OnboardingView(router: startRouter)
-            case .auth:
-                NavigationView {
-                    SignInView(router: startRouter)
+        if startRouter.routerState != .onboarding || UserDefaults.standard.bool(forKey: "hasCompletedOnboarding") {
+            Group {
+                switch startRouter.routerState {
+                case .onboarding:
+                    OnboardingView(router: startRouter)
+                case .auth:
+                    NavigationView {
+                        SignInView(router: startRouter)
+                    }
+                case .main:
+                    EventHubContentView(
+                        router: startRouter,
+                        eventAPIManager: newsAPIManager
+                    )
                 }
-            case .main:
-                EventHubContentView(
-                    router: startRouter,
-                    eventAPIManager: newsAPIManager
-                )
             }
+            .transition(.opacity)
+            .animation(.bouncy, value: startRouter.routerState)
         }
-        .transition(.opacity)
-        .animation(.bouncy, value: startRouter.routerState)
     }
 }
-
 #Preview {
     StartRouterView()
 }

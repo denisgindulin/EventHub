@@ -31,7 +31,7 @@ final class EventsViewModel: ObservableObject {
     private var page: Int = 1
     
     // MARK: - Initialization
-    init(apiService: IAPIServiceForEvents) {
+    init(apiService: IAPIServiceForEvents = DIContainer.resolve(forKey: .networkService) ?? EventAPIService()) {
         self.apiService = apiService
         self.cache = DiskCache<[EventDTO]>(
             filename: "xca_events",
