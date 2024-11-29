@@ -19,7 +19,6 @@ struct ProfileEditeView: View {
     @State private var showMore = false
     
     var body: some View {
-        NavigationView {
             ZStack {
                 Color.appBackground
                 
@@ -144,13 +143,20 @@ struct ProfileEditeView: View {
                         .padding(.bottom,137)
                 }
             }
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    BackBarButtonView(foregroundStyle: .black)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
             .padding(.horizontal, 20)
             .ignoresSafeArea()
-        }
-        .sheet(isPresented: $showMore){
-            AboutMeInfo(text: userInfo)
-        }
-        .navigationTitle("Profile")
+            .sheet(isPresented: $showMore){
+                AboutMeInfo(text: userInfo)
+            }
+            .navigationTitle("Profile")
+        
     }
 }
 

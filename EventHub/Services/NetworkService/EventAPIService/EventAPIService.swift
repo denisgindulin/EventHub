@@ -69,8 +69,8 @@ final class EventAPIService: APIService, IEventAPIService {
         return []
     }
     
-    func getNearbyYouEvents(with language: Language?, _ location: String, _ page: Int?) async throws -> [EventDTO] {
-        let apiSpec: EventAPISpec = .getNearbyYouEvents(language: language, location: location, page: page ?? 1)
+    func getNearbyYouEvents(with language: Language?, _ location: String, _ category: String?, _ page: Int?) async throws -> [EventDTO] {
+        let apiSpec: EventAPISpec = .getNearbyYouEvents(language: language, location: location, catetory: category, page: page ?? 1)
 
         do {
             if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {

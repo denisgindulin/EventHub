@@ -22,10 +22,9 @@ struct ExploreView: View {
     
     // MARK: - BODY
     var body: some View {
-        NavigationView {
             ZStack {
                 Color.appMainBackground // zIndex modifire // UIScreen.main.bounds.width
-                VStack {
+                VStack(spacing: 0) {
                     ZStack {
                         
 //                        
@@ -46,9 +45,9 @@ struct ExploreView: View {
                             viewModel.currentCategory = selectedCategory.category.slug ;
                             viewModel.upcomingEvents = []
                             
-                            Task {
-                                await viewModel.fetchUpcomingEvents()
-                            }
+//                            Task {
+//                                await viewModel.fetchUpcomingEvents()
+//                            }
                         })
                         .offset(y: 87)
                         
@@ -98,7 +97,7 @@ struct ExploreView: View {
                         }
                         .offset(y: 100)
                     }
-                    .offset(y: -10)
+//                    .offset(y: -10)
                     .zIndex(0)
                     .navigationBarHidden(true)
                 }
@@ -112,16 +111,15 @@ struct ExploreView: View {
                         EmptyView()
                     }
                 )
-            }
-        .task {
-            await viewModel.fetchCategories()
-            await viewModel.fetchLocations()
-            await viewModel.fetchUpcomingEvents()
-            await viewModel.featchNearbyYouEvents()
-        }
+//        .task {
+//            await viewModel.fetchCategories()
+//            await viewModel.fetchLocations()
+//            await viewModel.fetchUpcomingEvents()
+//            await viewModel.featchNearbyYouEvents()
+//        }
     }
 }
 
-//#Preview {
-//    ExploreView()
-//}
+#Preview {
+    ExploreView()
+}

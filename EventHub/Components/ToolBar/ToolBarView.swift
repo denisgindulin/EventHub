@@ -16,7 +16,6 @@ struct ToolBarView: View {
     
     var isTitleLeading: Bool = false
     var showBackButton: Bool = false
-    var backButtonAction: (() -> Void)? = nil
     var actions: [ToolBarAction] = []
     
     // MARK: - Drawing Constants
@@ -33,14 +32,10 @@ struct ToolBarView: View {
     var body: some View {
         HStack {
             if showBackButton {
-                if let backButtonAction {
-                    BackBarButtonView(
-                        backActions: backButtonAction
-                    )
+                BackBarButtonView(foregroundStyle: foregroundStyle)
                     .padding(.leading, Drawing.leadingSpacing)
-                } else {
-                    Spacer().frame(width: Drawing.leadingSpacing)
-                }
+            } else {
+                Spacer().frame(width: Drawing.leadingSpacing)
             }
             // Title
             Text(title)
@@ -48,6 +43,7 @@ struct ToolBarView: View {
                     AirbnbCerealFont.medium,
                     size: Drawing.titleFontSize
                 )
+                .foregroundStyle(foregroundStyle)
                 .lineLimit(1)
                 .frame(
                     maxWidth: .infinity,

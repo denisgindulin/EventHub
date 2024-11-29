@@ -20,7 +20,7 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        NavigationView {
+       
             ZStack {
                 Color.appBackground
                 
@@ -98,7 +98,7 @@ struct ProfileView: View {
             .padding(.horizontal, 20)
             .ignoresSafeArea()
             
-        }
+        
     }
 }
 

@@ -15,8 +15,8 @@
 		1B7EAD2F2CEBC38C00D2AB3D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD2E2CEBC38C00D2AB3D /* ProfileViewModel.swift */; };
 		1B7EAD322CEBC3A400D2AB3D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD312CEBC3A400D2AB3D /* MapView.swift */; };
 		1B7EAD342CEBC3AF00D2AB3D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD332CEBC3AF00D2AB3D /* MapViewModel.swift */; };
-		1B7EAD372CEBC3CF00D2AB3D /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD362CEBC3CF00D2AB3D /* BookmarksView.swift */; };
-		1B7EAD392CEBC3D900D2AB3D /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD382CEBC3D900D2AB3D /* BookmarksViewModel.swift */; };
+		1B7EAD372CEBC3CF00D2AB3D /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD362CEBC3CF00D2AB3D /* FavoritesView.swift */; };
+		1B7EAD392CEBC3D900D2AB3D /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD382CEBC3D900D2AB3D /* FavoritesViewModel.swift */; };
 		1B7EAD3B2CEBD14D00D2AB3D /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EAD3A2CEBD14D00D2AB3D /* OnboardingViewModel.swift */; };
 		1BB6A3D72CEFA51C0069A17D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6A3D62CEFA51C0069A17D /* TabBarView.swift */; };
 		222838692CE937A400DCF847 /* EventHubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222838682CE937A400DCF847 /* EventHubApp.swift */; };
@@ -149,8 +149,8 @@
 		1B7EAD2E2CEBC38C00D2AB3D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		1B7EAD312CEBC3A400D2AB3D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1B7EAD332CEBC3AF00D2AB3D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
-		1B7EAD362CEBC3CF00D2AB3D /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
-		1B7EAD382CEBC3D900D2AB3D /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
+		1B7EAD362CEBC3CF00D2AB3D /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		1B7EAD382CEBC3D900D2AB3D /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		1B7EAD3A2CEBD14D00D2AB3D /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		1BB6A3D62CEFA51C0069A17D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		222838652CE937A400DCF847 /* EventHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -350,15 +350,14 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
-		1B7EAD352CEBC3BC00D2AB3D /* Bookmarks */ = {
+		1B7EAD352CEBC3BC00D2AB3D /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				1B7EAD362CEBC3CF00D2AB3D /* BookmarksView.swift */,
-				48C66CF92CF87EBC006339CD /* FavoriteEventsList.swift */,
-				483B91F72CF6102200A22FD0 /* NoFavorites.swift */,
-				1B7EAD382CEBC3D900D2AB3D /* BookmarksViewModel.swift */,
+				E15B59ED2CF99B5C00196BF3 /* SubViews */,
+				1B7EAD362CEBC3CF00D2AB3D /* FavoritesView.swift */,
+				1B7EAD382CEBC3D900D2AB3D /* FavoritesViewModel.swift */,
 			);
-			path = Bookmarks;
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		1BB6A3DA2CEFAD5C0069A17D /* TabBar */ = {
@@ -484,7 +483,7 @@
 				E14D572A2CF12272009949BC /* EventDetals */,
 				1B7EAD232CEBC2DF00D2AB3D /* Events */,
 				1B7EAD302CEBC39500D2AB3D /* Map */,
-				1B7EAD352CEBC3BC00D2AB3D /* Bookmarks */,
+				1B7EAD352CEBC3BC00D2AB3D /* Favorites */,
 				1B7EAD2B2CEBC37700D2AB3D /* Profile */,
 			);
 			path = Screens;
@@ -621,6 +620,15 @@
 				E14D57292CF12272009949BC /* DetailViewModel.swift */,
 			);
 			path = EventDetals;
+			sourceTree = "<group>";
+		};
+		E15B59ED2CF99B5C00196BF3 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				48C66CF92CF87EBC006339CD /* FavoriteEventsList.swift */,
+				483B91F72CF6102200A22FD0 /* NoFavorites.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		E165D1B72CF381790030BA88 /* Model */ = {
@@ -826,7 +834,7 @@
 				6C1AEC1D2CF5275D00125117 /* EditButton.swift in Sources */,
 				1B7EAD322CEBC3A400D2AB3D /* MapView.swift in Sources */,
 				E1725DA52CF63594001B4920 /* DataFetchPhase.swift in Sources */,
-				1B7EAD392CEBC3D900D2AB3D /* BookmarksViewModel.swift in Sources */,
+				1B7EAD392CEBC3D900D2AB3D /* FavoritesViewModel.swift in Sources */,
 				222838692CE937A400DCF847 /* EventHubApp.swift in Sources */,
 				480681992CF5B708001A2D9A /* SocialNetwork.swift in Sources */,
 				E10ED01F2CF0E2F400AFDBC2 /* CategoryUIModel.swift in Sources */,
@@ -874,7 +882,7 @@
 				4831BA4E2CEB2F4B00141C9A /* View+Ex.swift in Sources */,
 				1B7EAD2F2CEBC38C00D2AB3D /* ProfileViewModel.swift in Sources */,
 				480681962CF4E860001A2D9A /* ShareView.swift in Sources */,
-				1B7EAD372CEBC3CF00D2AB3D /* BookmarksView.swift in Sources */,
+				1B7EAD372CEBC3CF00D2AB3D /* FavoritesView.swift in Sources */,
 				1B7EAD122CEBC1FF00D2AB3D /* OnboardingView.swift in Sources */,
 				1B7EAD2D2CEBC38200D2AB3D /* ProfileView.swift in Sources */,
 				6CF41E302CF4F37500E58618 /* FunctionalButtonsView.swift in Sources */,

@@ -24,8 +24,7 @@ struct SearchView: View {
                 VStack(spacing: 10) {
                     ToolBarView(title: "Search",
                                 isTitleLeading: false,
-                                showBackButton: true,
-                                backButtonAction: {} )
+                                showBackButton: true)
                     
                     SearchBarView(searchText: $text,
                                   textColor: .black,
