@@ -1,12 +1,6 @@
-//
-//  SignInView.swift
-//  EventHub
-//
-//  Created by Emir Byashimov on 21.11.2024.
-//
-
 import SwiftUI
 import FirebaseAuth
+
 struct SignInView: View {
     var iconImageName: String = "shortLogo"
     var title: LocalizedStringKey = "EventHub"
@@ -19,18 +13,21 @@ struct SignInView: View {
     @StateObject var viewModel: AuthViewModel
     @State private var isRememberMeOn: Bool = false
     @State private var isPresentedSignUp = false
-    
+    @State private var isResetPasswordPresented = false
+    @State private var resetEmail: String = ""
+    @State private var resetMessage: String = ""
+    @State private var showResetConfirmation: Bool = false
+
     init(router: StartRouter) {
         self._viewModel = StateObject(wrappedValue: AuthViewModel(router: router))
     }
-    
+
     var body: some View {
         GeometryReader { geometry in
             let screenWidth = geometry.size.width
             let horizontalPadding = screenWidth * 0.1
             let iconPadding = screenWidth * 0.3
             let smallPadding = screenWidth * 0.05
-            
             
             VStack(alignment: .leading) {
                 Image(iconImageName)
@@ -59,9 +56,13 @@ struct SignInView: View {
                     Text(rememberMeText)
                         .airbnbCerealFont(.book, size: 14)
                     
-                    Text(forgotPasswordText)
-                        .airbnbCerealFont(.book, size: 14)
-                        .padding(.leading, smallPadding)
+                    Button(action: {
+                        isResetPasswordPresented = true
+                    }) {
+                        Text(forgotPasswordText)
+                            .airbnbCerealFont(.book, size: 14)
+                    }
+                    .padding(.leading, smallPadding)
                 }
                 .padding(.top, smallPadding )
                 .padding(.leading, horizontalPadding)
@@ -112,9 +113,31 @@ struct SignInView: View {
                     EmptyView()
                 }
             )
+            .alert("Reset Password", isPresented: $isResetPasswordPresented) {
+                TextField("Enter your email", text: $resetEmail)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .textContentType(.emailAddress)
+                Button("Submit") {
+                    if isValidEmail(resetEmail) {
+                        Task {
+                            let success = await viewModel.resetPassword(email: resetEmail)
+                            resetMessage = success ? "Reset email sent successfully!" : viewModel.errorMessage
+                            showResetConfirmation = true
+                        }
+                    } else {
+                        resetMessage = "Invalid email format. Please try again."
+                        showResetConfirmation = true
+                    }
+                }
+                Button("Cancel", role: .cancel) {}
+            }
+            .alert(resetMessage, isPresented: $showResetConfirmation) {
+                Button("OK", role: .cancel) {}
+            }
         }
     }
-    
+
     private func emailTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
             textFieldText: $viewModel.email,
@@ -135,6 +158,12 @@ struct SignInView: View {
         )
         .padding(.leading, horizontalPadding)
         .padding(.trailing, horizontalPadding)
+    }
+    
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
     }
 }
 
