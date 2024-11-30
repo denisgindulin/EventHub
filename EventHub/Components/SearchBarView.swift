@@ -41,9 +41,9 @@ struct SearchBarView: View {
         
         HStack {
             Button {
+                isSearchPresented = true
                 searchText = String(searchString)
                 action()
-                isSearchPresented = true
             } label: {
                 Image(.searchWhite)
                     .resizable()
