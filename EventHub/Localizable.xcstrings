@@ -1110,6 +1110,9 @@
         }
       }
     },
+    "Please enter your email address to request a password reset" : {
+
+    },
     "Profile" : {
       "extractionState" : "manual",
       "localizations" : {
