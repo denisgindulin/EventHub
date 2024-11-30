@@ -9,12 +9,12 @@ import SwiftUI
 
 final class SocialNetworksViewModel: ObservableObject {
     let socialNetworks: [SocialNetwork] = [
-        SocialNetwork(imageName: "copyLink", text: "Copy Link", appId: nil, urlScheme: nil),
-        SocialNetwork(imageName: "whatsapp", text: "WhatsApp", appId: "310633997", urlScheme: "whatsapp"),
+        SocialNetwork(imageName: "CopyLink", text: "Copy Link", appId: nil, urlScheme: nil),
+        SocialNetwork(imageName: "WhatsApp", text: "WhatsApp", appId: "310633997", urlScheme: "whatsapp"),
         SocialNetwork(imageName: "fb", text: "Facebook", appId: "284882215", urlScheme: "fb"),
-        SocialNetwork(imageName: "messenger", text: "Messenger", appId: "454638411", urlScheme: "messenger"),
-        SocialNetwork(imageName: "twitter", text: "Twitter", appId: "333903271", urlScheme: "twitter"),
-        SocialNetwork(imageName: "instagram", text: "Instagram", appId: "389801252", urlScheme: "instagram"),
+        SocialNetwork(imageName: "Messenger", text: "Messenger", appId: "454638411", urlScheme: "messenger"),
+        SocialNetwork(imageName: "Twitter", text: "Twitter", appId: "333903271", urlScheme: "twitter"),
+        SocialNetwork(imageName: "Instagram", text: "Instagram", appId: "389801252", urlScheme: "instagram"),
         SocialNetwork(imageName: "tg", text: "Telegram", appId: "686449807", urlScheme: "tg"),
         SocialNetwork(imageName: "sms", text: "Message", appId: nil, urlScheme: nil)
     ]
