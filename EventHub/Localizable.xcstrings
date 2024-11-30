@@ -170,7 +170,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Уже зарегистрированы?"
+            "value" : "Уже есть аккаунт?"
           }
         }
       }
@@ -222,6 +222,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отменить"
+          }
+        }
+      }
+    },
+    "Confirm password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш пароль ещё раз"
           }
         }
       }
@@ -327,23 +338,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Веселый текст обо мне. Очень очень очень очень очень очень очень очень подробно подробно подробно подробный текст обо мне, а не к ком-то другом. Только обо мне. О очень очень подробно"
-          }
-        }
-      }
-    },
-    "Enter your email" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter your email"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Введите свою эл.почту"
           }
         }
       }
@@ -1710,6 +1704,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "WhatsApp"
+          }
+        }
+      }
+    },
+    "Your email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваша электронная почта"
           }
         }
       }

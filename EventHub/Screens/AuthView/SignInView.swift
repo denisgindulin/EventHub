@@ -142,7 +142,7 @@ struct SignInView: View {
     private func emailTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
             textFieldText: $viewModel.email,
-            placeholder: "Enter your email".localized,
+            placeholder: "Your email".localized,
             imageName: "mail",
             isSecure: false
         )
