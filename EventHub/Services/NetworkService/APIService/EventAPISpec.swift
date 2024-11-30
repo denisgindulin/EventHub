@@ -150,7 +150,8 @@ enum EventAPISpec: APISpec {
             
         case .getSerchedEventsWith(searchText: let searchText):
             let items: [URLQueryItem] = [
-                URLQueryItem(name: "expand", value: "location,place,dates,participants"),
+                URLQueryItem(name: "ctype", value: "event"),
+                URLQueryItem(name: "expand", value: "location,place,dates,participants,images"),
                 URLQueryItem(name: "fields", value: "id,title,body_text,place,location,dates,images"),
                 URLQueryItem(name: "q", value: searchText)
             ]
@@ -194,7 +195,7 @@ enum EventAPISpec: APISpec {
         case .getEventDetails:
             return EventDTO.self
         case .getSerchedEventsWith:
-            return APIResponseDTO.self
+            return EventSearchResponse.self
         }
     }
     

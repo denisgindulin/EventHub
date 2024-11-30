@@ -45,6 +45,13 @@ extension ExploreEvent {
         self.image = dto.images.first?.image
     }
 }
+//extension ExploreEvent {
+//    init(dto: SearchEventDTO) {
+//        self.id = dto.id
+//        self.title = dto.title
+//        self.date = dto.
+//    }
+//}
 
 struct Visitor: Identifiable {
     let id = UUID()

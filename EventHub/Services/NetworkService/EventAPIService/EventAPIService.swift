@@ -17,7 +17,7 @@ import Foundation
 /// `EventAPIService` interacts with the KudaGo API to retrieve event data.
 /// Includes fetching locations, categories, events, event details, and search results.
 final class EventAPIService: APIService, IEventAPIService {
-
+    
     // MARK: - Initializer
     /// Initializes the EventAPIService with an API client.
     init() {
@@ -71,7 +71,7 @@ final class EventAPIService: APIService, IEventAPIService {
     
     func getNearbyYouEvents(with language: Language?, _ location: String, _ category: String?, _ page: Int?) async throws -> [EventDTO] {
         let apiSpec: EventAPISpec = .getNearbyYouEvents(language: language, location: location, catetory: category, page: page ?? 1)
-
+        
         do {
             if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
                 return response.results
@@ -102,7 +102,7 @@ final class EventAPIService: APIService, IEventAPIService {
             language: language,
             page: page
         )
-
+        
         do {
             if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
                 return response.results
@@ -115,7 +115,7 @@ final class EventAPIService: APIService, IEventAPIService {
     
     func getPastEventsEvents(_ actualUntil: String, _ language: Language, _ page: Int?) async throws -> [EventDTO] {
         let apiSpec: EventAPISpec = .getPastEvents(actualUntil: actualUntil, language: language, page: page)
-
+        
         do {
             if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
                 return response.results
@@ -128,10 +128,10 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Search
     /// Searches for events using a text query.
-    func getSearchedEvents(with searchText: String) async throws -> [EventDTO] {
+    func getSearchedEvents(with searchText: String) async throws -> [SearchEventDTO] {
         let apiSpec: EventAPISpec = .getSerchedEventsWith(searchText: searchText)
         do {
-           if let events = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
+            if let events = try await apiClient?.sendRequest(apiSpec) as? EventSearchResponse {
                 
                 return events.results
             }

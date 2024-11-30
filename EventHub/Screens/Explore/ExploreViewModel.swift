@@ -99,6 +99,9 @@ final class ExploreViewModel: ObservableObject {
                 page
             )
             
+            let apiSpec: EventAPISpec = .getUpcomingEventsWith(category: currentCategory, language: language, page: page)
+            
+            print("Generated Endpoint: \(apiSpec.endpoint)")
             upcomingEvents = eventsDTO.map { ExploreEvent(dto: $0) }
         } catch {
             self.error = error
@@ -120,21 +123,21 @@ final class ExploreViewModel: ObservableObject {
     }
     
     func fetchSearchedEvents() async {
-        print(searchText)
-        do {
-            let eventsDTO = try await apiService.getSearchedEvents(with: searchText)
-            
-            let apiSpec: EventAPISpec = .getSerchedEventsWith(searchText: searchText)
-            
-            print(apiSpec)
-            searchedEvents = eventsDTO.map { ExploreEvent(dto: $0) }
-            
-            
-            
-        } catch {
-            print(" No searched func result")
-            self.error = error
-        }
+//        print(searchText)
+//        do {
+//            let eventsDTO = try await apiService.getSearchedEvents(with: searchText)
+//            
+//            let apiSpec: EventAPISpec = .getSerchedEventsWith(searchText: searchText)
+//            
+//            print("Generated Endpoint: \(apiSpec.endpoint)")
+//            searchedEvents = eventsDTO.map { ExploreEvent(dto: $0) }
+//            
+//            
+//            
+//        } catch {
+//            print(" No searched func result")
+//            self.error = error
+//        }
     }
     
     
