@@ -221,7 +221,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отмена"
+            "value" : "Отменить"
           }
         }
       }
@@ -411,7 +411,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Центр Событий"
+            "value" : "EventHub"
           }
         }
       }
@@ -686,7 +686,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Войти с помощью аккаунта Google"
+            "value" : "Войти с Google-аккаунтом"
           }
         }
       }
@@ -1204,9 +1204,6 @@
         }
       }
     },
-    "Reset Password" : {
-
-    },
     "saved for user" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1418,7 +1415,15 @@
       }
     },
     "Submit" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подтвердить"
+          }
+        }
+      }
     },
     "Telegram" : {
       "extractionState" : "manual",

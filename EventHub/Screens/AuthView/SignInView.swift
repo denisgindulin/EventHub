@@ -3,12 +3,12 @@ import FirebaseAuth
 
 struct SignInView: View {
     var iconImageName: String = "shortLogo"
-    var title: LocalizedStringKey = "EventHub"
-    var signInText: LocalizedStringKey = "Sign In"
-    var rememberMeText: LocalizedStringKey = "Remember me"
-    var forgotPasswordText: LocalizedStringKey = "Forgot Password?"
-    var dontHaveAnAccText: LocalizedStringKey = "Don’t have an account?"
-    var signUpText: LocalizedStringKey = "Sign up"
+    var title = "EventHub".localized
+    var signInText = "Sign In".localized
+    var rememberMeText = "Remember me".localized
+    var forgotPasswordText = "Forgot Password?".localized
+    var dontHaveAnAccText = "Don’t have an account?".localized
+    var signUpText = "Sign up".localized
     
     @StateObject var viewModel: AuthViewModel
     @State private var isRememberMeOn: Bool = false
@@ -50,7 +50,7 @@ struct SignInView: View {
                 
                 HStack(spacing: 20) {
                     Toggle("", isOn: $isRememberMeOn)
-                        .toggleStyle(SwitchToggleStyle(tint: Color.blue))
+                        .toggleStyle(SwitchToggleStyle(tint: Color.appBlue))
                         .labelsHidden()
                     
                     Text(rememberMeText)
@@ -61,6 +61,7 @@ struct SignInView: View {
                     }) {
                         Text(forgotPasswordText)
                             .airbnbCerealFont(.book, size: 14)
+                            .foregroundColor(.appBlue)
                     }
                     .padding(.leading, smallPadding)
                 }
@@ -68,7 +69,7 @@ struct SignInView: View {
                 .padding(.leading, horizontalPadding)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                BlueButtonWithArrow(text: "Sign In") {
+                BlueButtonWithArrow(text: signInText) {
                     Task {
                         await viewModel.signIn()
                     }
@@ -76,7 +77,7 @@ struct SignInView: View {
                 .padding(.top, smallPadding)
                 .padding(.horizontal, horizontalPadding)
                 
-                Text("OR")
+                Text("OR".localized)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, smallPadding)
                 
@@ -113,12 +114,12 @@ struct SignInView: View {
                     EmptyView()
                 }
             )
-            .alert("Reset Password", isPresented: $isResetPasswordPresented) {
-                TextField("Enter your email", text: $resetEmail)
+            .alert("Reset Password".localized, isPresented: $isResetPasswordPresented) {
+                TextField("Enter your email".localized, text: $resetEmail)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
                     .textContentType(.emailAddress)
-                Button("Submit") {
+                Button("Submit".localized) {
                     if isValidEmail(resetEmail) {
                         Task {
                             let success = await viewModel.resetPassword(email: resetEmail)
@@ -141,7 +142,7 @@ struct SignInView: View {
     private func emailTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
             textFieldText: $viewModel.email,
-            placeholder: "Enter your email",
+            placeholder: "Enter your email".localized,
             imageName: "mail",
             isSecure: false
         )
@@ -152,7 +153,7 @@ struct SignInView: View {
     private func passwordTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
             textFieldText: $viewModel.password,
-            placeholder: "Your password",
+            placeholder: "Your password".localized,
             imageName: "Lock",
             isSecure: true
         )
