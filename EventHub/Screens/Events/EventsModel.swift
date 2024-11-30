@@ -38,11 +38,16 @@ extension EventModel {
         let placeTitle = dto.place?.title ?? ""
         self.location = locationName + placeTitle
         
-        if let dateString = dto.dates.first?.startDate {
+
+        if let startDate = dto.dates.first?.startDate,
+           let startTime = dto.dates.first?.startTime {
+
+            let dateTimeString = "\(startDate) \(startTime)"
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            if let date = dateFormatter.date(from: dateString) {
-                self.date = date
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            if let parsedDate = dateFormatter.date(from: dateTimeString) {
+                self.date = parsedDate
             } else {
                 self.date = Date()
             }
@@ -52,6 +57,7 @@ extension EventModel {
             self.date = Date()
         }
         
-        self.image = dto.images.first?.image ?? "cardImg1" 
+        // Устанавливаем изображение
+        self.image = dto.images.first?.image ?? "cardImg1"
     }
 }

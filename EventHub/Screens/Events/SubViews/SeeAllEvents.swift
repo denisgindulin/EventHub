@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct SeeAllEvents: View {
-// @ObservedObject var model: EventsViewModel
+    // @ObservedObject var model: EventsViewModel
+    let allEvents: [EventModel]
     
     var body: some View {
         ZStack {
-            VStack {
+            VStack(spacing: 0) {
                 ToolBarView(
                     title: "Event",
                     isTitleLeading: true,
@@ -24,16 +25,33 @@ struct SeeAllEvents: View {
                         foregroundStyle: Color.black)
                     ]
                 )
-            
+                .zIndex(1)
+                .padding(.top, 0)
+                Spacer()
+           
+            ScrollView {
+                ForEach(allEvents) { event in
+                    NavigationLink(destination: DetailView(detailID: event.id)) {
+                        SmallEventCard(
+                            image: event.image,
+                            date: event.date,
+                            title: event.title,
+                            place: event.location
+                        )
+                    }
+                    
+                    
+                    .padding(.horizontal, 24)
+                    
+                }
+            }
         }
-        ScrollView {
-            
         }
-    }
+        .navigationBarHidden(true)
     }
 }
 
 #Preview {
-    SeeAllEvents()
+    SeeAllEvents(allEvents: [])
 }
 

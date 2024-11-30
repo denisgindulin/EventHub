@@ -45,7 +45,7 @@ actor DiskCache<V: Codable>: NSCacheType {
     
     // MARK: - File Location
     // Returns the URL where the cache file is stored on disk
-    private var saveLocationURL: URL {
+    var saveLocationURL: URL {
         FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("\(filename).cache")
     }
@@ -55,16 +55,29 @@ actor DiskCache<V: Codable>: NSCacheType {
     func saveToDisk() throws {
         let entries = keysTracker.keys.compactMap(entry)
         let data = try JSONEncoder().encode(entries)
+        
+        let directory = saveLocationURL.deletingLastPathComponent()
+        if !FileManager.default.fileExists(atPath: directory.path) {
+            try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+            print("Created directory at: \(directory.path)")
+        }
+        
         try data.write(to: saveLocationURL)
+        print("Cache saved to disk at: \(saveLocationURL.path)")
     }
     
     // MARK: - Load from Disk
     // Loads the cache data from disk
     func loadFromDisk() throws {
-        let data = try Data(contentsOf: saveLocationURL)
-        let entries = try JSONDecoder().decode([CacheEntry<V>].self, from: data)
-        entries.forEach { insert($0) }
-    }
+            if FileManager.default.fileExists(atPath: saveLocationURL.path) {
+                let data = try Data(contentsOf: saveLocationURL)
+                let entries = try JSONDecoder().decode([CacheEntry<V>].self, from: data)
+                entries.forEach { insert($0) }
+                print("Cache loaded from disk at: \(saveLocationURL.path)")
+            } else {
+                print("Cache file does not exist at: \(saveLocationURL.path)")
+            }
+        }
 }
 
 // MARK: - NSCacheType Extension

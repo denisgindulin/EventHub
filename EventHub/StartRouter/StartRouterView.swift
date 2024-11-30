@@ -23,10 +23,7 @@ struct StartRouterView: View {
                         SignInView(router: startRouter)
                     }
                 case .main:
-                    EventHubContentView(
-                        router: startRouter,
-                        eventAPIManager: newsAPIManager
-                    )
+                    EventHubContentView(router: startRouter)
                 }
             }
             .transition(.opacity)
