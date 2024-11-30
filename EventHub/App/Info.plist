@@ -36,5 +36,7 @@
 		<key>UIImageName</key>
 		<string>logo</string>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Мы используем ваше местоположение для отображения событий на карте.</string>
 </dict>
 </plist>

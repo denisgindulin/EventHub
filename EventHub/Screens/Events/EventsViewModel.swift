@@ -100,7 +100,7 @@ final class EventsViewModel: ObservableObject {
     func fetchPastEvents() async {
         pastEventsPhase = .empty
         do {
-            let eventsDTO = try await apiService.getPastEventsEvents(
+            let eventsDTO = try await apiService.getPastEvents(
                 getActualSince(),
                 language,
                 page
