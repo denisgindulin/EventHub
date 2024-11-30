@@ -17,10 +17,10 @@ struct OnboardingPageView: View {
                 .resizable()
                 .scaledToFit()
             VStack(spacing: 32) {
-                Text(item.title)
+                Text(item.title.localized)
                     .airbnbCerealFont(.bold, size: 22)
                     .foregroundStyle(.white)
-                Text(item.description)
+                Text(item.description.localized)
                     .airbnbCerealFont(.book, size: 15)
                     .foregroundStyle(.white)
             }

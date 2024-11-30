@@ -15,17 +15,17 @@ final class OnboardingViewModel: ObservableObject {
         OnboardingItem(
             image: "onboarding1",
             title: "Explore Upcoming and Nearby Events",
-            description: "In publishing and graphic design, Lorem is a placeholder text commonly"
+            description: "Choose festivals, performances and other events and interesting places in your city and beyond"
         ),
         OnboardingItem(
             image: "onboarding2",
             title: "Web Have Modern Events Calendar Feature",
-            description: "In publishing and graphic design, Lorem is a placeholder text commonly")
-        ,
+            description: "Сhoose an excursion, exhibition, stand-up show or other entertainment for the coming weekend or upcoming holidays"
+        ),
         OnboardingItem(
             image: "onboarding3",
             title: "To Look Up More Events or Activities Nearby By Map",
-            description: "In publishing and graphic design, Lorem is a placeholder text commonly"
+            description: "An immersive show, a football match, or the opening of a new cafe may be taking place near you"
         ),
     ]
     
