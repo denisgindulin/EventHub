@@ -50,9 +50,9 @@ enum Tab: String, CaseIterable {
 
 struct TabBarView: View {
     // MARK: - Properties
+    @EnvironmentObject var appState: AppState
     @Binding var selectedTab: Tab
     var switchTab: (Tab) -> Void
-    
     @Namespace private var animationNamespace
     
     // MARK: - Drawing Constants
@@ -68,29 +68,31 @@ struct TabBarView: View {
     }
     
     var body: some View {
-        ZStack {
-            // Background with shadow
-            Rectangle()
-                .ignoresSafeArea()
-                .foregroundColor(.appBackground)
-                .frame(height: Drawing.tabBarHeight)
-                .shadow(
-                    color: Color.black.opacity(0.1),
-                    radius: Drawing.shadowRadius,
-                    x: 0,
-                    y: -2
-                )
-            
-            HStack(spacing: calculateSpacing()) {
-                TabBarButton(tab: .explore, iconName: Tab.explore.icon, title: Tab.explore.title)
-                TabBarButton(tab: .events, iconName: Tab.events.icon, title: Tab.events.title)
-                FavoriteButton(tab: .favorites, iconName: Tab.favorites.icon)
-                TabBarButton(tab: .map, iconName: Tab.map.icon, title: Tab.map.title)
-                TabBarButton(tab: .profile, iconName: Tab.profile.icon, title: Tab.profile.title)
+        if !appState.isDetailViewPresented {
+            ZStack {
+                // Background with shadow
+                Rectangle()
+                    .ignoresSafeArea()
+                    .foregroundColor(.appBackground)
+                    .frame(height: Drawing.tabBarHeight)
+                    .shadow(
+                        color: Color.black.opacity(0.1),
+                        radius: Drawing.shadowRadius,
+                        x: 0,
+                        y: -2
+                    )
                 
+                HStack(spacing: calculateSpacing()) {
+                    TabBarButton(tab: .explore, iconName: Tab.explore.icon, title: Tab.explore.title)
+                    TabBarButton(tab: .events, iconName: Tab.events.icon, title: Tab.events.title)
+                    FavoriteButton(tab: .favorites, iconName: Tab.favorites.icon)
+                    TabBarButton(tab: .map, iconName: Tab.map.icon, title: Tab.map.title)
+                    TabBarButton(tab: .profile, iconName: Tab.profile.icon, title: Tab.profile.title)
+                    
+                }
+                .frame(height: Drawing.tabBarHeight)
+                .padding(.horizontal, calculateEdgeSpacing())
             }
-            .frame(height: Drawing.tabBarHeight)
-            .padding(.horizontal, calculateEdgeSpacing())
         }
     }
     
@@ -157,6 +159,4 @@ struct TabBarView: View {
         // Equal spacing for edges
         return calculateSpacing() / 2
     }
-    
-
 }

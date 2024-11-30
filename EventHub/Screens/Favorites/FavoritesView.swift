@@ -33,11 +33,30 @@ struct FavoritesView: View {
                     )
                 ]
             )
+            Spacer()
             if coreDataManager.events.isEmpty {
                 NoFavorites()
             } else {
                 FavoriteEventsList()
             }
+            Spacer()
         }
+//        .toolbar {
+//            Button {
+//                print("Search")
+//            } label: {
+//                Image(.search)
+//                    .resizable()
+//                    .scaledToFit()
+//            }
+//
+//        }
+//        .navigationTitle("Favorites")
+//        .navigationBarTitleDisplayMode(.inline)
     }
+}
+
+#Preview {
+    FavoritesView()
+        .environmentObject(CoreDataManager())
 }

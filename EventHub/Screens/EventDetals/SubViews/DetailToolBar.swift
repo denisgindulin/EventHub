@@ -54,7 +54,6 @@ struct DetailToolBar: View {
                     .padding(6)
                     .background(.white.opacity(0.3))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding(.bottom, 35)
                     .padding(.trailing, 24)
             }
         }
