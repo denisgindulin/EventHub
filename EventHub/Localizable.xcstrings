@@ -1224,6 +1224,9 @@
         }
       }
     },
+    "Search" : {
+
+    },
     "Search..." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1257,6 +1260,9 @@
           }
         }
       }
+    },
+    "See All View" : {
+
     },
     "Share with friends" : {
       "extractionState" : "manual",

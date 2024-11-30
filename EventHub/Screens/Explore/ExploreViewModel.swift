@@ -122,7 +122,7 @@ final class ExploreViewModel: ObservableObject {
     func fetchSearchedEvents() async {
         do {
             let eventsDTO = try await apiService.getSearchedEvents(with: searchText)
-            searchedEvents = eventsDTO?.results ?? []
+            searchedEvents = eventsDTO?.results ?? [ ]
             print(Int(eventsDTO?.results.count ?? 1232))
         } catch {
             print(" No searched func result")

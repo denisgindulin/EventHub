@@ -26,6 +26,7 @@ struct DetailView: View {
     }
     
     var body: some View {
+        
         ZStack {
             VStack {
                 ZStack {
@@ -137,6 +138,7 @@ struct DetailView: View {
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.all)
     }
+    
 }
 
 #Preview {
