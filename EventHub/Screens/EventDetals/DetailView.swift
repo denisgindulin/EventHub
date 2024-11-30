@@ -65,11 +65,8 @@ struct DetailView: View {
             await viewModel.fetchEventDetails()
         }
         .navigationBarHidden(true)
-        .onAppear {
-            appState.isDetailViewPresented = true
-        }
-        .onDisappear {
-            appState.isDetailViewPresented = false
+        .onChange(of: isPresented) { newValue in
+            appState.isShareViewPresented = newValue // Обновляем AppState
         }
     }
 }

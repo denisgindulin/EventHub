@@ -68,7 +68,7 @@ struct TabBarView: View {
     }
     
     var body: some View {
-        if !appState.isDetailViewPresented {
+        if !appState.isShareViewPresented {
             ZStack {
                 // Background with shadow
                 Rectangle()

@@ -33,5 +33,5 @@ struct EventHubApp: App {
 }
 
 class AppState: ObservableObject {
-    @Published var isDetailViewPresented: Bool = false
+    @Published var isShareViewPresented: Bool = false
 }
