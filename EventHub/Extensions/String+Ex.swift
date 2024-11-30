@@ -20,3 +20,9 @@ extension String {
         return self
     }
 }
+
+extension String {
+    var localized: String {
+        NSLocalizedString(self, comment: "")
+    }
+}

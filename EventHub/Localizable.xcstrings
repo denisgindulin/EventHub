@@ -170,7 +170,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Уже зарегистрированы?"
+            "value" : "Уже есть аккаунт?"
           }
         }
       }
@@ -221,7 +221,18 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отмена"
+            "value" : "Отменить"
+          }
+        }
+      }
+    },
+    "Confirm password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш пароль ещё раз"
           }
         }
       }
@@ -258,7 +269,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Еще не зарегистрированы?"
+            "value" : "Ещё нет аккаунта?"
           }
         }
       }
@@ -331,23 +342,6 @@
         }
       }
     },
-    "Enter your email" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter your email"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Введите свою эл.почту"
-          }
-        }
-      }
-    },
     "Error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -411,7 +405,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Центр Событий"
+            "value" : "EventHub"
           }
         }
       }
@@ -686,7 +680,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Войти с помощью аккаунта Google"
+            "value" : "Войти с Google-аккаунтом"
           }
         }
       }
@@ -1204,9 +1198,6 @@
         }
       }
     },
-    "Reset Password" : {
-
-    },
     "saved for user" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1327,7 +1318,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зарегистрироваться"
+            "value" : "Создать аккаунт"
           }
         }
       }
@@ -1418,7 +1409,15 @@
       }
     },
     "Submit" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подтвердить"
+          }
+        }
+      }
     },
     "Telegram" : {
       "extractionState" : "manual",
@@ -1705,6 +1704,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "WhatsApp"
+          }
+        }
+      }
+    },
+    "Your email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваша электронная почта"
           }
         }
       }
