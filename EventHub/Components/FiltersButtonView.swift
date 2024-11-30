@@ -37,7 +37,7 @@ struct FiltersButtonView: View {
                     .padding(.trailing, 5)
             }
             .padding(5)
-            .frame(height: 32.1) // width auto
+            .frame(height: 32.1)
             .background(.filterButton)
             .clipShape(Capsule())
         }
