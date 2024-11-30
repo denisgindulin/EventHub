@@ -31,9 +31,9 @@ struct DetailInformationView: View {
                                     title: adress,
                                     description: location)
                 
-                DetailComponentView(image: Image(.cardImg2),
+                DetailComponentView(image: Image(.avatar),
                                     title: agentTitle,
-                                    description: agentTitle,
+                                    description: role,
                                     showImgBg: false)
             }
             
