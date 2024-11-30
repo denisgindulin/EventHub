@@ -13,9 +13,9 @@ struct SearchView: View {
     @Binding var text: String
     @State private var isSearchPresented = true
     
-    let events: [EventDTO]
-    
-    let test = [ EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil) ]
+    let events: [ExploreEvent]
+//    
+//    let test = [ EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil) ]
     
     let action: () -> Void
     
@@ -26,6 +26,7 @@ struct SearchView: View {
             Color.appBackground
             
             VStack(spacing: 0) {
+                
                 VStack(spacing: 0) {
                     
                     Text("Search")
@@ -44,16 +45,16 @@ struct SearchView: View {
                 .zIndex(1)
                 
                 
-                //            if events.isEmpty {
-                //                Text("No results".uppercased())
-                //                    .airbnbCerealFont(AirbnbCerealFont.bold, size: 26)
-                //            } else {
+                            if events.isEmpty {
+                                Text("No results".uppercased())
+                                    .airbnbCerealFont(AirbnbCerealFont.bold, size: 26)
+                            } else {
                 
                 ScrollView(showsIndicators: false) {
                     VStack {
-                        ForEach(test) { event in // << events array
+                        ForEach(events) { event in // << events array
                             NavigationLink(destination: DetailView(detailID: event.id)) {
-                                SmallEventCard(image: event.images.first?.image ?? "No image", date: Date.now, title: event.title ?? " No title", place: "No place",showPlace: false)
+                                SmallEventCard(image: event.image ?? "No image", date: event.date, title: event.title, place: "No place",showPlace: false)
                                     .padding(.horizontal, 20)
                                     .padding(.bottom,5)
                                 
@@ -64,7 +65,7 @@ struct SearchView: View {
                 }
                 .padding(.top,30)
                 
-                //            } // if
+                            } // if
             }
             
             
@@ -82,6 +83,6 @@ struct SearchView: View {
     
 }
 
-#Preview {
-    SearchView(text: .constant(" Trump "), events: [ EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil) ], action: {})
-}
+//#Preview {
+//    SearchView(text: .constant(" Trump "), events: [ EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil),EventDTO(id: 234, title:" marat event", images: [ImageDTO(image: "ecfes")], description: nil, bodyText: nil, favoritesCount: 3, dates: [EventDate(start: 1, end: 1, startDate: "", startTime: "", endTime: "")], place: nil, location: nil, participants: nil) ], action: {})
+//}

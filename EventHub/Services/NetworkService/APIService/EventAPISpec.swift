@@ -42,7 +42,7 @@ enum EventAPISpec: APISpec {
         case .getEventDetails(eventID: let eventID):
             return "public-api/v1.4/events/\(eventID)"
         case .getSerchedEventsWith:
-            return "public-api/v1.4/search"
+            return "public-api/v1.4/search/"
         }
     }
     
@@ -149,8 +149,12 @@ enum EventAPISpec: APISpec {
             return items
             
         case .getSerchedEventsWith(searchText: let searchText):
-            return [URLQueryItem(name: "q", value: searchText)]
-
+            let items: [URLQueryItem] = [
+                URLQueryItem(name: "expand", value: "location,place,dates,participants"),
+                URLQueryItem(name: "fields", value: "id,title,body_text,place,location,dates,images"),
+                URLQueryItem(name: "q", value: searchText)
+            ]
+            return items
         }
     }
   

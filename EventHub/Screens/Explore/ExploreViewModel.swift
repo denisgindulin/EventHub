@@ -23,7 +23,7 @@ final class ExploreViewModel: ObservableObject {
         }
     }
     
-    @Published var searchedEvents: [EventDTO] = []
+    @Published var searchedEvents: [ExploreEvent] = []
     
     @Published var upcomingEvents: [ExploreEvent] = []
     @Published var nearbyYouEvents: [ExploreEvent] = []
@@ -120,10 +120,17 @@ final class ExploreViewModel: ObservableObject {
     }
     
     func fetchSearchedEvents() async {
+        print(searchText)
         do {
             let eventsDTO = try await apiService.getSearchedEvents(with: searchText)
-            searchedEvents = eventsDTO?.results ?? [ ]
-            print(Int(eventsDTO?.results.count ?? 1232))
+            
+            let apiSpec: EventAPISpec = .getSerchedEventsWith(searchText: searchText)
+            
+            print(apiSpec)
+            searchedEvents = eventsDTO.map { ExploreEvent(dto: $0) }
+            
+            
+            
         } catch {
             print(" No searched func result")
             self.error = error

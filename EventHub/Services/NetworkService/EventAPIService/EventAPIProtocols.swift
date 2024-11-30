@@ -56,7 +56,7 @@ protocol IEventAPIServiceForSearch {
     /// Fetches events matching the search text.
     /// - Parameter searchText: The text to search for.
     /// - Returns: An optional `APIResponseDTO` containing the search results.
-    func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO?
+    func getSearchedEvents(with searchText: String) async throws -> [EventDTO]
 }
 
 protocol IAPIServiceForEvents {

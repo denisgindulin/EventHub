@@ -128,15 +128,17 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Search
     /// Searches for events using a text query.
-    func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO? {
+    func getSearchedEvents(with searchText: String) async throws -> [EventDTO] {
         let apiSpec: EventAPISpec = .getSerchedEventsWith(searchText: searchText)
         do {
-            let events = try await apiClient?.sendRequest(apiSpec)
-            return events as? APIResponseDTO
+           if let events = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
+                
+                return events.results
+            }
         } catch {
             print(error)
-            print(  " error in func" )
-            return nil
+            print(  "error in func" )
         }
+        return []
     }
 }
