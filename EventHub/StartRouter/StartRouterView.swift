@@ -10,10 +10,13 @@ import SwiftUI
 
 struct StartRouterView: View {
     @StateObject var startRouter = StartRouter()
-    let newsAPIManager = EventAPIService()
+    private let storage = DIContainer.resolve(forKey: .storageService) ?? UDStorageService()
     
     var body: some View {
-        if startRouter.routerState != .onboarding || UserDefaults.standard.bool(forKey: "hasCompletedOnboarding") {
+        if startRouter.routerState !=
+            .onboarding
+            || storage.hasCompletedOnboarding()
+        {
             Group {
                 switch startRouter.routerState {
                 case .onboarding:

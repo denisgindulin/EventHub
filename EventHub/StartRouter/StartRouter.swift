@@ -14,7 +14,7 @@ final class StartRouter: ObservableObject {
     // MARK: - Published Properties
     @Published var routerState: RouterState = .onboarding
     
-    //    private let storage = StorageManager.shared
+    private let storage = DIContainer.resolve(forKey: .storageService) ?? UDStorageService()
     //    private let authManager = FirebaseManager.shared
     
     // MARK: - State & Event Enums
@@ -58,13 +58,11 @@ final class StartRouter: ObservableObject {
     private func rootState(state: RouterState) -> RouterState {
         var newState = state
         
-        let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
-        
-        if hasCompletedOnboarding {
+        if storage.hasCompletedOnboarding() {
             newState = (Auth.auth().currentUser != nil) ? .main : .auth
         } else {
             newState = .onboarding
-            UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+            storage.set(value: true as Bool, forKey: .hasCompletedOnboarding)
         }
         
         return newState
