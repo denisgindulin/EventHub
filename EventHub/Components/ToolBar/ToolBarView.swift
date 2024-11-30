@@ -20,7 +20,7 @@ struct ToolBarView: View {
     
     // MARK: - Drawing Constants
     private struct Drawing {
-        static let tabBarHeight: CGFloat = 80
+        static let tabBarHeight: CGFloat = 24
         static let titleFontSize: CGFloat = 24
         static let spacingBetweenButtons: CGFloat = 16
         static let leadingSpacing: CGFloat = 24
@@ -73,6 +73,3 @@ struct ToolBarView_Previews: PreviewProvider {
         )
     }
 }
-
-
-

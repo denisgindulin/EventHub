@@ -6,28 +6,29 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct DetailView: View {
     @EnvironmentObject private var coreDataManager: CoreDataManager
+    @EnvironmentObject private var appState: AppState
     @StateObject private var viewModel: DetailViewModel
     
     @State private var isPresented: Bool = false
     
-    //    MARK: - Init
+    // MARK: - Init
     init(detailID: Int) {
         self._viewModel = StateObject(wrappedValue: DetailViewModel(eventID: detailID))
     }
     
     var body: some View {
-        VStack {
-            if let event = viewModel.event {
-                ZStack {
+        ZStack {
+            VStack {
+                if let event = viewModel.event {
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading, spacing: 0) {
                             ZStack {
                                 ImageDetailView(imageUrl: viewModel.image)
                                 DetailToolBar(isPresented: $isPresented, event: event)
+                                    .padding(.vertical, 35)
                             }
                             
                             DetailInformationView(title: viewModel.title,
@@ -41,27 +42,33 @@ struct DetailView: View {
                         }
                     }
                     .ignoresSafeArea()
+                } else {
+                    ShimmerDetailView()
                 }
-            } else {
-                ShimmerDetailView()
             }
             
+            // Затемненный фон и ShareView при isPresented == true
             if isPresented {
+                // Полупрозрачный черный слой
                 Color.black.opacity(0.5)
                     .edgesIgnoringSafeArea(.all)
                     .transition(.opacity)
-            }
-            
-            if isPresented {
+                
                 ShareView(isPresented: $isPresented)
+                    .transition(.move(edge: .bottom))
+                    .zIndex(1)
             }
         }
+        .ignoresSafeArea()
+        .animation(.easeInOut(duration: 0.3), value: isPresented)
         .task {
             await viewModel.fetchEventDetails()
         }
         .navigationBarHidden(true)
+        .onChange(of: isPresented) { newValue in
+            appState.isShareViewPresented = newValue // Обновляем AppState
+        }
     }
-    
 }
 
 #Preview {
