@@ -21,25 +21,29 @@ struct DetailView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        ZStack {
-                            ImageDetailView(imageUrl: viewModel.image)
-                            DetailToolBar(isPresented: $isPresented, event: viewModel.event)
+            if let event = viewModel.event {
+                ZStack {
+                    ScrollView(showsIndicators: false) {
+                        VStack(alignment: .leading, spacing: 0) {
+                            ZStack {
+                                ImageDetailView(imageUrl: viewModel.image)
+                                DetailToolBar(isPresented: $isPresented, event: event)
+                            }
+                            
+                            DetailInformationView(title: viewModel.title,
+                                                  startDate: viewModel.startDate,
+                                                  endDate: viewModel.endDate,
+                                                  adress: viewModel.adress,
+                                                  location: viewModel.location,
+                                                  agentTitle: viewModel.agentTitle,
+                                                  role: viewModel.role,
+                                                  bodyText: viewModel.bodyText)
                         }
-                        
-                        DetailInformationView(title: viewModel.title,
-                                              startDate: viewModel.startDate,
-                                              endDate: viewModel.endDate,
-                                              adress: viewModel.adress,
-                                              location: viewModel.location,
-                                              agentTitle: viewModel.agentTitle,
-                                              role: viewModel.role,
-                                              bodyText: viewModel.bodyText)
                     }
+                    .ignoresSafeArea()
                 }
-                .ignoresSafeArea()
+            } else {
+                ShimmerDetailView()
             }
             
             if isPresented {
@@ -57,6 +61,7 @@ struct DetailView: View {
         }
         .navigationBarHidden(true)
     }
+    
 }
 
 #Preview {

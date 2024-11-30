@@ -10,11 +10,11 @@ import SwiftUI
 struct DetailToolBar: View {
     @EnvironmentObject private var coreDataManager: CoreDataManager
     @Binding var isPresented: Bool
-    let event: EventDTO?
+    let event: EventDTO
     
     private var isFavorite: Bool {
         coreDataManager.events.contains { event in
-            Int(event.id) == self.event?.id
+            Int(event.id) == self.event.id
         }
     }
     
@@ -30,11 +30,9 @@ struct DetailToolBar: View {
                         icon: isFavorite ? ToolBarButtonType.bookmarkFill.icon : ToolBarButtonType.bookmark.icon,
                         action: {
                             if !isFavorite {
-                                if let event = event {
-                                    coreDataManager.createEvent(event: event)
-                                }
+                                coreDataManager.createEvent(event: event)
                             } else {
-                                coreDataManager.deleteEvent(eventID: event?.id ?? 0)
+                                coreDataManager.deleteEvent(eventID: event.id)
                             }
                         },
                         hasBackground: true,
@@ -42,6 +40,9 @@ struct DetailToolBar: View {
                     )
                 ]
             )
+            .padding(.top, 25)
+            
+            Spacer()
             
             Button {
                 isPresented = true
@@ -53,7 +54,8 @@ struct DetailToolBar: View {
                     .padding(6)
                     .background(.white.opacity(0.3))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding(20)
+                    .padding(.bottom, 35)
+                    .padding(.trailing, 24)
             }
         }
     }

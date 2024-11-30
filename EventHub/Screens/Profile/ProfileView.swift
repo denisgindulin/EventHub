@@ -27,13 +27,9 @@ struct ProfileView: View {
                 Color.appBackground
                 
                 VStack {
-                    Text("Profile")
-                        .foregroundStyle(.black)
-                        .airbnbCerealFont( AirbnbCerealFont.medium, size: 24)
-                        .frame(height: 80)
                     
                     VStack {
-                        KFImage(URL(string: viewModel.image))
+                        KFImage(URL(string: viewModel.image)) // Просто показываем фото
                             .placeholder {
                                 Image(systemName: "face.smiling.inverse")
                                     .resizable()
@@ -51,15 +47,13 @@ struct ProfileView: View {
                             .frame(height: 28)
                     }
                     
-                   
-                    
                     Text(viewModel.name)
                         .airbnbCerealFont( AirbnbCerealFont.medium, size: 24)
                         .frame(height: 28)
-                        .padding(.bottom,15)
+                        .padding(.bottom,35)
                     
                     NavigationLink{
-                        ProfileEditeView(image: viewModel.image, userName: $viewModel.name, userInfo: $viewModel.info)
+                        ProfileEditeView(image: $viewModel.image, userName: $viewModel.name, userInfo: $viewModel.info)
                     } label: {
                         EditButton()
                     }
@@ -80,7 +74,6 @@ struct ProfileView: View {
                             Button("Read More") {
                                 showMore = true
                             }
-                            
 //                            Button{
 //                                //
 //                            } label: {
@@ -91,17 +84,20 @@ struct ProfileView: View {
 //                            }.padding(.bottom,17)
                         }
                         .frame(height: 191)
-                    }
+                    }.offset(y: 20)
+                    
                     SignOutButton(action: { viewModel.signOut() } )
-                        .padding(.bottom,137)
+                        .padding(.bottom,107)
                 }
             }
+            .navigationTitle("Profile")
+            .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $showMore) {
                 AboutMeInfo(text: viewModel.info)
             }
             .padding(.horizontal, 20)
             .ignoresSafeArea()
-            
+            .offset(y: 25)
         
     }
 }

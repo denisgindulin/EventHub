@@ -1204,6 +1204,9 @@
         }
       }
     },
+    "Reset Password" : {
+
+    },
     "saved for user" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1220,6 +1223,9 @@
           }
         }
       }
+    },
+    "Search" : {
+
     },
     "Search..." : {
       "extractionState" : "manual",
@@ -1254,6 +1260,9 @@
           }
         }
       }
+    },
+    "See All View" : {
+
     },
     "Share with friends" : {
       "extractionState" : "manual",
@@ -1407,6 +1416,9 @@
           }
         }
       }
+    },
+    "Submit" : {
+
     },
     "Telegram" : {
       "extractionState" : "manual",
