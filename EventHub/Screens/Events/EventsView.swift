@@ -9,14 +9,16 @@ import SwiftUI
 
 // MARK: - EventsView
 struct EventsView: View {
-
     @StateObject var viewModel: EventsViewModel
+    @State private var showAllEvents = false
     
-    
-    init(eventAPIService: IAPIServiceForEvents) {
-        self._viewModel = StateObject(wrappedValue: EventsViewModel(apiService: eventAPIService)
+    //    MARK: - INIT
+    init() {
+        self._viewModel = StateObject(wrappedValue: EventsViewModel()
         )
     }
+    
+    //    MARK: - BODY
     var body: some View {
         ZStack {
             Color.appBackground.ignoresSafeArea(.all)
@@ -36,7 +38,7 @@ struct EventsView: View {
                     EmptyEventsView(selectedMode: viewModel.selectedMode)
                 } else {
                     ScrollView(.vertical) {
-                        ForEach(viewModel.eventsForCurrentMode()) { event in
+                        ForEach(viewModel.eventsForCurrentMode()) { event in NavigationLink(destination: DetailView(detailID: event.id)) {
                             SmallEventCard(
                                 image: event.image,
                                 date: event.date,
@@ -44,35 +46,47 @@ struct EventsView: View {
                                 place: event.location
                             )
                         }
+                        }
+                        .padding(.horizontal, 24)
                     }
-                    .padding(.horizontal, 24)
                 }
                 
                 BlueButtonWithArrow(text: "Explore Events") {
-                    // Additional button logic
+                    Task {
+                        await viewModel.updateAllEvents()
+                    }
+                    showAllEvents = true
                 }
                 .padding(.horizontal, 53)
-                .padding(.bottom, 120)
+                .padding(.bottom, 40)
+                .background(
+                    NavigationLink(
+                        destination: SeeAllEvents(allEvents: viewModel.allEvents),
+                        isActive: $showAllEvents,
+                        label: { EmptyView() }
+                    )
+                )
             }
+            .navigationBarHidden(true)
             .task {
                 await viewModel.fetchUpcomingEvents()
             }
-    
+            
             .alert(isPresented: isPresentedAlert(for: $viewModel.upcomingEventsPhase)) {
                 Alert(
                     title: Text("Error"),
                     message: Text(viewModel.errorMessage(for: viewModel.upcomingEventsPhase)),
                     dismissButton: .default(Text("OK")) {
                         Task {
-                            await viewModel.fetchUpcomingEvents(ignoreCache: true)
+                            await loadEvents(for: viewModel.selectedMode)
                         }
                     }
                 )
             }
         }
     }
-
-   
+    
+    
     private func isPresentedAlert(for phase: Binding<DataFetchPhase<[EventModel]>>) -> Binding<Bool> {
         Binding(
             get: {
@@ -99,5 +113,5 @@ struct EventsView: View {
     }
 }
 #Preview {
-    EventsView(eventAPIService: EventAPIService())
+    EventsView()
 }

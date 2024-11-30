@@ -13,10 +13,11 @@ struct EventHubApp: App {
     
     // Инициализируем CoreDataManager
     @StateObject private var coreDataManager = CoreDataManager()
+    @StateObject private var appState = AppState()
     
     init() {
         FirebaseApp.configure()
-        
+        DIContainer.register({ UDStorageService() as IStorageService}, forKey: .storageService, lifecycle: .singleton)
         DIContainer.register({ EventAPIService() as IAPIServiceForExplore & IAPIServiceForDetail }, forKey: .networkService, lifecycle: .singleton)
     }
     
@@ -26,8 +27,11 @@ struct EventHubApp: App {
             StartRouterView()
                 .environment(\.managedObjectContext, coreDataManager.viewContext)
                 .environmentObject(coreDataManager)
+                .environmentObject(appState)
         }
     }
 }
 
-
+class AppState: ObservableObject {
+    @Published var isShareViewPresented: Bool = false
+}

@@ -74,13 +74,13 @@ enum CategoryImageMapping {
     static func color(for category: CategoryDTO) -> Color {
         switch category.slug.lowercased() {
         case "business-events":
-            return .blue
+            return .orange
         case "cinema":
             return .red
         case "concert":
             return .purple
         case "education":
-            return .orange
+            return .mint
         case "entertainment":
             return .cyan
         case "exhibition":
@@ -90,7 +90,7 @@ enum CategoryImageMapping {
         case "festival":
             return .yellow
         case "holiday":
-            return .mint
+            return .blue
         case "kids":
             return .teal
         case "other":

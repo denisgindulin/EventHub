@@ -52,11 +52,11 @@ final class DetailViewModel: ObservableObject {
     }
     
     var adress: String {
-        event?.place?.address ?? "Unknown Address"
+        event?.place?.title ?? "Unknown Address"
     }
     
     var location: String {
-        event?.place?.location ?? "Unknown Location"
+        event?.place?.address ?? "Unknown Location"
     }
     
     //    MARK: - Init

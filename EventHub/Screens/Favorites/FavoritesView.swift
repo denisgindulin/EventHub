@@ -17,11 +17,46 @@ struct FavoritesView: View {
     
     var body: some View {
         VStack {
+            ToolBarView(
+                title: "Favorites",
+                foregroundStyle: .titleFont,
+                isTitleLeading: false,
+                showBackButton: false,
+                actions: [
+                    ToolBarAction(
+                        icon: ToolBarButtonType.search.icon,
+                        action: {
+                            //
+                        },
+                        hasBackground: false,
+                        foregroundStyle: .titleFont
+                    )
+                ]
+            )
+            Spacer()
             if coreDataManager.events.isEmpty {
                 NoFavorites()
             } else {
                 FavoriteEventsList()
             }
+            Spacer()
         }
+//        .toolbar {
+//            Button {
+//                print("Search")
+//            } label: {
+//                Image(.search)
+//                    .resizable()
+//                    .scaledToFit()
+//            }
+//
+//        }
+//        .navigationTitle("Favorites")
+//        .navigationBarTitleDisplayMode(.inline)
     }
+}
+
+#Preview {
+    FavoritesView()
+        .environmentObject(CoreDataManager())
 }

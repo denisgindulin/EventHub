@@ -21,7 +21,7 @@ struct SignUpView: View {
             
             ZStack {
                 VStack {
-                    ToolBarView(title: "Sign Up", showBackButton: true)
+                    ToolBarView(title: "Sign up".localized, showBackButton: true)
 
                     nameTextField(horizontalPadding: horizontalPadding)
                         .padding(.top, smallPadding / 2)
@@ -29,13 +29,13 @@ struct SignUpView: View {
                     emailTextField(horizontalPadding: horizontalPadding)
                         .padding(.top, smallPadding)
                     
-                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Your password", textFieldText: $viewModel.password)
+                    passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Your password".localized, textFieldText: $viewModel.password)
                         .padding(.top, smallPadding)
                     
-                    passwordTextField(horizontalPadding: horizontalPadding, placehholder: "Confirm password", textFieldText: $viewModel.password2)
+                    passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Confirm password".localized, textFieldText: $viewModel.password2)
                         .padding(.top, smallPadding)
                     
-                    BlueButtonWithArrow(text: "Sign Up") {
+                    BlueButtonWithArrow(text: "Sign up".localized) {
                         Task{
                             let sucess =  await viewModel.signUp()
                             if sucess {
@@ -63,10 +63,10 @@ struct SignUpView: View {
                     Spacer()
                     
                     HStack {
-                        Text("Already have an account?")
+                        Text("Already have an account?".localized)
                             .airbnbCerealFont(.book, size: 15)
                         
-                        Text("Sign In")
+                        Text("Sign In".localized)
                             .airbnbCerealFont(.book, size: 15)
                             .foregroundColor(.appBlue)
                     }
@@ -84,7 +84,7 @@ struct SignUpView: View {
     private func nameTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
             textFieldText: $viewModel.name,
-            placeholder: "Full name",
+            placeholder: "Full name".localized,
             imageName: "profile",
             isSecure: false
         )
@@ -95,7 +95,7 @@ struct SignUpView: View {
     private func emailTextField(horizontalPadding: CGFloat) -> some View {
         AuthTextField(
             textFieldText:  $viewModel.email,
-            placeholder: "Enter your email",
+            placeholder: "Your email".localized,
             imageName: "mail",
             isSecure: false
         )
@@ -103,10 +103,10 @@ struct SignUpView: View {
         .padding(.trailing, horizontalPadding)
     }
     
-    private func passwordTextField(horizontalPadding: CGFloat, placehholder: String, textFieldText: Binding<String>) -> some View {
+    private func passwordTextField(horizontalPadding: CGFloat, placeholder: String, textFieldText: Binding<String>) -> some View {
         AuthTextField(
             textFieldText: textFieldText,
-            placeholder: placehholder,
+            placeholder: placeholder,
             imageName: "Lock",
             isSecure: true
         )

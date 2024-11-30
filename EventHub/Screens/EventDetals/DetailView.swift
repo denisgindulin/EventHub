@@ -6,122 +6,68 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct DetailView: View {
+    @EnvironmentObject private var coreDataManager: CoreDataManager
+    @EnvironmentObject private var appState: AppState
     @StateObject private var viewModel: DetailViewModel
     
     @State private var isPresented: Bool = false
     
-    //    MARK: - Init
+    // MARK: - Init
     init(detailID: Int) {
-        self._viewModel = StateObject(wrappedValue: DetailViewModel(eventID: detailID)
-        )
+        self._viewModel = StateObject(wrappedValue: DetailViewModel(eventID: detailID))
     }
     
     var body: some View {
         ZStack {
             VStack {
-                ZStack(alignment: .top) {
-                    
-                    if let imageUrl = viewModel.image,
-                       let url = URL(string: imageUrl) {
-                        KFImage(url)
-                            .placeholder {
-                                ShimmerView(ratio: 0.6)
-                                    .scaledToFit()
-                                    .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 244)
+                if let event = viewModel.event {
+                    ScrollView(showsIndicators: false) {
+                        VStack(alignment: .leading, spacing: 0) {
+                            ZStack {
+                                ImageDetailView(imageUrl: viewModel.image)
+                                DetailToolBar(isPresented: $isPresented, event: event)
+                                    .padding(.vertical, 35)
                             }
-                            .resizable()
-                            .scaledToFill()
-                            .frame(maxWidth: .infinity, maxHeight: 244)
-                            .clipped()
-                    } else {
-                        Image(.cardImg1)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(maxWidth: .infinity, maxHeight: 244)
-                            .clipped()
-                    }
-                    Button {
-                        isPresented = true
-                    } label: {
-                        Image(.share)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: 24, maxHeight: 24)
-                            .padding(6)
-                            .background(.white.opacity(0.3))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .padding(14)
-                    }
-                    .padding(.bottom, 10)
-                    
-                    ToolBarView(
-                        title: "Event Details",
-                        foregroundStyle: .white,
-                        isTitleLeading: true,
-                        showBackButton: true,
-                        actions: [
-                            ToolBarAction(
-                                icon: ToolBarButtonType.bookmark.icon,
-                                action: {
-#warning("метод для сохранения в избранное")
-                                },
-                                hasBackground: true,
-                                foregroundStyle: .white
-                            )
-                        ]
-                    )
-                    .padding(.top, 50)
-                    .zIndex(1)
-                    
-                }
-                
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 24) {
-                        Text(viewModel.title)
-                            .airbnbCerealFont(.book, size: 35)
-                        
-                        VStack(alignment: .leading, spacing: 24) {
-                            DetailComponentView(image: Image(systemName: "calendar"),
-                                                title: viewModel.startDate,
-                                                description: viewModel.endDate)
                             
-                            DetailComponentView(image: Image(.location),
-                                                title: viewModel.adress,
-                                                description: viewModel.location)
-                            
-                            DetailComponentView(image: Image(.cardImg2),
-                                                title: viewModel.agentTitle,
-                                                description: viewModel.role,
-                                                showImgBg: false)
+                            DetailInformationView(title: viewModel.title,
+                                                  startDate: viewModel.startDate,
+                                                  endDate: viewModel.endDate,
+                                                  adress: viewModel.adress,
+                                                  location: viewModel.location,
+                                                  agentTitle: viewModel.agentTitle,
+                                                  role: viewModel.role,
+                                                  bodyText: viewModel.bodyText)
                         }
-                        
-                        Text("About Event")
-                            .airbnbCerealFont(.medium, size: 18)
-                        Text(viewModel.bodyText)
-                            .airbnbCerealFont(.book)
                     }
-                    .padding(.horizontal, 20)
+                    .ignoresSafeArea()
+                } else {
+                    ShimmerDetailView()
                 }
             }
             
+            // Затемненный фон и ShareView при isPresented == true
             if isPresented {
+                // Полупрозрачный черный слой
                 Color.black.opacity(0.5)
                     .edgesIgnoringSafeArea(.all)
                     .transition(.opacity)
-            }
-            
-            if isPresented {
+                
                 ShareView(isPresented: $isPresented)
+                    .transition(.move(edge: .bottom))
+                    .zIndex(1)
             }
         }
+        .ignoresSafeArea()
+        .animation(.easeInOut(duration: 0.3), value: isPresented)
         .task {
             await viewModel.fetchEventDetails()
         }
         .navigationBarHidden(true)
-        .edgesIgnoringSafeArea(.all)
+        .onChange(of: isPresented) { newValue in
+            appState.isShareViewPresented = newValue // Обновляем AppState
+        }
     }
 }
 

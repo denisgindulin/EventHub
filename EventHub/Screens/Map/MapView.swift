@@ -6,12 +6,39 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapView: View {
-//    @ObservedObject var model: MapViewModel
+    @StateObject private var viewModel: MapViewModel
+    
+    
+    init() {
+        self._viewModel = StateObject(wrappedValue: MapViewModel())
+    }
     
     var body: some View {
-        Text("H")
+           Map(
+               coordinateRegion: $viewModel.region,
+               showsUserLocation: true, 
+               annotationItems: viewModel.events
+           ) { event in
+               MapAnnotation(coordinate: event.coords) {
+                   VStack {
+                       Image(systemName: viewModel.isFavorite ? "star.fill" : "star")
+                           .foregroundColor(viewModel.isFavorite ? .yellow : .blue)
+                       Text(event.title)
+                           .font(.caption)
+                   }
+               }
+           }
+           .edgesIgnoringSafeArea(.all)
+           .task {
+               await viewModel.fetchEvents()
+           }
+    }
+    
+    func showEventPreview(_ event: ExploreEvent) {
+        // Логика для отображения предпросмотра события
     }
 }
 
