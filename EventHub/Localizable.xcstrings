@@ -14,7 +14,14 @@
 
     },
     " About Me" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обо мне"
+          }
+        }
+      }
     },
     " coming soon!" : {
       "extractionState" : "manual",
@@ -51,10 +58,24 @@
       }
     },
     "%@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ."
+          }
+        }
+      }
     },
     "+" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+"
+          }
+        }
+      }
     },
     "5 days ago" : {
       "extractionState" : "manual",
@@ -237,6 +258,17 @@
         }
       }
     },
+    "Change password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сменить пароль"
+          }
+        }
+      }
+    },
     "Choose festivals, performances and other events and interesting places in your city and beyond" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -277,7 +309,14 @@
       }
     },
     "Current Location" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущее место"
+          }
+        }
+      }
     },
     "Don’t have an account?" : {
       "extractionState" : "manual",
@@ -1133,7 +1172,15 @@
       }
     },
     "Please enter your email address to request a password reset" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, введите свою электронную почту, чтобы запросить сброс пароля"
+          }
+        }
+      }
     },
     "Profile" : {
       "extractionState" : "manual",
@@ -1220,6 +1267,17 @@
         }
       }
     },
+    "Reset password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сбросить пароль "
+          }
+        }
+      }
+    },
     "saved for user" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1238,7 +1296,14 @@
       }
     },
     "Search" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искать"
+          }
+        }
+      }
     },
     "Search..." : {
       "extractionState" : "manual",

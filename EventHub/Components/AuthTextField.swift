@@ -24,11 +24,13 @@ struct AuthTextField: View {
             if isSecure {
                 SecureTextField(textFieldText: $textFieldText, placeholder: placeholder)
                     .focused($isFocused)
+                    .tint(.appBlue)
             } else {
                 TextField(placeholder, text: $textFieldText)
                     .focused($isFocused)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled(true)
+                    .tint(.appBlue)
             }
         }
         .padding(.horizontal, 10)
