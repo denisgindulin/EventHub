@@ -258,7 +258,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Еще не зарегистрированы?"
+            "value" : "Ещё нет аккаунта?"
           }
         }
       }
@@ -1324,7 +1324,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зарегистрироваться"
+            "value" : "Создать аккаунт"
           }
         }
       }
