@@ -16,6 +16,9 @@ struct EventCardView: View {
         }
     }
     
+    let test: [Image] = [Image("avatarPhoto1"), Image("avatarPhoto2"), Image("avatarPhoto3"), Image("avatarPhoto4"), Image("avatarPhoto5"), Image("avatarPhoto6"), Image("avatarPhoto7"), Image("avatarPhoto8")]
+    let visitorsCount = Int.random(in: 0...12)
+    
     let event: ExploreEvent
     var showDetail: (Int) -> Void
     
@@ -86,28 +89,14 @@ struct EventCardView: View {
                     .frame(width: 207, height: 21, alignment: .leading)
                     .padding(.bottom,10)
                 
-                
-                if event.visitors?.count == 0 {
-                    HStack {
-                        ShimmerAvatarView()
-                        
-                        Text("No visitors")
-                            .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
-                    }
-                } else if let visitors = event.visitors { // Visitor Images
+            
                     HStack {
                         ZStack {
-                            ForEach(getVisitorsAvatars(visitors: visitors).indices, id:\.self) { index in
+                            ForEach(getVisitorsImages(visitorsCount: visitorsCount).indices, id:\.self) { index in
                                 
-                                let visitors = getVisitorsAvatars(visitors: visitors)
+                                let visitors = getVisitorsImages(visitorsCount: visitorsCount)
                                 
-                                let imageURL = visitors[index].image
-                                let url = URL(string: imageURL)
-                                
-                                KFImage(url)
-                                    .placeholder {
-                                        ShimmerAvatarView()
-                                    }
+                                visitors[index]
                                     .resizable()
                                     .frame(width: 24, height: 24)
                                     .clipShape(Circle())
@@ -115,7 +104,7 @@ struct EventCardView: View {
                                         Circle().stroke(style: StrokeStyle(lineWidth: 1))
                                             .foregroundStyle(Color.white)
                                     }
-                                    .offset(x: getOffset(index: index, visitors: getVisitorsAvatars(visitors: visitors).count))
+                                    .offset(x: getOffset(index: index, visitors: getVisitorsImages(visitorsCount: visitorsCount).count))
                             }
                         }
                         
@@ -123,22 +112,21 @@ struct EventCardView: View {
                             // show visitors
                         } label: {
                             HStack(spacing: 1) {
-                                Text(visitors.count > 3 ? "+" : "")
+                                Text(visitorsCount > 3 ? "+" : "")
                                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                                 
-                                Text(checkRemainingNumberOfVisitors(
-                                    visitors: visitors) == 0
+                                Text(checkTo(visitorsCount: visitorsCount) == 0
                                      ? ""
-                                     : String(checkRemainingNumberOfVisitors(visitors: visitors)))
+                                     : String(checkTo(visitorsCount: visitorsCount)))
                                 .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                                 
-                                Text(visitors.count > 0 ? " Going" : "")
+                                Text(visitorsCount > 0 ? " Going" : "")
                                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                             }
                         }
                         .padding(.leading, 25)
                     }
-                } //end if
+               
                 
                 
                 Button {
@@ -199,6 +187,53 @@ struct EventCardView: View {
         }
     }
     
+    private func checkTo(visitorsCount: Int) -> Int {
+       
+        switch visitorsCount {
+        case 0: return 0
+        case 1: return 0
+        case 2: return 0
+        case 3: return 0
+        default: return visitorsCount-3
+        }
+        
+    }
+    
+    private func getVisitorsImages( visitorsCount: Int) -> [Image] {
+        var images: [Image] = []
+        var  avatars = test
+        
+        if visitorsCount > 3 {
+            for i in 0...2 {
+                avatars.shuffle()
+                let image = avatars[i]
+                images.append(image)
+            }
+        }
+        
+        if visitorsCount == 3 {
+            avatars.shuffle()
+            for image in avatars {
+                images.append(image)
+            }
+        }
+        
+        if visitorsCount == 2 {
+            avatars.shuffle()
+            for image in avatars {
+                images.append(image)
+            }
+        }
+        if visitorsCount == 1 {
+            avatars.shuffle()
+            for image in avatars {
+                images.append(image)
+            }
+        }
+        
+        return images
+    }
+    
     private func getVisitorsAvatars(visitors: [Visitor]) -> [Visitor] {
         var randomThreeVisitors: [Visitor] = []
         
@@ -227,6 +262,7 @@ struct EventCardView: View {
         }
         return randomThreeVisitors
     }
+    
     
 }
 
