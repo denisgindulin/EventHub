@@ -56,7 +56,7 @@ final class DetailViewModel: ObservableObject {
     }
     
     var location: String {
-        event?.place?.location ?? "Unknown Location"
+        event?.place?.slug ?? "Unknown Location"
     }
     
     //    MARK: - Init
