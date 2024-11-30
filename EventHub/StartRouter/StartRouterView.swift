@@ -10,29 +10,30 @@ import SwiftUI
 
 struct StartRouterView: View {
     @StateObject var startRouter = StartRouter()
-    let newsAPIManager = EventAPIService()
+    private let storage = DIContainer.resolve(forKey: .storageService) ?? UDStorageService()
     
     var body: some View {
-        Group {
-            switch startRouter.routerState {
-            case .onboarding:
-                OnboardingView(router: startRouter)
-            case .auth:
-                NavigationView {
-                    SignInView(router: startRouter)
+        if startRouter.routerState !=
+            .onboarding
+            || storage.hasCompletedOnboarding()
+        {
+            Group {
+                switch startRouter.routerState {
+                case .onboarding:
+                    OnboardingView(router: startRouter)
+                case .auth:
+                    NavigationView {
+                        SignInView(router: startRouter)
+                    }
+                case .main:
+                    EventHubContentView(router: startRouter)
                 }
-            case .main:
-                EventHubContentView(
-                    router: startRouter,
-                    eventAPIManager: newsAPIManager
-                )
             }
+            .transition(.opacity)
+            .animation(.bouncy, value: startRouter.routerState)
         }
-        .transition(.opacity)
-        .animation(.bouncy, value: startRouter.routerState)
     }
 }
-
 #Preview {
     StartRouterView()
 }

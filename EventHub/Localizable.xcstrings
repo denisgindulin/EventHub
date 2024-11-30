@@ -563,9 +563,6 @@
         }
       }
     },
-    "H" : {
-
-    },
     "ID token missing" : {
       "extractionState" : "manual",
       "localizations" : {

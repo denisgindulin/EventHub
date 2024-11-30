@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 // MARK: - Response
 struct APIResponseDTO: Codable, Sendable, DecodableType {
@@ -92,6 +93,9 @@ struct PlaceDTO: Codable, Sendable, DecodableType {
 struct Coordinates: Codable, Sendable, DecodableType {
     let lat: Double
     let lon: Double
+    var toCLLocationCoordinate2D: CLLocationCoordinate2D {
+            return CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        }
 }
 
 // MARK: - Location

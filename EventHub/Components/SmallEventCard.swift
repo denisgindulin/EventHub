@@ -33,11 +33,12 @@ struct SmallEventCard: View {
                 let url = URL(string: image)
                 KFImage(url)
                     .placeholder {
-                        ShimmerView(ratio: 1.6)
+                        ShimmeringImageView()
                             .scaledToFit()
                             .frame(width: 80, height: 92)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
+                    .onFailureImage(UIImage(named: "cardImg1"))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 80, height: 92)

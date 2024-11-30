@@ -15,7 +15,7 @@ struct FetchTaskToken: Equatable {
 }
 
 // MARK: - EventsViewModel
-
+@MainActor
 final class EventsViewModel: ObservableObject {
     // MARK: - Properties
     private let apiService: IAPIServiceForEvents
@@ -24,6 +24,7 @@ final class EventsViewModel: ObservableObject {
     private let timeIntervalForUpdateCache: TimeInterval = 24 * 60
     
     @Published var selectedMode: EventsMode = .upcoming
+    @Published var allEvents: [EventModel] = []
     @Published var upcomingEventsPhase: DataFetchPhase<[EventModel]> = .empty
     @Published var pastEventsPhase: DataFetchPhase<[EventModel]> = .empty
     @Published var fetchTaskToken: FetchTaskToken
@@ -31,7 +32,7 @@ final class EventsViewModel: ObservableObject {
     private var page: Int = 1
     
     // MARK: - Initialization
-    init(apiService: IAPIServiceForEvents) {
+    init(apiService: IAPIServiceForEvents = DIContainer.resolve(forKey: .networkService) ?? EventAPIService()) {
         self.apiService = apiService
         self.cache = DiskCache<[EventDTO]>(
             filename: "xca_events",
@@ -44,58 +45,73 @@ final class EventsViewModel: ObservableObject {
         }
     }
     
+    func updateAllEvents() async {
+        if pastEventsPhase.value == nil {
+            await fetchPastEvents()
+        }
+        
+        let upcoming = upcomingEventsPhase.value ?? []
+        let past = pastEventsPhase.value ?? []
+        
+        allEvents = upcoming + past
+        allEvents = allEvents.sorted(by: { $0.date < $1.date })
+    }
+    
+    
     // MARK: - Fetch Events
+    private func loadUpcomingEventsFromAPI() async throws -> [EventDTO] {
+        let eventsFromAPI = try await apiService.getUpcomingEvents(
+            getActualSince(),
+            getActualUntil(),
+            language,
+            page
+        )
+        await cache.setValue(eventsFromAPI, forKey: fetchTaskToken.events)
+        try? await cache.saveToDisk()
+        return eventsFromAPI
+    }
+    
     func fetchUpcomingEvents(ignoreCache: Bool = false) async {
-        await updatePhase(
-            &upcomingEventsPhase,
-            cacheKey: fetchTaskToken.events,
-            ignoreCache: ignoreCache
-        ) {
-            try await self.apiService.getUpcomingEvents(
-                self.getActualSince(),
-                self.getActualUntil(),
-                self.language,
-                self.page
-            )
-        }
-    }
-    
-    func fetchPastEvents() async {
-        await updatePhase(&pastEventsPhase, cacheKey: nil, ignoreCache: true) {
-            try await self.apiService.getPastEventsEvents(
-                self.getActualSince(),
-                self.language,
-                self.page
-            )
-        }
-    }
-    
-    private func updatePhase(
-        _ phase: inout DataFetchPhase<[EventModel]>,
-        cacheKey: String?,
-        ignoreCache: Bool,
-        fetch: @escaping () async throws -> [EventDTO]
-    ) async {
+        upcomingEventsPhase = .empty
         do {
-            if let cacheKey = cacheKey, !ignoreCache, let cachedEvents = await cache.value(forKey: cacheKey) {
-                phase = .success(cachedEvents.map { EventModel(dto: $0) })
+            if !ignoreCache, let cachedEvents = await cache.value(forKey: fetchTaskToken.events) {
+                print("CACHE HIT")
+           
+                let events = cachedEvents.map { EventModel(dto: $0) }
+                upcomingEventsPhase = .success(events)
             } else {
-                let eventsDTO = try await fetch()
-                if let cacheKey = cacheKey {
-                    await cache.setValue(eventsDTO, forKey: cacheKey)
-                    try? await cache.saveToDisk()
-                }
-                phase = .success(eventsDTO.map { EventModel(dto: $0) })
+                let eventsDTO = try await loadUpcomingEventsFromAPI()
+                print("CACHE MISSED/EXPIRED")
+                let events = eventsDTO.map { EventModel(dto: $0) }
+                upcomingEventsPhase = .success(events)
             }
         } catch {
-            phase = .failure(error)
+            upcomingEventsPhase = .failure(error)
+            print("Failed to fetch upcoming events: \(error)")
         }
     }
     
+    /// Refreshes the cache and updates the fetch task token.
     func refreshTask() async {
         await cache.removeValue(forKey: fetchTaskToken.events)
         fetchTaskToken.token = Date()
     }
+    
+    func fetchPastEvents() async {
+        pastEventsPhase = .empty
+        do {
+            let eventsDTO = try await apiService.getPastEvents(
+                getActualSince(),
+                language,
+                page
+            )
+            let pastEvents = eventsDTO.map { EventModel(dto: $0) }
+            pastEventsPhase = .success(pastEvents)
+        } catch {
+            pastEventsPhase = .failure(error)
+        }
+    }
+    
     
     // MARK: - Helpers
     func eventsForCurrentMode() -> [EventModel] {
@@ -111,7 +127,7 @@ final class EventsViewModel: ObservableObject {
         let currentDate = Date()
         return String(Int(currentDate.timeIntervalSince1970))
     }
-
+    
     private func getActualUntil() -> String {
         let calendar = Calendar(identifier: .gregorian)
         let untilDate = calendar.date(byAdding: .day, value: 7, to: Date()) ?? Date()
