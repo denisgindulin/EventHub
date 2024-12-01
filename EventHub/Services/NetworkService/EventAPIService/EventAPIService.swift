@@ -139,8 +139,8 @@ final class EventAPIService: APIService, IEventAPIService {
         }
     }
     
-    func getEventsWith(location: String, _ category: String?,_ actualSince: String,_ language: Language) async throws -> [EventDTO] {
-        let apiSpec: EventAPISpec = .getEventsForMap(coordinate: location, category: category, actualSince: actualSince, language: language)
+    func getEventsWith(location: String, _ category: String?,_ language: Language) async throws -> [EventDTO] {
+        let apiSpec: EventAPISpec = .getEventsForMap(coordinate: location, category: category, language: language)
 
         do {
             if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {

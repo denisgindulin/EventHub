@@ -20,7 +20,7 @@ final class ExploreViewModel: ObservableObject {
     @Published var nearbyYouEvents: [ExploreModel] = []
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
-    @Published var searchText: String = ""
+
     @Published var error: Error? = nil
     
     @Published var currentLocation: String = "msk" {
@@ -85,7 +85,12 @@ final class ExploreViewModel: ObservableObject {
                 language,
                 page
             )
-            
+            let apiSpecLoc = EventAPISpec.getUpcomingEventsWith(
+                category: currentCategory,
+                language: language,
+                page: page
+            )
+                         print("Generated Endpoint UpcomingEvents: \(apiSpecLoc.endpoint)")
             upcomingEvents = eventsDTO.map { ExploreModel(dto: $0) }
         } catch {
             self.error = error

@@ -80,7 +80,6 @@ struct SearchView: View {
         .navigationBarBackButtonHidden(true)
         
     }
-    
 }
 
 #Preview {

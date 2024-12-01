@@ -36,12 +36,14 @@ extension ExploreModel {
         self.title = dto.title ?? "No Title"
         self.visitors = dto.participants?.map { participant in
             Visitor(
-                image: participant.agent?.images?.first ?? "default_visitor_image",
+                image: participant.agent?.images?.first?.image ?? "default_visitor_image",
                 name: participant.agent?.title ?? "No participant"
             )
         }
-        self.date = (Date(timeIntervalSince1970: TimeInterval(dto.dates.first?.start ?? 1489312800)))
-        self.adress = dto.place?.address ?? "Unknown Address"
+        self.date = (Date(timeIntervalSince1970: TimeInterval(dto.dates.last?.start ?? 1489312800)))
+        let location = dto.location?.name ?? ""
+        let place = dto.place?.address ?? ""
+        self.adress = "\(String(describing: place)), \(String(describing: location))"
         self.image = dto.images.first?.image
     }
 }
@@ -69,6 +71,16 @@ extension ExploreModel {
     }
 }
 
+extension ExploreModel {
+    init(event: EventModel) {
+        self.id = event.id
+        self.title = event.title
+        self.visitors = []
+        self.date = event.date
+        self.adress = event.location
+        self.image = event.image
+    }
+}
 struct Visitor: Identifiable {
     let id = UUID()
     let image: String

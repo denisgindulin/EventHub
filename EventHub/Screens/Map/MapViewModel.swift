@@ -64,18 +64,12 @@ final class MapViewModel: ObservableObject {
             let eventsDTO = try await apiService.getEventsWith(
                 location: "",
                 currentCategory,
-                getActualSince(),
                 language
             )
             events = eventsDTO.map { MapEventModel(dto: $0) }
         } catch {
             self.error = error
         }
-    }
-    
-    private func getActualSince() -> String {
-        let currentDate = Date()
-        return String(Int(currentDate.timeIntervalSince1970))
     }
     
     func fetchCategories() async {

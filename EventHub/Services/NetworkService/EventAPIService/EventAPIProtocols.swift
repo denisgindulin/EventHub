@@ -13,7 +13,7 @@ typealias IEventAPIService = IAPIServiceForExplore & IAPIServiceForDetail & IAPI
 
 /// Protocol for fetching event data related to exploration.
 /// Includes methods for retrieving locations, categories, and events.
-protocol IAPIServiceForExplore: IAPIServiceForSearch {
+protocol IAPIServiceForExplore {
     /// Fetches a list of locations.
     /// - Parameter language: The language for location names.
     /// - Returns: An array of `EventLocation`.
@@ -66,5 +66,5 @@ protocol IAPIServiceForEvents {
 
 protocol IAPIServiceForMap: IAPIServiceForSearch {
     func getCategories(with language: Language?) async throws -> [CategoryDTO]
-    func getEventsWith(location: String, _ category: String?,_ actualSince: String,_ language: Language) async throws -> [EventDTO]
+    func getEventsWith(location: String, _ category: String?,_ language: Language) async throws -> [EventDTO]
 }

@@ -8,50 +8,66 @@
 import SwiftUI
 
 struct SeeAllEvents: View {
-    // @ObservedObject var model: EventsViewModel
-    let allEvents: [EventModel]
     
+    // MARK: - Properties
+    @State private var showSearchFlow = false
+    
+    let allEvents: [EventModel] 
+    
+    // MARK: - Body
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                ToolBarView(
-                    title: "Event",
-                    isTitleLeading: true,
-                    showBackButton: true,
-                    actions: [ToolBarAction(
-                        icon: ToolBarButtonType.search.icon,
-                        action: {},
-                        hasBackground: false,
-                        foregroundStyle: Color.black)
-                    ]
-                )
-                .zIndex(1)
-                .padding(.top, 0)
-                Spacer()
-           
-            ScrollView {
-                ForEach(allEvents) { event in
-                    NavigationLink(destination: DetailView(detailID: event.id)) {
-                        SmallEventCard(
-                            image: event.image,
-                            date: event.date,
-                            title: event.title,
-                            place: event.location
-                        )
+            ZStack {
+                
+                // MARK: - Content Layout
+                VStack(spacing: 0) {
+                    
+                    // MARK: - Toolbar
+                    ToolBarView(
+                        title: "Event",
+                        isTitleLeading: true,
+                        showBackButton: true,
+                        actions: [ToolBarAction(
+                            icon: ToolBarButtonType.search.icon,
+                            action: { showSearchFlow = true },
+                            hasBackground: false,
+                            foregroundStyle: Color.black)
+                        ]
+                    )
+                    .zIndex(1)
+                    .padding(.top, 0)
+                    Spacer()
+                    
+                    // MARK: - Event List
+                    ScrollView(.vertical, showsIndicators: false) {
+                        ForEach(allEvents) { event in
+                            NavigationLink(destination: DetailView(detailID: event.id)) {  // Navigate to event detail
+                                SmallEventCard(
+                                    image: event.image,
+                                    date: event.date,
+                                    title: event.title,
+                                    place: event.location
+                                )
+                            }
+                            .padding(.horizontal, 24)
+                        }
                     }
-                    
-                    
-                    .padding(.horizontal, 24)
-                    
+                    .overlay(
+                        NavigationLink(
+                            destination: SearchView(
+                                searchScreenType: .withData,
+                                localData: allEvents.map { ExploreModel(event: $0) }
+                            ),
+                            isActive: $showSearchFlow,
+                            label: { EmptyView() }
+                        )
+                    )
                 }
             }
-        }
-        }
-        .navigationBarHidden(true)
+            .navigationBarHidden(true)
+        
     }
 }
 
 #Preview {
     SeeAllEvents(allEvents: [])
 }
-

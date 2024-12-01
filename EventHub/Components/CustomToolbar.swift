@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CustomToolBar: View {
     
-    @Binding var searchText: String
+    private let searchText: String = ""
+    
     @Binding var currentLocation: String
     
     @Binding var title: String
@@ -87,7 +88,7 @@ struct CustomToolBar: View {
             
             SearchBarView (
                 isSearchPresented: $isSearchPresented,
-                searchText: $searchText,
+                searchText: .constant(searchText),
                 textColor: textColor,
                 magnifierColor: magnifierColor,
                 shouldHandleTextInput: false,
@@ -106,7 +107,6 @@ struct CustomToolBar: View {
 
 #Preview {
     CustomToolBar(
-        searchText: .constant("Sear EXAMPL"),
         currentLocation: .constant("City "),
         title: .constant("City "),
         isSearchPresented: .constant(true),

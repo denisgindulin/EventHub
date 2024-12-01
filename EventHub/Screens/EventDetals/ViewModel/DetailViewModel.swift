@@ -32,13 +32,13 @@ final class DetailViewModel: ObservableObject {
     }
     
     var startDate: String {
-        guard let startTimestamp = event?.dates.first?.start else { return "" }
+        guard let startTimestamp = event?.dates.last?.start else { return "" }
         let date = Date(timeIntervalSince1970: TimeInterval(startTimestamp))
         return date.formattedDate(format: "dd MMMM, yyyy")
     }
     
     var endDate: String {
-        guard let endTimestamp = event?.dates.first?.end else { return "" }
+        guard let endTimestamp = event?.dates.last?.end else { return "" }
         let date = Date(timeIntervalSince1970: TimeInterval(endTimestamp))
         return date.formattedDate(format: "E, MMM d • h:mm a")
     }

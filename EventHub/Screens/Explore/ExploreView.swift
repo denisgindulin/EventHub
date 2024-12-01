@@ -31,7 +31,6 @@ struct ExploreView: View {
                 ZStack {
                     
                     CustomToolBar(
-                        searchText: $viewModel.searchText,
                         currentLocation: $viewModel.currentLocation,
                         title: $viewModel.currentPosition,
                         isSearchPresented: $isSearchPresented,

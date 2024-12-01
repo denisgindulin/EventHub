@@ -22,7 +22,7 @@ enum EventAPISpec: APISpec {
     case getPastEvents(actualUntil: String, language: Language?, page: Int?)
     case getEventDetails(eventID: Int)
     case getSerchedEventsWith(searchText: String)
-    case getEventsForMap(coordinate: String, category: String?, actualSince: String, language: Language?)
+    case getEventsForMap(coordinate: String, category: String?, language: Language?)
     
     // MARK: - Base URL Path
     /// Returns the base path for each endpoint.
@@ -33,19 +33,19 @@ enum EventAPISpec: APISpec {
         case .getCategories:
             return "public-api/v1.4/event-categories"
         case .getUpcomingEventsWith:
-            return "public-api/v1.4/events/"
+            return "public-api/v1.4/events"
         case .getNearbyYouEvents:
-            return "public-api/v1.4/events/"
+            return "public-api/v1.4/events"
         case .getUpcominglEvents:
-            return "public-api/v1.4/events/"
+            return "public-api/v1.4/events"
         case .getPastEvents:
-            return "public-api/v1.4/events/"
+            return "public-api/v1.4/events"
         case .getEventDetails(eventID: let eventID):
             return "public-api/v1.4/events/\(eventID)"
         case .getSerchedEventsWith:
             return "public-api/v1.4/search"
         case .getEventsForMap:
-            return "public-api/v1.4/events/"
+            return "public-api/v1.4/events"
         }
     }
     
@@ -60,12 +60,11 @@ enum EventAPISpec: APISpec {
             return language.map { [URLQueryItem(name: "lang", value: $0.rawValue)] } ?? []
             
         case .getUpcomingEventsWith(let category, let language, let page):
-            let currentDate = Date()
-            let unixTimestamp = Int(currentDate.timeIntervalSince1970)
+            let currentDate = Date.now.ISO8601Format()
             
             var items: [URLQueryItem] = [
-                URLQueryItem(name: "actual_since", value: String(unixTimestamp)),
-                URLQueryItem(name: "order_by", value: "publication_date,dates,rank"),
+                URLQueryItem(name: "actual_since", value: String(currentDate)),
+                URLQueryItem(name: "order_by", value: "-publication_date"),
                 URLQueryItem(name: "expand", value: "location,place,dates,participants"),
                 URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants,images,site_url")
             ]
@@ -83,13 +82,12 @@ enum EventAPISpec: APISpec {
             return items
             
         case .getNearbyYouEvents(let language, let location, let category, let page):
-            let currentDate = Date()
-            let unixTimestamp = Int(currentDate.timeIntervalSince1970)
+            let currentDate = Date.now.ISO8601Format()
             
             var items: [URLQueryItem] = [
-                URLQueryItem(name: "actual_since", value: String(unixTimestamp)),
+                URLQueryItem(name: "actual_since", value: String(currentDate)),
                 URLQueryItem(name: "location", value: location),
-                URLQueryItem(name: "order_by", value: "publication_date,dates,rank"),
+                URLQueryItem(name: "order_by", value: "-publication_date"),
                 URLQueryItem(name: "expand", value: "location,place,dates,participants"),
                 URLQueryItem(name: "fields", value: "id,title,description,body_text,favorites_count,place,location,dates,participants,images,site_url")
             ]
@@ -111,7 +109,7 @@ enum EventAPISpec: APISpec {
             
         case .getUpcominglEvents(actualSince: let actualSince, actualUntil: let actualUntil, language: let language, page: let page):
             var items: [URLQueryItem] = [
-                URLQueryItem(name: "order_by", value: "publication_date,dates,rank"),
+                URLQueryItem(name: "order_by", value: "-publication_date"),
                 URLQueryItem(name: "actual_since", value: actualSince),
                 URLQueryItem(name: "actual_until", value: actualUntil),
                 URLQueryItem(name: "expand", value: "location,place,dates,participants"),
@@ -130,7 +128,7 @@ enum EventAPISpec: APISpec {
             
         case .getPastEvents(actualUntil: let actualUntil, language: let language, page: let page):
             var items: [URLQueryItem] = [
-                URLQueryItem(name: "order_by", value: "publication_date,dates,rank"),
+                URLQueryItem(name: "order_by", value: "-publication_date"),
                 URLQueryItem(name: "actual_until", value: actualUntil),
                 URLQueryItem(name: "expand", value: "location,place,dates,participants"),
                 URLQueryItem(name: "fields", value: "id,title,body_text,place,location,dates,images")
@@ -154,17 +152,23 @@ enum EventAPISpec: APISpec {
             return items
             
         case .getSerchedEventsWith(let searchText):
+            let currentDate = Date.now.ISO8601Format()
+            
             return [
                 URLQueryItem(name: "q", value: searchText),
+                URLQueryItem(name: "page_size", value: "50"),
+                URLQueryItem(name: "actual_since", value: currentDate),
                 URLQueryItem(name: "expand", value: "location,place,dates"),
-                URLQueryItem(name: "fields", value: "id,title,description,place,location,dates,images")
+                URLQueryItem(name: "fields", value: "id,title,description,place,location,dates,images"),
+                URLQueryItem(name: "order_by", value: "-publication_date")
             ]
 
-        case .getEventsForMap(let coordinate, let category, let actualSince, let language):
+        case .getEventsForMap(let coordinate, let category, let language):
+            let currentDate = Date.now.ISO8601Format()
             var items: [URLQueryItem] = [
                 URLQueryItem(name: "page_size", value: "50"),
-                URLQueryItem(name: "order_by", value: "publication_date,dates,rank"),
-                URLQueryItem(name: "actual_since", value: actualSince),
+                URLQueryItem(name: "order_by", value: "-dates"),
+                URLQueryItem(name: "actual_since", value: currentDate),
                 URLQueryItem(name: "expand", value: "location,place,dates"),
                 URLQueryItem(name: "fields", value: "id,title,place,location,dates,images")
             ]

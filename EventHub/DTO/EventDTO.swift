@@ -118,18 +118,11 @@ struct Role: Codable, Sendable, DecodableType {
 struct Agent: Codable, Sendable, DecodableType {
     let id: Int
     let title: String?
-    let slug: String?
-    let agentType: String?
-    let images: [String]?
-    let siteURL: String?
-    let isStub: Bool?
-    
+    let images: [ImageDTO]?
+ 
     enum CodingKeys: String, CodingKey {
-        case id, title, slug
-        case agentType = "agent_type"
+        case id, title
         case images
-        case siteURL = "site_url"
-        case isStub = "is_stub"
     }
 }
 
