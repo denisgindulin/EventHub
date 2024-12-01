@@ -11,7 +11,7 @@ struct ResetPassView: View {
     @ObservedObject var viewModel: AuthViewModel
     @Environment(\.presentationMode) private var presentationMode // Для закрытия экрана
 
-    let emailReqText: LocalizedStringKey = "Please enter your email address to request a password reset"
+    let emailReqText = "Please enter your email address to request a password reset".localized
     @State private var showSuccessMessage: Bool = false
     @State private var showErrorMessage: Bool = false
 
