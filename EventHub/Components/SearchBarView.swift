@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
 
 extension View {
     func placeholder<Content: View>(
@@ -23,26 +22,20 @@ extension View {
 }
 
 struct SearchBarView: View {
-    
     @Binding var isSearchPresented: Bool
     @Binding var searchText: String
-    @State private var searchString = ""
     
     let textColor: Color
-    let placeholderColor: Color
-    
-    let fiterAction: (DisplayOrderType) -> Void
     let magnifierColor: Color
     
-    let action: () -> Void
-    
+    let shouldHandleTextInput: Bool
+    let fiterAction: (DisplayOrderType) -> Void
+    let placeholderColor: Color = .searchBarPlaceholder
     
     var body: some View {
         
         HStack {
             Button {
-                searchText = String(searchString)
-                action()
                 isSearchPresented = true
             } label: {
                 Image(.searchWhite)
@@ -55,18 +48,29 @@ struct SearchBarView: View {
             Rectangle()
                 .frame(width: 1, height: 20)
                 .foregroundStyle(placeholderColor)
-            
-            TextField("", text: $searchString)
-                .airbnbCerealFont( AirbnbCerealFont.book, size: 18)
-                .tint(textColor)
-                .foregroundStyle(textColor)
-                .placeholder(when: searchString.isEmpty) {
-                    Text("Search...").foregroundColor(placeholderColor)
-               }
-                .onChange(of: searchString) { newValue in
-                    searchText = newValue
-                } // Если обновлять поиск после каждой введенной буквы
-            
+            if shouldHandleTextInput {
+                TextField("", text: $searchText)
+                    .airbnbCerealFont( AirbnbCerealFont.book, size: 18)
+                    .tint(textColor)
+                    .foregroundStyle(textColor)
+                    .placeholder(when: searchText.isEmpty) {
+                        Text("Search...").foregroundColor(placeholderColor)
+                    }
+            } else {
+                TextField("", text: .constant(""))
+                    .airbnbCerealFont( AirbnbCerealFont.book, size: 18)
+                    .tint(textColor)
+                    .foregroundStyle(textColor)
+                    .placeholder(when: searchText.isEmpty) {
+                        Text("Search...").foregroundColor(placeholderColor)
+                    }
+                    .disabled(true)
+                    .onTapGesture {
+                        isSearchPresented = true
+                    }
+                
+                
+            }
             FiltersButtonView(filterAction: fiterAction)
         }
         
@@ -74,5 +78,12 @@ struct SearchBarView: View {
 }
 
 #Preview {
-    SearchBarView(isSearchPresented: .constant(false), searchText: .constant(""), textColor: .white, placeholderColor: .searchBarPlaceholder, fiterAction: {_ in }, magnifierColor: .white, action: {})
+    SearchBarView(
+        isSearchPresented: .constant(false),
+        searchText: .constant(""),
+        textColor: .white,
+        magnifierColor: .green,
+        shouldHandleTextInput: true,
+    fiterAction: { _ in }
+        )
 }

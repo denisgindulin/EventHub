@@ -15,21 +15,12 @@ final class ExploreViewModel: ObservableObject {
     let functionalButtonsNames = ["Today".localized,"Films".localized, "Lists".localized]
     @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
     @Published var currentPosition: String = "Moscow".localized
-    @Published var searchText: String = "" {
-        didSet {
-            Task {
-                await fetchSearchedEvents()
-            }
-        }
-    }
     
-    @Published var searchedEvents: [EventDTO] = []
-    
-    @Published var upcomingEvents: [ExploreEvent] = []
-    @Published var nearbyYouEvents: [ExploreEvent] = []
+    @Published var upcomingEvents: [ExploreModel] = []
+    @Published var nearbyYouEvents: [ExploreModel] = []
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
-    
+
     @Published var error: Error? = nil
     
     @Published var currentLocation: String = "msk" {
@@ -40,20 +31,16 @@ final class ExploreViewModel: ObservableObject {
         }
     }
     
-        @Published var currentCategory: String? = nil {
-            didSet{
-                Task {
-                    await fetchUpcomingEvents()
-                    await featchNearbyYouEvents()
-                }
+    @Published var currentCategory: String? = nil {
+        didSet{
+            Task {
+                await fetchUpcomingEvents()
+                await featchNearbyYouEvents()
             }
         }
-        
-    var isFavoriteEvent = false
+    }
     
-    
-    private let language = Language.en
-    
+    private let language = Language.ru
     private var page: Int = 1
     
     // MARK: - INIT
@@ -98,8 +85,13 @@ final class ExploreViewModel: ObservableObject {
                 language,
                 page
             )
-            
-            upcomingEvents = eventsDTO.map { ExploreEvent(dto: $0) }
+            let apiSpecLoc = EventAPISpec.getUpcomingEventsWith(
+                category: currentCategory,
+                language: language,
+                page: page
+            )
+                         print("Generated Endpoint UpcomingEvents: \(apiSpecLoc.endpoint)")
+            upcomingEvents = eventsDTO.map { ExploreModel(dto: $0) }
         } catch {
             self.error = error
         }
@@ -113,24 +105,13 @@ final class ExploreViewModel: ObservableObject {
                 currentCategory,
                 page
             )
-            nearbyYouEvents = eventsDTO.map { ExploreEvent(dto: $0) }
+            nearbyYouEvents = eventsDTO.map { ExploreModel(dto: $0) }
         } catch {
             self.error = error
         }
     }
     
-    func fetchSearchedEvents() async {
-        do {
-            let eventsDTO = try await apiService.getSearchedEvents(with: searchText)
-            searchedEvents = eventsDTO?.results ?? [ ]
-            print(Int(eventsDTO?.results.count ?? 1232))
-        } catch {
-            print(" No searched func result")
-            self.error = error
-        }
-    }
-    
-    
+
     //    MARK: - Helper Methods
     private func loadCategories(from eventCategories: [CategoryDTO]) async {
         let mappedCategories = eventCategories.map { category in

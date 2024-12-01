@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SeeAllEventsView: View {
     @Environment(\.dismiss) var dismiss
-    let events: [ExploreEvent]
+    let events: [ExploreModel]
     
     var body: some View {
         

@@ -16,7 +16,7 @@ struct EventCardView: View {
         }
     }
     
-    let event: ExploreEvent
+    let event: ExploreModel
     var showDetail: (Int) -> Void
     
     var body: some View {
@@ -233,5 +233,5 @@ struct EventCardView: View {
 
 
 #Preview {
-    EventCardView(event: ExploreEvent.example, showDetail: {_ in })
+    EventCardView(event: ExploreModel.example, showDetail: {_ in })
 }

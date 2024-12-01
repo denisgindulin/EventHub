@@ -20,7 +20,7 @@ final class EventsViewModel: ObservableObject {
     // MARK: - Properties
     private let apiService: IAPIServiceForEvents
     private let cache: DiskCache<[EventDTO]>
-    private let language: Language = .en
+    private let language: Language = .ru
     private let timeIntervalForUpdateCache: TimeInterval = 24 * 60
     
     @Published var selectedMode: EventsMode = .upcoming

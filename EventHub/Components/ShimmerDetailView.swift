@@ -40,7 +40,10 @@ struct ShimmerDetailView: View {
                         .foregroundStyle(.appLightGray)
                         .frame(width: 250,height: 90)
                         .shimmering()
-                    
+                    RoundedRectangle(cornerRadius: 30)
+                        .foregroundStyle(.appLightGray)
+                        .frame(width: 290,height: 130)
+                        .shimmering()
                    
                 }
                 .padding(.horizontal,20)

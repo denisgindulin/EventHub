@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScrollEventCardsView: View {
 
-    let events: [ExploreEvent]?
+    let events: [ExploreModel]?
     var showDetail: (Int) -> Void
     
     var body: some View {
@@ -32,5 +32,5 @@ struct ScrollEventCardsView: View {
 }
 
 #Preview {
-    ScrollEventCardsView(events: [ExploreEvent.example, ExploreEvent.example], showDetail: {_ in } ) // or nil
+    ScrollEventCardsView(events: [ExploreModel.example, ExploreModel.example], showDetail: {_ in } ) // or nil
 }

@@ -34,13 +34,12 @@ extension EventModel {
         self.id = dto.id
         self.title = dto.title ?? ""
         
-        let locationName = dto.location?.name ?? dto.location?.slug ?? ""
-        let placeTitle = dto.place?.title ?? ""
-        self.location = locationName + placeTitle
+        let location = dto.location?.name ?? ""
+        let place = dto.place?.address ?? ""
+        self.location = "\(String(describing: place)), \(String(describing: location))"
         
-
-        if let startDate = dto.dates.first?.startDate,
-           let startTime = dto.dates.first?.startTime {
+        if let startDate = dto.dates.last?.startDate,
+           let startTime = dto.dates.last?.startTime {
 
             let dateTimeString = "\(startDate) \(startTime)"
             let dateFormatter = DateFormatter()

@@ -31,19 +31,22 @@ struct DetailView: View {
                                     .padding(.vertical, 35)
                             }
                             
-                            DetailInformationView(title: viewModel.title,
-                                                  startDate: viewModel.startDate,
-                                                  endDate: viewModel.endDate,
-                                                  adress: viewModel.adress,
-                                                  location: viewModel.location,
-                                                  agentTitle: viewModel.agentTitle,
-                                                  role: viewModel.role,
-                                                  bodyText: viewModel.bodyText)
+                            DetailInformationView(
+                                title: viewModel.title,
+                                startDate: viewModel.startDate,
+                                endDate: viewModel.endDate,
+                                adress: viewModel.adress,
+                                location: viewModel.location,
+                                agentTitle: viewModel.agentTitle,
+                                role: viewModel.role,
+                                bodyText: viewModel.bodyText
+                            )
                         }
                     }
                     .ignoresSafeArea()
                 } else {
                     ShimmerDetailView()
+                        .ignoresSafeArea(.all)
                 }
             }
             
@@ -64,6 +67,7 @@ struct DetailView: View {
         .task {
             await viewModel.fetchEventDetails()
         }
+        
         .navigationBarHidden(true)
         .onChange(of: isPresented) { newValue in
             appState.isShareViewPresented = newValue // Обновляем AppState
