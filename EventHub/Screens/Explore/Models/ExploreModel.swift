@@ -81,6 +81,17 @@ extension ExploreModel {
         self.image = event.image
     }
 }
+
+extension ExploreModel {
+    init(event: FavoriteEvent) {
+        self.id = event.id
+        self.title = event.title ?? "No Title"
+        self.visitors = []
+        self.date = event.date ?? Date()
+        self.adress = event.adress ?? "Unknown Address"
+        self.image = event.image
+    }
+}
 struct Visitor: Identifiable {
     let id = UUID()
     let image: String
