@@ -10,6 +10,7 @@ import SwiftUI
 struct FavoritesView: View {
     @EnvironmentObject private var coreDataManager: CoreDataManager
     @StateObject var viewModel: FavoritesViewModel
+    @State private var showSearchFlow = false
     
     init() {
         self._viewModel = StateObject(wrappedValue: FavoritesViewModel())
@@ -25,9 +26,7 @@ struct FavoritesView: View {
                 actions: [
                     ToolBarAction(
                         icon: ToolBarButtonType.search.icon,
-                        action: {
-                            //
-                        },
+                        action: { showSearchFlow = true },
                         hasBackground: false,
                         foregroundStyle: .titleFont
                     )
@@ -41,18 +40,28 @@ struct FavoritesView: View {
             }
             Spacer()
         }
-//        .toolbar {
-//            Button {
-//                print("Search")
-//            } label: {
-//                Image(.search)
-//                    .resizable()
-//                    .scaledToFit()
-//            }
-//
-//        }
-//        .navigationTitle("Favorites")
-//        .navigationBarTitleDisplayMode(.inline)
+        .overlay(
+            NavigationLink(
+                destination: SearchView(
+                    searchScreenType: .withData,
+                    localData: coreDataManager.events.map { ExploreModel(event: $0) }
+                ),
+                isActive: $showSearchFlow,
+                label: { EmptyView() }
+            )
+        )
+        //        .toolbar {
+        //            Button {
+        //                print("Search")
+        //            } label: {
+        //                Image(.search)
+        //                    .resizable()
+        //                    .scaledToFit()
+        //            }
+        //
+        //        }
+        //        .navigationTitle("Favorites")
+        //        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
