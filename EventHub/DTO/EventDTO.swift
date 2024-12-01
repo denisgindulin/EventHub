@@ -10,8 +10,6 @@ import CoreLocation
 
 // MARK: - Response
 struct APIResponseDTO: Codable, Sendable, DecodableType {
-    let next: String?
-    let previous: String?
     let results: [EventDTO]
 }
 

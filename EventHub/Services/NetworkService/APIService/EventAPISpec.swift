@@ -22,7 +22,7 @@ enum EventAPISpec: APISpec {
     case getPastEvents(actualUntil: String, language: Language?, page: Int?)
     case getEventDetails(eventID: Int)
     case getSerchedEventsWith(searchText: String)
-    case getAllEvents(category: String?, actualSince: String, language: Language?, page: Int?)
+    case getEventsForMap(coordinate: String, category: String?, actualSince: String, language: Language?)
     
     // MARK: - Base URL Path
     /// Returns the base path for each endpoint.
@@ -44,7 +44,7 @@ enum EventAPISpec: APISpec {
             return "public-api/v1.4/events/\(eventID)"
         case .getSerchedEventsWith:
             return "public-api/v1.4/search"
-        case .getAllEvents:
+        case .getEventsForMap:
             return "public-api/v1.4/events/"
         }
     }
@@ -154,14 +154,19 @@ enum EventAPISpec: APISpec {
             return items
             
         case .getSerchedEventsWith(let searchText):
-            return [URLQueryItem(name: "q", value: searchText)]
+            return [
+                URLQueryItem(name: "q", value: searchText),
+                URLQueryItem(name: "expand", value: "location,place,dates"),
+                URLQueryItem(name: "fields", value: "id,title,description,place,location,dates,images")
+            ]
 
-        case .getAllEvents(let category, let actualSince, let language, let page):
+        case .getEventsForMap(let coordinate, let category, let actualSince, let language):
             var items: [URLQueryItem] = [
+                URLQueryItem(name: "page_size", value: "50"),
                 URLQueryItem(name: "order_by", value: "publication_date,dates,rank"),
                 URLQueryItem(name: "actual_since", value: actualSince),
-                URLQueryItem(name: "expand", value: "location,place,dates,participants"),
-                URLQueryItem(name: "fields", value: "id,title,body_text,place,location,dates,images")
+                URLQueryItem(name: "expand", value: "location,place,dates"),
+                URLQueryItem(name: "fields", value: "id,title,place,location,dates,images")
             ]
             
             if let category = category {
@@ -170,10 +175,6 @@ enum EventAPISpec: APISpec {
             
             if let language = language {
                 items.append(URLQueryItem(name: "lang", value: language.rawValue))
-            }
-            
-            if let page = page {
-                items.append(URLQueryItem(name: "page", value: String(page)))
             }
             return items
         }
@@ -215,8 +216,8 @@ enum EventAPISpec: APISpec {
         case .getEventDetails:
             return EventDTO.self
         case .getSerchedEventsWith:
-            return APIResponseDTO.self
-        case .getAllEvents:
+            return SearchResponseDTO.self
+        case .getEventsForMap:
             return APIResponseDTO.self
         }
     }

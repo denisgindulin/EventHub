@@ -22,8 +22,6 @@ struct CategoryScroll: View {
                         backgroundColor: category.color,
                         onTap: {
                             onCategorySelected(category)
-                            print(category.category.slug)
-                            print(category.category.name)
                         }
                     )
                 }
@@ -34,6 +32,6 @@ struct CategoryScroll: View {
     }
 }
 
-//#Preview {
-//    CategoryScroll(categories: [], onCategorySelected: <#(CategoryUIModel) -> Void#>)
-//}
+#Preview {
+    CategoryScroll(categories: [], onCategorySelected: {_ in })
+}

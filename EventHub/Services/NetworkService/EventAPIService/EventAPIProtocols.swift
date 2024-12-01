@@ -9,11 +9,11 @@ import Foundation
 
 
 /// Tuple alias combining all event-related protocols.
-typealias IEventAPIService = IAPIServiceForExplore & IAPIServiceForDetail & IEventAPIServiceForSearch & IAPIServiceForEvents & IAPIServiceForMap
+typealias IEventAPIService = IAPIServiceForExplore & IAPIServiceForDetail & IAPIServiceForSearch & IAPIServiceForEvents & IAPIServiceForMap
 
 /// Protocol for fetching event data related to exploration.
 /// Includes methods for retrieving locations, categories, and events.
-protocol IAPIServiceForExplore: IEventAPIServiceForSearch {
+protocol IAPIServiceForExplore: IAPIServiceForSearch {
     /// Fetches a list of locations.
     /// - Parameter language: The language for location names.
     /// - Returns: An array of `EventLocation`.
@@ -52,11 +52,11 @@ protocol IAPIServiceForDetail {
 }
 
 /// Protocol for searching events.
-protocol IEventAPIServiceForSearch {
+protocol IAPIServiceForSearch {
     /// Fetches events matching the search text.
     /// - Parameter searchText: The text to search for.
     /// - Returns: An optional `APIResponseDTO` containing the search results.
-    func getSearchedEvents(with searchText: String) async throws -> APIResponseDTO?
+    func getSearchedEvents(with searchText: String) async throws -> SearchResponseDTO?
 }
 
 protocol IAPIServiceForEvents {
@@ -64,6 +64,7 @@ protocol IAPIServiceForEvents {
     func getPastEvents(_ actualUntil: String,_ language: Language, _ page: Int?) async throws -> [EventDTO]
 }
 
-protocol IAPIServiceForMap {
-    func getAllEvents(_ category: String?,_ actualSince: String,_ language: Language,_ page: Int?) async throws -> [EventDTO]
+protocol IAPIServiceForMap: IAPIServiceForSearch {
+    func getCategories(with language: Language?) async throws -> [CategoryDTO]
+    func getEventsWith(location: String, _ category: String?,_ actualSince: String,_ language: Language) async throws -> [EventDTO]
 }

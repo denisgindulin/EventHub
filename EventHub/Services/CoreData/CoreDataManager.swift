@@ -29,7 +29,7 @@ final class CoreDataManager: ObservableObject {
         }
     }
     
-    func createEvent(event: ExploreEvent) {
+    func createEvent(event: ExploreModel) {
         let favoriteEvent = FavoriteEvent(context: viewContext)
         favoriteEvent.id = event.id
         favoriteEvent.title = event.title

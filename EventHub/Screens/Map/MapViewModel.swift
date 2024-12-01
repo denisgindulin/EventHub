@@ -12,14 +12,21 @@ import MapKit
 final class MapViewModel: ObservableObject {
     
     private let apiService: IAPIServiceForMap
-    private let locationManager: LocationManager
-
+    let locationManager: LocationManager
+    
+    @Published var categories: [CategoryUIModel] = []
     @Published var events: [MapEventModel] = []
-    @Published var selectedCategory: String? = nil
+    @Published var currentCategory: String? = nil {
+        didSet {
+            Task {
+                await fetchEvents()
+            }
+        }
+    }
     @Published var region: MKCoordinateRegion
-    @Published var isFavorite: Bool = false
     @Published var error: Error? = nil
     
+    private let language = Language.ru
     private var page: Int = 1
     
     // MARK: - Init
@@ -35,7 +42,7 @@ final class MapViewModel: ObservableObject {
             )
         } else {
             self.region = MKCoordinateRegion(
-                center: CLLocationCoordinate2D(latitude: 56.8389, longitude: 60.6057),
+                center: CLLocationCoordinate2D(latitude: 55.7558, longitude: 37.6176),
                 span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
             )
         }
@@ -54,11 +61,11 @@ final class MapViewModel: ObservableObject {
     // MARK: - Fetch Events
     func fetchEvents() async {
         do {
-            let eventsDTO = try await apiService.getAllEvents(
-                selectedCategory,
+            let eventsDTO = try await apiService.getEventsWith(
+                location: "",
+                currentCategory,
                 getActualSince(),
-                Language.ru,
-                page
+                language
             )
             events = eventsDTO.map { MapEventModel(dto: $0) }
         } catch {
@@ -69,6 +76,24 @@ final class MapViewModel: ObservableObject {
     private func getActualSince() -> String {
         let currentDate = Date()
         return String(Int(currentDate.timeIntervalSince1970))
+    }
+    
+    func fetchCategories() async {
+        do {
+            let categoriesFromAPI = try await apiService.getCategories(with: language)
+            await loadCategories(from: categoriesFromAPI)
+        } catch {
+            self.error = error
+        }
+    }
+    //    MARK: - Helper Methods
+    private func loadCategories(from eventCategories: [CategoryDTO]) async {
+        let mappedCategories = eventCategories.map { category in
+            let color = CategoryImageMapping.color(for: category)
+            let image = CategoryImageMapping.image(for: category)
+            return CategoryUIModel(id: category.id, category: category, color: color, image: image)
+        }
+        self.categories = mappedCategories
     }
 }
 
