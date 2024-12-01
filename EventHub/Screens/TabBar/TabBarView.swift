@@ -19,13 +19,13 @@ enum Tab: String, CaseIterable {
     var title: String {
         switch self {
         case .explore:
-            return "Explore"
+            return "Explore".localized
         case .events:
-            return "Events"
+            return "Events".localized
         case .map:
-            return "Map"
+            return "Map".localized
         case .profile:
-            return "Profile"
+            return "Profile".localized
         case .favorites:
             return ""
         }
@@ -63,8 +63,8 @@ struct TabBarView: View {
         static let floatingButtonSize: CGFloat = 46
         static let floatingButtonOffsetY: CGFloat = -45
         static let shadowRadius: CGFloat = 8
-        static let fontSize: CGFloat = 12
-        static let buttonSize: CGFloat = 43
+        static let fontSize: CGFloat = 11
+        static let buttonSize: CGFloat = 52
     }
     
     var body: some View {
