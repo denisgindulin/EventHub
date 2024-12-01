@@ -476,7 +476,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Событие"
+            "value" : "События"
           }
         }
       }
@@ -583,7 +583,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Исследовать события"
+            "value" : "Изучить события"
           }
         }
       }
@@ -1064,9 +1064,6 @@
         }
       }
     },
-    "No %@ Event" : {
-
-    },
     "No authenticated user found" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1186,6 +1183,17 @@
         }
       }
     },
+    "No Past Event" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет прошедших событий"
+          }
+        }
+      }
+    },
     "No Role" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1216,6 +1224,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "нет названия"
+          }
+        }
+      }
+    },
+    "No Upcoming Event" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет предстоящих событий"
           }
         }
       }
@@ -1356,7 +1375,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ПРОШЕДШИЕ СОБЫТИЯ"
+            "value" : "ПРОШЕДШИЕ"
           }
         }
       }

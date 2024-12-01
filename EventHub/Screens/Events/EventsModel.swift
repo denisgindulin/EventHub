@@ -14,9 +14,9 @@ enum EventsMode: CaseIterable {
     var title: String {
         switch self {
         case .upcoming:
-            "UPCOMING"
+            "UPCOMING".localized
         case .pastEvents:
-            "PAST EVENTS"
+            "PAST EVENTS".localized
         }
     }
 }

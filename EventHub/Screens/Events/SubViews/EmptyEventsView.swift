@@ -21,7 +21,9 @@ struct EmptyEventsView: View {
                 .clipShape(Circle())
                       
             
-            Text("No \(selectedMode == .upcoming ? "Upcoming" : "Past") Event")
+            Text(selectedMode == .upcoming 
+                 ? "No Upcoming Event".localized
+                 : "No Past Event".localized)
                 .airbnbCerealFont(.bold, size: 24)
                 .foregroundStyle(.black)
             
@@ -33,7 +35,7 @@ struct EmptyEventsView: View {
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
-        .frame(width: UIScreen.main.bounds.width * 0.7)
+        .frame(width: UIScreen.main.bounds.width * 0.85)
         .frame(maxHeight: .infinity)
     }
 }
