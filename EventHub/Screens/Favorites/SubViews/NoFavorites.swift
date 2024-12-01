@@ -10,7 +10,7 @@ import SwiftUI
 struct NoFavorites: View {
     var body: some View {
         VStack(spacing: 50) {
-            Text("No favorites".uppercased())
+            Text("No favorites".localized.uppercased())
                 .airbnbCerealFont(.bold, size: 24)
             ZStack {
                 Image(.noFavorites)

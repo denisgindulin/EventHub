@@ -644,6 +644,17 @@
         }
       }
     },
+    "Favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранные"
+          }
+        }
+      }
+    },
     "Festivals" : {
       "extractionState" : "manual",
       "localizations" : {
