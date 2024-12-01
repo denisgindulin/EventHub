@@ -14,7 +14,14 @@
 
     },
     " About Me" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обо мне"
+          }
+        }
+      }
     },
     " coming soon!" : {
       "extractionState" : "manual",
@@ -51,10 +58,24 @@
       }
     },
     "%@" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ."
+          }
+        }
+      }
     },
     "+" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+"
+          }
+        }
+      }
     },
     "5 days ago" : {
       "extractionState" : "manual",
@@ -175,6 +196,17 @@
         }
       }
     },
+    "An immersive show, a football match, or the opening of a new cafe may be taking place near you" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рядом с вами может происходить иммерсивное шоу, футбольный матч или открытие нового кафе"
+          }
+        }
+      }
+    },
     "Ashfak Sayem" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -226,6 +258,28 @@
         }
       }
     },
+    "Change password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сменить пароль"
+          }
+        }
+      }
+    },
+    "Choose festivals, performances and other events and interesting places in your city and beyond" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбирайте фестивали, спектакли и другие мероприятия и интересные места в вашем городе и не только"
+          }
+        }
+      }
+    },
     "Confirm password" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -255,7 +309,14 @@
       }
     },
     "Current Location" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущее место"
+          }
+        }
+      }
     },
     "Don’t have an account?" : {
       "extractionState" : "manual",
@@ -1110,6 +1171,17 @@
         }
       }
     },
+    "Please enter your email address to request a password reset" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, введите свою электронную почту, чтобы запросить сброс пароля"
+          }
+        }
+      }
+    },
     "Profile" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1195,6 +1267,17 @@
         }
       }
     },
+    "Reset password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сбросить пароль "
+          }
+        }
+      }
+    },
     "saved for user" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1213,7 +1296,14 @@
       }
     },
     "Search" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искать"
+          }
+        }
+      }
     },
     "Search..." : {
       "extractionState" : "manual",
@@ -1462,7 +1552,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Чтобы найти другие мероприятия поблизости, посмотрите на карте"
+            "value" : "Находите на карте  мероприятия поблизости"
           }
         }
       }
@@ -1729,6 +1819,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ваш пароль"
+          }
+        }
+      }
+    },
+    "Сhoose an excursion, exhibition, stand-up show or other entertainment for the coming weekend or upcoming holidays" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбирайте экскурсию,  выставку, стендап-шоу и другие развлечения на ближайшие выходные или предстоящие праздники"
           }
         }
       }

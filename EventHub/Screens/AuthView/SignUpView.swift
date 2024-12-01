@@ -11,6 +11,7 @@ import FirebaseAuth
 struct SignUpView: View {
     @ObservedObject var viewModel: AuthViewModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
         GeometryReader { geometry in
@@ -40,7 +41,13 @@ struct SignUpView: View {
                             let sucess =  await viewModel.signUp()
                             if sucess {
                                 viewModel.saveUsernameToUserDefaults(username: viewModel.name )
-                                //navigation 
+                                 
+                                withAnimation {
+                                    //
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
                             }
                         }
                         
