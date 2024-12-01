@@ -14,9 +14,9 @@ struct MainCategorySectionView: View {
     
     var body: some View {
         HStack {
-            Text(title)
+            Text(title.localized)
                 .airbnbCerealFont(AirbnbCerealFont.medium, size: 18)
-                .frame(width: 160, height: 24, alignment: .leading)
+                .frame(width: 200, height: 24, alignment: .leading)
                 .foregroundStyle(.black)
                 .opacity(0.84)
             

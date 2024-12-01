@@ -36,7 +36,7 @@ struct CustomToolBar: View {
                                     currentLocation = location.slug
                                     title = location.name ?? "no location name"
                                 } label: {
-                                    Text(location.name ?? "no location name")
+                                    Text(location.name?.localized ?? "no location name")
                                 }
                             }
                         } label: {
@@ -52,7 +52,7 @@ struct CustomToolBar: View {
                                 .opacity(0.7)
                         }
                         
-                        Text(title)
+                        Text(title.localized)
                             .foregroundStyle(Color.white)
                             .airbnbCerealFont(AirbnbCerealFont.book, size: 13)
                     }

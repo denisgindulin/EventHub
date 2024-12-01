@@ -224,6 +224,17 @@
         }
       }
     },
+    "Business events" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "События для бизнеса"
+          }
+        }
+      }
+    },
     "by date" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -269,6 +280,17 @@
         }
       }
     },
+    "Charity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Благотворительные мероприятия"
+          }
+        }
+      }
+    },
     "Choose festivals, performances and other events and interesting places in your city and beyond" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -276,6 +298,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выбирайте фестивали, спектакли и другие мероприятия и интересные места в вашем городе и не только"
+          }
+        }
+      }
+    },
+    "Concerts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Концерты"
           }
         }
       }
@@ -369,6 +402,17 @@
         }
       }
     },
+    "Education" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Образовательные мероприятия"
+          }
+        }
+      }
+    },
     "Email or password cannot be empty" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -399,6 +443,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Веселый текст обо мне. Очень очень очень очень очень очень очень очень подробно подробно подробно подробный текст обо мне, а не к ком-то другом. Только обо мне. О очень очень подробно"
+          }
+        }
+      }
+    },
+    "Entertainment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Развлечения"
           }
         }
       }
@@ -488,6 +543,17 @@
         }
       }
     },
+    "Exhibitions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выставки"
+          }
+        }
+      }
+    },
     "Explore" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -500,7 +566,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Исследуй"
+            "value" : "Главная"
           }
         }
       }
@@ -552,6 +618,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Facebook"
+          }
+        }
+      }
+    },
+    "Fair" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ярмарки"
+          }
+        }
+      }
+    },
+    "Fashion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мода и стиль"
+          }
+        }
+      }
+    },
+    "Festivals" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фестивали"
           }
         }
       }
@@ -620,6 +719,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Полное имя"
+          }
+        }
+      }
+    },
+    "Going" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "собираются прийти"
+          }
+        }
+      }
+    },
+    "Holidays" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выходные дни, каникулы, отпуск"
           }
         }
       }
@@ -709,6 +830,28 @@
         }
       }
     },
+    "Kazan" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Казань"
+          }
+        }
+      }
+    },
+    "Kids" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мероприятия для детей"
+          }
+        }
+      }
+    },
     "Lists" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -721,7 +864,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Списки"
+            "value" : "Подборки"
           }
         }
       }
@@ -828,6 +971,17 @@
         }
       }
     },
+    "Movies" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кинопоказы"
+          }
+        }
+      }
+    },
     "Nearby You" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -875,6 +1029,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Дальше"
+          }
+        }
+      }
+    },
+    "Nizhny Novgorod" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нижний Новгород"
           }
         }
       }
@@ -1064,7 +1229,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "нет посетителей"
+            "value" : "число посетителей неизвестно"
           }
         }
       }
@@ -1099,6 +1264,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ИЛИ"
+          }
+        }
+      }
+    },
+    "Other" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Другие мероприятия"
+          }
+        }
+      }
+    },
+    "Parties" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вечеринки"
           }
         }
       }
@@ -1171,6 +1358,17 @@
         }
       }
     },
+    "Photoevents" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фотосессии"
+          }
+        }
+      }
+    },
     "Please enter your email address to request a password reset" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1195,6 +1393,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Профиль"
+          }
+        }
+      }
+    },
+    "Promotions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промоакции"
+          }
+        }
+      }
+    },
+    "Quests" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Квесты"
           }
         }
       }
@@ -1250,19 +1470,13 @@
         }
       }
     },
-    "Remember me" : {
+    "Recreation" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remember me"
-          }
-        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Запомнить меня"
+            "value" : "Отдых на природе"
           }
         }
       }
@@ -1274,6 +1488,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сбросить пароль "
+          }
+        }
+      }
+    },
+    "Saint Petersburg" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Санкт-Петербург"
           }
         }
       }
@@ -1355,6 +1580,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Поделиться с друзьями"
+          }
+        }
+      }
+    },
+    "Shopping" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шопинг"
           }
         }
       }
@@ -1523,6 +1759,17 @@
         }
       }
     },
+    "Theater (plays, opera, ballet etc)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Театр (спектакли, опера, балет и т.п.)"
+          }
+        }
+      }
+    },
     "There is no root view controller!" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1591,6 +1838,17 @@
         }
       }
     },
+    "Tours" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Туры"
+          }
+        }
+      }
+    },
     "Twitter" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1637,7 +1895,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "неизвестный адрес"
+            "value" : "адрес неизвестен"
           }
         }
       }
@@ -1791,6 +2049,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "WhatsApp"
+          }
+        }
+      }
+    },
+    "Yekaterinburg" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Екатеринбург"
           }
         }
       }

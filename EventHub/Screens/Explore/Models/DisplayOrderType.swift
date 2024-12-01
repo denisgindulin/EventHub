@@ -13,9 +13,9 @@ enum DisplayOrderType: CaseIterable {
     var name: String {
         switch self {
         case .alphabetical:
-            return "alphabetical"
+            return "alphabetical".localized
         case .date:
-            return "by date"
+            return "by date".localized
         }
     }
 }
