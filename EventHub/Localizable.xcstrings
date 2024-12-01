@@ -841,6 +841,9 @@
         }
       }
     },
+    "Key" : {
+      "extractionState" : "manual"
+    },
     "Kids" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -932,7 +935,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "смс"
+            "value" : "Cooбщения"
           }
         }
       }

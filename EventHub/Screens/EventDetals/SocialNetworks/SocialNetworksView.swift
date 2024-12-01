@@ -28,7 +28,7 @@ struct SocialNetworksView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(maxHeight: 40)
-                        Text(socialNetwork.text)
+                        Text(socialNetwork.text.localized)
                             .font(.caption)
                             .airbnbCerealFont(.book, size: 13)
                             .foregroundStyle(Color(.label))
