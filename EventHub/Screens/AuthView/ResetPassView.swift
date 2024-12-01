@@ -17,7 +17,7 @@ struct ResetPassView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            ToolBarView(title: "Reset password".localized, showBackButton: false)
+            ToolBarView(title: "Reset password".localized, showBackButton: true)
                 .padding(.bottom, 60)
                 .padding(.top, 20)
             
@@ -38,6 +38,7 @@ struct ResetPassView: View {
             
             Spacer()
         }
+        .navigationBarBackButtonHidden()
         .frame(maxHeight: .infinity, alignment: .top)
     }
     
