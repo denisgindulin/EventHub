@@ -27,6 +27,8 @@ struct ProfileView: View {
                 Color.appBackground
                 
                 VStack {
+                    ToolBarView(title: "Profile".localized, foregroundStyle: .titleFont, isTitleLeading: false)
+                        .padding(.bottom, 16)
                     
                     VStack {
                         KFImage(URL(string: viewModel.image)) // Просто показываем фото
@@ -70,10 +72,14 @@ struct ProfileView: View {
                                 .airbnbCerealFont( AirbnbCerealFont.book, size: 16)
                                 .frame( alignment: .top)
                                 .lineLimit(4)
-                            
-                            Button("Read More") {
+
+                            Button {
                                 showMore = true
+                            } label: {
+                                Text("Read More".localized)
+                                    .foregroundStyle(.appBlue)
                             }
+
 //                            Button{
 //                                //
 //                            } label: {
@@ -90,8 +96,10 @@ struct ProfileView: View {
                         .padding(.bottom,107)
                 }
             }
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationTitle("Profile")
+//            .navigationTitle(navTitle)
+
+//            .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $showMore) {
                 AboutMeInfo(text: viewModel.info)
             }

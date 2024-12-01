@@ -19,7 +19,10 @@ struct EditButton: View {
                     .foregroundStyle(.appBlue)
                     .airbnbCerealFont( AirbnbCerealFont.medium, size: 16)
             }
-            .frame(width: 154, height: 50)
+            .padding(.horizontal, 16)
+//            .frame(width: 154, height: 50)
+            .frame(height: 50)
+
             .overlay {
                 RoundedRectangle(cornerRadius: 10).stroke(style: .init(lineWidth: 2))
                     .foregroundStyle(.appBlue)

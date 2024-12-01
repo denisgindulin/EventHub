@@ -24,6 +24,9 @@ struct ProfileEditeView: View {
             Color.appBackground
             
             VStack {
+                ToolBarView(title: "Profile".localized, foregroundStyle: .titleFont, isTitleLeading: false)
+                    .padding(.bottom, 16)
+                
                 VStack {
                     KFImage(URL(string: image)) // UIImage Picker ? 
                         .placeholder {
@@ -124,8 +127,12 @@ struct ProfileEditeView: View {
                                 .frame( alignment: .top)
                                 .lineLimit(4)
                         }
-                        Button("Read More") {
+                        
+                        Button {
                             showMore = true
+                        } label: {
+                            Text("Read More".localized)
+                                .foregroundStyle(.appBlue)
                         }
                         
                         //                            Button {
@@ -146,15 +153,13 @@ struct ProfileEditeView: View {
                     .padding(.bottom,137)
             }
         }
-        .navigationTitle("Profile")
-        .offset(y: 100)
+        .offset(y: 65)
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackBarButtonView(foregroundStyle: .black)
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
         .sheet(isPresented: $showMore){
             AboutMeInfo(text: userInfo)
