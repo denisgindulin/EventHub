@@ -498,6 +498,17 @@
         }
       }
     },
+    "Event Details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Детали события"
+          }
+        }
+      }
+    },
     "EventHub" : {
       "extractionState" : "manual",
       "localizations" : {
