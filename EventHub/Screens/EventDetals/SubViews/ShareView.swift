@@ -21,7 +21,7 @@ struct ShareView: View {
                 Button {
                     isPresented = false
                 } label: {
-                    Text("Cancel".uppercased())
+                    Text("Cancel".localized.uppercased())
                         .padding(.vertical, 19)
                         .frame(maxWidth: .infinity)
                         .airbnbCerealFont(.book)

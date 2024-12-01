@@ -81,7 +81,7 @@ struct EventCardView: View {
                 }
                 .padding(.top, 10)
                 
-                Text(event.title)
+                Text(event.title.localized)
                     .airbnbCerealFont(AirbnbCerealFont.medium, size: 18)
                     .frame(width: 207, height: 21, alignment: .leading)
                     .padding(.bottom,10)
@@ -91,7 +91,7 @@ struct EventCardView: View {
                     HStack {
                         ShimmerAvatarView()
                         
-                        Text("No visitors")
+                        Text("No visitors".localized)
                             .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                     }
                 } else if let visitors = event.visitors { // Visitor Images
@@ -132,7 +132,7 @@ struct EventCardView: View {
                                      : String(checkRemainingNumberOfVisitors(visitors: visitors)))
                                 .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                                 
-                                Text(visitors.count > 0 ? " Going" : "")
+                                Text(visitors.count > 0 ? " "+"Going".localized : "")
                                     .airbnbCerealFont(AirbnbCerealFont.book, size: 12)
                             }
                         }
@@ -149,7 +149,7 @@ struct EventCardView: View {
                             .resizable()
                             .foregroundStyle(.geolocationText)
                             .frame(width: 16, height: 16)
-                        Text(event.adress)
+                        Text(event.adress.localized)
                             .airbnbCerealFont(AirbnbCerealFont.book, size: 13)
                             .foregroundStyle(.geolocationText)
                     }

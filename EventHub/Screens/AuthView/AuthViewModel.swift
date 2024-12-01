@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseAuth
 import FirebaseCore
+import FirebaseFirestore
 import GoogleSignIn
 import GoogleSignInSwift
 
@@ -40,6 +41,7 @@ enum ErrorMessages {
 
 @MainActor
 final class AuthViewModel: ObservableObject{
+    private let db = Firestore.firestore()
     private let router: StartRouter
     
     @Published var name: String = ""
@@ -75,33 +77,46 @@ final class AuthViewModel: ObservableObject{
     func signIn() async {
         authenticationState = .authenticating
         do {
-            try await  Auth.auth().signIn(withEmail: email, password: password)
+            try await Auth.auth().signIn(withEmail: email, password: password)
+            await fetchUserData() // Загрузка данных пользователя
             userAuthenticated()
-        }
-        catch {
+        } catch {
             print(error)
-                 errorMessage = error.localizedDescription
-                 authenticationState = .unauthenticated
+            errorMessage = error.localizedDescription
+            authenticationState = .unauthenticated
         }
     }
     
     
     //MARK: - Sign Up
     func signUp() async -> Bool {
-       guard  validateFields() else { return false }
+        guard validateFields() else { return false }
         authenticationState = .authenticating
         isLoading = true
-        do {
-            try await  Auth.auth().createUser(withEmail: email, password: password)
-            return true
-        }
-        catch {
-            print(error)
-                 errorMessage = error.localizedDescription
-                 authenticationState = .unauthenticated
-                 return false
-        }
         
+        do {
+            // Создание пользователя в Firebase Authentication
+            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            
+            // Сохранение данных пользователя в Firestore
+            let userData: [String: Any] = [
+                "email": email,
+                "username": name.isEmpty ? "Unknown" : name,
+                "avatar": "",
+                "description": "",
+                "favorites": ""
+            ]
+            try await db.collection("users").document(result.user.uid).setData(userData)
+            
+            // Пользователь успешно создан
+            userAuthenticated()
+            return true
+        } catch {
+            print(error.localizedDescription)
+            errorMessage = error.localizedDescription
+            authenticationState = .unauthenticated
+            return false
+        }
     }
     
     //MARK: - Sign out
@@ -116,6 +131,43 @@ final class AuthViewModel: ObservableObject{
                  return false
         }
     }
+    
+    func updateUserData(updatedData: [String: Any]) async -> Bool {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            errorMessage = "No authenticated user found"
+            return false
+        }
+        
+        do {
+            try await db.collection("users").document(uid).updateData(updatedData)
+            print("User data updated successfully")
+            return true
+        } catch {
+            print(error.localizedDescription)
+            errorMessage = error.localizedDescription
+            return false
+        }
+    }
+    
+    func fetchUserData() async {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            errorMessage = "No authenticated user found"
+            return
+        }
+        
+        do {
+            let snapshot = try await db.collection("users").document(uid).getDocument()
+            if let data = snapshot.data() {
+                name = data["username"] as? String ?? "Unknown"
+                email = data["email"] as? String ?? ""
+                // Дополнительные поля, если есть
+            }
+        } catch {
+            print(error.localizedDescription)
+            errorMessage = error.localizedDescription
+        }
+    }
+    
     //MARK: - Reset Password
     func resetPassword(email: String) async -> Bool {
       authenticationState = .authenticating

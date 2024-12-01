@@ -56,10 +56,14 @@ struct SignInView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .navigationBarHidden(true)
-                .sheet(isPresented: $isResetPasswordPresented) {
-                    ResetPassView(viewModel: viewModel)
-                }
             }
+            .background(
+                        NavigationLink(
+                            destination: ResetPassView(viewModel: viewModel),
+                            isActive: $isResetPasswordPresented,
+                            label: { EmptyView() }
+                        )
+                    )
         }
     }
 
