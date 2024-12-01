@@ -269,17 +269,6 @@
         }
       }
     },
-    "Change password" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сменить пароль"
-          }
-        }
-      }
-    },
     "Charity" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1484,13 +1473,24 @@
         }
       }
     },
+    "Remember me" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запомнить меня"
+          }
+        }
+      }
+    },
     "Reset password" : {
       "extractionState" : "manual",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сбросить пароль "
+            "value" : "Сброс пароля "
           }
         }
       }
@@ -1569,6 +1569,17 @@
     },
     "See All View" : {
 
+    },
+    "Send" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправить запрос"
+          }
+        }
+      }
     },
     "Share with friends" : {
       "extractionState" : "manual",

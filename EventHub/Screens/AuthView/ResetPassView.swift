@@ -29,7 +29,7 @@ struct ResetPassView: View {
             emailTextField(horizontalPadding: 29)
                 .padding(.top, 36)
             
-            BlueButtonWithArrow(text: "Change password".localized) {
+            BlueButtonWithArrow(text: "Send".localized) {
                 handleResetPassword()
             }
             .padding(.top, 40)
