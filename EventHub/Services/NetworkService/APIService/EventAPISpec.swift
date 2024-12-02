@@ -163,7 +163,7 @@ enum EventAPISpec: APISpec {
                 URLQueryItem(name: "order_by", value: "-publication_date")
             ]
 
-        case .getEventsForMap(let coordinate, let category, let language):
+        case .getEventsForMap(_, let category, let language):
             let currentDate = Date.now.ISO8601Format()
             var items: [URLQueryItem] = [
                 URLQueryItem(name: "page_size", value: "50"),

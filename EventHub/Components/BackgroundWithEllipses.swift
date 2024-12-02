@@ -11,8 +11,8 @@ struct BackgroundWithEllipses: View {
     var body: some View {
         Image(.bgWithStaticEllipses)
             .resizable()
-            .frame(width: .infinity, 
-                   height: .infinity)
+            .frame(maxWidth: .infinity,
+                   maxHeight: .infinity)
             .ignoresSafeArea()
         
     }
