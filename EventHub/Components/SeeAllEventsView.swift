@@ -16,9 +16,12 @@ struct SeeAllEventsView: View {
         ScrollView(showsIndicators: false) {
             VStack {
                 ForEach(events) { event in
-#warning("Date")
-                    SmallEventCard(image: event.image ?? " No image/crach", date: Date.now, title: event.title, place: event.adress)
-                        .padding(.bottom,5)
+                    NavigationLink {
+                        DetailView(detailID: event.id)
+                    } label: {
+                        SmallEventCard(image: event.image ?? "No image/crach", date: event.date, title: event.title, place: event.adress)
+                            .padding(.bottom,5)
+                    }
                 }
             }
             .padding(.horizontal, 20)
