@@ -51,4 +51,15 @@
 * selection by category: movies, concerts, entertainment, exhibitions, business events, education, fashion and style, festivals, holidays, kids, parties, photo shoots, quests, outdoor recreation, shopping, promotions, theater (performances, opera, ballet), fairs, excursions, charity and other events
 * selection by city: Moscow, St. Petersburg, Kazan, Nizhny Novgorod, Yekaterinburg
 * sorting alphabetically and by date
+### Другие возможности:
+* по каждой карточке события можно перейти к его детальному описанию: время, место, подробности
+* событие можно добавлять в избранные и делиться ими с друзьями
+* события можно разделить на предстоящие и прошедшие
+* доступна настройка своего профиля: добавить имя, аватар, раздел о себе 
+### Other features: 
+* from each event card, you can go to its detailed description: time, place, important details 
+* the event can be added to favorites and shared with friends 
+* events can be divided into upcoming and past
+* you can customize your profile: add a name, an avatar, a section about yourself
+
 * there is a search for keywords and phrases
