@@ -31,7 +31,6 @@ struct SmallEventCardForList: View {
                     }
                 )
                 .cornerRadius(30)
-                .frame(width: 150, height: 30)
             }
             .padding(7)
             .frame(maxWidth: .infinity, alignment: .leading)
