@@ -13,10 +13,6 @@ struct SignUpView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.presentationMode) private var presentationMode
 
-    @State private var name: String = ""
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var confirmPassword: String = ""
 
     var body: some View {
         ZStack {
@@ -31,7 +27,7 @@ struct SignUpView: View {
                         ToolBarView(title: "Sign up".localized, showBackButton: true)
                         VStack {
                             AuthTextField(
-                                textFieldText: $name,
+                                textFieldText: $viewModel.nameSU,
                                 placeholder: "Full name".localized,
                                 imageName: "profile",
                                 isSecure: false
@@ -39,22 +35,22 @@ struct SignUpView: View {
                             .padding(.top, smallPadding / 2)
                             
                             AuthTextField(
-                                textFieldText:  $email,
+                                textFieldText:  $viewModel.emailSU,
                                 placeholder: "Your email".localized,
                                 imageName: "mail",
                                 isSecure: false
                             )
                             .padding(.top, smallPadding)
                             
-                            passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Your password".localized, textFieldText: $password)
+                            passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Your password".localized, textFieldText: $viewModel.passwordSU)
                                 .padding(.top, smallPadding)
                             
-                            passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Confirm password".localized, textFieldText: $confirmPassword)
+                            passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Confirm password".localized, textFieldText: $viewModel.confirmPasswordSU)
                                 .padding(.top, smallPadding)
                             
                             BlueButtonWithArrow(text: "Sign up".localized) {
                                 Task {
-                                    try? await viewModel.createUser(name: name, email: email, password: password, repeatPassword: confirmPassword)
+                                    await viewModel.createUser(name: viewModel.nameSU, email: viewModel.emailSU, password: viewModel.passwordSU, repeatPassword: viewModel.confirmPasswordSU)
                                 }
                                 
                             }
@@ -91,9 +87,31 @@ struct SignUpView: View {
                         .padding(.horizontal, horizontalPadding)
                     }
                     .navigationBarHidden(true)
+                    .alert(isPresented: isPresentedAlert()) {
+                        Alert(
+                            title: Text(viewModel.authError == .signUpSuccess ? "Success" : "Error"),
+                            message: Text(viewModel.authError?.localizedDescription ?? ""),
+                            dismissButton: .default(Text("OK"), action: {
+                                if viewModel.authError == .signUpSuccess {
+                                    viewModel.cancelErrorAlert()
+                                    dismiss()
+                                } else {
+                                    viewModel.cancelErrorAlert()
+                                }
+                            })
+                        )
+                    }
                 }
+
             }
         }
+    }
+    
+    private func isPresentedAlert() -> Binding<Bool> {
+        Binding(get: { viewModel.authError != nil },
+                set: { isPresenting in
+            if isPresenting { return }
+        })
     }
     
     private func passwordTextField(horizontalPadding: CGFloat, placeholder: String, textFieldText: Binding<String>) -> some View {

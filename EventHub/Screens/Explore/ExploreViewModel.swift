@@ -95,11 +95,7 @@ final class ExploreViewModel: ObservableObject {
                 language,
                 page
             )
-            let apiSpecLoc = EventAPISpec.getUpcomingEventsWith(
-                category: currentCategory,
-                language: language,
-                page: page
-            )
+
             let mappedEvents = fetchedEvents.map { ExploreModel(dto: $0) }
             
             let filteredEvents = ExploreModel.filterExploreEvents(mappedEvents)

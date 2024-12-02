@@ -44,7 +44,7 @@ final class StartRouter: ObservableObject {
         case .userAuthorized:
             newState = .main
         case .userLoggedOut:
-            newState = .onboarding
+            newState = .auth
         }
         return newState
     }
@@ -59,7 +59,11 @@ final class StartRouter: ObservableObject {
         var newState = state
         
         if storage.hasCompletedOnboarding() {
-            newState = (Auth.auth().currentUser != nil) ? .main : .auth
+            if storage.getIsRememberMeOn() && Auth.auth().currentUser != nil {
+                newState = .main
+            } else {
+                newState = (Auth.auth().currentUser != nil && !storage.getIsRememberMeOn()) ? .main : .auth
+            }
         } else {
             newState = .onboarding
             storage.set(value: true as Bool, forKey: .hasCompletedOnboarding)

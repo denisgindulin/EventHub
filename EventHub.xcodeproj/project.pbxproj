@@ -133,6 +133,7 @@
 		E15B5A0C2CFDE06E00196BF3 /* SmallEventCardForList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5A0B2CFDE06E00196BF3 /* SmallEventCardForList.swift */; };
 		E15B5A0E2CFDE8F900196BF3 /* ListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5A0D2CFDE8F900196BF3 /* ListDTO.swift */; };
 		E15B5A102CFDF6BE00196BF3 /* SearchBarForMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5A0F2CFDF6BE00196BF3 /* SearchBarForMap.swift */; };
+		E15B5A162CFE142200196BF3 /* ShimmerEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15B5A152CFE142200196BF3 /* ShimmerEventView.swift */; };
 		E165D1BE2CF44F250030BA88 /* DisplayOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E165D1BD2CF44F250030BA88 /* DisplayOrderType.swift */; };
 		E165D1C02CF4DF2E0030BA88 /* SeeAllEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E165D1BF2CF4DF2E0030BA88 /* SeeAllEvents.swift */; };
 		E165D1C32CF5B3940030BA88 /* EmptyEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E165D1C22CF5B3940030BA88 /* EmptyEventsView.swift */; };
@@ -268,6 +269,7 @@
 		E15B5A0B2CFDE06E00196BF3 /* SmallEventCardForList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallEventCardForList.swift; sourceTree = "<group>"; };
 		E15B5A0D2CFDE8F900196BF3 /* ListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDTO.swift; sourceTree = "<group>"; };
 		E15B5A0F2CFDF6BE00196BF3 /* SearchBarForMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarForMap.swift; sourceTree = "<group>"; };
+		E15B5A152CFE142200196BF3 /* ShimmerEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEventView.swift; sourceTree = "<group>"; };
 		E165D1BD2CF44F250030BA88 /* DisplayOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayOrderType.swift; sourceTree = "<group>"; };
 		E165D1BF2CF4DF2E0030BA88 /* SeeAllEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllEvents.swift; sourceTree = "<group>"; };
 		E165D1C22CF5B3940030BA88 /* EmptyEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyEventsView.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 		4831BA582CEB421C00141C9A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E15B5A142CFE141300196BF3 /* Shimmehs */,
 				E15B5A0F2CFDF6BE00196BF3 /* SearchBarForMap.swift */,
 				E10ED0362CF0E47F00AFDBC2 /* ToolBar */,
 				8763C1642CF269AF002E4535 /* GoogleButton.swift */,
@@ -536,7 +539,6 @@
 				E10ED0272CF0E47F00AFDBC2 /* BlueButtonWithArrow.swift */,
 				E10ED0282CF0E47F00AFDBC2 /* BlueCapsuleButtonWithArrow.swift */,
 				6CBDC50A2CFDBD88007D84A1 /* NoEventsView.swift */,
-				6CFF22632CFA5DDD0076D394 /* ShimmerDetailView.swift */,
 				E10ED0292CF0E47F00AFDBC2 /* CategoryButtonView.swift */,
 				E10ED02A2CF0E47F00AFDBC2 /* CategoryScroll.swift */,
 				E10ED02B2CF0E47F00AFDBC2 /* CustomToolbar.swift */,
@@ -545,10 +547,7 @@
 				E10ED02E2CF0E47F00AFDBC2 /* MainCategorySectionView.swift */,
 				E10ED02F2CF0E47F00AFDBC2 /* ScrollEventCardsView.swift */,
 				E10ED0302CF0E47F00AFDBC2 /* SearchBarViewForMap.swift */,
-				6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */,
 				E10ED0312CF0E47F00AFDBC2 /* SecureTextField.swift */,
-				6CF41E2B2CF4DBC400E58618 /* ShimmerAvatarView.swift */,
-				E10ED0322CF0E47F00AFDBC2 /* ShimmerView.swift */,
 				E10ED0332CF0E47F00AFDBC2 /* SmallEventCard.swift */,
 				E10ED03B2CF0E47F00AFDBC2 /* ThirdSmallEventCard.swift */,
 				E10ED03C2CF0E47F00AFDBC2 /* ToolBarButtonView.swift */,
@@ -699,6 +698,18 @@
 				E15B59FF2CFC495300196BF3 /* SearchViewModel.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		E15B5A142CFE141300196BF3 /* Shimmehs */ = {
+			isa = PBXGroup;
+			children = (
+				6CF41E2B2CF4DBC400E58618 /* ShimmerAvatarView.swift */,
+				E10ED0322CF0E47F00AFDBC2 /* ShimmerView.swift */,
+				6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */,
+				6CFF22632CFA5DDD0076D394 /* ShimmerDetailView.swift */,
+				E15B5A152CFE142200196BF3 /* ShimmerEventView.swift */,
+			);
+			path = Shimmehs;
 			sourceTree = "<group>";
 		};
 		E165D1B72CF381790030BA88 /* Model */ = {
@@ -948,6 +959,7 @@
 				48C66CFE2CFB275B006339CD /* ImageDetailView.swift in Sources */,
 				E10ED0502CF0E47F00AFDBC2 /* CustomToolbar.swift in Sources */,
 				E10ED0522CF0E47F00AFDBC2 /* SmallEventCard.swift in Sources */,
+				E15B5A162CFE142200196BF3 /* ShimmerEventView.swift in Sources */,
 				6CF41E2C2CF4DBC400E58618 /* ShimmerAvatarView.swift in Sources */,
 				E15B59F72CFB4B2200196BF3 /* LocationManager.swift in Sources */,
 				E165D1C92CF5DFEB0030BA88 /* ChangeModeButton.swift in Sources */,

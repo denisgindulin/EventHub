@@ -2,6 +2,8 @@ import SwiftUI
 import FirebaseAuth
 
 struct SignInView: View {
+    private let storage = DIContainer.resolve(forKey: .storageService) ?? UDStorageService()
+    
     var iconImageName: String = "shortLogo"
     var title = "EventHub".localized
     var signInText = "Sign In".localized
@@ -11,11 +13,12 @@ struct SignInView: View {
     var signUpText = "Sign up".localized
     
     @StateObject var viewModel: AuthViewModel
-    @State private var isRememberMeOn: Bool = false
+    @State private var isRememberMeOn: Bool
     @State private var isResetPasswordPresented = false
 
     init(router: StartRouter) {
         self._viewModel = StateObject(wrappedValue: AuthViewModel(router: router))
+        self._isRememberMeOn = State(initialValue: storage.getIsRememberMeOn())
     }
 
     var body: some View {
@@ -60,6 +63,14 @@ struct SignInView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .navigationBarHidden(true)
+            }
+            .alert(isPresented: isPresentedAlert()) {
+                Alert(
+                    title: Text("Внимание"),
+                    message: Text(viewModel.authError?.localizedDescription ?? "" ),
+                    dismissButton: .default(Text("Ok"),
+                                            action: viewModel.cancelErrorAlert)
+                )
             }
             .background(
                 NavigationLink(
@@ -144,6 +155,14 @@ struct SignInView: View {
             }
             .padding(.horizontal, horizontalPadding)
         }
+    }
+    
+    private func isPresentedAlert() -> Binding<Bool> {
+        Binding(get: { viewModel.authError != nil },
+                set: { isPresenting in
+            if isPresenting { return }
+        }
+        )
     }
     
     private func footerSignUp(smallPadding: CGFloat) -> some View {
