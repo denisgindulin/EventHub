@@ -86,7 +86,7 @@ struct CustomToolBar: View {
             .padding(.horizontal,24)
             .padding(.bottom, 10)
             
-            SearchBarView (
+            SearchBarViewForMap (
                 isSearchPresented: $isSearchPresented,
                 searchText: .constant(searchText),
                 textColor: textColor,

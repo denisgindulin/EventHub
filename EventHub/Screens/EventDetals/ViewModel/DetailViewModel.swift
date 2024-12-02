@@ -12,8 +12,9 @@ final class DetailViewModel: ObservableObject {
     
     private let eventID: Int
     private let eventService: IAPIServiceForDetail
+    private let language = Language.ru
     
-    @Published var event: EventDTO? {
+    @Published var event: DetailEventModel? {
         didSet {
             self.updateTexts()
         }
@@ -24,39 +25,38 @@ final class DetailViewModel: ObservableObject {
     
     // Вычисляемые свойства для удобства использования во View
     var image: String? {
-        return event?.images.first?.image
+        return event?.image
     }
     
     var title: String {
-        event?.title?.capitalized ?? "Нет заголовка"
+        event?.title.capitalized ?? "Нет заголовка"
     }
     
     var startDate: String {
-        guard let startTimestamp = event?.dates.last?.start else { return "" }
-        let date = Date(timeIntervalSince1970: TimeInterval(startTimestamp))
+      
+        let date = event?.startDate ?? Date()
         return date.formattedDate(format: "dd MMMM, yyyy")
     }
     
     var endDate: String {
-        guard let endTimestamp = event?.dates.last?.end else { return "" }
-        let date = Date(timeIntervalSince1970: TimeInterval(endTimestamp))
+        let date = event?.endDate ?? Date()
         return date.formattedDate(format: "E, MMM d • h:mm a")
     }
     
     var agentTitle: String {
-        event?.participants?.first?.agent?.title ?? "No Name"
+        event?.participants.first?.agent?.title ?? "No Name"
     }
     
     var role: String {
-        event?.participants?.first?.role?.slug ?? "No Role"
+        event?.participants.first?.role?.slug ?? "No Role"
     }
     
     var adress: String {
-        event?.place?.title ?? "Unknown Address"
+        event?.adress ?? "Unknown Address"
     }
     
     var location: String {
-        event?.place?.address ?? "Unknown Location"
+        event?.location ?? "Unknown Location"
     }
     
     //    MARK: - Init
@@ -66,15 +66,16 @@ final class DetailViewModel: ObservableObject {
     }
     
     private func updateTexts() {
-        self.descriptionText = event?.description?.htmlToString ?? "Нет описания"
-        self.bodyText = event?.bodyText?.htmlToString ?? "Нет описания"
+        self.descriptionText = event?.description.htmlToString ?? "Нет описания"
+        self.bodyText = event?.bodyText.htmlToString ?? "Нет описания"
     }
     
     // Функция для получения деталей события
     func fetchEventDetails() async {
+        let eventIDString: String = String(self.eventID)
         do {
-            let fetchedEvent = try await eventService.getEventDetails(eventID: eventID)
-                self.event = fetchedEvent
+            let fetchedEvent = try await eventService.getEventDetails(eventIDs: eventIDString, language: language)
+            self.event = fetchedEvent.first.map { DetailEventModel( dto: $0 )}
         } catch {
             print("Ошибка при получении события: \(error.localizedDescription)")
         }

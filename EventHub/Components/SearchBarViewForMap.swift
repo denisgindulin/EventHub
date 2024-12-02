@@ -21,7 +21,7 @@ extension View {
     }
 }
 
-struct SearchBarView: View {
+struct SearchBarViewForMap: View {
     @Binding var isSearchPresented: Bool
     @Binding var searchText: String
     
@@ -78,7 +78,7 @@ struct SearchBarView: View {
 }
 
 #Preview {
-    SearchBarView(
+    SearchBarViewForMap(
         isSearchPresented: .constant(false),
         searchText: .constant(""),
         textColor: .white,

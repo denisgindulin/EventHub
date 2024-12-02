@@ -38,23 +38,14 @@ extension EventModel {
         let place = dto.place?.address ?? ""
         self.location = "\(String(describing: place)), \(String(describing: location))"
         
-        if let startDate = dto.dates.last?.startDate,
-           let startTime = dto.dates.last?.startTime {
-
-            let dateTimeString = "\(startDate) \(startTime)"
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            if let parsedDate = dateFormatter.date(from: dateTimeString) {
-                self.date = parsedDate
-            } else {
-                self.date = Date()
-            }
-        } else if let startTimestamp = dto.dates.first?.start {
-            self.date = Date(timeIntervalSince1970: TimeInterval(startTimestamp))
-        } else {
-            self.date = Date()
-        }
+        let currentDate = Date()
+        let closestDate = dto.dates
+            .filter { $0.start != nil }
+            .map { Date(timeIntervalSince1970: TimeInterval($0.start!)) }
+            .filter { $0 > currentDate }
+            .min(by: { abs($0.timeIntervalSince(currentDate)) < abs($1.timeIntervalSince(currentDate)) })
+        
+        self.date = closestDate ?? Date(timeIntervalSince1970: 1489312800)
         
         // Устанавливаем изображение
         self.image = dto.images.first?.image ?? "cardImg1"

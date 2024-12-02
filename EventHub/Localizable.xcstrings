@@ -464,6 +464,9 @@
         }
       }
     },
+    "Error occurred. Pull to refresh." : {
+
+    },
     "Event" : {
       "extractionState" : "manual",
       "localizations" : {

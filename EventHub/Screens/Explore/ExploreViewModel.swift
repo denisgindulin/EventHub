@@ -12,15 +12,19 @@ final class ExploreViewModel: ObservableObject {
     
     private let apiService: IAPIServiceForExplore
     
-    let functionalButtonsNames = ["Today".localized,"Films".localized, "Lists".localized]
+    let functionalButtonsNames = ["Today".localized, "Films".localized, "Lists".localized]
     @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
     @Published var currentPosition: String = "Moscow".localized
+    
+    @Published var todayEvents: [ExploreModel] = []
+    @Published var films: [ExploreModel] = []
+    @Published var lists: [ExploreModel] = []
     
     @Published var upcomingEvents: [ExploreModel] = []
     @Published var nearbyYouEvents: [ExploreModel] = []
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
-
+    
     @Published var error: Error? = nil
     
     @Published var currentLocation: String = "msk" {
@@ -53,8 +57,10 @@ final class ExploreViewModel: ObservableObject {
         switch orderType {
         case .alphabetical:
             upcomingEvents = upcomingEvents.sorted(by: { $0.title < $1.title })
+            nearbyYouEvents = nearbyYouEvents.sorted(by: { $0.title < $1.title })
         case .date:
             upcomingEvents = upcomingEvents.sorted(by: { $0.date < $1.date })
+            nearbyYouEvents = nearbyYouEvents.sorted(by: { $0.date < $1.date })
         }
     }
     
@@ -80,7 +86,7 @@ final class ExploreViewModel: ObservableObject {
     
     func fetchUpcomingEvents() async {
         do {
-            let eventsDTO = try await apiService.getUpcomingEvents(
+            let fetchedEvents = try await apiService.getUpcomingEvents(
                 with: currentCategory,
                 language,
                 page
@@ -90,8 +96,12 @@ final class ExploreViewModel: ObservableObject {
                 language: language,
                 page: page
             )
-                         print("Generated Endpoint UpcomingEvents: \(apiSpecLoc.endpoint)")
-            upcomingEvents = eventsDTO.map { ExploreModel(dto: $0) }
+            let mappedEvents = fetchedEvents.map { ExploreModel(dto: $0) }
+            
+            let filteredEvents = ExploreModel.filterExploreEvents(mappedEvents)
+            
+            self.upcomingEvents = filteredEvents
+
         } catch {
             self.error = error
         }
@@ -105,13 +115,15 @@ final class ExploreViewModel: ObservableObject {
                 currentCategory,
                 page
             )
-            nearbyYouEvents = eventsDTO.map { ExploreModel(dto: $0) }
+            let mappedEvents = eventsDTO.map { ExploreModel(dto: $0) }
+            let filteredEvents = ExploreModel.filterExploreEvents(mappedEvents)
+            nearbyYouEvents = filteredEvents
         } catch {
             self.error = error
         }
     }
     
-
+    
     //    MARK: - Helper Methods
     private func loadCategories(from eventCategories: [CategoryDTO]) async {
         let mappedCategories = eventCategories.map { category in
@@ -121,4 +133,49 @@ final class ExploreViewModel: ObservableObject {
         }
         self.categories = mappedCategories
     }
+}
+
+
+extension ExploreViewModel {
+    
+    
+    func getToDayEvents() async {
+        do {
+            let fetchedTodayEvents = try await apiService.getToDayEvents(location: currentLocation, language: language, page: page)
+            
+            let objectIDs = fetchedTodayEvents.compactMap { $0.object.id }
+            let idString = objectIDs.map(String.init).joined(separator: ",")
+            
+            let detailsEvents = try await apiService.getEventDetails(eventIDs: idString, language: language)
+            self.todayEvents = detailsEvents.map { ExploreModel(dto: $0) }
+
+        } catch {
+            self.error = error
+        }
+    }
+    
+    func getFilms() async {
+        do {
+            let fetchedFilms = try await apiService.getMovies(location: currentLocation, language: language, page: page)
+            
+            self.films = fetchedFilms.map { ExploreModel(movieDto: $0 )}
+        } catch {
+            self.error = error
+        }
+    }
+    
+    
+    func getLists() async {
+        do {
+            let fetchedList = try await apiService.getLists(location: currentLocation, language: language, page: page)
+            
+            let apiSpecLoc = EventAPISpec.getLists(location: currentLocation, language: language, page: page)
+            print("getFilms: \(apiSpecLoc.endpoint)")
+            
+            self.lists = fetchedList.map { ExploreModel(listDto: $0 )}
+        } catch {
+            self.error = error
+        }
+    }
+    
 }
