@@ -1,5 +1,7 @@
 # EventHub – приложение для поиска захватывающих событий и интересных мест / an app for searching exciting events and interesting places  
 
+https://github.com/user-attachments/assets/3b8b1087-5527-4e9f-b053-ccc8fbecbda5
+
 Привет, друзья! / Hello friends!
 
 В этом репозитории хранится приложение, которое позволяет выбрать концерт, выставку, спектакль, шоу, мастер-класс и многое другое из огромного количества мероприятий и мест / This repository contains a mobile app that allows you to select a concert, exhibition, performance, show, master class and much more from a huge number of events and places.
