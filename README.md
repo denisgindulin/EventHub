@@ -1,6 +1,6 @@
 # EventHub – приложение для поиска захватывающих событий и интересных мест / an app for searching exciting events and interesting places  
 
-https://github.com/user-attachments/assets/3b8b1087-5527-4e9f-b053-ccc8fbecbda5
+![88]https://github.com/user-attachments/assets/3b8b1087-5527-4e9f-b053-ccc8fbecbda5
 
 Привет, друзья! / Hello friends!
 
