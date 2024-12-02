@@ -16,30 +16,36 @@ struct ResetPassView: View {
     @State private var showErrorMessage: Bool = false
 
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
-            ToolBarView(title: "Reset password".localized, showBackButton: true)
-                .padding(.bottom, 60)
-                .padding(.top, 20)
+        
+        ZStack {
+            BackgroundWithEllipses()
             
-            Text(emailReqText)
-                .airbnbCerealFont(.book, size: 15)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 16)
-            
-            emailTextField(horizontalPadding: 29)
-                .padding(.top, 36)
-            
-            BlueButtonWithArrow(text: "Send".localized) {
-                handleResetPassword()
+            VStack(alignment: .center, spacing: 0) {
+                ToolBarView(title: "Reset password".localized, showBackButton: true)
+                    .padding(.bottom, 60)
+                    .padding(.top, 20)
+                
+                Text(emailReqText)
+                    .airbnbCerealFont(.book, size: 15)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 16)
+                
+                emailTextField(horizontalPadding: 29)
+                    .padding(.top, 36)
+                
+                BlueButtonWithArrow(text: "Send".localized) {
+                    handleResetPassword()
+                }
+                .padding(.top, 40)
+                .padding(.horizontal, 52)
+                .disabled(viewModel.isLoading || viewModel.email.isEmpty)
+                
+                Spacer()
             }
-            .padding(.top, 40)
-            .padding(.horizontal, 52)
-            .disabled(viewModel.isLoading || viewModel.email.isEmpty)
+            .navigationBarBackButtonHidden()
+            .frame(maxHeight: .infinity, alignment: .top)
             
-            Spacer()
         }
-        .navigationBarBackButtonHidden()
-        .frame(maxHeight: .infinity, alignment: .top)
     }
     
     private func emailTextField(horizontalPadding: CGFloat) -> some View {

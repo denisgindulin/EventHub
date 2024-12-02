@@ -58,7 +58,7 @@ struct ExploreView: View {
                 ScrollView(showsIndicators: false) {
                     VStack {
                         
-                        MainCategorySectionView(isPresented: $isSeeAllUpcomingEvents, title: "Upcomimg Events", linkActive: !viewModel.emptyUpcoming /*viewModel.searchText + " - " + String(viewModel.searchedEvents.count)*/)
+                        MainCategorySectionView(isPresented: $isSeeAllUpcomingEvents, title: "Upcoming Events", linkActive: !viewModel.emptyUpcoming /*viewModel.searchText + " - " + String(viewModel.searchedEvents.count)*/)
                             .padding(.bottom, 10)
                         
                         if viewModel.emptyUpcoming {

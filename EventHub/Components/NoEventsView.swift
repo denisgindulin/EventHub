@@ -18,11 +18,11 @@ struct NoEventsView: View {
                 .frame(width: 150, height: 150 )
                 .padding(20)
             
-            Text("No events".uppercased())
+            Text("No events".localized.uppercased())
                 .foregroundStyle(.red)
                 .airbnbCerealFont(AirbnbCerealFont.book, size: 24)
             
-            Text("( in this category )")
+            Text("( in this category )".localized)
                 .foregroundStyle(.red)
                 .airbnbCerealFont(AirbnbCerealFont.book, size: 14)
         }
