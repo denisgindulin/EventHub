@@ -10,6 +10,9 @@ import SwiftUI
 // это компонент Третья маленькая карточка события. Для экрана Lists. Содержит название события и кнопку READ для перехода к экрану с WebView (к статье о событии, открывающейся в веб-браузере)
 struct ThirdSmallEventCard: View {
     let title: String
+    let link: String
+    
+    @State private var isWebViewPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -22,10 +25,13 @@ struct ThirdSmallEventCard: View {
             }
             HStack {
                 BlueCapsuleButtonWithArrow(text: "READ") {
-                    // TODO: здесь по нажатию на кнопку READ переход к WebView (к статье о событии, открывающейся в веб-браузере)
+                    isWebViewPresented = true
                 }
-                Spacer()
+//                Spacer()
             }
+        }
+        .sheet(isPresented: $isWebViewPresented) {
+            WebView(url: URL(string: link)!)
         }
         .padding(16)
         .background(.appBackground)
@@ -36,15 +42,15 @@ struct ThirdSmallEventCard: View {
 
 
 // компонент содержит одну карточку, но в Preview показано три карточки, чтобы было легче сравнить с дизайном в Figma, и подложен фон, чтобы легче воспринимать размеры карточек
-#Preview {
-    ZStack {
-        Color.pink.opacity(0.05).ignoresSafeArea()
-        VStack {
-            ForEach(0 ..< 3) { item in
-                ThirdSmallEventCard(title: "Jo Malone London’s Mother’s Day \nPresents")
-            }
-            .padding(.vertical, 8)
-        }
-        .padding(.horizontal, 16)
-    }
-}
+//#Preview {
+//    ZStack {
+//        Color.pink.opacity(0.05).ignoresSafeArea()
+//        VStack {
+//            ForEach(0 ..< 3) { item in
+//                ThirdSmallEventCard(title: "Jo Malone London’s Mother’s Day \nPresents")
+//            }
+//            .padding(.vertical, 8)
+//        }
+//        .padding(.horizontal, 16)
+//    }
+//}

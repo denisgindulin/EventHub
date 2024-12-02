@@ -45,7 +45,7 @@ struct SmallEventCardForMovie: View {
                         .foregroundStyle(.titleFont)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
-                        .padding(.top, 30)
+                    Spacer()
                     // Ссылка для перехода на страницу фильма
                     Link(destination: URL(string: url)!) {
                         HStack {
@@ -55,20 +55,16 @@ struct SmallEventCardForMovie: View {
                                 .multilineTextAlignment(.leading)
                             Image(systemName: "arrow.up.right.square.fill")
                                 .foregroundStyle(.appBlue)
-                                .padding(8)
                         }
                     }
-                    .padding(8)
                 }
-     
+                Spacer()
             }
             .padding(7)
             .frame(maxWidth: .infinity)
             .background(.appBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .shadow(color: .titleFont.opacity(0.1), radius: 8, x: 0, y: 10)
-            
-
         }
     }
 }

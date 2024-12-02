@@ -31,7 +31,7 @@ struct BlueCapsuleButtonWithArrow: View {
                 }
             }
         }
-        .padding(.trailing, 8)
+        .padding(11)
         .frame(maxWidth: UIScreen.main.bounds.width * 191/375 , maxHeight: UIScreen.main.bounds.width * 72/812)
         .background(.appBlue)
         .foregroundStyle(.white)

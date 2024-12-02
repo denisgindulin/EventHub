@@ -31,7 +31,6 @@ struct SmallEventCardForList: View {
                     }
                 )
                 .cornerRadius(30)
-                .frame(width: 150, height: 30)
             }
             .padding(7)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -42,20 +41,6 @@ struct SmallEventCardForList: View {
         .sheet(isPresented: $isWebViewPresented) {
             WebView(url: URL(string: link)!)
         }
-    }
-}
-
-struct WebView: UIViewRepresentable {
-    let url: URL
-
-    func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView()
-        let request = URLRequest(url: url)
-        webView.load(request)
-        return webView
-    }
-
-    func updateUIView(_ uiView: WKWebView, context: Context) {
     }
 }
 
