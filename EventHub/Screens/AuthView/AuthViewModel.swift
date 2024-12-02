@@ -64,6 +64,7 @@ final class AuthViewModel: ObservableObject{
     func signIn() async {
         do {
             try await Auth.auth().signIn(withEmail: email, password: password)
+            userAuthenticated()
             print("Verification was successful")
         } catch {
             print(error.localizedDescription)
