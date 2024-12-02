@@ -40,3 +40,15 @@
 </p>
 
 ## Функционал / App features
+### Персонализированный главный экран:
+* представлены самые интересные предстоящие события и события рядом с вами
+* выбор по категориям: кинопоказы, концерты, развлечения, выставки, события для бизнеса, обучение, мода и стиль, фестивали, праздники, мероприятия для детей, вечеринки, фотосессии, квесты, отдых на природе, шопинг, промоакции, театр (спектакли, опера, балет), ярмарки, экскурсии, благотворительные и иные мероприятия
+* выбор по городам: Москва, Санкт-Петербург, Казань, Нижний Новгород, Екатеринбург
+* сортировка по алфавиту и по датам        
+* есть поиск по ключевым словам и фразам
+### Personalized home screen:  
+* the most interesting upcoming events and events nearby you are presented
+* selection by category: movies, concerts, entertainment, exhibitions, business events, education, fashion and style, festivals, holidays, kids, parties, photo shoots, quests, outdoor recreation, shopping, promotions, theater (performances, opera, ballet), fairs, excursions, charity and other events
+* selection by city: Moscow, St. Petersburg, Kazan, Nizhny Novgorod, Yekaterinburg
+* sorting alphabetically and by date
+* there is a search for keywords and phrases
