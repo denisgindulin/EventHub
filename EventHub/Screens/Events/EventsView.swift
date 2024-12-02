@@ -4,21 +4,18 @@
 //
 //  Created by Руслан on 18.11.2024.
 //
-
 import SwiftUI
 
-// MARK: - EventsView
 struct EventsView: View {
     @StateObject var viewModel: EventsViewModel
     @State private var showAllEvents = false
     
-    //    MARK: - INIT
+    // MARK: - INIT
     init() {
-        self._viewModel = StateObject(wrappedValue: EventsViewModel()
-        )
+        self._viewModel = StateObject(wrappedValue: EventsViewModel())
     }
     
-    //    MARK: - BODY
+    // MARK: - BODY
     var body: some View {
         ZStack {
             Color.appBackground.ignoresSafeArea(.all)
@@ -34,22 +31,36 @@ struct EventsView: View {
                         }
                     }
                 
-                if viewModel.eventsForCurrentMode().isEmpty {
-                    EmptyEventsView(selectedMode: viewModel.selectedMode)
-                } else {
-                    ScrollView(.vertical) {
-                        ForEach(viewModel.eventsForCurrentMode()) { event in NavigationLink(destination: DetailView(detailID: event.id)) {
-                            SmallEventCard(
-                                image: event.image,
-                                date: event.date,
-                                title: event.title,
-                                place: event.location
-                            )
+                Group {
+                    switch currentPhase(for: viewModel.selectedMode) {
+                    case .empty:
+                        ShimmerDetailView()
+                    case .success(let events):
+                        if events.isEmpty {
+                            EmptyEventsView(selectedMode: viewModel.selectedMode)
+                        } else {
+                            ScrollView(.vertical) {
+                                ForEach(events) { event in
+                                    NavigationLink(destination: DetailView(detailID: event.id)) {
+                                        SmallEventCard(
+                                            image: event.image,
+                                            date: event.date,
+                                            title: event.title,
+                                            place: event.location
+                                        )
+                                    }
+                                }
+                                .padding(.horizontal, 24)
+                            }
                         }
-                        }
-                        .padding(.horizontal, 24)
+                    case .failure:
+                        Text("Error occurred. Pull to refresh.")
+                            .foregroundColor(.red)
+                            .padding()
+                        
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 BlueButtonWithArrow(text: "Explore Events".localized) {
                     Task {
@@ -71,7 +82,6 @@ struct EventsView: View {
             .task {
                 await viewModel.fetchUpcomingEvents()
             }
-            
             .alert(isPresented: isPresentedAlert(for: $viewModel.upcomingEventsPhase)) {
                 Alert(
                     title: Text("Error"),
@@ -86,6 +96,15 @@ struct EventsView: View {
         }
     }
     
+    // MARK: - Helper Methods
+    private func currentPhase(for mode: EventsMode) -> DataFetchPhase<[EventModel]> {
+        switch mode {
+        case .upcoming:
+            return viewModel.upcomingEventsPhase
+        case .pastEvents:
+            return viewModel.pastEventsPhase
+        }
+    }
     
     private func isPresentedAlert(for phase: Binding<DataFetchPhase<[EventModel]>>) -> Binding<Bool> {
         Binding(
@@ -112,6 +131,7 @@ struct EventsView: View {
         }
     }
 }
+
 #Preview {
     EventsView()
 }

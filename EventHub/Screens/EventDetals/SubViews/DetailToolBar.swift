@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailToolBar: View {
     @EnvironmentObject private var coreDataManager: CoreDataManager
     @Binding var isPresented: Bool
-    let event: EventDTO
+    let event: DetailEventModel
     
     private var isFavorite: Bool {
         coreDataManager.events.contains { event in

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ExploreView: View {
+    enum CategoryType {
+        case today, films, lists
+    }
     
     @StateObject var viewModel: ExploreViewModel
     
@@ -15,6 +18,11 @@ struct ExploreView: View {
     @State private var selectedEventID: Int? = nil
     @State private var isDetailPresented: Bool = false
     @State private var isSeeAllUpcomingEvents: Bool = false
+    
+    @State private var isTodayEvents: Bool = false
+    @State private var isFilms: Bool = false
+    @State private var isLists: Bool = false
+    
     @State private var isSeeAllNearbyEvents: Bool = false
     
     //    MARK: - INIT
@@ -40,54 +48,74 @@ struct ExploreView: View {
                         } ,
                         locations: viewModel.locations)
                     
-                    CategoryScroll(categories:
-                                    viewModel.categories,
-                                   onCategorySelected: { selectedCategory in
-                        viewModel.currentCategory = selectedCategory.category.slug ;
-                        viewModel.upcomingEvents = []
-                        viewModel.nearbyYouEvents = []
-                    })
+                    CategoryScroll(
+                        categories:viewModel.categories,
+                        onCategorySelected: { selectedCategory in
+                            viewModel.currentCategory = selectedCategory.category.slug ;
+                            viewModel.upcomingEvents = []
+                            viewModel.nearbyYouEvents = []
+                        })
                     .offset(y: 87)
                     
                     // LVL2
-                    FunctionalButtonsView(names: viewModel.functionalButtonsNames, chooseButton: $viewModel.choosedButton)
-                        .offset(y: 155)
+                    FunctionalButtonsView(
+                        names: viewModel.functionalButtonsNames,
+                        actions: [
+                            {
+                                Task {
+                                    await loadData(for: .today)
+                                }
+                            },
+                            {
+                                Task {
+                                    await loadData(for: .films)
+                                }
+                            },
+                            {
+                                Task {
+                                    await loadData(for: .lists)
+                                }
+                            }
+                        ],
+                        chooseButton: $viewModel.choosedButton
+                    )
+                    .offset(y: 155)
                 }
                 .zIndex(1)
                 
                 ScrollView(showsIndicators: false) {
-                    VStack {
-                        
-                        MainCategorySectionView(isPresented: $isSeeAllUpcomingEvents, title: "Upcoming Events", linkActive: !viewModel.emptyUpcoming /*viewModel.searchText + " - " + String(viewModel.searchedEvents.count)*/)
-                            .padding(.bottom, 10)
-                        
-                        if viewModel.emptyUpcoming {
-                            NoEventsView()
-                        } else {
-                            ScrollEventCardsView(emptyArray: false, events: viewModel.upcomingEvents,
-                                                                            showDetail: { event in
-                                                           selectedEventID = event
-                                                           isDetailPresented = true
-                                                       })
-                                                       .padding(.bottom, 10)
-                        }
-                        
-                        MainCategorySectionView(isPresented: $isSeeAllNearbyEvents, title: "Nearby You", linkActive: !viewModel.emptyNearbyYou)
-                            .padding(.bottom, 10)
-                        
-                        if viewModel.emptyNearbyYou {
-                            NoEventsView()
-                                .padding(.bottom, 180)
-                        } else {
-                            ScrollEventCardsView(emptyArray: false, events: viewModel.nearbyYouEvents,
-                                                                            showDetail: { event in
-                                                           selectedEventID = event
-                                                           isDetailPresented = true
-                                                       })
-                                                       .padding(.bottom, 180)
-                        }
-                    }
-                    .offset(y: 100)
+                                   VStack {
+                                       
+                                       MainCategorySectionView(isPresented: $isSeeAllUpcomingEvents, title: "Upcoming Events", linkActive: !viewModel.emptyUpcoming /*viewModel.searchText + " - " + String(viewModel.searchedEvents.count)*/)
+                                           .padding(.bottom, 10)
+                                       
+                                       if viewModel.emptyUpcoming {
+                                           NoEventsView()
+                                       } else {
+                                           ScrollEventCardsView(emptyArray: false, events: viewModel.upcomingEvents,
+                                                                                           showDetail: { event in
+                                                                          selectedEventID = event
+                                                                          isDetailPresented = true
+                                                                      })
+                                                                      .padding(.bottom, 10)
+                                       }
+                                       
+                                       MainCategorySectionView(isPresented: $isSeeAllNearbyEvents, title: "Nearby You", linkActive: !viewModel.emptyNearbyYou)
+                                           .padding(.bottom, 10)
+                                       
+                                       if viewModel.emptyNearbyYou {
+                                           NoEventsView()
+                                               .padding(.bottom, 180)
+                                       } else {
+                                           ScrollEventCardsView(emptyArray: false, events: viewModel.nearbyYouEvents,
+                                                                                           showDetail: { event in
+                                                                          selectedEventID = event
+                                                                          isDetailPresented = true
+                                                                      })
+                                                                      .padding(.bottom, 180)
+                                       }
+                                   }
+                                   .offset(y: 100)
                 }
                 //                    .offset(y: -10)
                 .zIndex(0)
@@ -96,39 +124,36 @@ struct ExploreView: View {
             .ignoresSafeArea()
         }
         // //
-        .overlay(
-            NavigationLink(
-                destination: SeeAllEventsView(events: viewModel.upcomingEvents),
-                isActive : $isSeeAllUpcomingEvents )
-            {
-                EmptyView()
-            }
+        .navigationLink(
+            destination: SeeAllEventsView(events: viewModel.upcomingEvents),
+            isActive: $isSeeAllUpcomingEvents
         )
-        // //
-        .overlay(
-            NavigationLink(
-                destination: SeeAllEventsView(events: viewModel.nearbyYouEvents),
-                isActive : $isSeeAllNearbyEvents )
-            {
-                EmptyView()
-            }
+        .navigationLink(
+            destination: SeeAllEventsView(events: viewModel.nearbyYouEvents),
+            isActive: $isSeeAllNearbyEvents
         )
-      
-        .overlay(
-            NavigationLink(
-                destination: SearchView(searchScreenType: .withoutData),
-                isActive : $isSearchPresented )
-            {
-                EmptyView()
-            }
+        .navigationLink(
+            destination: SearchView(searchScreenType: .withoutData),
+            isActive: $isSearchPresented
         )
-        .overlay(
-            NavigationLink(
-                destination: DetailView(detailID: selectedEventID ?? 0),
-                isActive: $isDetailPresented
-            ) {
-                EmptyView()
-            }
+        .navigationLink(
+            destination: DetailView(detailID: selectedEventID ?? 0),
+            isActive: $isDetailPresented
+        )
+        
+        .navigationLink(
+            destination: SeeAllEventsView(events: viewModel.todayEvents),
+            isActive: $isTodayEvents
+        )
+        
+        .navigationLink(
+            destination: SeeAllEventsView(events: viewModel.films, eventType: .movie),
+            isActive: $isFilms
+        )
+        
+        .navigationLink(
+            destination: SeeAllEventsView(events: viewModel.lists, eventType: .list),
+            isActive: $isLists
         )
         .task {
             await viewModel.fetchCategories()
@@ -137,6 +162,22 @@ struct ExploreView: View {
             await viewModel.featchNearbyYouEvents()
         }
     }
+    
+    // MARK: - Task to load data
+    private func loadData(for type: CategoryType) async {
+        switch type {
+        case .today:
+            await viewModel.getToDayEvents()
+            isTodayEvents = true
+        case .films:
+            await viewModel.getFilms()
+            isFilms = true
+        case .lists:
+            await viewModel.getLists()
+            isLists = true
+        }
+    }
+    
 }
 
 //#Preview {

@@ -29,14 +29,13 @@ final class CoreDataManager: ObservableObject {
         }
     }
     
-    func createEvent(event: ExploreModel) {
+    func createEvent<T: EventConvertible>(event: T) {
         let favoriteEvent = FavoriteEvent(context: viewContext)
         favoriteEvent.id = event.id
         favoriteEvent.title = event.title
-        favoriteEvent.date = event.date
+        favoriteEvent.date = event.eventDate
         favoriteEvent.adress = event.adress
         favoriteEvent.image = event.image
-        
         saveContext()
         fetchEvents()
     }

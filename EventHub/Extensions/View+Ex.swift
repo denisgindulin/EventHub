@@ -15,4 +15,19 @@ extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
     }
+    
+    func navigationLink<T: View>(
+        destination: T,
+        isActive: Binding<Bool>
+    ) -> some View {
+        overlay(
+            NavigationLink(
+                destination: destination,
+                isActive: isActive
+            ) {
+                EmptyView()
+            }
+        )
+    }
+    
 }

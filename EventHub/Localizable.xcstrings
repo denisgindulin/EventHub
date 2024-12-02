@@ -476,6 +476,9 @@
         }
       }
     },
+    "Error occurred. Pull to refresh." : {
+
+    },
     "Event" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -711,6 +714,9 @@
           }
         }
       }
+    },
+    "Find for food or restaurant..." : {
+
     },
     "Forgot Password?" : {
       "extractionState" : "manual",
