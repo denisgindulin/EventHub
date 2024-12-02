@@ -17,6 +17,7 @@ final class UDStorageService: IStorageService {
     
     enum Key: String {
         case hasCompletedOnboarding
+        case isRememberMeOn
     }
     
     func set(value: Any?, forKey key: Key) {
@@ -27,7 +28,14 @@ final class UDStorageService: IStorageService {
         return bd.object(forKey: key.rawValue)
     }
     
-
+    func setIsRememberMeOn(_ isOn: Bool) {
+        set(value: isOn, forKey: .isRememberMeOn)
+    }
+    
+    func getIsRememberMeOn() -> Bool {
+        return (getValue(forKey: .isRememberMeOn) as? Bool) ?? false
+    }
+    
     func setHasCompletedOnboarding(_ completed: Bool) {
         set(value: completed, forKey: .hasCompletedOnboarding)
     }

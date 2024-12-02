@@ -34,7 +34,7 @@ struct EventsView: View {
                 Group {
                     switch currentPhase(for: viewModel.selectedMode) {
                     case .empty:
-                        ShimmerDetailView()
+                        ShimmerEventView()
                     case .success(let events):
                         if events.isEmpty {
                             EmptyEventsView(selectedMode: viewModel.selectedMode)

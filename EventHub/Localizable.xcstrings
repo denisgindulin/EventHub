@@ -1299,6 +1299,9 @@
         }
       }
     },
+    "Ok" : {
+
+    },
     "OK" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1829,6 +1832,9 @@
         }
       }
     },
+    "Success" : {
+
+    },
     "Telegram" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2172,6 +2178,9 @@
           }
         }
       }
+    },
+    "Внимание" : {
+
     },
     "Сhoose an excursion, exhibition, stand-up show or other entertainment for the coming weekend or upcoming holidays" : {
       "extractionState" : "manual",
