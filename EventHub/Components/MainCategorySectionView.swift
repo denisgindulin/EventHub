@@ -11,6 +11,7 @@ struct MainCategorySectionView: View {
     
     @Binding var isPresented: Bool
     let title : String
+    let linkActive: Bool
     
     var body: some View {
         HStack {
@@ -22,6 +23,7 @@ struct MainCategorySectionView: View {
             
             Spacer()
             
+            if linkActive {
             NavigationLink {
                 Text("See All View")
             } label: {
@@ -35,12 +37,14 @@ struct MainCategorySectionView: View {
                         .padding(.trailing, 16)
                 }
             }
+            
+            }
         }
         .padding(.leading,24)
     }
 }
 
 #Preview {
-    MainCategorySectionView(isPresented: .constant(false), title: "Upcoming Events")
+    MainCategorySectionView(isPresented: .constant(false), title: "Upcoming Events", linkActive: true)
 }
 
