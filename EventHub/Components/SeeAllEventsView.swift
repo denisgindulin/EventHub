@@ -42,7 +42,7 @@ struct SeeAllEventsView: View {
     func eventView(for event: ExploreModel) -> some View {
         switch eventType {
         case .list:
-            return AnyView(SmallEventCardForList(
+            return AnyView(ThirdSmallEventCard(
                 title: event.title,
                 link: event.adress
             ))
