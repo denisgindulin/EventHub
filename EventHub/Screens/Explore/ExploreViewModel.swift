@@ -95,7 +95,7 @@ final class ExploreViewModel: ObservableObject {
                 language,
                 page
             )
-            let apiSpecLoc = EventAPISpec.getUpcomingEventsWith(
+            let _ = EventAPISpec.getUpcomingEventsWith(
                 category: currentCategory,
                 language: language,
                 page: page
@@ -105,6 +105,10 @@ final class ExploreViewModel: ObservableObject {
             let filteredEvents = ExploreModel.filterExploreEvents(mappedEvents)
             
             self.upcomingEvents = filteredEvents
+            
+            if upcomingEvents.isEmpty {
+                emptyUpcoming = true
+            }
 
         } catch {
             self.error = error
@@ -123,6 +127,11 @@ final class ExploreViewModel: ObservableObject {
             let mappedEvents = eventsDTO.map { ExploreModel(dto: $0) }
             let filteredEvents = ExploreModel.filterExploreEvents(mappedEvents)
             nearbyYouEvents = filteredEvents
+            
+            if nearbyYouEvents.isEmpty {
+                emptyNearbyYou = true
+            }
+            
         } catch {
             self.error = error
         }
