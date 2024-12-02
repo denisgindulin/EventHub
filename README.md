@@ -9,7 +9,7 @@
 ### Над приложением трудились / We have been working on the application
 <p align="left"> 
 <a href="https://github.com/denisgindulin">
-<img src="https://img.shields.io/badge/denisgindulin- (Team leader) -purple"/></a>
+<img src="https://img.shields.io/badge/Denis Gindulin- (Team leader) -purple"/></a>
 <a href="https://github.com/DaNiIlaIoS">
 <img src="https://img.shields.io/badge/DaNiIlaIoS-blue"/></a>
 <a href="https://github.com/KellerDmitriy">
