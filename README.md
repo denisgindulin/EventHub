@@ -1,7 +1,4 @@
-# EventHub – приложение для поиска захватывающих событий и интересных мест  
-# EventHub – an app for searching exciting events and interesting places 
-
-
+# EventHub – приложение для поиска захватывающих событий и интересных мест / an app for searching exciting events and interesting places  
 
 Привет, друзья! / Hello friends!
 
