@@ -84,46 +84,38 @@ struct ExploreView: View {
                 .zIndex(1)
                 
                 ScrollView(showsIndicators: false) {
-                    VStack {
-                        
-                        MainCategorySectionView(
-                            isPresented: $isSeeAllUpcomingEvents,
-                            title: "Upcomimg Events")
-                        .padding(.bottom, 10)
-                        
-                        if viewModel.upcomingEvents.isEmpty {
-                            ScrollEventCardsView(events: nil, showDetail: {_ in }
-                            )
-                            .padding(.bottom, 10)
-                        } else {
-                            ScrollEventCardsView(
-                                events: viewModel.upcomingEvents,
-                                showDetail: { event in
-                                    selectedEventID = event
-                                    isDetailPresented = true
-                                })
-                            .padding(.bottom, 10)
-                        }
-                        
-                        MainCategorySectionView(isPresented: $isSeeAllNearbyEvents, title: "Nearby You")
-                            .padding(.bottom, 10)
-                        
-                        if viewModel.nearbyYouEvents.isEmpty {
-                            ScrollEventCardsView(
-                                events: nil,
-                                showDetail:{_ in})
-                            .padding(.bottom, 250) // tabBer
-                        } else {
-                            ScrollEventCardsView(
-                                events: viewModel.nearbyYouEvents,
-                                showDetail: { event in
-                                    selectedEventID = event
-                                    isDetailPresented = true
-                                })
-                            .padding(.bottom, 250) // tabBer
-                        }
-                    }
-                    .offset(y: 100)
+                                   VStack {
+                                       
+                                       MainCategorySectionView(isPresented: $isSeeAllUpcomingEvents, title: "Upcoming Events", linkActive: !viewModel.emptyUpcoming /*viewModel.searchText + " - " + String(viewModel.searchedEvents.count)*/)
+                                           .padding(.bottom, 10)
+                                       
+                                       if viewModel.emptyUpcoming {
+                                           NoEventsView()
+                                       } else {
+                                           ScrollEventCardsView(emptyArray: false, events: viewModel.upcomingEvents,
+                                                                                           showDetail: { event in
+                                                                          selectedEventID = event
+                                                                          isDetailPresented = true
+                                                                      })
+                                                                      .padding(.bottom, 10)
+                                       }
+                                       
+                                       MainCategorySectionView(isPresented: $isSeeAllNearbyEvents, title: "Nearby You", linkActive: !viewModel.emptyNearbyYou)
+                                           .padding(.bottom, 10)
+                                       
+                                       if viewModel.emptyNearbyYou {
+                                           NoEventsView()
+                                               .padding(.bottom, 180)
+                                       } else {
+                                           ScrollEventCardsView(emptyArray: false, events: viewModel.nearbyYouEvents,
+                                                                                           showDetail: { event in
+                                                                          selectedEventID = event
+                                                                          isDetailPresented = true
+                                                                      })
+                                                                      .padding(.bottom, 180)
+                                       }
+                                   }
+                                   .offset(y: 100)
                 }
                 //                    .offset(y: -10)
                 .zIndex(0)

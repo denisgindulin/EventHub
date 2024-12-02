@@ -9,26 +9,13 @@ import Foundation
 import FirebaseAuth
 
 final class ProfileViewModel: ObservableObject {
-
     private let router: StartRouter
-    
-    //MARK: - Firebase
-    
-    @Published var name: String = "Ashfak Sayem" // Save redacted in firestore DidSet
-    
-    @Published var info: String = "Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read MoreEnjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More "
-        
-    @Published var image: String = ""
-    
-    
-    
+    let currentUser = Auth.auth().currentUser
+    private let firestoreManager = FirestoreManager()
     
     init(router: StartRouter) {
         self.router = router
     }
-    
-    
-    
     
     func signOut() {
         do {
@@ -38,6 +25,19 @@ final class ProfileViewModel: ObservableObject {
             print("error SIGN OUT")
         }
     }
+    
+    func updateUserProfile(name: String, info: String, image: String) {
+        guard let currentUser = currentUser else { return }
+        
+            let userId = currentUser.uid
+            let updatedData: [String: Any] = [
+                "name": name,
+                "image": image,
+                "info": info
+            ]
+            
+            firestoreManager.updateUserData(userId: userId, data: updatedData)
+        }
     
     func openApp() {
         router.updateRouterState(with: .userLoggedOut)

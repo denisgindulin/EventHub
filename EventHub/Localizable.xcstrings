@@ -14,6 +14,7 @@
 
     },
     " About Me" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -53,6 +54,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : " собираются прийти"
+          }
+        }
+      }
+    },
+    "( in this category )" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "( в этой категории )"
           }
         }
       }
@@ -479,7 +491,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Событие"
+            "value" : "События"
           }
         }
       }
@@ -497,6 +509,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "СОБЫТИЕ"
+          }
+        }
+      }
+    },
+    "Event Details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Детали события"
           }
         }
       }
@@ -575,7 +598,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Исследовать события"
+            "value" : "Изучить события"
           }
         }
       }
@@ -636,6 +659,17 @@
         }
       }
     },
+    "Favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранные"
+          }
+        }
+      }
+    },
     "Festivals" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -680,6 +714,9 @@
           }
         }
       }
+    },
+    "Find for food or restaurant..." : {
+
     },
     "Forgot Password?" : {
       "extractionState" : "manual",
@@ -834,6 +871,9 @@
       }
     },
     "Key" : {
+      "extractionState" : "manual"
+    },
+    "Key 1" : {
       "extractionState" : "manual"
     },
     "Kids" : {
@@ -1056,9 +1096,6 @@
         }
       }
     },
-    "No %@ Event" : {
-
-    },
     "No authenticated user found" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1106,6 +1143,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "нет описания"
+          }
+        }
+      }
+    },
+    "No events" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет событий"
           }
         }
       }
@@ -1178,6 +1226,17 @@
         }
       }
     },
+    "No Past Event" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет прошедших событий"
+          }
+        }
+      }
+    },
     "No Role" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1208,6 +1267,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "нет названия"
+          }
+        }
+      }
+    },
+    "No Upcoming Event" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет предстоящих событий"
           }
         }
       }
@@ -1348,7 +1418,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ПРОШЕДШИЕ СОБЫТИЯ"
+            "value" : "ПРОШЕДШИЕ"
           }
         }
       }
@@ -1951,23 +2021,6 @@
         }
       }
     },
-    "Upcomimg Events" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upcomimg Events"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предстоящие события"
-          }
-        }
-      }
-    },
     "Upcoming" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1998,6 +2051,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ПРЕДСТОЯЩИЕ"
+          }
+        }
+      }
+    },
+    "Upcoming Events" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предстоящие события"
           }
         }
       }

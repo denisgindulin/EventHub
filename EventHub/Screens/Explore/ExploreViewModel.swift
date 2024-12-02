@@ -25,6 +25,9 @@ final class ExploreViewModel: ObservableObject {
     @Published var categories: [CategoryUIModel] = []
     @Published var locations: [EventLocation] = []
     
+    @Published var emptyUpcoming = false
+    @Published var emptyNearbyYou = false
+    
     @Published var error: Error? = nil
     
     @Published var currentLocation: String = "msk" {
@@ -85,6 +88,7 @@ final class ExploreViewModel: ObservableObject {
     }
     
     func fetchUpcomingEvents() async {
+        emptyUpcoming = false
         do {
             let fetchedEvents = try await apiService.getUpcomingEvents(
                 with: currentCategory,
@@ -108,6 +112,7 @@ final class ExploreViewModel: ObservableObject {
     }
     
     func featchNearbyYouEvents() async {
+        emptyNearbyYou = false
         do {
             let eventsDTO = try await apiService.getNearbyYouEvents(
                 with: language,

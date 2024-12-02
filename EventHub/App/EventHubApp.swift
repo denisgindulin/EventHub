@@ -8,15 +8,24 @@
 import SwiftUI
 import FirebaseCore
 
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+
+    return true
+  }
+}
+
 @main
 struct EventHubApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    // Инициализируем CoreDataManager
     @StateObject private var coreDataManager = CoreDataManager()
+    @StateObject private var firebaseManager = FirebaseManager()
     @StateObject private var appState = AppState()
     
     init() {
-        FirebaseApp.configure()
         DIContainer.register({ UDStorageService() as IStorageService}, forKey: .storageService, lifecycle: .singleton)
         DIContainer.register({ EventAPIService() as IAPIServiceForExplore & IAPIServiceForDetail }, forKey: .networkService, lifecycle: .singleton)
     }
@@ -27,11 +36,8 @@ struct EventHubApp: App {
             StartRouterView()
                 .environment(\.managedObjectContext, coreDataManager.viewContext)
                 .environmentObject(coreDataManager)
+                .environmentObject(firebaseManager)
                 .environmentObject(appState)
         }
     }
-}
-
-class AppState: ObservableObject {
-    @Published var isShareViewPresented: Bool = false
 }

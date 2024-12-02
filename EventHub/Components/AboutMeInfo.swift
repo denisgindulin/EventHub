@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AboutMeInfo: View {
-    
+    @EnvironmentObject var firebaseManager: FirebaseManager
     let text: String
     
     var body: some View {
@@ -17,13 +17,13 @@ struct AboutMeInfo: View {
 
             VStack {
                 
-                Text(" About Me")
+                Text("About Me")
                     .airbnbCerealFont( AirbnbCerealFont.book, size: 24)
                     .foregroundStyle(.appBlue)
                     .padding(20)
                 
                 ScrollView {
-                    Text(text)
+                    Text(firebaseManager.user?.info ?? "No Info")
                         .padding(20)
                 }
                 .frame(width: 360)
@@ -37,6 +37,6 @@ struct AboutMeInfo: View {
 }
 
 #Preview {
-    AboutMeInfo(text: " About ///")
+    AboutMeInfo(text: "About ///")
 }
 

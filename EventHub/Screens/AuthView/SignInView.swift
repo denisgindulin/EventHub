@@ -20,12 +20,16 @@ struct SignInView: View {
 
     var body: some View {
         NavigationView {
+            
+            ZStack {
+                BackgroundWithEllipses()
             GeometryReader { geometry in
                 let screenWidth = geometry.size.width
                 let horizontalPadding = screenWidth * 0.1
                 let iconPadding = screenWidth * 0.3
                 let smallPadding = screenWidth * 0.05
-
+                
+                
                 VStack(alignment: .leading) {
                     // Логотип и заголовок
                     logoAndTitle(iconPadding: iconPadding, horizontalPadding: horizontalPadding)
@@ -58,12 +62,15 @@ struct SignInView: View {
                 .navigationBarHidden(true)
             }
             .background(
-                        NavigationLink(
-                            destination: ResetPassView(viewModel: viewModel),
-                            isActive: $isResetPasswordPresented,
-                            label: { EmptyView() }
-                        )
-                    )
+                NavigationLink(
+                    destination: ResetPassView(viewModel: viewModel),
+                    isActive: $isResetPasswordPresented,
+                    label: { EmptyView() }
+                )
+            )
+            
+            
+        } //end zs
         }
     }
 
@@ -154,8 +161,4 @@ struct SignInView: View {
             .padding(.bottom, smallPadding)
         }
     }
-}
-
-#Preview {
-    SignInView(router: StartRouter())
 }

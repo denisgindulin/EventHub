@@ -21,7 +21,7 @@ struct DetailToolBar: View {
     var body: some View {
         VStack(alignment: .trailing) {
             ToolBarView(
-                title: "Event Details",
+                title: "Event Details".localized,
                 foregroundStyle: .white,
                 isTitleLeading: true,
                 showBackButton: true,
