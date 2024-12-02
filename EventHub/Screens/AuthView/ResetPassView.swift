@@ -74,7 +74,3 @@ struct ResetPassView: View {
         }
     }
 }
-
-#Preview {
-    ResetPassView(viewModel: AuthViewModel(router: StartRouter()))
-}

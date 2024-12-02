@@ -11,7 +11,7 @@
 			<string>Google SignIn</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.715413432664-9os5sr96q4r32u8r7m83icjg2ej1julm</string>
+				<string>com.googleusercontent.apps.603639697889-aspmk4d9bpb8ca5919bffdm4st8tk1df</string>
 			</array>
 		</dict>
 	</array>
@@ -36,7 +36,5 @@
 		<key>UIImageName</key>
 		<string>logo</string>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Мы используем ваше местоположение для отображения событий на карте.</string>
 </dict>
 </plist>

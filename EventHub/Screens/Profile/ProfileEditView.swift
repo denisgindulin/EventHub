@@ -9,6 +9,8 @@ import Kingfisher
 import SwiftUI
 
 struct ProfileEditeView: View {
+    @EnvironmentObject var firebaseManager: FirebaseManager
+    @ObservedObject var viewModel: ProfileViewModel
     @Environment(\.dismiss) var dismiss
     
     @Binding var image: String
@@ -19,6 +21,9 @@ struct ProfileEditeView: View {
     @State private var editInfo = false
     @State private var showMore = false
     
+    @State private var showImagePicker = false
+    @State private var avatarImage: UIImage = UIImage(resource: .avatar)
+    
     var body: some View {
         ZStack {
             Color.appBackground
@@ -27,7 +32,7 @@ struct ProfileEditeView: View {
                 VStack {
                     KFImage(URL(string: image)) // UIImage Picker ? 
                         .placeholder {
-                            Image(systemName: "face.smiling.inverse")
+                            Image(uiImage: avatarImage)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 96, height: 96)
@@ -42,11 +47,16 @@ struct ProfileEditeView: View {
                         .foregroundStyle(.appBackground)
                         .frame(height: 28)
                 }
+                .onTapGesture {
+                    showImagePicker = true
+                }
+                .sheet(isPresented: $showImagePicker) { ImagePicker(image: $avatarImage) }
+                
                 HStack(spacing: 17) {
                     
                     if editName {
                         HStack {
-                            TextField("\(userName)", text: $userName)
+                            TextField("\(firebaseManager.user?.name ?? "")", text: $userName)
                                 .textFieldStyle(.roundedBorder)
                             
                             VStack {
@@ -94,6 +104,7 @@ struct ProfileEditeView: View {
                         VStack{
                             Button {
                                 editInfo.toggle()
+                                viewModel.updateUserProfile()
                             } label: {
                                 if editInfo {
                                     Image(systemName: "checkmark")
@@ -127,16 +138,6 @@ struct ProfileEditeView: View {
                         Button("Read More") {
                             showMore = true
                         }
-                        
-                        //                            Button {
-                        //                                //
-                        //                            } label: {
-                        //                                Image(.vInfo)
-                        //                                    .resizable()
-                        //                                    .frame(width: 5, height: 5,alignment: .bottom)
-                        //                                    .foregroundStyle(.appBlue)
-                        //                            }.padding(.bottom,17)
-                        
                     }
                     .padding(.horizontal,20)
                     .frame(height: 191)
@@ -159,11 +160,5 @@ struct ProfileEditeView: View {
         .sheet(isPresented: $showMore){
             AboutMeInfo(text: userInfo)
         }
-        
     }
 }
-
-#Preview {
-    ProfileEditeView(image: .constant(""), userName: .constant("Ashfak Sayem"), userInfo: .constant("Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read MoreEnjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More "))
-}
-

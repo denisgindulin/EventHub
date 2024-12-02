@@ -14,6 +14,7 @@
 
     },
     " About Me" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

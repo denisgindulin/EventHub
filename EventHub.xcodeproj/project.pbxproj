@@ -46,6 +46,12 @@
 		48C66CFC2CFB2709006339CD /* DetailToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C66CFB2CFB2709006339CD /* DetailToolBar.swift */; };
 		48C66CFE2CFB275B006339CD /* ImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C66CFD2CFB275B006339CD /* ImageDetailView.swift */; };
 		48C66D002CFB293A006339CD /* DetailInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C66CFF2CFB293A006339CD /* DetailInformationView.swift */; };
+		48D0C55C2CFD945E00BB7860 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0C55B2CFD945E00BB7860 /* AppState.swift */; };
+		48D0C55E2CFD9AC200BB7860 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48D0C55D2CFD9AC200BB7860 /* GoogleService-Info.plist */; };
+		48D0C5612CFDA6A500BB7860 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0C5602CFDA6A500BB7860 /* FirebaseManager.swift */; };
+		48D0C5632CFDA6BB00BB7860 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0C5622CFDA6BB00BB7860 /* FirestoreManager.swift */; };
+		48D0C5672CFDB72D00BB7860 /* FirestoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0C5662CFDB72D00BB7860 /* FirestoreError.swift */; };
+		48D0C5692CFDCAC200BB7860 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0C5682CFDCAC200BB7860 /* ImagePicker.swift */; };
 		6C1AEC1B2CF51EED00125117 /* ProfileViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1AEC1A2CF51EED00125117 /* ProfileViewTest.swift */; };
 		6C1AEC1D2CF5275D00125117 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1AEC1C2CF5275D00125117 /* EditButton.swift */; };
 		6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
@@ -69,7 +75,6 @@
 		AD4D777D2CF30B6E0049493B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = AD4D777C2CF30B6E0049493B /* FirebaseStorage */; };
 		AD4D77842CF30B800049493B /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = AD4D77832CF30B800049493B /* GoogleSignIn */; };
 		AD4D77862CF30B800049493B /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AD4D77852CF30B800049493B /* GoogleSignInSwift */; };
-		AD4D77882CF30C9E0049493B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD4D77872CF30C9E0049493B /* GoogleService-Info.plist */; };
 		E10ED0042CF0DE6B00AFDBC2 /* OnboardingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10ED0012CF0DE6B00AFDBC2 /* OnboardingItem.swift */; };
 		E10ED0052CF0DE6B00AFDBC2 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10ED0022CF0DE6B00AFDBC2 /* OnboardingPageView.swift */; };
 		E10ED0062CF0DE6B00AFDBC2 /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10ED0032CF0DE6B00AFDBC2 /* OnboardingTabView.swift */; };
@@ -175,6 +180,12 @@
 		48C66CFB2CFB2709006339CD /* DetailToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailToolBar.swift; sourceTree = "<group>"; };
 		48C66CFD2CFB275B006339CD /* ImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
 		48C66CFF2CFB293A006339CD /* DetailInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInformationView.swift; sourceTree = "<group>"; };
+		48D0C55B2CFD945E00BB7860 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		48D0C55D2CFD9AC200BB7860 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		48D0C5602CFDA6A500BB7860 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		48D0C5622CFDA6BB00BB7860 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		48D0C5662CFDB72D00BB7860 /* FirestoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreError.swift; sourceTree = "<group>"; };
+		48D0C5682CFDCAC200BB7860 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		6C1AEC1A2CF51EED00125117 /* ProfileViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTest.swift; sourceTree = "<group>"; };
 		6C1AEC1C2CF5275D00125117 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerImageView.swift; sourceTree = "<group>"; };
@@ -190,7 +201,6 @@
 		8763C1662CF26A0C002E4535 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		87D8511F2CF26AAC002DC428 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		87D851232CF3046E002DC428 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		AD4D77872CF30C9E0049493B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E10ED0002CF0DE6B00AFDBC2 /* OnboardingControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingControlsView.swift; sourceTree = "<group>"; };
 		E10ED0012CF0DE6B00AFDBC2 /* OnboardingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItem.swift; sourceTree = "<group>"; };
 		E10ED0022CF0DE6B00AFDBC2 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
@@ -385,7 +395,6 @@
 		222838672CE937A400DCF847 /* EventHub */ = {
 			isa = PBXGroup;
 			children = (
-				AD4D77872CF30C9E0049493B /* GoogleService-Info.plist */,
 				1BB6A3E12CEFD2660069A17D /* StartRouter */,
 				4831BA522CEB2FCD00141C9A /* App */,
 				E10ED0092CF0E00200AFDBC2 /* DTO */,
@@ -455,7 +464,9 @@
 			isa = PBXGroup;
 			children = (
 				4831BA3C2CEB1D1500141C9A /* Info.plist */,
+				48D0C55D2CFD9AC200BB7860 /* GoogleService-Info.plist */,
 				222838682CE937A400DCF847 /* EventHubApp.swift */,
+				48D0C55B2CFD945E00BB7860 /* AppState.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -512,6 +523,7 @@
 				22FE3C292CF28E4B00FAEACF /* TextOnlyButton.swift */,
 				22FE3C2B2CF2F64900FAEACF /* EventReminderCard.swift */,
 				22FE3C2D2CF334C000FAEACF /* SignOutButton.swift */,
+				48D0C5682CFDCAC200BB7860 /* ImagePicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -533,6 +545,16 @@
 				E14D57292CF12272009949BC /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		48D0C55F2CFDA69800BB7860 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				48D0C5602CFDA6A500BB7860 /* FirebaseManager.swift */,
+				48D0C5622CFDA6BB00BB7860 /* FirestoreManager.swift */,
+				48D0C5662CFDB72D00BB7860 /* FirestoreError.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		E10ECFFF2CF0DD6500AFDBC2 /* Recovered References */ = {
@@ -684,6 +706,7 @@
 		E1B52ADB2CEE5853001AA8E0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				48D0C55F2CFDA69800BB7860 /* Firebase */,
 				48AD2DC62CF7058300944547 /* CoreData */,
 				E10ED0152CF0E29600AFDBC2 /* NetworkService */,
 				E1725DAE2CF63671001B4920 /* CacheService */,
@@ -766,12 +789,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4831BA452CEB28DC00141C9A /* AirbnbCereal_W_Md.otf in Resources */,
-				AD4D77882CF30C9E0049493B /* GoogleService-Info.plist in Resources */,
 				4831BA462CEB28DC00141C9A /* AirbnbCereal_W_Bd.otf in Resources */,
 				4831BA492CEB28DC00141C9A /* AirbnbCereal_W_Bk.otf in Resources */,
 				222838702CE937A700DCF847 /* Preview Assets.xcassets in Resources */,
 				225123AE2CF885F400CD8FE9 /* Localizable.xcstrings in Resources */,
 				2228386D2CE937A700DCF847 /* Assets.xcassets in Resources */,
+				48D0C55E2CFD9AC200BB7860 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +820,7 @@
 				6C75B38C2CEF8D2B0086A03D /* FontModifier.swift in Sources */,
 				6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */,
 				48C66D002CFB293A006339CD /* DetailInformationView.swift in Sources */,
+				48D0C5632CFDA6BB00BB7860 /* FirestoreManager.swift in Sources */,
 				E10ED00C2CF0E25500AFDBC2 /* RoundedCorner.swift in Sources */,
 				E10ED0222CF0E32500AFDBC2 /* ExploreViewModel.swift in Sources */,
 				1BB6A3D72CEFA51C0069A17D /* TabBarView.swift in Sources */,
@@ -805,6 +829,7 @@
 				E15B59FB2CFB8C3300196BF3 /* EventMarker.swift in Sources */,
 				87D851202CF26AB4002DC428 /* SignUpView.swift in Sources */,
 				1B7EAD282CEBC34F00D2AB3D /* EventsView.swift in Sources */,
+				48D0C5672CFDB72D00BB7860 /* FirestoreError.swift in Sources */,
 				6C1AEC1B2CF51EED00125117 /* ProfileViewTest.swift in Sources */,
 				1B7EAD2A2CEBC35B00D2AB3D /* EventsViewModel.swift in Sources */,
 				E15B59F32CF9FA4700196BF3 /* UDStorageService.swift in Sources */,
@@ -825,6 +850,7 @@
 				E10ED0192CF0E29600AFDBC2 /* APIClient.swift in Sources */,
 				E10ED01A2CF0E29600AFDBC2 /* NetworkError.swift in Sources */,
 				E1725DA72CF635DC001B4920 /* CacheImplementation.swift in Sources */,
+				48D0C5692CFDCAC200BB7860 /* ImagePicker.swift in Sources */,
 				6CFF225E2CF8FA380076D394 /* AboutMeInfo.swift in Sources */,
 				22FE3C2E2CF334C000FAEACF /* SignOutButton.swift in Sources */,
 				E10ED01B2CF0E29600AFDBC2 /* EventAPIProtocols.swift in Sources */,
@@ -843,10 +869,12 @@
 				E165D1C02CF4DF2E0030BA88 /* SeeAllEvents.swift in Sources */,
 				6CFF225C2CF8F9CF0076D394 /* ProfileEditView.swift in Sources */,
 				E10ED03E2CF0E47F00AFDBC2 /* ThirdSmallEventCard.swift in Sources */,
+				48D0C55C2CFD945E00BB7860 /* AppState.swift in Sources */,
 				E10ED03F2CF0E47F00AFDBC2 /* ShimmerView.swift in Sources */,
 				E165D1C32CF5B3940030BA88 /* EmptyEventsView.swift in Sources */,
 				E10ED0402CF0E47F00AFDBC2 /* BackBarButtonView.swift in Sources */,
 				E10ED0412CF0E47F00AFDBC2 /* BlueCapsuleButtonWithArrow.swift in Sources */,
+				48D0C5612CFDA6A500BB7860 /* FirebaseManager.swift in Sources */,
 				E15B59F52CFB48EA00196BF3 /* MapEventModel.swift in Sources */,
 				E10ED0422CF0E47F00AFDBC2 /* ToolBarAction.swift in Sources */,
 				4806819B2CF5B723001A2D9A /* SocialNetworksViewModel.swift in Sources */,
@@ -1029,6 +1057,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EventHub/App/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Мы используем ваше местоположение для отображения событий на карте.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1039,7 +1068,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Marat.F;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marat.EventHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1065,6 +1094,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EventHub/App/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Мы используем ваше местоположение для отображения событий на карте.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1075,7 +1105,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Marat.F;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marat.EventHub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

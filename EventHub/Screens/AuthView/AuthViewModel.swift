@@ -8,9 +8,9 @@
 import SwiftUI
 import FirebaseAuth
 import FirebaseCore
-import FirebaseFirestore
+import FirebaseAuthCombineSwift
 import GoogleSignIn
-import GoogleSignInSwift
+
 
 enum authStatus {
     case authenticated
@@ -41,14 +41,14 @@ enum ErrorMessages {
 
 @MainActor
 final class AuthViewModel: ObservableObject{
-    private let db = Firestore.firestore()
+    private let firestoreManager = FirestoreManager()
     private let router: StartRouter
     
     @Published var name: String = ""
     @Published var email: String = ""
     @Published var password2: String = ""
     @Published var password: String = ""
-    @Published var user: User?
+    @Published var user: UserData?
     @Published var errorMessage: String = ""
     @Published var authenticationState: authStatus = .unauthenticated
     @Published var displayName: String = ""
@@ -58,64 +58,33 @@ final class AuthViewModel: ObservableObject{
 //    MARK: - INIT
     init(router: StartRouter) {
         self.router = router
-      registerAuthStateHandler()
+//      registerAuthStateHandler()
     }
-    
-    // MARK: - Handle Whether User Logged or not
-    private var authStateHandler: AuthStateDidChangeListenerHandle?
-    func registerAuthStateHandler() {
-        if authStateHandler == nil {
-            authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
-                self.user = user
-                self.authenticationState = user == nil ? .unauthenticated : .authenticated
-                self.displayName = user?.email ?? ""
-            }
-        }
-    }
-    
+
     //MARK: - Sign In
     func signIn() async {
-        authenticationState = .authenticating
         do {
             try await Auth.auth().signIn(withEmail: email, password: password)
-            await fetchUserData() // Загрузка данных пользователя
-            userAuthenticated()
+            print("Verification was successful")
         } catch {
-            print(error)
+            print(error.localizedDescription)
             errorMessage = error.localizedDescription
-            authenticationState = .unauthenticated
         }
     }
     
     
     //MARK: - Sign Up
-    func signUp() async -> Bool {
-        guard validateFields() else { return false }
-        authenticationState = .authenticating
-        isLoading = true
-        
-        do {
-            // Создание пользователя в Firebase Authentication
-            let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            
-            // Сохранение данных пользователя в Firestore
-            let userData: [String: Any] = [
-                "email": email,
-                "username": name.isEmpty ? "Unknown" : name,
-                "avatar": "",
-                "description": "",
-                "favorites": ""
-            ]
-            try await db.collection("users").document(result.user.uid).setData(userData)
-            
-            // Пользователь успешно создан
-            userAuthenticated()
-            return true
-        } catch {
-            print(error.localizedDescription)
-            errorMessage = error.localizedDescription
-            authenticationState = .unauthenticated
-            return false
+    @MainActor
+    func createUser(name: String, email: String, password: String, repeatPassword: String) async throws {
+        Task {
+            do {
+                let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
+                firestoreManager.saveUserData(userId: authResult.user.uid, name: name, email: email)
+                try await authResult.user.sendEmailVerification()
+            } catch {
+                print("Ошибка при регистрации: \(error.localizedDescription)")
+                throw error
+            }
         }
     }
     
@@ -132,41 +101,41 @@ final class AuthViewModel: ObservableObject{
         }
     }
     
-    func updateUserData(updatedData: [String: Any]) async -> Bool {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            errorMessage = "No authenticated user found"
-            return false
-        }
-        
-        do {
-            try await db.collection("users").document(uid).updateData(updatedData)
-            print("User data updated successfully")
-            return true
-        } catch {
-            print(error.localizedDescription)
-            errorMessage = error.localizedDescription
-            return false
-        }
-    }
+//    func updateUserData(updatedData: [String: Any]) async -> Bool {
+//        guard let uid = Auth.auth().currentUser?.uid else {
+//            errorMessage = "No authenticated user found"
+//            return false
+//        }
+//        
+//        do {
+//            try await db.collection("users").document(uid).updateData(updatedData)
+//            print("User data updated successfully")
+//            return true
+//        } catch {
+//            print(error.localizedDescription)
+//            errorMessage = error.localizedDescription
+//            return false
+//        }
+//    }
     
-    func fetchUserData() async {
-        guard let uid = Auth.auth().currentUser?.uid else {
-            errorMessage = "No authenticated user found"
-            return
-        }
-        
-        do {
-            let snapshot = try await db.collection("users").document(uid).getDocument()
-            if let data = snapshot.data() {
-                name = data["username"] as? String ?? "Unknown"
-                email = data["email"] as? String ?? ""
-                // Дополнительные поля, если есть
-            }
-        } catch {
-            print(error.localizedDescription)
-            errorMessage = error.localizedDescription
-        }
-    }
+//    func fetchUserData() async {
+//        guard let uid = Auth.auth().currentUser?.uid else {
+//            errorMessage = "No authenticated user found"
+//            return
+//        }
+//        
+//        do {
+//            let snapshot = try await db.collection("users").document(uid).getDocument()
+//            if let data = snapshot.data() {
+//                name = data["username"] as? String ?? "Unknown"
+//                email = data["email"] as? String ?? ""
+//                // Дополнительные поля, если есть
+//            }
+//        } catch {
+//            print(error.localizedDescription)
+//            errorMessage = error.localizedDescription
+//        }
+//    }
     
     //MARK: - Reset Password
     func resetPassword(email: String) async -> Bool {
@@ -218,7 +187,8 @@ final class AuthViewModel: ObservableObject{
             errorMessage = ErrorMessages.noId
             return false
         }
-        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let rootViewController = windowScene.windows.first?.rootViewController else {
             errorMessage = ErrorMessages.controllerError
             return false
         }
@@ -237,9 +207,9 @@ final class AuthViewModel: ObservableObject{
             )
             _ = try await Auth.auth().signIn(with: credential)
 
-            await MainActor.run {
-                userAuthenticated()
-            }
+//            await MainActor.run {
+//                userAuthenticated()
+//            }
             return true
         } catch {
             errorMessage = error.localizedDescription
@@ -248,8 +218,7 @@ final class AuthViewModel: ObservableObject{
     }
     
     //MARK: - NavigationState
-    func userAuthenticated() {
-        router.updateRouterState(with: .userAuthorized)
-    }
-    
+//    func userAuthenticated() {
+//        router.updateRouterState(with: .userAuthorized)
+//    }
 }
