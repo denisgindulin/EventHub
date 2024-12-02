@@ -162,7 +162,3 @@ struct SignInView: View {
         }
     }
 }
-
-#Preview {
-    SignInView(router: StartRouter())
-}
