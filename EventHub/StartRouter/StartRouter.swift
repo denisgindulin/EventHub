@@ -44,7 +44,7 @@ final class StartRouter: ObservableObject {
         case .userAuthorized:
             newState = .main
         case .userLoggedOut:
-            newState = .onboarding
+            newState = .auth
         }
         return newState
     }
