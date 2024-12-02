@@ -16,6 +16,8 @@ struct UserData: Identifiable {
 }
 
 final class FirestoreManager: ObservableObject {
+    @Published var avatarUrl: String?
+    
     func saveUserData(userId: String, name: String, email: String) {
         Firestore.firestore()
             .collection("users")
@@ -66,5 +68,18 @@ final class FirestoreManager: ObservableObject {
                 print("Данные пользователя обновлены")
             }
         }
+    }
+    
+    func loadAvatarUrl(userId: String) {
+        Firestore.firestore()
+            .collection("users")
+            .document(userId)
+            .addSnapshotListener { [weak self] snapshot, error in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                self?.avatarUrl = snapshot?.data()?["avatarUrl"] as? String
+            }
     }
 }

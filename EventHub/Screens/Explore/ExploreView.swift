@@ -58,38 +58,33 @@ struct ExploreView: View {
                 ScrollView(showsIndicators: false) {
                     VStack {
                         
-                        MainCategorySectionView(isPresented: $isSeeAllUpcomingEvents, title: "Upcomimg Events" /*viewModel.searchText + " - " + String(viewModel.searchedEvents.count)*/)
+                        MainCategorySectionView(isPresented: $isSeeAllUpcomingEvents, title: "Upcomimg Events", linkActive: !viewModel.emptyUpcoming /*viewModel.searchText + " - " + String(viewModel.searchedEvents.count)*/)
                             .padding(.bottom, 10)
                         
-                        if viewModel.upcomingEvents.isEmpty {
-                            ScrollEventCardsView(events: nil, showDetail: {_ in }
-                            )
-                            .padding(.bottom, 10)
+                        if viewModel.emptyUpcoming {
+                            NoEventsView()
                         } else {
-                            ScrollEventCardsView(events: viewModel.upcomingEvents,
-                                                 showDetail: { event in
-                                selectedEventID = event
-                                isDetailPresented = true
-                            })
-                            .padding(.bottom, 10)
+                            ScrollEventCardsView(emptyArray: false, events: viewModel.upcomingEvents,
+                                                                            showDetail: { event in
+                                                           selectedEventID = event
+                                                           isDetailPresented = true
+                                                       })
+                                                       .padding(.bottom, 10)
                         }
                         
-                        MainCategorySectionView(isPresented: $isSeeAllNearbyEvents, title: "Nearby You")
+                        MainCategorySectionView(isPresented: $isSeeAllNearbyEvents, title: "Nearby You", linkActive: !viewModel.emptyNearbyYou)
                             .padding(.bottom, 10)
                         
-                        if viewModel.nearbyYouEvents.isEmpty {
-                            ScrollEventCardsView(
-                                events: nil,
-                                showDetail:{_ in})
-                            .padding(.bottom, 250) // tabBer
+                        if viewModel.emptyNearbyYou {
+                            NoEventsView()
+                                .padding(.bottom, 180)
                         } else {
-                            ScrollEventCardsView(
-                                events: viewModel.nearbyYouEvents,
-                                showDetail: { event in
-                                    selectedEventID = event
-                                    isDetailPresented = true
-                                })
-                            .padding(.bottom, 250) // tabBer
+                            ScrollEventCardsView(emptyArray: false, events: viewModel.nearbyYouEvents,
+                                                                            showDetail: { event in
+                                                           selectedEventID = event
+                                                           isDetailPresented = true
+                                                       })
+                                                       .padding(.bottom, 180)
                         }
                     }
                     .offset(y: 100)

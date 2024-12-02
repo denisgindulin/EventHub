@@ -52,10 +52,12 @@
 		48D0C5632CFDA6BB00BB7860 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0C5622CFDA6BB00BB7860 /* FirestoreManager.swift */; };
 		48D0C5672CFDB72D00BB7860 /* FirestoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0C5662CFDB72D00BB7860 /* FirestoreError.swift */; };
 		48D0C5692CFDCAC200BB7860 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0C5682CFDCAC200BB7860 /* ImagePicker.swift */; };
+		48D0C56B2CFDE99F00BB7860 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0C56A2CFDE99F00BB7860 /* StorageManager.swift */; };
 		6C1AEC1B2CF51EED00125117 /* ProfileViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1AEC1A2CF51EED00125117 /* ProfileViewTest.swift */; };
 		6C1AEC1D2CF5275D00125117 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1AEC1C2CF5275D00125117 /* EditButton.swift */; };
 		6C75B38B2CEF8D260086A03D /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA4A2CEB2F1400141C9A /* FontManager.swift */; };
 		6C75B38C2CEF8D2B0086A03D /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4831BA502CEB2F9500141C9A /* FontModifier.swift */; };
+		6CBDC50B2CFDBD88007D84A1 /* NoEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBDC50A2CFDBD88007D84A1 /* NoEventsView.swift */; };
 		6CF41E2A2CF4D85B00E58618 /* ShimmerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */; };
 		6CF41E2C2CF4DBC400E58618 /* ShimmerAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF41E2B2CF4DBC400E58618 /* ShimmerAvatarView.swift */; };
 		6CF41E302CF4F37500E58618 /* FunctionalButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF41E2F2CF4F37500E58618 /* FunctionalButtonsView.swift */; };
@@ -186,8 +188,10 @@
 		48D0C5622CFDA6BB00BB7860 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		48D0C5662CFDB72D00BB7860 /* FirestoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreError.swift; sourceTree = "<group>"; };
 		48D0C5682CFDCAC200BB7860 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		48D0C56A2CFDE99F00BB7860 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		6C1AEC1A2CF51EED00125117 /* ProfileViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTest.swift; sourceTree = "<group>"; };
 		6C1AEC1C2CF5275D00125117 /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
+		6CBDC50A2CFDBD88007D84A1 /* NoEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoEventsView.swift; sourceTree = "<group>"; };
 		6CF41E292CF4D85B00E58618 /* ShimmerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerImageView.swift; sourceTree = "<group>"; };
 		6CF41E2B2CF4DBC400E58618 /* ShimmerAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerAvatarView.swift; sourceTree = "<group>"; };
 		6CF41E2F2CF4F37500E58618 /* FunctionalButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalButtonsView.swift; sourceTree = "<group>"; };
@@ -504,6 +508,7 @@
 				6CF41E2F2CF4F37500E58618 /* FunctionalButtonsView.swift */,
 				E10ED0272CF0E47F00AFDBC2 /* BlueButtonWithArrow.swift */,
 				E10ED0282CF0E47F00AFDBC2 /* BlueCapsuleButtonWithArrow.swift */,
+				6CBDC50A2CFDBD88007D84A1 /* NoEventsView.swift */,
 				6CFF22632CFA5DDD0076D394 /* ShimmerDetailView.swift */,
 				E10ED0292CF0E47F00AFDBC2 /* CategoryButtonView.swift */,
 				E10ED02A2CF0E47F00AFDBC2 /* CategoryScroll.swift */,
@@ -553,6 +558,7 @@
 				48D0C5602CFDA6A500BB7860 /* FirebaseManager.swift */,
 				48D0C5622CFDA6BB00BB7860 /* FirestoreManager.swift */,
 				48D0C5662CFDB72D00BB7860 /* FirestoreError.swift */,
+				48D0C56A2CFDE99F00BB7860 /* StorageManager.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -862,11 +868,13 @@
 				480681992CF5B708001A2D9A /* SocialNetwork.swift in Sources */,
 				E10ED01F2CF0E2F400AFDBC2 /* CategoryUIModel.swift in Sources */,
 				E165D1BE2CF44F250030BA88 /* DisplayOrderType.swift in Sources */,
+				6CBDC50B2CFDBD88007D84A1 /* NoEventsView.swift in Sources */,
 				E10ED0202CF0E2F400AFDBC2 /* ExploreModel.swift in Sources */,
 				E1725DB22CF74766001B4920 /* StartRouterView.swift in Sources */,
 				48C66CFA2CF87EBE006339CD /* FavoriteEventsList.swift in Sources */,
 				E10ED03D2CF0E47F00AFDBC2 /* CategoryScroll.swift in Sources */,
 				E165D1C02CF4DF2E0030BA88 /* SeeAllEvents.swift in Sources */,
+				48D0C56B2CFDE99F00BB7860 /* StorageManager.swift in Sources */,
 				6CFF225C2CF8F9CF0076D394 /* ProfileEditView.swift in Sources */,
 				E10ED03E2CF0E47F00AFDBC2 /* ThirdSmallEventCard.swift in Sources */,
 				48D0C55C2CFD945E00BB7860 /* AppState.swift in Sources */,

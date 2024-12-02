@@ -13,87 +13,81 @@ struct ProfileView: View {
     
     @EnvironmentObject var firebaseManager: FirebaseManager
     @StateObject var viewModel: ProfileViewModel
-    @State private var showMore = false
     
-    @State private var name: String = ""
-    @State private var info: String = ""
+    @State private var showMore = false
+    @State private var avatarImage: UIImage = UIImage(resource: .avatar)
     
     init(router: StartRouter) {
         self._viewModel = StateObject(wrappedValue: ProfileViewModel(router: router))
     }
     
     var body: some View {
-            ZStack {
-                Color.appBackground
+        ZStack {
+            Color.appBackground
+            
+            VStack(spacing: 50) {
                 
-                VStack(alignment: .leading) {
-                    VStack(alignment: .center, spacing: 21) {
-                        KFImage(URL(string: viewModel.image)) // Просто показываем фото
-                            .placeholder {
-                                Image(systemName: "face.smiling.inverse")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 96, height: 96)
-                                    .clipShape(Circle())
-                            }
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 96, height: 96)
-                            .clipShape(Circle())
+                
+                VStack {
+                    ToolBarView(title: "Profile".localized, foregroundStyle: .titleFont, isTitleLeading: false)
+                        .padding(.bottom, 16)
+                    KFImage(URL(string: firebaseManager.userAvatar ?? ""))
+                        .placeholder {
+                            Image(uiImage: avatarImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 96, height: 96)
+                                .clipShape(Circle())
+                        }
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 96, height: 96)
+                        .clipShape(Circle())
+                    
+                    VStack(alignment: .center, spacing: 15) {
+                        Text(firebaseManager.user?.name ?? "No Name")
+                            .airbnbCerealFont(.book, size: 24)
                         
-                        Rectangle()
-                            .foregroundStyle(.appBackground)
-                            .frame(height: 28)
-                        
-                        VStack(alignment: .center, spacing: 15) {
-                            Text(firebaseManager.user?.name ?? "No Name")
-                                .airbnbCerealFont(.book, size: 24)
-                            
-                            NavigationLink{
-                                ProfileEditeView(viewModel: viewModel,
-                                                 image: $viewModel.image,
-                                                 userName: $viewModel.name,
-                                                 userInfo: $viewModel.info)
-                            } label: {
-                                EditButton()
-                            }
+                        NavigationLink{
+                            ProfileEditeView(viewModel: viewModel,
+                                             image: $firebaseManager.name,
+                                             userName: $firebaseManager.name,
+                                             userInfo: $firebaseManager.info,
+                                             avatarImage: $avatarImage)
+                        } label: {
+                            EditButton()
                         }
                     }
-                    
-                    VStack(alignment: .leading, spacing: 65) {
-                        Text("About Me")
-                            .airbnbCerealFont( AirbnbCerealFont.medium, size: 18)
-                            .padding(.bottom, 20)
-                        
-                        ScrollView(showsIndicators: false) {
-                            Text(firebaseManager.user?.info ?? "No Info")
-                                .airbnbCerealFont( AirbnbCerealFont.book, size: 16)
-                                .lineLimit(4)
-                            
-                            Button("Read More") {
-                                showMore = true
-                            }
-                        }
-                        .frame(height: 191)
-                    }.offset(y: 20)
-                    
-                    SignOutButton(action: { viewModel.signOut() } )
-                        .padding(.bottom,107)
                 }
+                
+                VStack(alignment: .leading, spacing: 30) {
+                    Text("About Me")
+                        .airbnbCerealFont( AirbnbCerealFont.medium, size: 18)
+                    
+                    VStack(alignment: .leading) {
+                        Text(firebaseManager.user?.info ?? "No Info")
+                            .airbnbCerealFont( AirbnbCerealFont.book, size: 16)
+                            .lineLimit(4)
+                        
+                        Button {
+                            showMore = true
+                        } label: {
+                            Text("Read More".localized)
+                                .foregroundStyle(.appBlue)
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+                SignOutButton(action: { viewModel.signOut() } )
+                    .padding(.bottom, 30)
             }
-            .navigationTitle("Profile")
-            .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $showMore) {
-                AboutMeInfo(text: viewModel.info)
-            }
-            .padding(.horizontal, 20)
-            .ignoresSafeArea()
-            .offset(y: 25)
-            .onAppear {
-                print(name)
-                name = firebaseManager.user?.name ?? "No Name"
-                print(name)
-            }
+        }
+        .sheet(isPresented: $showMore) {
+            AboutMeInfo(text: $firebaseManager.info.wrappedValue)
+        }
+        .padding(.horizontal, 20)
     }
 }
 

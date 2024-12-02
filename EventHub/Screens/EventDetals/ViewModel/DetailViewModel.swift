@@ -44,19 +44,19 @@ final class DetailViewModel: ObservableObject {
     }
     
     var agentTitle: String {
-        event?.participants?.first?.agent?.title ?? "No Name"
+        event?.participants?.first?.agent?.title ?? "No Name".localized
     }
     
     var role: String {
-        event?.participants?.first?.role?.slug ?? "No Role"
+        event?.participants?.first?.role?.slug ?? "No Role".localized
     }
     
     var adress: String {
-        event?.place?.title ?? "Unknown Address"
+        event?.place?.title ?? "Unknown Address".localized
     }
     
     var location: String {
-        event?.place?.address ?? "Unknown Location"
+        event?.place?.address ?? "Unknown Location".localized
     }
     
     //    MARK: - Init

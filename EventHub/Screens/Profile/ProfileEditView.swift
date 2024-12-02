@@ -22,89 +22,81 @@ struct ProfileEditeView: View {
     @State private var showMore = false
     
     @State private var showImagePicker = false
-    @State private var avatarImage: UIImage = UIImage(resource: .avatar)
+    @Binding var avatarImage: UIImage
     
     var body: some View {
         ZStack {
             Color.appBackground
             
-            VStack {
+            VStack(spacing: 90) {
                 VStack {
-                    KFImage(URL(string: image)) // UIImage Picker ? 
-                        .placeholder {
-                            Image(uiImage: avatarImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 96, height: 96)
-                                .clipShape(Circle())
-                        }
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 96, height: 96)
-                        .clipShape(Circle())
+                    ToolBarView(title: "Profile".localized, foregroundStyle: .titleFont, isTitleLeading: false)
+                        .padding(.bottom, 16)
                     
-                    Rectangle()
-                        .foregroundStyle(.appBackground)
-                        .frame(height: 28)
-                }
-                .onTapGesture {
-                    showImagePicker = true
-                }
-                .sheet(isPresented: $showImagePicker) { ImagePicker(image: $avatarImage) }
-                
-                HStack(spacing: 17) {
+                    VStack {
+                        KFImage(URL(string: firebaseManager.userAvatar ?? ""))
+                            .placeholder {
+                                Image(uiImage: avatarImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 96, height: 96)
+                                    .clipShape(Circle())
+                            }
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 96, height: 96)
+                            .clipShape(Circle())
+                    }
+                    .onTapGesture {
+                        showImagePicker = true
+                    }
+                    .sheet(isPresented: $showImagePicker) { ImagePicker(image: $avatarImage) }
                     
-                    if editName {
-                        HStack {
-                            TextField("\(firebaseManager.user?.name ?? "")", text: $userName)
-                                .textFieldStyle(.roundedBorder)
+                    HStack(spacing: 17) {
+                        
+                        if editName {
+                            HStack {
+                                TextField("\(firebaseManager.user?.name ?? "")", text: $userName)
+                                    .textFieldStyle(.roundedBorder)
+                                
+                                VStack {
+                                    Button {
+                                        editName = false
+                                    } label: {
+                                        Image(systemName: "checkmark")
+                                            .resizable()
+                                            .foregroundStyle(.appBlue)
+                                            .frame(width: 22, height: 22, alignment: .center)
+                                    }
+                                }
+                            }
+                        } else {
+                            Text(userName)
+                                .airbnbCerealFont( AirbnbCerealFont.medium, size: 24)
                             
                             VStack {
                                 Button {
-                                    editName = false
+                                    editName = true
                                 } label: {
-                                    Image(systemName: "checkmark")
+                                    Image(.edit)
                                         .resizable()
                                         .foregroundStyle(.appBlue)
                                         .frame(width: 22, height: 22, alignment: .center)
                                 }
                             }
                         }
-                        .padding(20)
-                    } else {
-                        Text(userName)
-                            .airbnbCerealFont( AirbnbCerealFont.medium, size: 24)
-                            .frame(height: 28)
-                            .padding(.bottom,15)
-                        
-                        VStack {
-                            Button {
-                                editName = true
-                                
-                            } label: {
-                                Image(.edit)
-                                    .resizable()
-                                    .foregroundStyle(.appBlue)
-                                    .frame(width: 22, height: 22, alignment: .center)
-                            }
-                        }
-                        .offset(y: -7)
                     }
                 }
-                .padding(.bottom, 90)
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 40) {
                     
-                    HStack() {
+                    HStack {
                         Text("About Me")
                             .airbnbCerealFont( AirbnbCerealFont.medium, size: 18)
-                            .frame(height: 65)
-                            .padding(.bottom, 20)
                         
-                        VStack{
+                        VStack(alignment: .leading) {
                             Button {
                                 editInfo.toggle()
-                                viewModel.updateUserProfile()
                             } label: {
                                 if editInfo {
                                     Image(systemName: "checkmark")
@@ -119,46 +111,50 @@ struct ProfileEditeView: View {
                                 }
                             }
                         }
-                        .offset(y: -10)
                     }
-                    .padding(.horizontal,20)
                     
-                    
-                    ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading) {
                         if editInfo {
                             TextEditor(text: $userInfo)
-                                .frame(width: 350, height: 270, alignment: .top)
-                                .padding(20)
                         } else {
                             Text(userInfo)
                                 .airbnbCerealFont( AirbnbCerealFont.book, size: 16)
-                                .frame( alignment: .top)
                                 .lineLimit(4)
                         }
-                        Button("Read More") {
+                        
+                        Button {
                             showMore = true
+                        } label: {
+                            Text("Read More".localized)
+                                .foregroundStyle(.appBlue)
                         }
                     }
-                    .padding(.horizontal,20)
-                    .frame(height: 191)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
                 
                 SignOutButton(action: { } )
-                    .padding(.bottom,137)
+                    .padding(.bottom, 30)
             }
+            .padding(.horizontal, 20)
         }
-        .navigationTitle("Profile")
-        .offset(y: 100)
         .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 BackBarButtonView(foregroundStyle: .black)
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .ignoresSafeArea()
         .sheet(isPresented: $showMore){
             AboutMeInfo(text: userInfo)
+        }
+        .onDisappear {
+            print("updateUserProfile")
+            viewModel.updateUserProfile(name: userName,
+                                        info: userInfo,
+                                        image: "")
+            
+            firebaseManager.loadUserData(userId: viewModel.currentUser?.uid ?? "")
         }
     }
 }

@@ -27,7 +27,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     final class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-//        let storageManager = StorageManager()
+        let storageManager = StorageManager()
         
         var completion: ((UIImage) -> Void)
         
@@ -41,10 +41,10 @@ struct ImagePicker: UIViewControllerRepresentable {
 
                 if let imageData = image.pngData() {
                     print("PNG Image")
-//                    storageManager.uploadImage(imageData: imageData)
+                    storageManager.uploadImage(imageData: imageData)
                 } else if let imageData = image.jpegData(compressionQuality: 0.1) {
                     print("JPEG Image")
-//                    storageManager.uploadImage(imageData: imageData)
+                    storageManager.uploadImage(imageData: imageData)
                 }
             }
             picker.dismiss(animated: true)

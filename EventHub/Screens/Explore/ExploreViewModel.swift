@@ -12,9 +12,14 @@ final class ExploreViewModel: ObservableObject {
     
     private let apiService: IAPIServiceForExplore
     
+    
+    
     let functionalButtonsNames = ["Today".localized,"Films".localized, "Lists".localized]
     @Published var choosedButton: String = "" // кнопка поl категориями, незнаю как назвать это
     @Published var currentPosition: String = "Moscow".localized
+    
+    @Published var emptyUpcoming = false
+    @Published var emptyNearbyYou = false
     
     @Published var upcomingEvents: [ExploreModel] = []
     @Published var nearbyYouEvents: [ExploreModel] = []
@@ -79,6 +84,7 @@ final class ExploreViewModel: ObservableObject {
     }
     
     func fetchUpcomingEvents() async {
+        emptyUpcoming = false
         do {
             let eventsDTO = try await apiService.getUpcomingEvents(
                 with: currentCategory,
@@ -92,12 +98,18 @@ final class ExploreViewModel: ObservableObject {
             )
                          print("Generated Endpoint UpcomingEvents: \(apiSpecLoc.endpoint)")
             upcomingEvents = eventsDTO.map { ExploreModel(dto: $0) }
+            
+            if upcomingEvents.isEmpty {
+                emptyUpcoming = true
+            }
+            
         } catch {
             self.error = error
         }
     }
     
     func featchNearbyYouEvents() async {
+        emptyNearbyYou = false
         do {
             let eventsDTO = try await apiService.getNearbyYouEvents(
                 with: language,
@@ -106,6 +118,10 @@ final class ExploreViewModel: ObservableObject {
                 page
             )
             nearbyYouEvents = eventsDTO.map { ExploreModel(dto: $0) }
+            
+            if nearbyYouEvents.isEmpty {
+                emptyNearbyYou = true
+            }
         } catch {
             self.error = error
         }

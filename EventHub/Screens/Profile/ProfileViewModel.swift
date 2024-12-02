@@ -9,15 +9,9 @@ import Foundation
 import FirebaseAuth
 
 final class ProfileViewModel: ObservableObject {
-
     private let router: StartRouter
+    let currentUser = Auth.auth().currentUser
     private let firestoreManager = FirestoreManager()
-    private let firebaseManager = FirebaseManager()
-    
-    //MARK: - Firebase
-    @Published var name: String = ""
-    @Published var info: String = ""
-    @Published var image: String = ""
     
     init(router: StartRouter) {
         self.router = router
@@ -32,11 +26,9 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
-    func updateUserName() {
+    func updateUserProfile(name: String, info: String, image: String) {
+        guard let currentUser = currentUser else { return }
         
-    }
-    func updateUserProfile() {
-            guard let currentUser = Auth.auth().currentUser else { return }
             let userId = currentUser.uid
             let updatedData: [String: Any] = [
                 "name": name,

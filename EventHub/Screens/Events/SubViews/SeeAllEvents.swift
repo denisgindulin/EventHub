@@ -23,7 +23,7 @@ struct SeeAllEvents: View {
                     
                     // MARK: - Toolbar
                     ToolBarView(
-                        title: "Event",
+                        title: "Event".localized,
                         isTitleLeading: true,
                         showBackButton: true,
                         actions: [ToolBarAction(

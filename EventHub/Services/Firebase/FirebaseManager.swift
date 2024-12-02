@@ -12,6 +12,10 @@ import FirebaseAuthCombineSwift
 final class FirebaseManager: ObservableObject {
     @Published var user: UserData?
     
+    @Published var name: String = ""
+    @Published var info: String = ""
+    @Published var userAvatar: String?
+    
     private let firestoreManager = FirestoreManager()
     private var authStateHandler: AuthStateDidChangeListenerHandle?
     
@@ -25,6 +29,7 @@ final class FirebaseManager: ObservableObject {
                 if let user {
                     print(user.uid)
                     self?.loadUserData(userId: user.uid)
+                    self?.loadAvatar(userId: user.uid)
                 } else {
                     self?.user = nil
                 }
@@ -35,9 +40,18 @@ final class FirebaseManager: ObservableObject {
     func loadUserData(userId: String) {
         Task {
             guard let user = try? await firestoreManager.getUserData(userId: userId) else { return }
-            DispatchQueue.main.async {
-                self.user = user
+            DispatchQueue.main.async { [weak self] in
+                self?.user = user
+                self?.name = user.name
+                self?.info = user.info
             }
         }
+    }
+    
+    func loadAvatar(userId: String) {
+        firestoreManager.loadAvatarUrl(userId: userId)
+        firestoreManager.$avatarUrl
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$userAvatar)
     }
 }

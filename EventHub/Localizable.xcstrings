@@ -58,6 +58,9 @@
         }
       }
     },
+    "( in this category )" : {
+
+    },
     "%@" : {
       "localizations" : {
         "ru" : {
@@ -477,7 +480,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Событие"
+            "value" : "События"
           }
         }
       }
@@ -495,6 +498,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "СОБЫТИЕ"
+          }
+        }
+      }
+    },
+    "Event Details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Детали события"
           }
         }
       }
@@ -573,7 +587,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Исследовать события"
+            "value" : "Изучить события"
           }
         }
       }
@@ -630,6 +644,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Мода и стиль"
+          }
+        }
+      }
+    },
+    "Favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранные"
           }
         }
       }
@@ -1054,9 +1079,6 @@
         }
       }
     },
-    "No %@ Event" : {
-
-    },
     "No authenticated user found" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1176,6 +1198,17 @@
         }
       }
     },
+    "No Past Event" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет прошедших событий"
+          }
+        }
+      }
+    },
     "No Role" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1206,6 +1239,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "нет названия"
+          }
+        }
+      }
+    },
+    "No Upcoming Event" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет предстоящих событий"
           }
         }
       }
@@ -1346,7 +1390,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ПРОШЕДШИЕ СОБЫТИЯ"
+            "value" : "ПРОШЕДШИЕ"
           }
         }
       }

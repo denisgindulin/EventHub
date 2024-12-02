@@ -23,7 +23,7 @@ struct EventsView: View {
         ZStack {
             Color.appBackground.ignoresSafeArea(.all)
             VStack {
-                ToolBarView(title: "Event")
+                ToolBarView(title: "Event".localized)
                     .frame(height: 44)
                     .zIndex(1)
                 
@@ -51,7 +51,7 @@ struct EventsView: View {
                     }
                 }
                 
-                BlueButtonWithArrow(text: "Explore Events") {
+                BlueButtonWithArrow(text: "Explore Events".localized) {
                     Task {
                         await viewModel.updateAllEvents()
                     }
