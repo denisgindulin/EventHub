@@ -58,7 +58,6 @@ final class AuthViewModel: ObservableObject{
 //    MARK: - INIT
     init(router: StartRouter) {
         self.router = router
-//      registerAuthStateHandler()
     }
 
     //MARK: - Sign In
@@ -100,42 +99,6 @@ final class AuthViewModel: ObservableObject{
                  return false
         }
     }
-    
-//    func updateUserData(updatedData: [String: Any]) async -> Bool {
-//        guard let uid = Auth.auth().currentUser?.uid else {
-//            errorMessage = "No authenticated user found"
-//            return false
-//        }
-//        
-//        do {
-//            try await db.collection("users").document(uid).updateData(updatedData)
-//            print("User data updated successfully")
-//            return true
-//        } catch {
-//            print(error.localizedDescription)
-//            errorMessage = error.localizedDescription
-//            return false
-//        }
-//    }
-    
-//    func fetchUserData() async {
-//        guard let uid = Auth.auth().currentUser?.uid else {
-//            errorMessage = "No authenticated user found"
-//            return
-//        }
-//        
-//        do {
-//            let snapshot = try await db.collection("users").document(uid).getDocument()
-//            if let data = snapshot.data() {
-//                name = data["username"] as? String ?? "Unknown"
-//                email = data["email"] as? String ?? ""
-//                // Дополнительные поля, если есть
-//            }
-//        } catch {
-//            print(error.localizedDescription)
-//            errorMessage = error.localizedDescription
-//        }
-//    }
     
     //MARK: - Reset Password
     func resetPassword(email: String) async -> Bool {
@@ -207,9 +170,9 @@ final class AuthViewModel: ObservableObject{
             )
             _ = try await Auth.auth().signIn(with: credential)
 
-//            await MainActor.run {
-//                userAuthenticated()
-//            }
+            await MainActor.run {
+                userAuthenticated()
+            }
             return true
         } catch {
             errorMessage = error.localizedDescription
@@ -218,7 +181,7 @@ final class AuthViewModel: ObservableObject{
     }
     
     //MARK: - NavigationState
-//    func userAuthenticated() {
-//        router.updateRouterState(with: .userAuthorized)
-//    }
+    func userAuthenticated() {
+        router.updateRouterState(with: .userAuthorized)
+    }
 }
