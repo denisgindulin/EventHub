@@ -121,6 +121,7 @@ struct EventCardView: View {
                         
                         Button {
                             // show visitors
+                            print(visitors)
                         } label: {
                             HStack(spacing: 1) {
                                 Text(visitors.count > 3 ? "+" : "")

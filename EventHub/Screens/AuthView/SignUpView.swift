@@ -14,77 +14,79 @@ struct SignUpView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
-        GeometryReader { geometry in
-            let screenWidth = geometry.size.width
-            let horizontalPadding = screenWidth * 0.1
-            let smallPadding = screenWidth * 0.05
-            
-            
-            ZStack {
-                VStack {
-                    ToolBarView(title: "Sign up".localized, showBackButton: true)
-
-                    nameTextField(horizontalPadding: horizontalPadding)
-                        .padding(.top, smallPadding / 2)
-                    
-                    emailTextField(horizontalPadding: horizontalPadding)
-                        .padding(.top, smallPadding)
-                    
-                    passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Your password".localized, textFieldText: $viewModel.password)
-                        .padding(.top, smallPadding)
-                    
-                    passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Confirm password".localized, textFieldText: $viewModel.password2)
-                        .padding(.top, smallPadding)
-                    
-                    BlueButtonWithArrow(text: "Sign up".localized) {
-                        Task{
-                            let sucess =  await viewModel.signUp()
-                            if sucess {
-                                viewModel.saveUsernameToUserDefaults(username: viewModel.name )
-                                 
-                                withAnimation {
-                                    //
-                                }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                    presentationMode.wrappedValue.dismiss()
+        ZStack {
+            BackgroundWithEllipses()
+            GeometryReader { geometry in
+                let screenWidth = geometry.size.width
+                let horizontalPadding = screenWidth * 0.1
+                let smallPadding = screenWidth * 0.05
+                
+                ZStack {
+                    VStack {
+                        ToolBarView(title: "Sign up".localized, showBackButton: true)
+                        
+                        nameTextField(horizontalPadding: horizontalPadding)
+                            .padding(.top, smallPadding / 2)
+                        
+                        emailTextField(horizontalPadding: horizontalPadding)
+                            .padding(.top, smallPadding)
+                        
+                        passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Your password".localized, textFieldText: $viewModel.password)
+                            .padding(.top, smallPadding)
+                        
+                        passwordTextField(horizontalPadding: horizontalPadding, placeholder: "Confirm password".localized, textFieldText: $viewModel.password2)
+                            .padding(.top, smallPadding)
+                        
+                        BlueButtonWithArrow(text: "Sign up".localized) {
+                            Task{
+                                let sucess =  await viewModel.signUp()
+                                if sucess {
+                                    viewModel.saveUsernameToUserDefaults(username: viewModel.name )
+                                    
+                                    withAnimation {
+                                        //
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
                                 }
                             }
+                            
                         }
+                        .padding(.top, smallPadding * 1.5)
+                        .padding(.horizontal, horizontalPadding)
+                        .disabled(viewModel.isLoading)
                         
-                    }
-                    .padding(.top, smallPadding * 1.5)
-                    .padding(.horizontal, horizontalPadding)
-                    .disabled(viewModel.isLoading)
-                    
-                    Text("OR")
+                        Text("OR")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.vertical, smallPadding / 2)
+                        
+                        GoogleButton() {
+                            Task {
+                                await viewModel.signInWithGoogle()
+                            }
+                        }
+                        .padding(.horizontal, horizontalPadding)
+                        
+                        Spacer()
+                        
+                        HStack {
+                            Text("Already have an account?".localized)
+                                .airbnbCerealFont(.book, size: 15)
+                            
+                            Text("Sign In".localized)
+                                .airbnbCerealFont(.book, size: 15)
+                                .foregroundColor(.appBlue)
+                        }
+                        .onTapGesture {
+                            dismiss()
+                        }
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.vertical, smallPadding / 2)
-                    
-                    GoogleButton() {
-                        Task {
-                            await viewModel.signInWithGoogle()
-                        }
+                        .padding(.bottom, smallPadding)
                     }
-                    .padding(.horizontal, horizontalPadding)
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Text("Already have an account?".localized)
-                            .airbnbCerealFont(.book, size: 15)
-                        
-                        Text("Sign In".localized)
-                            .airbnbCerealFont(.book, size: 15)
-                            .foregroundColor(.appBlue)
-                    }
-                    .onTapGesture {
-                        dismiss()
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.bottom, smallPadding)
                 }
+                .navigationBarHidden(true)
             }
-            .navigationBarHidden(true)
         }
     }
     
