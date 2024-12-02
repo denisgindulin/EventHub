@@ -14,6 +14,7 @@ final class MapViewModel: ObservableObject {
     private let apiService: IAPIServiceForMap
     let locationManager: LocationManager
     
+    @Published var searchText: String = ""
     @Published var categories: [CategoryUIModel] = []
     @Published var events: [MapEventModel] = []
     @Published var currentCategory: String? = nil {

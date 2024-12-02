@@ -7,7 +7,7 @@
 
 import Foundation
 import FirebaseAuth
-import FirebaseAuthCombineSwift
+
 
 final class FirebaseManager: ObservableObject {
     @Published var user: UserData?

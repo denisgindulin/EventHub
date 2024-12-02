@@ -29,7 +29,7 @@ struct SearchView: View {
                     Text("Search")
                         .airbnbCerealFont(AirbnbCerealFont.medium, size: 24)
                     
-                    SearchBarView(isSearchPresented: $isSearchPresented,
+                    SearchBarViewForMap(isSearchPresented: $isSearchPresented,
                                   searchText: $viewModel.searchText,
                                   textColor: .black,
                                   magnifierColor: .appBlue,

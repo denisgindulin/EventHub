@@ -17,6 +17,8 @@ import Foundation
 /// `EventAPIService` interacts with the KudaGo API to retrieve event data.
 /// Includes fetching locations, categories, events, event details, and search results.
 final class EventAPIService: APIService, IEventAPIService {
+    
+
     // MARK: - Initializer
     /// Initializes the EventAPIService with an API client.
     init() {
@@ -39,6 +41,7 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Categories
     /// Fetches event categories based on the provided language.
+    /// 
     func getCategories(with language: Language?) async throws -> [CategoryDTO] {
         let apiSpec: EventAPISpec = .getCategories(language: language)
         do {
@@ -51,6 +54,44 @@ final class EventAPIService: APIService, IEventAPIService {
     }
     
     // MARK: - Events
+    func getToDayEvents(location: String, language: Language?, page: Int?) async throws -> [ToDayEventDTO] {
+        let apiSpec: EventAPISpec = .getTodayEvents(location: location, language: language, page: page)
+        do {
+            if let response = try await apiClient?.sendRequest(apiSpec) as? ToDayEventsDTO {
+                return response.results
+            }
+        } catch {
+            print(error)
+        }
+        return []
+        
+    }
+    
+    func getMovies(location: String, language: Language?, page: Int?) async throws -> [MovieDTO] {
+        let apiSpec: EventAPISpec = .getMovies(location: location, language: language, page: page)
+        do {
+            if let response = try await apiClient?.sendRequest(apiSpec) as? MoviesResponseDTO {
+                return response.results
+            }
+        } catch {
+            print(error)
+        }
+        return []
+    }
+    
+    func getLists(location: String, language: Language?, page: Int?) async throws -> [ListDTO] {
+        let apiSpec: EventAPISpec = .getLists(location: location, language: language, page: page)
+        do {
+            if let response = try await apiClient?.sendRequest(apiSpec) as? ResponseListDTO {
+                return response.results
+            }
+        } catch {
+            print(error)
+        }
+        return []
+    }
+    
+
     /// Fetches a paginated list of events filtered by location, language, and category.
     func getUpcomingEvents(with category: String?, _ language: Language, _ page: Int?) async throws -> [EventDTO] {
         let apiSpec: EventAPISpec = .getUpcomingEventsWith(
@@ -83,15 +124,16 @@ final class EventAPIService: APIService, IEventAPIService {
     
     // MARK: - Event Details
     /// Fetches detailed information about a specific event.
-    func getEventDetails(eventID: Int) async throws -> EventDTO? {
-        let apiSpec = EventAPISpec.getEventDetails(eventID: eventID)
+    func getEventDetails(eventIDs: String, language: Language?) async throws -> [EventDTO] {
+        let apiSpec = EventAPISpec.getEventDetails(eventIDs: eventIDs, language: language)
         do {
-            let eventDetails = try await apiClient?.sendRequest(apiSpec)
-            return eventDetails as? EventDTO
+            if let response = try await apiClient?.sendRequest(apiSpec) as? APIResponseDTO {
+                return response.results
+            }
         } catch {
             print(error)
-            return nil
         }
+        return []
     }
     
     func getUpcomingEvents(_ actualSince: String, _ actualUntil: String, _ language: Language, _ page: Int?) async throws -> [EventDTO] {

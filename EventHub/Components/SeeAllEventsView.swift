@@ -7,21 +7,23 @@
 
 import SwiftUI
 
+enum EventType {
+    case movie
+    case list
+    case regular
+}
+
 struct SeeAllEventsView: View {
     @Environment(\.dismiss) var dismiss
     let events: [ExploreModel]
-    
+    var eventType: EventType = .regular
+
     var body: some View {
-        
         ScrollView(showsIndicators: false) {
             VStack {
                 ForEach(events) { event in
-                    NavigationLink {
-                        DetailView(detailID: event.id)
-                    } label: {
-                        SmallEventCard(image: event.image ?? "No image/crach", date: event.date, title: event.title, place: event.adress)
-                            .padding(.bottom,5)
-                    }
+                    eventView(for: event)
+                        .padding(.bottom, 5)
                 }
             }
             .padding(.horizontal, 20)
@@ -34,7 +36,30 @@ struct SeeAllEventsView: View {
                 BackBarButtonView(foregroundStyle: .black)
             }
         }
-        
+    }
+    
+
+    func eventView(for event: ExploreModel) -> some View {
+        switch eventType {
+        case .list:
+            return AnyView(SmallEventCardForList(
+                title: event.title,
+                link: event.adress
+            ))
+        case .movie:
+            return AnyView(SmallEventCardForMovie(
+                image: event.image ?? "No image",
+                title: event.title,
+                url: event.adress
+            ))
+        case .regular:
+            return AnyView(SmallEventCard(
+                image: event.image ?? "No image/crach",
+                date: event.date,
+                title: event.title,
+                place: event.adress
+            ))
+        }
     }
 }
 

@@ -7,6 +7,15 @@
 
 import Foundation
 
+protocol EventConvertible {
+    var id: Int { get }
+    var title: String { get }
+    var eventDate: Date { get }
+    var adress: String { get }
+    var image: String? { get }
+}
+
+
 struct ExploreModel: Identifiable {
     let id: Int
     let title: String
@@ -30,24 +39,57 @@ struct ExploreModel: Identifiable {
         image: "cardImg1")
 }
 
+extension ExploreModel: EventConvertible {
+    var eventDate: Date { self.date }
+}
+
 extension ExploreModel {
     init(dto: EventDTO) {
         self.id = dto.id
-        self.title = dto.title ?? "No Title"
+        self.title = dto.title?.capitalized ?? "No Title"
         self.visitors = dto.participants?.map { participant in
             Visitor(
                 image: participant.agent?.images?.first?.image ?? "default_visitor_image",
                 name: participant.agent?.title ?? "No participant"
             )
         }
-        self.date = (Date(timeIntervalSince1970: TimeInterval(dto.dates.last?.start ?? 1489312800)))
+        
+        let currentDate = Date()
+        let closestDate = dto.dates
+            .filter { $0.start != nil }
+            .map { Date(timeIntervalSince1970: TimeInterval($0.start!)) }
+            .filter { $0 > currentDate }
+            .min(by: { abs($0.timeIntervalSince(currentDate)) < abs($1.timeIntervalSince(currentDate)) })
+        
+        self.date = closestDate ?? Date(timeIntervalSince1970: 1489312800)
         let location = dto.location?.name ?? ""
         let place = dto.place?.address ?? ""
-        self.adress = "\(String(describing: place)), \(String(describing: location))"
+        self.adress = "\(place), \(location)"
         self.image = dto.images.first?.image
     }
 }
 
+extension ExploreModel {
+    init(movieDto: MovieDTO) {
+        self.id = movieDto.id
+        self.title = movieDto.title
+        self.visitors = []
+        self.date = (Date(timeIntervalSince1970: TimeInterval(movieDto.year)))
+        self.adress = movieDto.site_url
+        self.image = movieDto.poster.image
+    }
+}
+    
+extension ExploreModel {
+    init(listDto: ListDTO) {
+        self.id = listDto.id
+        self.title = listDto.title
+        self.visitors = []
+        self.date = listDto.publicationDate
+        self.adress = listDto.siteURL
+        self.image = listDto.siteURL
+    }
+}
 
 extension ExploreModel {
     init(searchDTO: SearchResultDTO) {
@@ -92,6 +134,36 @@ extension ExploreModel {
         self.image = event.image
     }
 }
+
+struct EventIdentifier: Hashable {
+    let id: Int
+    let title: String
+}
+
+extension ExploreModel {
+    static func filterExploreEvents(_ events: [ExploreModel]) -> [ExploreModel] {
+        let currentDate = Date()
+        var seenIdsAndTitles: Set<EventIdentifier> = []
+        
+        let groupedEvents = Dictionary(grouping: events) { EventIdentifier(id: $0.id, title: $0.title) }
+        
+        let filteredEvents = groupedEvents.values.compactMap { group -> ExploreModel? in
+            group.filter { $0.date >= currentDate }
+                 .min(by: { abs($0.date.timeIntervalSince(currentDate)) < abs($1.date.timeIntervalSince(currentDate)) })
+        }
+        
+        return filteredEvents.filter { event in
+            let eventPair = EventIdentifier(id: event.id, title: event.title)
+            if seenIdsAndTitles.contains(eventPair) {
+                return false
+            } else {
+                seenIdsAndTitles.insert(eventPair)
+                return true
+            }
+        }
+    }
+}
+
 struct Visitor: Identifiable {
     let id = UUID()
     let image: String
