@@ -58,7 +58,15 @@
       }
     },
     "( in this category )" : {
-
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "( в этой категории )"
+          }
+        }
+      }
     },
     "%@" : {
       "localizations" : {
@@ -858,6 +866,9 @@
     "Key" : {
       "extractionState" : "manual"
     },
+    "Key 1" : {
+      "extractionState" : "manual"
+    },
     "Kids" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1125,6 +1136,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "нет описания"
+          }
+        }
+      }
+    },
+    "No events" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет событий"
           }
         }
       }
@@ -1992,23 +2014,6 @@
         }
       }
     },
-    "Upcomimg Events" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upcomimg Events"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предстоящие события"
-          }
-        }
-      }
-    },
     "Upcoming" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2039,6 +2044,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ПРЕДСТОЯЩИЕ"
+          }
+        }
+      }
+    },
+    "Upcoming Events" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предстоящие события"
           }
         }
       }
