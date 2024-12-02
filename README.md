@@ -61,5 +61,3 @@
 * the event can be added to favorites and shared with friends 
 * events can be divided into upcoming and past
 * you can customize your profile: add a name, an avatar, a section about yourself
-
-* there is a search for keywords and phrases
