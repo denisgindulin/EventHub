@@ -62,7 +62,7 @@
 * events can be divided into upcoming and past
 * you can customize your profile: add a name, an avatar, a section about yourself
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/3b8b1087-5527-4e9f-b053-ccc8fbecbda5" width="400">
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/3b8b1087-5527-4e9f-b053-ccc8fbecbda5">
 </p>
 
