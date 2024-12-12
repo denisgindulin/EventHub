@@ -65,9 +65,3 @@
 <p align="left">
   <img src="https://github.com/user-attachments/assets/3b8b1087-5527-4e9f-b053-ccc8fbecbda5">
 </p>
-
-<p align="left">
-  <img src="Showreel_-Cascading-mobile-screens-_remix_.gif">
-</p>
-
-
